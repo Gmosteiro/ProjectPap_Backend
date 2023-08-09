@@ -1,12 +1,14 @@
 package logic;
 
+import datatypes.DtFecha;
+
 public class Usuario {
 
 	private String nickname;
 	private String nombre;
 	private String apellido;
 	private String email;
-	//private DtFecha fechaNac;
+	private DtFecha fechaNac;
 	
 	
 	public String getNickname() {
@@ -32,6 +34,12 @@ public class Usuario {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public DtFecha getFechaNac() {
+		return fechaNac;
+	}
+	public void setFechaNac(DtFecha fechaNac) {
+		this.fechaNac = fechaNac;
 	}
 		
 }
