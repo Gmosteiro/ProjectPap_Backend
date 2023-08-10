@@ -2,7 +2,7 @@ package logic;
 
 import datatypes.DtFecha;
 
-public class Usuario {
+public abstract class Usuario {
 
 	private String nickname;
 	private String nombre;
