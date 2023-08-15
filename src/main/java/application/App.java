@@ -16,7 +16,7 @@ public class App {
 
             IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
 
-            DtFecha fechaNacimiento = new DtFecha(14, 8, 2023);
+            DtFecha fechaNacimiento = new DtFecha(14, 8, 2023); // cambiar
 
             controllerAltaUsuario.addProfesor("AlexElProfe", "Alex", "ElProfe",
                     "profe@profe.com", fechaNacimiento,
