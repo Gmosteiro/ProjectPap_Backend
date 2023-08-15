@@ -3,6 +3,7 @@ package application;
 import logic.manejadores.*;
 import logic.Fabrica;
 import logic.controllers.*;
+
 import datatypes.*;
 
 public class App {
@@ -17,12 +18,13 @@ public class App {
 
             DtFecha fechaNacimiento = new DtFecha(14, 8, 2023);
 
-            controllerAltaUsuario.addProfesor("AlexElProfe", "Alex", "ElProfe", "profe@profe.com", fechaNacimiento,
+            controllerAltaUsuario.addProfesor("AlexElProfe", "Alex", "ElProfe",
+                    "profe@profe.com", fechaNacimiento,
                     "Descripcion", "null", "null.null");
 
-            System.out.println("Funciono");
         } catch (Exception e) {
-            System.out.println("Catch main: " + e);
+            System.out.println("Catch main: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

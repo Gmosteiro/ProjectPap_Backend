@@ -1,14 +1,26 @@
 package logic;
 
+import javax.persistence.Id;
+
 import datatypes.DtFecha;
 
 public abstract class Usuario {
+
+	// @Id
+	// protected String nickname;
+
+	// @Id
+	// protected String email;
 
 	protected String nickname;
 	protected String nombre;
 	protected String apellido;
 	protected String email;
 	protected DtFecha fechaNac;
+
+	public Usuario() {
+		// Constructor sin argumentos
+	}
 
 	public Usuario(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
 		this.nickname = nickname;

@@ -1,8 +1,15 @@
 package logic;
 
 import datatypes.DtFecha;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Profesor") // Nombre de la tabla en la base de datos
 
 public class Profesor extends Usuario {
+
+	@Id
+	protected String nickname;
 
 	private String institucion;
 	private String descripcion;
@@ -10,9 +17,18 @@ public class Profesor extends Usuario {
 	private String sitioWeb;
 	// Constructor, getters y setters
 
+	public Profesor() {
+		// Constructor sin argumentos
+	}
+
 	public Profesor(String nickname, String nombre, String apellido, String email, DtFecha fechaNac, String institucion,
 			String descripcion, String biografia, String sitioWeb) {
-		super(nickname, nombre, apellido, email, fechaNac);
+		// super(nickname, nombre, apellido, email, fechaNac);
+		this.nickname = nickname;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.fechaNac = fechaNac;
 		this.institucion = institucion;
 		this.descripcion = descripcion;
 		this.biografia = biografia;
