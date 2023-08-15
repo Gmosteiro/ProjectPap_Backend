@@ -7,6 +7,10 @@ public class Fabrica {
     public IControllerAltaUsuario getControladorAltaUsuario() {
         return new ControllerAltaUsuario();
     }
+    
+    public IControllerAltaInstitucionDeportiva getControladorAltaInstitucionDeportiva() {
+        return new ControllerAltaInstitucionDeportiva();
+    }
 
     // public IControllerClases getControladorClases() {
     // return new ControladorClases();
