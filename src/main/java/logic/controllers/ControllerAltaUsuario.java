@@ -3,6 +3,7 @@ package logic.controllers;
 import datatypes.DtFecha;
 import logic.Socio;
 import logic.Profesor;
+import logic.manejadores.*;
 
 public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
@@ -22,33 +23,37 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
      */
 
     @Override
-    public String addProfesor(String nickname, String nombre, String apellido, String email, DtFecha fechaNac,
+    public void addProfesor(String nickname, String nombre, String apellido, String email, DtFecha fechaNac,
             String descripcion, String biografia, String sitioWeb) {
         try {
 
             if (validateUserData(nickname, email)) {
-                return "Error:  ";
+
             }
 
             Profesor nuevoProfesor = new Profesor(nickname, nombre, apellido, email, fechaNac, email, descripcion,
                     biografia, sitioWeb);
 
-            return "Usuario Creado";
+            ManejadorUsuarios manejador = new ManejadorUsuarios();
+
+            manejador.agregarUsuario(nuevoProfesor);
+
+            System.out.println("Usuario Creado");
 
         } catch (Exception errorException) {
             System.out.println("AddProfesor catch: " + errorException);
-            return "AddProfesor catch: " + errorException;
+
         }
 
     }
 
     @Override
-    public String addSocio(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
-        return "";
+    public void addSocio(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
+
     }
 
     private boolean validateUserData(String nickname, String Email) {
-        // TO DO
+
         return true;
     }
 
