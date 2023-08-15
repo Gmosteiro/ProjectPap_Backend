@@ -26,15 +26,14 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             String descripcion, String biografia, String sitioWeb) {
         try {
 
-            if (validateUserData(nickname, email)){
+            if (validateUserData(nickname, email)) {
                 return "Error:  ";
             }
 
-            //Code
-            return "";
+            Profesor nuevoProfesor = new Profesor(nickname, nombre, apellido, email, fechaNac, email, descripcion,
+                    biografia, sitioWeb);
 
-            
-
+            return "Usuario Creado";
 
         } catch (Exception errorException) {
             System.out.println("AddProfesor catch: " + errorException);
