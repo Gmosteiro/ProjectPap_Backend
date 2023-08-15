@@ -18,7 +18,7 @@ public class App {
 
             DtFecha fechaNacimiento = new DtFecha(14, 8, 2023); // cambiar
 
-            controllerAltaUsuario.addProfesor("AlexElProfe", "Alex", "ElProfe",
+            controllerAltaUsuario.addProfesor("AlexElProfe2", "Alex", "ElProfe",
                     "profe@profe.com", fechaNacimiento,
                     "Descripcion", "null", "null.null");
 
