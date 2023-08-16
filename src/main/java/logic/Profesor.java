@@ -2,10 +2,13 @@ package logic;
 
 import java.time.LocalDate;
 
-import javax.persistence.*;
+// @Table(name = "Profesor") // Nombre de la tabla en la base de datos
+import javax.persistence.Entity;
+import javax.persistence.IdClass;
+
+import persistance.UsuarioID;
 
 @Entity
-@Table(name = "Profesor") // Nombre de la tabla en la base de datos
 public class Profesor extends Usuario {
 
 	private String institucion;
@@ -13,7 +16,10 @@ public class Profesor extends Usuario {
 	private String biografia;
 	private String sitioWeb;
 
+	// Constructor, getters, setters y otros métodos
+
 	public Profesor() {
+		super();
 		// Constructor sin argumentos
 	}
 

@@ -7,8 +7,6 @@ package application;
 import java.time.LocalDate;
 
 import application.Ventana;
-import logic.manejadores.*;
-import net.bytebuddy.asm.Advice.Local;
 import logic.Fabrica;
 import logic.controllers.*;
 

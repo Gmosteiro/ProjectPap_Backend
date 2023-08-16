@@ -8,10 +8,12 @@ public class Socio extends Usuario {
     private List<Registro> clasesRegistradas;
     // Constructor, getters y setters
 
+    public Socio() {
+        super();
+    }
+
     public Socio(String nickname, String nombre, String apellido, String email, LocalDate fechaNac) {
         super(nickname, nombre, apellido, email, fechaNac);
-
         this.clasesRegistradas = new ArrayList<>();
-
     }
 }
