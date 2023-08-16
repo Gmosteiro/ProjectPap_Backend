@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS socio (
     nombre varchar(255) NOT NULL,
     apellido varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
-    fecha_nac date NOT NULL
+    fechaNac date NOT NULL
 );
 
 -- Crear tabla para Registro
