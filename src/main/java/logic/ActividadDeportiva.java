@@ -1,15 +1,15 @@
 package logic;
 
-import datatypes.*;
+import java.time.LocalDate;
 
 public class ActividadDeportiva {
     private String nombre;
     private String descripcion;
     private int duracion;
     private float costo;
-    private DtFecha fechaReg;
+    private LocalDate fechaReg;
 
-    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, DtFecha fechaReg) {
+    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -51,11 +51,11 @@ public class ActividadDeportiva {
         this.costo = costo;
     }
 
-    public DtFecha getFechaReg() {
+    public LocalDate getFechaReg() {
         return fechaReg;
     }
 
-    public void setFechaReg(DtFecha fechaReg) {
+    public void setFechaReg(LocalDate fechaReg) {
         this.fechaReg = fechaReg;
     }
 

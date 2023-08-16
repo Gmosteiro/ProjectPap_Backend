@@ -2,8 +2,6 @@ package logic.controllers;
 
 import java.time.LocalDate;
 
-import datatypes.DtFecha;
-
 public interface IControllerAltaUsuario {
 
   public abstract void addProfesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,

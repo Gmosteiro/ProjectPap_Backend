@@ -1,28 +1,26 @@
 package logic;
 
+import java.time.LocalDate;
+
 import javax.persistence.Id;
 
-import datatypes.DtFecha;
+public class Usuario {
 
-public abstract class Usuario {
-
-	// @Id
-	// protected String nickname;
-
-	// @Id
-	// protected String email;
-
+	@Id
 	protected String nickname;
+
+	@Id
+	protected String email;
+
 	protected String nombre;
 	protected String apellido;
-	protected String email;
-	protected DtFecha fechaNac;
+	protected LocalDate fechaNac;
 
 	public Usuario() {
 		// Constructor sin argumentos
 	}
 
-	public Usuario(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
+	public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNac) {
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -62,11 +60,11 @@ public abstract class Usuario {
 		this.nombre = nombre;
 	}
 
-	public DtFecha getFechaNac() {
+	public LocalDate getFechaNac() {
 		return fechaNac;
 	}
 
-	public void setFechaNac(DtFecha fechaNac) {
+	public void setFechaNac(LocalDate fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 

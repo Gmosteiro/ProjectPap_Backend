@@ -1,18 +1,18 @@
 package logic;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
-
-import datatypes.*;
 
 public class Clase {
     private String nombre;
-    private DtFecha fecha;
-    private DtHora hora;
+    private LocalDate fecha;
+    private LocalTime hora;
     private String url;
-    private DtFecha fechaReg;
+    private LocalDate fechaReg;
     private List<Registro> clasesRegistradas;
 
-    public Clase(String nombre, DtFecha fecha, DtHora hora, String url, DtFecha fechaReg) {
+    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.hora = hora;
@@ -28,19 +28,19 @@ public class Clase {
         this.nombre = nombre;
     }
 
-    public DtFecha getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(DtFecha fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public void setHora(DtHora hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 
-    public DtHora getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
@@ -52,11 +52,11 @@ public class Clase {
         this.url = url;
     }
 
-    public DtFecha getFechaReg() {
+    public LocalDate getFechaReg() {
         return fechaReg;
     }
 
-    public void setFechaReg(DtFecha fechaReg) {
+    public void setFechaReg(LocalDate fechaReg) {
         this.fechaReg = fechaReg;
     }
 

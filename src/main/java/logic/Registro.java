@@ -1,13 +1,13 @@
 package logic;
 
-import datatypes.*;
+import java.time.LocalDate;
 
 public class Registro {
-    private DtFecha fechaReg;
+    private LocalDate fechaReg;
     private Socio socio;
     private Clase clase;
 
-    public Registro(DtFecha fechaReg, Socio socio, Clase clase) {
+    public Registro(LocalDate fechaReg, Socio socio, Clase clase) {
         this.fechaReg = fechaReg;
         this.socio = socio;
         this.clase = clase;
@@ -15,11 +15,11 @@ public class Registro {
 
     // Métodos getters y setters para los atributos
 
-    public DtFecha getFechaReg() {
+    public LocalDate getFechaReg() {
         return fechaReg;
     }
 
-    public void setFechaReg(DtFecha fechaReg) {
+    public void setFechaReg(LocalDate fechaReg) {
         this.fechaReg = fechaReg;
     }
 

@@ -1,49 +1,32 @@
 package logic;
 
-import datatypes.DtFecha;
-
 import java.time.LocalDate;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Profesor") // Nombre de la tabla en la base de datos
-
 public class Profesor extends Usuario {
-
-	@Id
-	protected String nickname;
 
 	private String institucion;
 	private String descripcion;
 	private String biografia;
 	private String sitioWeb;
-	private String nombre;
-	private String apellido;
-	private String email;
-	private LocalDate fechaNac;
-
-	// Constructor, getters y setters
 
 	public Profesor() {
 		// Constructor sin argumentos
 	}
 
 	public Profesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
-			String institucion,
-			String descripcion, String biografia, String sitioWeb) {
-		// super(nickname, nombre, apellido, email, fechaNac);
-		this.nickname = nickname;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
-		this.fechaNac = fechaNac;
+			String institucion, String descripcion, String biografia, String sitioWeb) {
+		super(nickname, nombre, apellido, email, fechaNac);
 		this.institucion = institucion;
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.sitioWeb = sitioWeb;
 	}
 
+	// Getters y setters para los atributos adicionales de Profesor
 	public String getInstitucion() {
 		return institucion;
 	}

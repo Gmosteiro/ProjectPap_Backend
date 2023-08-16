@@ -1,11 +1,9 @@
 package logic.controllers;
 
-import datatypes.DtFecha;
 import logic.Socio;
 import logic.Profesor;
 import logic.manejadores.*;
 import java.time.LocalDate;
-
 
 public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
