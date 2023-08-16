@@ -1,6 +1,11 @@
 package logic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+
+@Entity
 public class InstitucionDeportiva {
+    @Id
     private String nombre;
 
     private String descripcion;

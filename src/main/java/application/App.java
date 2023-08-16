@@ -3,6 +3,7 @@ import java.time.LocalDate;
 
 import logic.Fabrica;
 import logic.controllers.IControllerAltaActividad;
+import logic.controllers.IControllerAltaInstitucionDeportiva;
 
 
 public class App {
@@ -22,10 +23,10 @@ public class App {
 // 		 try {
 //     Fabrica factory = new Fabrica();
 
-//     IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
+//     IControllerAltaInstitucionDeportiva controllerAltaInstitucionDeportiva = factory.getControladorAltaInstitucionDeportiva();
 
 
-//     controllerAltaActividad.altaActividad("Yoga", "Clases de yoga para relajación", 60, 20.0f, java.time.LocalDate.now());
+//     controllerAltaInstitucionDeportiva.addInstitucionDeportiva("pepe","pepe","pepe");
 
 
 // } catch (Exception e) {

@@ -39,3 +39,10 @@ CREATE TABLE IF NOT EXISTS public.actividaddeportiva (
     fechareg date NULL,
     CONSTRAINT actividaddeportiva_pkey PRIMARY KEY (nombre)
 );
+
+CREATE TABLE IF NOT EXISTS public.instituciondeportiva (
+    nombre varchar(255) NOT NULL,
+    descripcion varchar(255) NULL,
+    url varchar(255) NULL,
+    CONSTRAINT instituciondeportiva_pkey PRIMARY KEY (nombre)
+);
