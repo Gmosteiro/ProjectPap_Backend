@@ -4,6 +4,8 @@ import datatypes.DtFecha;
 import logic.Socio;
 import logic.Profesor;
 import logic.manejadores.*;
+import java.time.LocalDate;
+
 
 public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
@@ -23,7 +25,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
      */
 
     @Override
-    public void addProfesor(String nickname, String nombre, String apellido, String email, DtFecha fechaNac,
+    public void addProfesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
             String descripcion, String biografia, String sitioWeb) {
         try {
 
@@ -48,7 +50,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
     }
 
     @Override
-    public void addSocio(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
+    public void addSocio(String nickname, String nombre, String apellido, String email, LocalDate fechaNac) {
 
     }
 

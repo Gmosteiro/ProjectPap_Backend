@@ -1,6 +1,9 @@
 package logic;
 
 import datatypes.DtFecha;
+
+import java.time.LocalDate;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,13 +18,19 @@ public class Profesor extends Usuario {
 	private String descripcion;
 	private String biografia;
 	private String sitioWeb;
+	private String nombre;
+	private String apellido;
+	private String email;
+	private LocalDate fechaNac;
+
 	// Constructor, getters y setters
 
 	public Profesor() {
 		// Constructor sin argumentos
 	}
 
-	public Profesor(String nickname, String nombre, String apellido, String email, DtFecha fechaNac, String institucion,
+	public Profesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
+			String institucion,
 			String descripcion, String biografia, String sitioWeb) {
 		// super(nickname, nombre, apellido, email, fechaNac);
 		this.nickname = nickname;

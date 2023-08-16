@@ -4,6 +4,8 @@ import logic.manejadores.*;
 import logic.Fabrica;
 import logic.controllers.*;
 
+import java.time.LocalDate;
+
 import datatypes.*;
 
 public class App {
@@ -16,9 +18,10 @@ public class App {
 
             IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
 
-            DtFecha fechaNacimiento = new DtFecha(14, 8, 2023); // cambiar
+            // DtFecha fechaNacimiento = new DtFecha(14, 8, 2023); // cambiar
+            LocalDate fechaNacimiento = LocalDate.now();
 
-            controllerAltaUsuario.addProfesor("AlexElProfe2", "Alex", "ElProfe",
+            controllerAltaUsuario.addProfesor("AlexElProfe35", "Alex", "ElProfe",
                     "profe@profe.com", fechaNacimiento,
                     "Descripcion", "null", "null.null");
 
