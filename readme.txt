@@ -29,3 +29,13 @@ CREATE TABLE IF NOT EXISTS  public.profesor (
     fechanac date NULL,
     CONSTRAINT profesor_pkey PRIMARY KEY (nickname)
 );
+
+
+CREATE TABLE IF NOT EXISTS public.actividaddeportiva (
+    nombre varchar(255) NOT NULL,
+    descripcion varchar(255) NULL,
+    duracion integer NULL,
+    costo float NULL,
+    fechareg date NULL,
+    CONSTRAINT actividaddeportiva_pkey PRIMARY KEY (nombre)
+);

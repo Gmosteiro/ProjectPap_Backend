@@ -19,4 +19,10 @@ public class Fabrica {
     // public IControllerInstitucion getControladorInstitucion() {
     // return new ControladoInstitucion();
     // }
+
+    public IControllerAltaActividad getControladorAltaActividad() {
+    return new ControllerAltaActividad();
+}
+
+
 }

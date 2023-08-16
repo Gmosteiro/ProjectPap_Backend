@@ -1,4 +1,9 @@
 package application;
+import java.time.LocalDate;
+
+import logic.Fabrica;
+import logic.controllers.IControllerAltaActividad;
+
 
 public class App {
 
@@ -14,19 +19,20 @@ public class App {
 			e.printStackTrace();
 		}
 
-		// try {
-		// Fabrica factory = new Fabrica();
+// 		 try {
+//     Fabrica factory = new Fabrica();
 
-		// IControllerAltaInstitucionDeportiva controllerAltaInstitucionDeportiva =
-		// factory.getControladorAltaInstitucionDeportiva();
+//     IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
 
-		// controllerAltaInstitucionDeportiva.addInstitucionDeportiva("GymFit", "clases
-		// de zumba y algebra", "www.gymfit.com.uy");
 
-		// } catch (Exception e) {
-		// System.out.println("Catch main: " + e.getMessage());
-		// e.printStackTrace();
-		// }
+//     controllerAltaActividad.altaActividad("Yoga", "Clases de yoga para relajación", 60, 20.0f, java.time.LocalDate.now());
+
+
+// } catch (Exception e) {
+//     System.out.println("Catch main: " + e.getMessage());
+//     e.printStackTrace();
+// }
+
 	}
 
 }

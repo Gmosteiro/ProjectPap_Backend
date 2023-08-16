@@ -1,9 +1,15 @@
 package logic;
 
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class ActividadDeportiva {
+
+    @Id
     private String nombre;
+
     private String descripcion;
     private int duracion;
     private float costo;
