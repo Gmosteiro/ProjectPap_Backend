@@ -38,7 +38,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
             manejador.agregarUsuario(nuevoProfesor);
 
-            System.out.println("Usuario Creado");
+            System.out.println("Profesor Creado");
 
         } catch (Exception errorException) {
             System.out.println("AddProfesor catch: " + errorException);
@@ -49,6 +49,24 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
     @Override
     public void addSocio(String nickname, String nombre, String apellido, String email, LocalDate fechaNac) {
+        try {
+
+            if (validateUserData(nickname, email)) {
+
+            }
+
+            Socio nuevoSocio = new Socio(nickname, nombre, apellido, email, fechaNac);
+
+            ManejadorUsuarios manejador = new ManejadorUsuarios();
+
+            manejador.agregarUsuario(nuevoSocio);
+
+            System.out.println("Socio Creado");
+
+        } catch (Exception errorException) {
+            System.out.println("AddSocio catch: " + errorException);
+
+        }
 
     }
 

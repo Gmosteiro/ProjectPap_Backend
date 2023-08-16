@@ -4,9 +4,6 @@ import java.time.LocalDate;
 
 // @Table(name = "Profesor") // Nombre de la tabla en la base de datos
 import javax.persistence.Entity;
-import javax.persistence.IdClass;
-
-import persistance.UsuarioID;
 
 @Entity
 public class Profesor extends Usuario {

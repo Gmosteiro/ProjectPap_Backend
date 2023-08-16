@@ -648,9 +648,6 @@ public class Ventana extends javax.swing.JFrame {
                 final LocalDate fechaNacimiento = LocalDate.of((int) jSpinner3.getValue(), (int) jSpinner2.getValue(),
                                 (int) jSpinner1.getValue());
 
-                // controllerAltaUsuario.addProfesor("AlexElProfe2", "Alex",
-                // "ElProfe","profe@profe.com", fechaNacimiento,
-                // "Descripcion", "null", "null.null");
                 String nickname = jTextField3.getText();
                 String nombre = jTextField1.getText();
                 String apellido = jTextField2.getText();
@@ -661,8 +658,6 @@ public class Ventana extends javax.swing.JFrame {
                 try {
                         // Llamar a tu función pasando la variable como argumento
                         if (jCheckBox1.isSelected()) {
-                                // controllerAltaUsuario.addProfesor(nickname, nombre, apellido,
-                                // email,fechaNacimiento, descripcion, biografia, sitioweb);
                                 controllerAltaUsuario.addProfesor(nickname, nombre, apellido, email, fechaNacimiento,
                                                 descripcion,
                                                 biografia, sitioweb);
