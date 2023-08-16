@@ -1,8 +1,9 @@
 package logic.controllers;
 
-import datatypes.DtFecha;
 import logic.ActividadDeportiva;
 import logic.manejadores.ManejadorActividad;
+
+import java.time.LocalDate;
 
 public class ControllerAltaActividad implements IControllerAltaActividad {
 
@@ -13,7 +14,7 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
     }
 
     @Override
-    public void altaActividad(String nombre, String descripcion, int duracion, float costo, DtFecha fechaReg) {
+    public void altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg) {
         ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
         manejadorActividad.agregarActividad(actividad);
     }
