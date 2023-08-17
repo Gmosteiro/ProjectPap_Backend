@@ -1,8 +1,6 @@
-package logic.controllers;
+package logic.Usuario.controllers;
 
-import logic.Socio;
-import logic.Profesor;
-import logic.manejadores.*;
+import logic.Usuario.*;
 import java.time.LocalDate;
 
 public class ControllerAltaUsuario implements IControllerAltaUsuario {

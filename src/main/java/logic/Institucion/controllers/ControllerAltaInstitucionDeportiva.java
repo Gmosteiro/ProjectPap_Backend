@@ -1,17 +1,21 @@
-package logic.controllers;
+package logic.Institucion.controllers;
 
-import logic.InstitucionDeportiva;
-import logic.manejadores.*;
+import logic.Institucion.InstitucionDeportiva;
+import logic.Institucion.ManejadorInstitucion;
 
 public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstitucionDeportiva {
 
     /*
      * Actores: Administrador del sistema
      * 
-     * El caso de uso comienza cuando el administrador desea dar de alta una institución. 
-     * Para ello, indica el nombre de la institución (único), una descripción y una URL. 
-     * Si ya existe una institución con igual nombre, el administrador puede reingresar 
-     * los datos o cancelar el caso de uso. Finalmente, el sistema da de alta la institución deportiva
+     * El caso de uso comienza cuando el administrador desea dar de alta una
+     * institución.
+     * Para ello, indica el nombre de la institución (único), una descripción y
+     * una URL.
+     * Si ya existe una institución con igual nombre, el administrador puede
+     * reingresar
+     * los datos o cancelar el caso de uso. Finalmente, el sistema da de alta la
+     * institución deportiva
      */
 
     @Override
@@ -36,7 +40,7 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
         }
 
     }
-    
+
     private boolean validateInstData(String nombre) {
 
         return true;

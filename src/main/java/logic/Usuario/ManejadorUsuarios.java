@@ -1,11 +1,8 @@
-package logic.manejadores;
+package logic.Usuario;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import logic.Profesor;
-import logic.Usuario;
 
 public class ManejadorUsuarios {
 

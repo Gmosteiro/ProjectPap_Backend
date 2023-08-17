@@ -1,4 +1,4 @@
-package logic.controllers;
+package logic.Institucion.controllers;
 
 public interface IControllerAltaInstitucionDeportiva {
 

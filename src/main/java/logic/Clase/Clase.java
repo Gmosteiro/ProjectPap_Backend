@@ -1,8 +1,10 @@
-package logic;
+package logic.Clase;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+
+import logic.Registro;
 
 public class Clase {
     private String nombre;

@@ -2,6 +2,9 @@ package logic;
 
 import java.time.LocalDate;
 
+import logic.Clase.Clase;
+import logic.Usuario.Socio;
+
 public class Registro {
     private LocalDate fechaReg;
     private Socio socio;

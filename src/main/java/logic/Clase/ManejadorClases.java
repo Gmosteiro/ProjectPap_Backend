@@ -1,4 +1,4 @@
-package logic.manejadores;
+package logic.Clase;
 
 public class ManejadorClases {
 

@@ -1,7 +1,7 @@
-package logic.controllers;
+package logic.ActividadDeportiva.controllers;
 
-import logic.ActividadDeportiva;
-import logic.manejadores.ManejadorActividad;
+import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.ManejadorActividad;
 
 import java.time.LocalDate;
 

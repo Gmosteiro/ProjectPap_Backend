@@ -1,10 +1,8 @@
-package logic.manejadores;
+package logic.Institucion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import logic.InstitucionDeportiva;
 
 public class ManejadorInstitucion {
 
