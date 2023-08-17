@@ -1,10 +1,4 @@
 package application;
-import java.time.LocalDate;
-
-import logic.Fabrica;
-import logic.controllers.IControllerAltaActividad;
-import logic.controllers.IControllerAltaInstitucionDeportiva;
-
 
 public class App {
 
@@ -20,19 +14,18 @@ public class App {
 			e.printStackTrace();
 		}
 
-// 		 try {
-//     Fabrica factory = new Fabrica();
+		// try {
+		// Fabrica factory = new Fabrica();
 
-//     IControllerAltaInstitucionDeportiva controllerAltaInstitucionDeportiva = factory.getControladorAltaInstitucionDeportiva();
+		// IControllerAltaInstitucionDeportiva controllerAltaInstitucionDeportiva =
+		// factory.getControladorAltaInstitucionDeportiva();
 
+		// controllerAltaInstitucionDeportiva.addInstitucionDeportiva("pepe","pepe","pepe");
 
-//     controllerAltaInstitucionDeportiva.addInstitucionDeportiva("pepe","pepe","pepe");
-
-
-// } catch (Exception e) {
-//     System.out.println("Catch main: " + e.getMessage());
-//     e.printStackTrace();
-// }
+		// } catch (Exception e) {
+		// System.out.println("Catch main: " + e.getMessage());
+		// e.printStackTrace();
+		// }
 
 	}
 

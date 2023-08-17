@@ -1,6 +1,5 @@
 -- Crear tabla para Socio 
 CREATE TABLE IF NOT EXISTS socio (
-    id serial PRIMARY KEY,
     nickname varchar(255) NOT NULL,
     nombre varchar(255) NOT NULL,
     apellido varchar(255) NOT NULL,
@@ -10,10 +9,8 @@ CREATE TABLE IF NOT EXISTS socio (
 
 -- Crear tabla para Registro
 CREATE TABLE IF NOT EXISTS registro (
-    id serial PRIMARY KEY,
     fecha_registro date NOT NULL,
     -- Agregar otras columnas necesarias para Registro
-    socio_id integer REFERENCES socio(id) ON DELETE CASCADE
 );
 
 --Crear tabla para Profesor
