@@ -4,10 +4,14 @@ import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
 
 import java.time.LocalDate;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 public class ControllerAltaActividad implements IControllerAltaActividad {
 
-    private ManejadorActividad manejadorActividad;
+    private final ManejadorActividad manejadorActividad;
 
     public ControllerAltaActividad() {
         manejadorActividad = new ManejadorActividad();
@@ -15,8 +19,12 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
 
     @Override
     public void altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg) {
-        ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
-        manejadorActividad.agregarActividad(actividad);
+        if (validateActivityData(nombre)) {
+            ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
+            manejadorActividad.agregarActividad(actividad);
+        } else {
+            // Manejar el caso de actividad duplicada
+        }
     }
 
     @Override
@@ -39,6 +47,28 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
             manejadorActividad.eliminarActividad(actividad);
         } else {
             // Manejar la actividad no encontrada
+        }
+    }
+
+    private boolean validateActivityData(String nombre) {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+        EntityManager entityManager = emFactory.createEntityManager();
+
+        try {
+            TypedQuery<ActividadDeportiva> query = entityManager.createQuery(
+                    "SELECT a FROM ActividadDeportiva a WHERE a.nombre = :nombre",
+                    ActividadDeportiva.class);
+            query.setParameter("nombre", nombre);
+
+            if (query.getResultList().isEmpty()) {
+                return true;
+            } else {
+                // Manejar actividad duplicada
+                return false;
+            }
+        } finally {
+            entityManager.close();
+            emFactory.close();
         }
     }
 }
