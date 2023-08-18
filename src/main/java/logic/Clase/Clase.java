@@ -2,21 +2,20 @@ package logic.Clase;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Entity;
 
+@Entity
 public class Clase {
-    
+
     @Id
     private String nombre;
-    
+
     private LocalDate fecha;
     private LocalTime hora;
     private String url;
     private LocalDate fechaReg;
-    //private List<Registro> clasesRegistradas;
+    // private List<Registro> clasesRegistradas;
 
     public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg) {
         this.nombre = nombre;

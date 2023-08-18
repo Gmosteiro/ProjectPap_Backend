@@ -11,15 +11,16 @@ import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import javax.persistence.Entity;
 
+public class ControllerAltaClase implements IControllerAltaClase {
 
-public class ControllerAltaClase implements IControllerAltaClase{
+    /*
+     * private ManejadorClases manejadorClases;
+     * 
+     * public ControllerAltaClase() {
+     * manejadorClases = new ManejadorClases();
+     * }
+     */
 
-    /*private ManejadorClases manejadorClases;
-    
-    public ControllerAltaClase() {
-    manejadorClases = new ManejadorClases();
-    }*/
-    
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg) {
         try {
@@ -28,7 +29,7 @@ public class ControllerAltaClase implements IControllerAltaClase{
 
             }
 
-            Clase nuevaclase = new Clase(nombre,fecha, hora, url, fechaReg);
+            Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg);
 
             ManejadorClases manejador = new ManejadorClases();
 
@@ -45,16 +46,15 @@ public class ControllerAltaClase implements IControllerAltaClase{
 
     }
 
-private boolean validateClassData(String nombre) {
+    private boolean validateClassData(String nombre) {
 
         return true;
     }
 
-     private String extractErrorMessage(String fullErrorMessage) {
+    private String extractErrorMessage(String fullErrorMessage) {
         int startIndex = fullErrorMessage.indexOf(":") + 1; // Encuentra la posición después del primer ":"
 
         return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
                 : fullErrorMessage;
     }
 }
- 
