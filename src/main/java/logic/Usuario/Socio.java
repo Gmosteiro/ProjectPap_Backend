@@ -1,17 +1,8 @@
 package logic.Usuario;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-// import java.util.List;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-//import javax.persistence.OneToMany;
-import javax.persistence.OneToMany;
-
-import logic.Registro;
 
 @Entity
 public class Socio extends Usuario {

@@ -529,7 +529,7 @@ public class Ventana extends javax.swing.JFrame {
                         }
                 });
 
-                jButton5.setText("CANCELO");
+                jButton5.setText("Cancelar");
                 jButton5.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jButton5ActionPerformed(evt);
@@ -542,11 +542,9 @@ public class Ventana extends javax.swing.JFrame {
                         }
                 });
 
-                jSpinner7.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-
-                jSpinner8.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
-
-                jSpinner9.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2023, 1));
+                jSpinner7.setModel(new javax.swing.SpinnerNumberModel(fechaActual.getDayOfMonth(), 1, 31, 1));
+                jSpinner8.setModel(new javax.swing.SpinnerNumberModel(fechaActual.getMonthValue(), 1, 12, 1));
+                jSpinner9.setModel(new javax.swing.SpinnerNumberModel(fechaActual.getYear(), 1900, 2023, 1));
 
                 jTextField10.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -822,8 +820,9 @@ public class Ventana extends javax.swing.JFrame {
         private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
                 Fabrica factory = new Fabrica();
                 IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
-                final LocalDate fecha = LocalDate.of((int) jSpinner7.getValue(), (int) jSpinner8.getValue(),
-                                (int) jSpinner9.getValue());
+
+                final LocalDate fecha = LocalDate.of((int) jSpinner9.getValue(), (int) jSpinner8.getValue(),
+                                (int) jSpinner7.getValue());
 
                 String nombre = jTextField8.getText();
                 String costoStr = jTextField11.getText();

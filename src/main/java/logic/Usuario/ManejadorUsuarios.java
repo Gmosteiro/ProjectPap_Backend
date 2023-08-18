@@ -10,17 +10,24 @@ public class ManejadorUsuarios {
 	}
 
 	public void agregarUsuario(Usuario usuario) {
+		try {
 
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-		EntityManager entityManager = emFactory.createEntityManager();
-		entityManager.getTransaction().begin();
+			EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+			EntityManager entityManager = emFactory.createEntityManager();
+			entityManager.getTransaction().begin();
 
-		entityManager.persist(usuario);
-		entityManager.getTransaction().commit();
+			entityManager.persist(usuario);
+			entityManager.getTransaction().commit();
 
-		entityManager.close();
-		emFactory.close();
+			entityManager.close();
+			emFactory.close();
+		} catch (Exception exceptionAgregarUsuario) {
+			System.out.println("Catch agregarUsuario: " + exceptionAgregarUsuario);
 
+			Throwable error = exceptionAgregarUsuario.getCause().getCause().getCause();
+			System.out.println("ERROR");
+
+		}
 	}
 
 }

@@ -15,6 +15,9 @@ public class ActividadDeportiva {
     private float costo;
     private LocalDate fechaReg;
 
+    public ActividadDeportiva() {
+    }
+
     public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg) {
         this.nombre = nombre;
         this.descripcion = descripcion;

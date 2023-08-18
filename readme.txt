@@ -1,11 +1,13 @@
--- Crear tabla para Socio 
+-- Crear tabla para Socio
 CREATE TABLE IF NOT EXISTS socio (
     nickname varchar(255) NOT NULL,
     nombre varchar(255) NOT NULL,
     apellido varchar(255) NOT NULL,
-    email varchar(255) NOT NULL,
-    fechaNac date NOT NULL
+    email varchar(255) NOT NULL UNIQUE, -- Agregamos UNIQUE aquí
+    fechaNac date NOT NULL,
+    CONSTRAINT socio_pkey PRIMARY KEY (nickname)
 );
+
 
 -- Crear tabla para Registro
 CREATE TABLE IF NOT EXISTS registro (

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.swing.JOptionPane;
 
 public class ControllerAltaActividad implements IControllerAltaActividad {
 
@@ -19,11 +20,19 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
 
     @Override
     public void altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg) {
-        if (validateActivityData(nombre)) {
-            ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
-            manejadorActividad.agregarActividad(actividad);
-        } else {
-            // Manejar el caso de actividad duplicada
+        try {
+
+            if (validateActivityData(nombre)) {
+                ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
+                manejadorActividad.agregarActividad(actividad);
+            } else {
+                System.out.println("Ya existe una  actividad con ese nombre (santi arregla esto)");
+                // Manejar el caso de actividad duplicada
+            }
+        } catch (Exception errorException) {
+            System.out.println("Catch addActividad: " + errorException);
+            String errorMessage = extractErrorMessage(errorException.getMessage());
+            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -70,5 +79,12 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
             entityManager.close();
             emFactory.close();
         }
+    }
+
+    private String extractErrorMessage(String fullErrorMessage) {
+        int startIndex = fullErrorMessage.indexOf(":") + 1; // Encuentra la posición después del primer ":"
+
+        return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
+                : fullErrorMessage;
     }
 }
