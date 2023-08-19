@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import javax.persistence.Entity;
+import logic.Usuario.Usuario;
 
 
 public class ControllerAltaClase implements IControllerAltaClase{
@@ -24,8 +25,8 @@ public class ControllerAltaClase implements IControllerAltaClase{
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg) {
         try {
 
-            if (validateClassData(nombre)) {
-
+            if (!validateClassData(nombre, "Clase")) {
+                return;
             }
 
             Clase nuevaclase = new Clase(nombre,fecha, hora, url, fechaReg);
@@ -45,9 +46,35 @@ public class ControllerAltaClase implements IControllerAltaClase{
 
     }
 
-private boolean validateClassData(String nombre) {
+private boolean validateClassData(String nombre,String queryValue) {
+         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+        EntityManager entityManager = emFactory.createEntityManager();
 
-        return true;
+        try {
+            TypedQuery<Clase> query = entityManager.createQuery(
+                    "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
+                    Clase.class);
+            query.setParameter("nombre", nombre);
+
+            if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
+                return true;
+            } else {
+
+                Clase clase = query.getSingleResult();
+
+                String queryNombre = clase.getNombre();
+                String errorMessage = "";
+
+                if (queryNombre.equals(nombre)) {
+                    errorMessage = "Ya existe una Clase con ese nombre";
+                } 
+                JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } finally {
+            entityManager.close();
+            emFactory.close();
+        }
     }
 
      private String extractErrorMessage(String fullErrorMessage) {

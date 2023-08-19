@@ -473,7 +473,7 @@ public class Ventana extends javax.swing.JFrame {
                         .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RegistrarClaseCULayout.setVerticalGroup(
             RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,19 +485,19 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 35, Short.MAX_VALUE)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 35, Short.MAX_VALUE)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jSpinner6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jSpinner10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jSpinner11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 35, Short.MAX_VALUE)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -505,18 +505,18 @@ public class Ventana extends javax.swing.JFrame {
                         .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 35, Short.MAX_VALUE)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 34, Short.MAX_VALUE)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 23, Short.MAX_VALUE)
+                .addGap(18, 32, Short.MAX_VALUE)
                 .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRCC)
                     .addComponent(jButtonRCA))
@@ -734,7 +734,8 @@ public class Ventana extends javax.swing.JFrame {
                 RegistrarClaseCU.setVisible(true);
                 // internalFrame.setSize(300, 200);
                 // internalFrame.setVisible(true);
-                jDesktopPane1.add(RegistrarClaseCU);// TODO add your handling code here:
+                jDesktopPane1.add(RegistrarClaseCU);
+                RegistrarClaseCU.toFront();    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
@@ -747,6 +748,9 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRCCActionPerformed
        RegistrarClaseCU.dispose();
+                        jTextField12.setText("");
+                        jTextField14.setText("");
+                        jTextField15.setText("");
     }//GEN-LAST:event_jButtonRCCActionPerformed
 
     private void jButtonRCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRCAActionPerformed
@@ -764,6 +768,9 @@ public class Ventana extends javax.swing.JFrame {
                 String url = jTextField15.getText();
                 
                 controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta);// TODO add your handling code here:
+                        jTextField12.setText("");
+                        jTextField14.setText("");
+                        jTextField15.setText("");
     }//GEN-LAST:event_jButtonRCAActionPerformed
 
     private void jComboBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox9ActionPerformed
@@ -815,10 +822,15 @@ public class Ventana extends javax.swing.JFrame {
                 // internalFrame.setSize(300, 200);
                 // internalFrame.setVisible(true);
                 jDesktopPane1.add(RegistrarActividadCU);
+                RegistrarActividadCU.toFront();
         }// GEN-LAST:event_jMenuItem2ActionPerformed
 
         private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
                 RegistrarActividadCU.dispose();
+                        jTextField8.setText("");
+                        jTextField9.setText("");
+                        jTextField10.setText("");
+                        jTextField11.setText("");
         }// GEN-LAST:event_jButton5ActionPerformed
 
         private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
@@ -835,6 +847,10 @@ public class Ventana extends javax.swing.JFrame {
                 int duracion = Integer.parseInt(duracionStr);
                 int costo = Integer.parseInt(costoStr);
                 controllerAltaActividad.altaActividad(nombre, descripcion, duracion, costo, fecha);
+                        jTextField8.setText("");
+                        jTextField9.setText("");
+                        jTextField10.setText("");
+                        jTextField11.setText("");
         }// GEN-LAST:event_jButton4ActionPerformed
 
         private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox4ActionPerformed
@@ -890,7 +906,14 @@ public class Ventana extends javax.swing.JFrame {
         }// GEN-LAST:event_jTextField1ActionPerformed
 
         private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
-                RegistrarClienteCU.dispose();// TODO add your handling code here:
+                RegistrarClienteCU.dispose();
+                        jTextField1.setText("");
+                        jTextField2.setText("");
+                        jTextField3.setText("");
+                        jTextField4.setText("");
+                        jTextField5.setText("");
+                        jTextField6.setText("");
+                        jTextField7.setText("");// TODO add your handling code here:
         }// GEN-LAST:event_jButton3ActionPerformed
 
         private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -918,6 +941,7 @@ public class Ventana extends javax.swing.JFrame {
                 // internalFrame.setSize(300, 200);
                 // internalFrame.setVisible(true);
                 jDesktopPane1.add(RegistrarClienteCU);
+                RegistrarClienteCU.toFront();
         }// GEN-LAST:event_jMenuItem1ActionPerformed
          // GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -952,6 +976,13 @@ public class Ventana extends javax.swing.JFrame {
                         // Manejar una excepción si no se puede convertir el texto a un número
                         System.out.println("El texto no es un número válido");
                 }
+                        jTextField1.setText("");
+                        jTextField2.setText("");
+                        jTextField3.setText("");
+                        jTextField4.setText("");
+                        jTextField5.setText("");
+                        jTextField6.setText("");
+                        jTextField7.setText("");
         }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

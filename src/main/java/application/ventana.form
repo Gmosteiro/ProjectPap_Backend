@@ -574,13 +574,13 @@
                       <Component id="jLabel16" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jComboBox9" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel17" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jTextField14" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jComboBox8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel18" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -589,7 +589,7 @@
                           <Component id="jSpinner11" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jSpinner5" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -599,20 +599,20 @@
                           <Component id="jLabel21" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel22" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jTextField15" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jComboBox7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel23" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jSpinner13" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jSpinner14" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jSpinner12" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="32" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonRCC" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonRCA" alignment="3" min="-2" max="-2" attributes="0"/>
