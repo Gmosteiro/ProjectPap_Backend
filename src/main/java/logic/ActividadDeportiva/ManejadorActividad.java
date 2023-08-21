@@ -1,17 +1,19 @@
 package logic.ActividadDeportiva;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class ManejadorActividad {
+    private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+    private static EntityManager entityManager = emFactory.createEntityManager();
 
     public ManejadorActividad() {
     }
 
     public void agregarActividad(ActividadDeportiva actividad) {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
         entityManager.persist(actividad);
@@ -22,8 +24,6 @@ public class ManejadorActividad {
     }
 
     public void actualizarActividad(ActividadDeportiva actividad) {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
         entityManager.merge(actividad);
@@ -34,8 +34,6 @@ public class ManejadorActividad {
     }
 
     public void eliminarActividad(ActividadDeportiva actividad) {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
         entityManager.remove(entityManager.contains(actividad) ? actividad : entityManager.merge(actividad));
@@ -46,15 +44,22 @@ public class ManejadorActividad {
     }
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombre) {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emFactory.createEntityManager();
-
         ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class, nombre);
 
         entityManager.close();
         emFactory.close();
 
         return actividad;
+    }
+
+    public static List<ActividadDeportiva> getActividades() {
+
+        List<ActividadDeportiva> actividades;
+
+        actividades = entityManager
+                .createQuery("SELECT a FROM ActividadDeportiva a", ActividadDeportiva.class).getResultList();
+
+        return actividades;
     }
 
 }

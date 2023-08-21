@@ -16,6 +16,7 @@ public class App {
                         // probarAddInstituciones();
 
                         // probarGetInstituciones();
+                        probarGetActividades();
 
                         Ventana ventana = new Ventana();
                         ventana.setVisible(true);
@@ -39,6 +40,12 @@ public class App {
                 Fabrica factory = new Fabrica();
                 IControllerDictadoClase controllerDictado = factory.getControladorDictadoClase();
                 controllerDictado.getInstituciones();
+        }
+
+        public static void probarGetActividades() {
+                Fabrica factory = new Fabrica();
+                IControllerDictadoClase controllerDictado = factory.getControladorDictadoClase();
+                controllerDictado.getActividades();
         }
 
         public void probarClases() {
