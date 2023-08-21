@@ -24,7 +24,6 @@ public class ManejadorUsuarios {
 		} catch (Exception exceptionAgregarUsuario) {
 			System.out.println("Catch agregarUsuario: " + exceptionAgregarUsuario);
 
-			Throwable error = exceptionAgregarUsuario.getCause().getCause().getCause();
 			System.out.println("ERROR");
 
 		}

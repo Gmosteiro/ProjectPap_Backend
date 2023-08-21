@@ -1,0 +1,13 @@
+package logic;
+
+import java.util.List;
+import logic.Clase.Clase;
+
+public interface IControllerRanking {
+
+    List<Clase> obtenerRankingDeClases();
+
+    // Otros métodos relacionados con el ranking de clases
+
+    void closeEntityManagerFactory();
+}
