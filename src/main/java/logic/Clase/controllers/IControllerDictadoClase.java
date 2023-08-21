@@ -2,10 +2,13 @@ package logic.Clase.controllers;
 
 import java.util.List;
 
+import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Institucion.InstitucionDeportiva;
 
 public interface IControllerDictadoClase {
 
     public List<InstitucionDeportiva> getInstituciones();
+
+    public List<ActividadDeportiva> getActividades();
 
 }
