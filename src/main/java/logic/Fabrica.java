@@ -7,7 +7,9 @@ import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
 import logic.Usuario.controllers.ControllerAltaUsuario;
 import logic.Usuario.controllers.IControllerAltaUsuario;
 import logic.Clase.controllers.ControllerAltaClase;
+import logic.Clase.controllers.ControllerDictadoClase;
 import logic.Clase.controllers.IControllerAltaClase;
+import logic.Clase.controllers.IControllerDictadoClase;
 
 public class Fabrica {
 
@@ -19,16 +21,16 @@ public class Fabrica {
         return new ControllerAltaInstitucionDeportiva();
     }
 
-     public IControllerAltaClase getControladorAltaClase() {
-     return new ControllerAltaClase();
-     }
-
-    // public IControllerInstitucion getControladorInstitucion() {
-    // return new ControladoInstitucion();
-    // }
+    public IControllerAltaClase getControladorAltaClase() {
+        return new ControllerAltaClase();
+    }
 
     public IControllerAltaActividad getControladorAltaActividad() {
         return new ControllerAltaActividad();
+    }
+
+    public IControllerDictadoClase getControladorDictadoClase() {
+        return new ControllerDictadoClase();
     }
 
 }

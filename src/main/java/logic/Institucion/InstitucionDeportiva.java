@@ -14,6 +14,9 @@ public class InstitucionDeportiva {
 
     // Métodos getters y setters para los atributos
 
+    public InstitucionDeportiva() {
+    }
+
     public InstitucionDeportiva(String nombre, String descripcion, String url) {
         this.nombre = nombre;
         this.descripcion = descripcion;
