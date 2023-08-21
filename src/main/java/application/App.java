@@ -15,10 +15,10 @@ public class App {
                 try {
                         // probarAddInstituciones();
 
-                        probarGetInstituciones();
+                        // probarGetInstituciones();
 
-                        // Ventana ventana = new Ventana();
-                        // ventana.setVisible(true);
+                        Ventana ventana = new Ventana();
+                        ventana.setVisible(true);
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
