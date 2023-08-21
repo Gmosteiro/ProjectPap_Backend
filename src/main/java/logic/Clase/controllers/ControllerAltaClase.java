@@ -12,15 +12,16 @@ import javax.swing.JOptionPane;
 import javax.persistence.Entity;
 import logic.Usuario.Usuario;
 
+public class ControllerAltaClase implements IControllerAltaClase {
 
-public class ControllerAltaClase implements IControllerAltaClase{
+    /*
+     * private ManejadorClases manejadorClases;
+     * 
+     * public ControllerAltaClase() {
+     * manejadorClases = new ManejadorClases();
+     * }
+     */
 
-    /*private ManejadorClases manejadorClases;
-    
-    public ControllerAltaClase() {
-    manejadorClases = new ManejadorClases();
-    }*/
-    
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg) {
         try {
@@ -29,7 +30,7 @@ public class ControllerAltaClase implements IControllerAltaClase{
                 return;
             }
 
-            Clase nuevaclase = new Clase(nombre,fecha, hora, url, fechaReg);
+            Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg);
 
             ManejadorClases manejador = new ManejadorClases();
 
@@ -46,8 +47,8 @@ public class ControllerAltaClase implements IControllerAltaClase{
 
     }
 
-private boolean validateClassData(String nombre,String queryValue) {
-         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+    private boolean validateClassData(String nombre, String queryValue) {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
         EntityManager entityManager = emFactory.createEntityManager();
 
         try {
@@ -67,7 +68,7 @@ private boolean validateClassData(String nombre,String queryValue) {
 
                 if (queryNombre.equals(nombre)) {
                     errorMessage = "Ya existe una Clase con ese nombre";
-                } 
+                }
                 JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
@@ -77,11 +78,10 @@ private boolean validateClassData(String nombre,String queryValue) {
         }
     }
 
-     private String extractErrorMessage(String fullErrorMessage) {
+    private String extractErrorMessage(String fullErrorMessage) {
         int startIndex = fullErrorMessage.indexOf(":") + 1; // Encuentra la posición después del primer ":"
 
         return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
                 : fullErrorMessage;
     }
 }
- 
