@@ -1,6 +1,9 @@
 package logic.ActividadDeportiva.controllers;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import logic.Institucion.InstitucionDeportiva;
 
 public interface IControllerAltaActividad {
 
@@ -11,4 +14,6 @@ public interface IControllerAltaActividad {
                         float nuevoCosto);
 
         public abstract void cancelarAltaActividad(String nombre);
+
+         public List<InstitucionDeportiva> getInstituciones();
 }
