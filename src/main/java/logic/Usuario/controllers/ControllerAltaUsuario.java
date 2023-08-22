@@ -12,12 +12,14 @@ import javax.swing.JOptionPane;
 public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
     @Override
-    public void addProfesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
+    public boolean addProfesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
             String descripcion, String biografia, String sitioWeb) {
         try {
 
-            if (!validateUserData(nickname, email, "Profesor")) {
-                return;
+            String validation = validateUserData(nickname, email, "Socio");
+            if (validation.length() != 0) {
+                JOptionPane.showMessageDialog(null, validation, "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
 
             Profesor nuevoProfesor = new Profesor(nickname, nombre, apellido, email, fechaNac, email, descripcion,
@@ -28,22 +30,31 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             manejador.agregarUsuario(nuevoProfesor);
 
             System.out.println("Profesor Creado");
+            JOptionPane.showMessageDialog(
+                    null, // Parent component (null for default)
+                    "Profesor Creado!", // Message text
+                    "Success", // Dialog title
+                    JOptionPane.INFORMATION_MESSAGE // Message type
+            );
+
+            return true;
 
         } catch (Exception errorException) {
             // Obtener solo la descripción del error
             System.out.println("Catch addProfesor: " + errorException);
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
-
+            return false;
         }
     }
 
     @Override
-    public void addSocio(String nickname, String nombre, String apellido, String email, LocalDate fechaNac) {
+    public boolean addSocio(String nickname, String nombre, String apellido, String email, LocalDate fechaNac) {
         try {
-
-            if (!validateUserData(nickname, email, "Socio")) {
-                return;
+            String validation = validateUserData(nickname, email, "Socio");
+            if (validation.length() != 0) {
+                JOptionPane.showMessageDialog(null, validation, "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
 
             Socio nuevoSocio = new Socio(nickname, nombre, apellido, email, fechaNac);
@@ -53,17 +64,24 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             manejador.agregarUsuario(nuevoSocio);
 
             System.out.println("Socio Creado");
+             JOptionPane.showMessageDialog(
+                    null, // Parent component (null for default)
+                    "Socio Creado!", // Message text
+                    "Success", // Dialog title
+                    JOptionPane.INFORMATION_MESSAGE // Message type
+            );
+            return true;
 
         } catch (Exception errorException) {
             System.out.println("Catch addSocio: " + errorException);
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
-
+            return false;
         }
 
     }
 
-    private boolean validateUserData(String nickname, String email, String queryValue) {
+    private String validateUserData(String nickname, String email, String queryValue) {
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
         EntityManager entityManager = emFactory.createEntityManager();
 
@@ -75,7 +93,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             query.setParameter("email", email);
 
             if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
-                return true;
+                return "";
             } else {
 
                 Usuario user = query.getSingleResult();
@@ -89,8 +107,8 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
                 } else if (queryEmail.equals(email)) {
                     errorMessage = "Ya existe un usuario con ese email asociado";
                 }
-                JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
-                return false;
+
+                return errorMessage;
             }
         } finally {
             entityManager.close();

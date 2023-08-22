@@ -1523,40 +1523,46 @@ public class Ventana extends javax.swing.JFrame {
          * @param args the command line arguments
          */
         private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-                Fabrica factory = new Fabrica();
-
-                IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
-
-                final LocalDate fechaNacimiento = LocalDate.of((int) jSpinner3.getValue(), (int) jSpinner2.getValue(),
-                                (int) jSpinner1.getValue());
-
-                String nickname = jTextField3.getText();
-                String nombre = jTextField1.getText();
-                String apellido = jTextField2.getText();
-                String email = jTextField4.getText();
-                String descripcion = jTextField5.getText();
-                String biografia = jTextField6.getText();
-                String sitioweb = jTextField7.getText();
                 try {
-                        // Llamar a tu función pasando la variable como argumento
+                        Fabrica factory = new Fabrica();
+
+                        IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
+
+                        final LocalDate fechaNacimiento = LocalDate.of((int) jSpinner3.getValue(), (int) jSpinner2.getValue(),
+                                        (int) jSpinner1.getValue());
+
+                        String nickname = jTextField3.getText();
+                        String nombre = jTextField1.getText();
+                        String apellido = jTextField2.getText();
+                        String email = jTextField4.getText();
+                        String descripcion = jTextField5.getText();
+                        String biografia = jTextField6.getText();
+                        String sitioweb = jTextField7.getText();
+                        boolean action;
+                  // Llamar a tu función pasando la variable como argumento
                         if (jCheckBox1.isSelected()) {
-                                controllerAltaUsuario.addProfesor(nickname, nombre, apellido, email, fechaNacimiento,
+                               action = controllerAltaUsuario.addProfesor(nickname, nombre, apellido, email, fechaNacimiento,
                                                 descripcion,
                                                 biografia, sitioweb);
                         } else {
-                                controllerAltaUsuario.addSocio(nickname, nombre, apellido, email, fechaNacimiento);
+                               action = controllerAltaUsuario.addSocio(nickname, nombre, apellido, email, fechaNacimiento);
                         }
+
+                        if(action){
+                                jTextField1.setText("");
+                                jTextField2.setText("");
+                                jTextField3.setText("");
+                                jTextField4.setText("");
+                                jTextField5.setText("");
+                                jTextField6.setText("");
+                                jTextField7.setText("");
+                        }
+
+
                 } catch (NumberFormatException e) {
                         // Manejar una excepción si no se puede convertir el texto a un número
                         System.out.println("El texto no es un número válido");
                 }
-                jTextField1.setText("");
-                jTextField2.setText("");
-                jTextField3.setText("");
-                jTextField4.setText("");
-                jTextField5.setText("");
-                jTextField6.setText("");
-                jTextField7.setText("");
         }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables

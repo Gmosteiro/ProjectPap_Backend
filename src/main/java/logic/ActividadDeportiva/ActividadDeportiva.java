@@ -14,6 +14,7 @@ public class ActividadDeportiva {
     private int duracion;
     private float costo;
     private LocalDate fechaReg;
+    
 
     public ActividadDeportiva() {
     }
