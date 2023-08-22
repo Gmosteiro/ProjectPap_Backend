@@ -2,8 +2,14 @@ package logic.ActividadDeportiva.controllers;
 
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
+import logic.Institucion.InstitucionDeportiva;
+import logic.Institucion.ManejadorInstitucion;
+
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -78,6 +84,22 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
         } finally {
             entityManager.close();
             emFactory.close();
+        }
+    }
+
+     @Override
+    public List<InstitucionDeportiva> getInstituciones() {
+        try {
+            List<InstitucionDeportiva> instituciones = ManejadorInstitucion.getInstituciones();
+            return instituciones;
+
+        } catch (Exception errorException) {
+            System.out.println("Catch getInstituciones: " + errorException);
+            String errorMessage = extractErrorMessage(errorException.getMessage());
+            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+
+            return new ArrayList<>();
+
         }
     }
 
