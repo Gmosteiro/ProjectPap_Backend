@@ -40,6 +40,8 @@ public class Ventana extends javax.swing.JFrame {
                 initComponents();
         }
 
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
                 jDesktopPane1 = new javax.swing.JDesktopPane();
