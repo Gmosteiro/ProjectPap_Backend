@@ -11,9 +11,24 @@ import logic.Usuario.Usuario;
 public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
 
     public List<Usuario> getUsuarios() {
+        return getUsuarios(null); // Llamada a la versión con filtro nulo
+    }
+
+    public List<Usuario> getUsuarios(String filter) {
         try {
-            List<Usuario> usuarios = ManejadorUsuarios.getUsuarios();
-            return usuarios;
+            List<Usuario> usuarios = new ArrayList<>();
+            // Aplicar lógica de filtrado solo si filter no es nulo o vacío
+            if (filter != null && !filter.isEmpty()) {
+                // Aplicar lógica de filtrado aquí
+                usuarios.add(ManejadorUsuarios.getUser(filter));
+
+                return usuarios;
+
+            } else {
+                usuarios = ManejadorUsuarios.getUsuarios();
+
+                return usuarios;
+            }
 
         } catch (Exception errorException) {
             System.out.println("Catch getusuarios: " + errorException);
@@ -21,7 +36,6 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 
             return new ArrayList<>();
-
         }
     }
 

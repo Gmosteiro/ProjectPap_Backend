@@ -6,9 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
-import logic.ActividadDeportiva.ActividadDeportiva;
 
 public class ManejadorUsuarios {
 	private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
@@ -60,16 +57,16 @@ public class ManejadorUsuarios {
 			List<Usuario> listUsuario;
 
 			listUsuario = entityManager.createQuery(
-					"SELECT p FROM Profesor p WHERE p.nickname = :nickname", Usuario.class)
-					.setParameter("nickname", nickname)
+					"SELECT p FROM Profesor p WHERE p.nickname LIKE :nickname", Usuario.class)
+					.setParameter("nickname", "%" + nickname + "%")
 					.getResultList();
 
 			if (!listUsuario.isEmpty()) {
 				return listUsuario.get(0);
 			} else {
 				listUsuario = entityManager.createQuery(
-						"SELECT p FROM Socio p WHERE p.nickname = :nickname", Usuario.class)
-						.setParameter("nickname", nickname)
+						"SELECT p FROM Socio p WHERE p.nickname LIKE :nickname", Usuario.class)
+						.setParameter("nickname", "%" + nickname + "%")
 						.getResultList();
 			}
 
@@ -82,6 +79,17 @@ public class ManejadorUsuarios {
 			System.out.println("Error catch getUser " + e);
 			return null;
 		}
+	}
+
+	public static List<Usuario> getUserAllData(){
+
+		List<Usuario> dataUsuarios = new ArrayList<>();
+
+		dataUsuarios = entityManager.createQuery("",Usuario.class).getResultList();
+
+
+		return dataUsuarios;
+
 	}
 
 }

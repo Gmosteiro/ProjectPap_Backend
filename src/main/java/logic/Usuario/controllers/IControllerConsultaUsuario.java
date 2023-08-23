@@ -6,6 +6,8 @@ import logic.Usuario.Usuario;
 
 public interface IControllerConsultaUsuario {
 
-    public List<Usuario> getUsuarios();
+    List<Usuario> getUsuarios();
+
+    List<Usuario> getUsuarios(String filter);
 
 }

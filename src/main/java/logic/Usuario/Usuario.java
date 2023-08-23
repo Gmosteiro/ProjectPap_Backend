@@ -1,6 +1,7 @@
 package logic.Usuario;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -70,6 +71,15 @@ public abstract class Usuario {
 
 	public LocalDate getFechaNac() {
 		return fechaNac;
+	}
+
+	public String getFechaNacFromatted() {
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+		// Convert LocalDate to LocalDateTime to enable formatting
+		String formattedDate = fechaNac.atStartOfDay().format(formatter);
+		return formattedDate;
 	}
 
 	public void setFechaNac(LocalDate fechaNac) {
