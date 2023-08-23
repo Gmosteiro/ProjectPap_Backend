@@ -13,7 +13,7 @@ public class ControllerRanking {
     private EntityManagerFactory emf;
 
     public ControllerRanking() {
-        emf = Persistence.createEntityManagerFactory("project_pap"); 
+        emf = Persistence.createEntityManagerFactory("project_pap");
     }
 
     public List<Clase> obtenerRankingDeClases() {
@@ -21,13 +21,13 @@ public class ControllerRanking {
         try {
             em.getTransaction().begin();
 
-            // Consulta para obtener el ranking de clases ordenado por cantidad de socios registrados
+            // Consulta para obtener el ranking de clases ordenado por cantidad de socios
+            // registrados
             Query query = em.createQuery(
-                "SELECT c FROM Clase c ORDER BY SIZE(c.registros) DESC",
-                Clase.class
-            );
+                    "SELECT c FROM Clase c ORDER BY SIZE(c.registros) DESC",
+                    Clase.class);
 
-              List<Clase> ranking = query.getResultList();
+            List<Clase> ranking = query.getResultList();
 
             em.getTransaction().commit();
 

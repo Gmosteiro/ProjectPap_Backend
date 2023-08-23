@@ -9,8 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-import javax.persistence.Entity;
-import logic.Usuario.Usuario;
 
 public class ControllerAltaClase implements IControllerAltaClase {
 

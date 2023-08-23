@@ -1,5 +1,7 @@
 package application;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -20,6 +22,21 @@ public class App {
 
                         Ventana ventana = new Ventana();
                         ventana.setVisible(true);
+
+                        // Obtener el tamaño de la pantalla
+                        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                        int screenWidth = screenSize.width;
+                        int screenHeight = screenSize.height;
+
+                        // Obtener el tamaño de la ventana
+                        int windowWidth = ventana.getWidth();
+                        int windowHeight = ventana.getHeight();
+
+                        // Calcular las coordenadas para centrar la ventana
+                        int x = (screenWidth - windowWidth) / 2;
+                        int y = (screenHeight - windowHeight) / 2;
+
+                        ventana.setLocation(x, y);
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());

@@ -1,10 +1,18 @@
 package logic.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import logic.ActividadDeportiva.ActividadDeportiva;
 
 public class ManejadorUsuarios {
+	private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+	private static EntityManager entityManager = emFactory.createEntityManager();
 
 	public ManejadorUsuarios() {
 	}
@@ -12,20 +20,67 @@ public class ManejadorUsuarios {
 	public void agregarUsuario(Usuario usuario) {
 		try {
 
-			EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-			EntityManager entityManager = emFactory.createEntityManager();
 			entityManager.getTransaction().begin();
 
 			entityManager.persist(usuario);
 			entityManager.getTransaction().commit();
 
-			entityManager.close();
-			emFactory.close();
 		} catch (Exception exceptionAgregarUsuario) {
 			System.out.println("Catch agregarUsuario: " + exceptionAgregarUsuario);
 
 			System.out.println("ERROR");
 
+		}
+	}
+
+	public static List<Usuario> getUsuarios() {
+		List<Usuario> usuarios = new ArrayList<>();
+
+		List<Usuario> profesores = entityManager.createQuery(
+				"SELECT p " +
+						"FROM Profesor p",
+				Usuario.class)
+				.getResultList();
+
+		List<Usuario> socios = entityManager.createQuery(
+				"SELECT s " +
+						"FROM Socio s",
+				Usuario.class)
+				.getResultList();
+
+		usuarios.addAll(profesores);
+		usuarios.addAll(socios);
+
+		return usuarios;
+	}
+
+	public static Usuario getUser(String nickname) {
+		try {
+
+			List<Usuario> listUsuario;
+
+			listUsuario = entityManager.createQuery(
+					"SELECT p FROM Profesor p WHERE p.nickname = :nickname", Usuario.class)
+					.setParameter("nickname", nickname)
+					.getResultList();
+
+			if (!listUsuario.isEmpty()) {
+				return listUsuario.get(0);
+			} else {
+				listUsuario = entityManager.createQuery(
+						"SELECT p FROM Socio p WHERE p.nickname = :nickname", Usuario.class)
+						.setParameter("nickname", nickname)
+						.getResultList();
+			}
+
+			if (!listUsuario.isEmpty()) {
+				return listUsuario.get(0);
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("Error catch getUser " + e);
+			return null;
 		}
 	}
 
