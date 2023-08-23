@@ -45,3 +45,50 @@ CREATE TABLE IF NOT EXISTS public.instituciondeportiva (
     url varchar(255) NULL,
     CONSTRAINT instituciondeportiva_pkey PRIMARY KEY (nombre)
 );
+
+
+
+Ignore this
+
+public class RowSelectionListener implements ListSelectionListener {
+
+                @Override
+                public void valueChanged(ListSelectionEvent event) {
+
+                        int viewRow = jTable2.getSelectedRow();
+
+                        if (!event.getValueIsAdjusting() && viewRow != -1) {
+
+                                // Better to access table row using modelRow rather than viewRow
+                                int modelRow = jTable2.convertRowIndexToModel(viewRow);
+
+                                // Access value at selected row at the second column (columnIndex = 1)
+                                Object modelvalue = jTable2.getModel().getValueAt(modelRow, 0);
+
+                                // Print cell value
+                                System.out.println(modelvalue);
+
+                                String nickname = (String) modelvalue;
+
+                                Usuario selectedUser = ManejadorUsuarios.getUser(nickname);
+
+                                if (selectedUser instanceof Profesor) {
+                                        // Si selectedUser es una instancia de Profesor
+                                        Profesor profesor = (Profesor) selectedUser; // Puedes hacer un casting a
+                                                                                     // Profesor
+                                        // Realiza acciones específicas para un profesor
+                                        System.out.println("El usuario seleccionado es un Profesor.");
+                                        System.out.println("Institución: " + profesor.getInstitucion());
+                                } else if (selectedUser instanceof Socio) {
+                                        // Si selectedUser es una instancia de Socio
+                                        Socio socio = (Socio) selectedUser; // Puedes hacer un casting a Socio
+                                        // Realiza acciones específicas para un socio
+                                        System.out.println("El usuario seleccionado es un Socio.");
+                                        // Acciones adicionales para Socio si es necesario
+                                }
+
+                                // nickname, email,nombre, apellido, fechaNac
+
+                        }
+                }
+        }
