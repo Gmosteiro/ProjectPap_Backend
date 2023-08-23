@@ -43,6 +43,7 @@ public class Ventana extends javax.swing.JFrame {
 
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
@@ -201,36 +202,32 @@ public class Ventana extends javax.swing.JFrame {
                         }
                 });
 
-                jComboBox1.setModel(
-                                new javax.swing.DefaultComboBoxModel<>(
-                                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(
+                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
                 jComboBox1.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jComboBox1ActionPerformed(evt);
                         }
                 });
 
-                jComboBox2.setModel(
-                                new javax.swing.DefaultComboBoxModel<>(
-                                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(
+                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
                 jComboBox2.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jComboBox2ActionPerformed(evt);
                         }
                 });
 
-                jComboBox3.setModel(
-                                new javax.swing.DefaultComboBoxModel<>(
-                                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(
+                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
                 jComboBox3.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jComboBox3ActionPerformed(evt);
                         }
                 });
 
-                jComboBox4.setModel(
-                                new javax.swing.DefaultComboBoxModel<>(
-                                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(
+                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
                 jComboBox4.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jComboBox4ActionPerformed(evt);
@@ -257,9 +254,8 @@ public class Ventana extends javax.swing.JFrame {
                                 RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(RegistrarClienteCULayout.createSequentialGroup()
                                                                 .addContainerGap()
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                                                                                                 RegistrarClienteCULayout
                                                                                                                 .createSequentialGroup()
@@ -404,9 +400,8 @@ public class Ventana extends javax.swing.JFrame {
                                                                 .addGap(5, 5, 5)
                                                                 .addComponent(jLabel7)
                                                                 .addGap(14, 14, 14)
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(jTextField1,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 30,
@@ -421,10 +416,9 @@ public class Ventana extends javax.swing.JFrame {
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                false)
                                                                                 .addComponent(jLabel3,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -442,10 +436,9 @@ public class Ventana extends javax.swing.JFrame {
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                                 .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                false)
                                                                                 .addComponent(jLabel4,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -463,10 +456,9 @@ public class Ventana extends javax.swing.JFrame {
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                                 .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                false)
                                                                                 .addComponent(jLabel5,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -483,9 +475,8 @@ public class Ventana extends javax.swing.JFrame {
                                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                                 .addGap(18, 18, 18)
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(jLabel6)
                                                                                 .addComponent(jSpinner1,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
@@ -499,10 +490,9 @@ public class Ventana extends javax.swing.JFrame {
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                false)
                                                                                 .addGroup(RegistrarClienteCULayout
                                                                                                 .createSequentialGroup()
                                                                                                 .addGap(19, 19, 19)
@@ -518,9 +508,8 @@ public class Ventana extends javax.swing.JFrame {
                                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                                 Short.MAX_VALUE)))
                                                                 .addGap(6, 6, 6)
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(jLabel8,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 31,
@@ -530,9 +519,8 @@ public class Ventana extends javax.swing.JFrame {
                                                                                                 31,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addGap(13, 13, 13)
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(jLabel9,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -548,9 +536,8 @@ public class Ventana extends javax.swing.JFrame {
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
-                                                                .addGroup(RegistrarClienteCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(jButton2)
                                                                                 .addComponent(jButton3))
                                                                 .addGap(25, 25, 25)));
@@ -620,27 +607,24 @@ public class Ventana extends javax.swing.JFrame {
                         }
                 });
 
-                jComboBox7.setModel(
-                                new javax.swing.DefaultComboBoxModel<>(
-                                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(
+                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
                 jComboBox7.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jComboBox7ActionPerformed(evt);
                         }
                 });
 
-                jComboBox8.setModel(
-                                new javax.swing.DefaultComboBoxModel<>(
-                                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(
+                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
                 jComboBox8.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jComboBox8ActionPerformed(evt);
                         }
                 });
 
-                jComboBox9.setModel(
-                                new javax.swing.DefaultComboBoxModel<>(
-                                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(
+                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
                 jComboBox9.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jComboBox9ActionPerformed(evt);
@@ -654,10 +638,9 @@ public class Ventana extends javax.swing.JFrame {
                                 RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(RegistrarClaseCULayout.createSequentialGroup()
                                                                 .addContainerGap()
-                                                                .addGroup(RegistrarClaseCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                false)
+                                                                .addGroup(RegistrarClaseCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                false)
                                                                                 .addComponent(jLabel23,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -688,9 +671,8 @@ public class Ventana extends javax.swing.JFrame {
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 Short.MAX_VALUE))
                                                                 .addGap(57, 57, 57)
-                                                                .addGroup(RegistrarClaseCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(RegistrarClaseCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addComponent(jLabel15)
                                                                                 .addGroup(RegistrarClaseCULayout
                                                                                                 .createSequentialGroup()
@@ -818,8 +800,7 @@ public class Ventana extends javax.swing.JFrame {
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                                 30,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                .addComponent(
-                                                                                                                jComboBox8,
+                                                                                                .addComponent(jComboBox8,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -972,9 +953,8 @@ public class Ventana extends javax.swing.JFrame {
 
                 jLabel14.setText("Fecha:");
 
-                jComboBox5.setModel(
-                                new javax.swing.DefaultComboBoxModel<>(
-                                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(
+                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
                 jComboBox5.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 jComboBox5ActionPerformed(evt);
@@ -1058,8 +1038,7 @@ public class Ventana extends javax.swing.JFrame {
                                 RegistrarActividadCULayout
                                                 .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                RegistrarActividadCULayout
-                                                                                .createSequentialGroup()
+                                                                RegistrarActividadCULayout.createSequentialGroup()
                                                                                 .addGap(24, 24, 24)
                                                                                 .addGroup(RegistrarActividadCULayout
                                                                                                 .createParallelGroup(
@@ -1194,6 +1173,11 @@ public class Ventana extends javax.swing.JFrame {
                 });
 
                 jButtonCancelarConsultaUsuario.setText("Cancelar");
+                jButtonCancelarConsultaUsuario.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jButtonCancelarConsultaUsuarioActionPerformed(evt);
+                        }
+                });
 
                 jTableInformacionAsociada.setModel(new javax.swing.table.DefaultTableModel(
                                 new Object[][] {
@@ -1234,9 +1218,8 @@ public class Ventana extends javax.swing.JFrame {
                                                                                 .addGap(28, 28, 28))
                                                 .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
                                                                 .addContainerGap()
-                                                                .addGroup(ConsultarUsuarioCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(ConsultarUsuarioCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(ConsultarUsuarioCULayout
                                                                                                 .createSequentialGroup()
                                                                                                 .addComponent(jButtonCancelarConsultaUsuario)
@@ -1259,9 +1242,8 @@ public class Ventana extends javax.swing.JFrame {
                                 ConsultarUsuarioCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
                                                                 .addGap(8, 8, 8)
-                                                                .addGroup(ConsultarUsuarioCULayout
-                                                                                .createParallelGroup(
-                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addGroup(ConsultarUsuarioCULayout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
                                                                                 .addComponent(jTextFieldBuscarUsuario,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -1459,8 +1441,12 @@ public class Ventana extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+        private void jButtonCancelarConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonCancelarConsultaUsuarioActionPerformed
+
+                ConsultarUsuarioCU.dispose();
+        }// GEN-LAST:event_jButtonCancelarConsultaUsuarioActionPerformed
+
         private void jTableInformacionAsociadaMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableInformacionAsociadaMouseClicked
-                // TODO add your handling code here:
                 int selectedRow = jTableInformacionAsociada.getSelectedRow();
 
                 if (selectedRow != -1) {
