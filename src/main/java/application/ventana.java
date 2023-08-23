@@ -8,22 +8,17 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import application.Ventana;
 import logic.Fabrica;
 import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
-import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Profesor;
 import logic.Usuario.Socio;
 import logic.Usuario.Usuario;
-import logic.Usuario.controllers.ControllerConsultaUsuario;
 import logic.Usuario.controllers.IControllerAltaUsuario;
 import logic.Usuario.controllers.IControllerConsultaUsuario;
+import logic.Clase.Clase;
 import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerDictadoClase;
 import logic.Institucion.InstitucionDeportiva;
@@ -41,6 +36,8 @@ public class Ventana extends javax.swing.JFrame {
                 initComponents();
         }
 
+        // <editor-fold defaultstate="collapsed" desc="Generated
+        // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
@@ -1150,14 +1147,15 @@ public class Ventana extends javax.swing.JFrame {
 
                 jTable2.setModel(new javax.swing.table.DefaultTableModel(
                                 new Object[][] {
-                                                { null, null, null, null },
-                                                { null, null, null, null },
-                                                { null, null, null, null },
-                                                { null, null, null, null }
                                 },
                                 new String[] {
-                                                "Nombre", "Descripción", "URL", "Accion"
-                                }));
+                                                "Nickname", "Nombre", "Apellido", "Email", "Fecha de Nacimiento"
+                                }) {
+                        @Override
+                        public boolean isCellEditable(int row, int column) {
+                                return false; // Make all cells non-editable
+                        }
+                });
                 jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 jTable2MouseClicked(evt);
@@ -1181,14 +1179,15 @@ public class Ventana extends javax.swing.JFrame {
 
                 jTableInformacionAsociada.setModel(new javax.swing.table.DefaultTableModel(
                                 new Object[][] {
-                                                { null, null, null, null },
-                                                { null, null, null, null },
-                                                { null, null, null, null },
-                                                { null, null, null, null }
                                 },
                                 new String[] {
-                                                "Title 1", "Title 2", "Title 3", "Title 4"
-                                }));
+                                                "Clase", "URL", "Actividad Deportiva", "Descripcion"
+                                }) {
+                        @Override
+                        public boolean isCellEditable(int row, int column) {
+                                return false; // Make all cells non-editable
+                        }
+                });
                 jTableInformacionAsociada.setEnabled(false);
                 jTableInformacionAsociada.setName("Informacion Asociada"); // NOI18N
                 jTableInformacionAsociada.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1443,6 +1442,13 @@ public class Ventana extends javax.swing.JFrame {
 
         private void jButtonCancelarConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonCancelarConsultaUsuarioActionPerformed
 
+                DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada.getModel();
+
+                tableModel.setRowCount(0);
+
+                tableModel = (DefaultTableModel) jTable2.getModel();
+
+                tableModel.setRowCount(0);
                 ConsultarUsuarioCU.dispose();
         }// GEN-LAST:event_jButtonCancelarConsultaUsuarioActionPerformed
 
@@ -1481,23 +1487,42 @@ public class Ventana extends javax.swing.JFrame {
 
                         // Print cell value
                         System.out.println(modelvalue);
+                        Fabrica factory = new Fabrica();
+
+                        IControllerConsultaUsuario consultaUsuario = factory.getControladorConsultaUsuario();
 
                         String nickname = (String) modelvalue;
 
-                        Usuario selectedUser = ManejadorUsuarios.getUser(nickname);
+                        Usuario selectedUser = consultaUsuario.getUsuarios(nickname).get(0);
 
                         if (selectedUser instanceof Profesor) {
                                 // Profesor profesor = (Profesor) selectedUser; // Puedes hacer un casting a
                                 // Profesor
                                 System.out.println("El usuario seleccionado es un Profesor.");
 
+                                List<Clase> searchResult = consultaUsuario.getClasesAsociadas(nickname);
+
+                                if (!searchResult.isEmpty() || searchResult.get(0) != null) {
+
+                                        DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada
+                                                        .getModel();
+
+                                        tableModel.setRowCount(0);
+
+                                        for (Clase fila : searchResult) {
+                                                Object[] rowData = { fila.getNombre(), fila.getUrl() };
+                                                tableModel.addRow(rowData);
+                                        }
+
+                                        // Notificar al modelo de la tabla que se han realizado cambios
+                                        tableModel.fireTableDataChanged();
+                                }
+
                         } else if (selectedUser instanceof Socio) {
                                 // Socio socio = (Socio) selectedUser; // Puedes hacer un casting a Socio
                                 System.out.println("El usuario seleccionado es un Socio.");
 
                         }
-
-                        // nickname, email,nombre, apellido, fechaNac
 
                 }
 
@@ -1632,7 +1657,7 @@ public class Ventana extends javax.swing.JFrame {
                 // String profesor = jTextField14.getText();
                 String url = jTextField15.getText();
 
-                controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta);
+                controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta, "Tonga");
                 jTextField12.setText("");
                 jTextField14.setText("");
                 jTextField15.setText("");

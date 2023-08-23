@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import logic.Clase.Clase;
+import logic.Clase.ManejadorClases;
 import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Usuario;
 
@@ -38,6 +40,27 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             return new ArrayList<>();
         }
     }
+
+    public List<Clase> getClasesAsociadas(String filter) {
+        try {
+            // Aplicar lógica de filtrado solo si filter no es nulo o vacío
+            if (filter != null && !filter.isEmpty()) {
+                // Aplicar lógica de filtrado aquí
+                return ManejadorClases.getClasesByProfe(filter);
+
+            } else {
+                return new ArrayList<>();
+            }
+
+        } catch (Exception errorException) {
+            System.out.println("Catch getClasesAsociadas: " + errorException);
+            String errorMessage = extractErrorMessage(errorException.getMessage());
+            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+
+            return new ArrayList<>();
+        }
+
+    };
 
     private String extractErrorMessage(String fullErrorMessage) {
         int startIndex = fullErrorMessage.indexOf(":") + 1; // Encuentra la posición después del primer ":"

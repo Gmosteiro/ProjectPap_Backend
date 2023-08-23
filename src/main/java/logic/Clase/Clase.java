@@ -15,14 +15,28 @@ public class Clase {
     private LocalTime hora;
     private String url;
     private LocalDate fechaReg;
+    private String profesor;
     // private List<Registro> clasesRegistradas;
 
-    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg) {
+    public Clase() {
+
+    }
+
+    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg, String profesor) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.hora = hora;
         this.url = url;
         this.fechaReg = fechaReg;
+        this.profesor = profesor;
+    }
+
+    public String getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(String profesor) {
+        this.profesor = profesor;
     }
 
     public String getNombre() {

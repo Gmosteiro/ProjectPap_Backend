@@ -81,15 +81,4 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static List<Usuario> getUserAllData(){
-
-		List<Usuario> dataUsuarios = new ArrayList<>();
-
-		dataUsuarios = entityManager.createQuery("",Usuario.class).getResultList();
-
-
-		return dataUsuarios;
-
-	}
-
 }

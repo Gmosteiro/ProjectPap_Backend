@@ -21,14 +21,15 @@ public class ControllerAltaClase implements IControllerAltaClase {
      */
 
     @Override
-    public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg) {
+    public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
+            String profesor) {
         try {
 
             if (!validateClassData(nombre, "Clase")) {
                 return;
             }
 
-            Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg);
+            Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg, profesor);
 
             ManejadorClases manejador = new ManejadorClases();
 

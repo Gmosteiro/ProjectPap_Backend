@@ -18,7 +18,7 @@ public class App {
                         // probarAddInstituciones();
 
                         // probarGetInstituciones();
-                        probarGetActividades();
+                        // probarClases();
 
                         Ventana ventana = new Ventana();
                         ventana.setVisible(true);
@@ -65,7 +65,7 @@ public class App {
                 controllerDictado.getActividades();
         }
 
-        public void probarClases() {
+        public static void probarClases() {
 
                 String esi = "ESI"; // estructura para probar funciones
                 LocalDate fecha = LocalDate.of(2023, 8, 17);
@@ -77,7 +77,7 @@ public class App {
 
                         IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
 
-                        controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg);
+                        controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga");
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
