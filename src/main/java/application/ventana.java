@@ -185,11 +185,11 @@ public class Ventana extends javax.swing.JFrame {
 
         TextoIngresedatosU.setText("Ingrese los siguientes datos:");
 
-        jTextFieldNombreU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreUActionPerformed(evt);
-            }
-        });
+        // jTextFieldNombreU.addActionListener(new java.awt.event.ActionListener() {
+        //     public void actionPerformed(java.awt.event.ActionEvent evt) {
+        //         jTextFieldNombreUActionPerformed(evt);
+        //     }
+        // });
 
         jSpinnerFNanio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2023, 1));
 
