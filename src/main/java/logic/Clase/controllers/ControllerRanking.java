@@ -1,14 +1,17 @@
 package logic.Clase.controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
+import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
 
-public class ControllerRanking {
+public class ControllerRanking implements IControllerRanking {
 
     private EntityManagerFactory emf;
 
@@ -16,29 +19,42 @@ public class ControllerRanking {
         emf = Persistence.createEntityManagerFactory("project_pap");
     }
 
-    public List<Clase> obtenerRankingDeClases() {
+    public List<ActividadDeportiva> obtenerRankingDeActividades() {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
 
-            // Consulta para obtener el ranking de clases ordenado por cantidad de socios
-            // registrados
             Query query = em.createQuery(
-                    "SELECT c FROM Clase c ORDER BY SIZE(c.registros) DESC",
-                    Clase.class);
+                    "SELECT a FROM ActividadDeportiva a",
+                    ActividadDeportiva.class);
 
-            List<Clase> ranking = query.getResultList();
+            List<ActividadDeportiva> actividades = query.getResultList();
 
             em.getTransaction().commit();
 
-            return ranking;
+            return actividades;
         } finally {
             em.close();
         }
     }
 
-    // Otros métodos relacionados con el ranking de clases
+    @Override
+    public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
 
+            ActividadDeportiva actividad = em.find(ActividadDeportiva.class, nombreActividad);
+
+            em.getTransaction().commit();
+
+            return actividad;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
     public void closeEntityManagerFactory() {
         emf.close();
     }

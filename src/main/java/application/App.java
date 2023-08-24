@@ -4,10 +4,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import logic.Fabrica;
+import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerDictadoClase;
+import logic.Clase.controllers.IControllerRanking;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
 
 public class App {
@@ -15,33 +18,20 @@ public class App {
         public static void main(String[] args) {
 
                 try {
-                        // probarAddInstituciones();
-
-                        // probarGetInstituciones();
-                        // probarClases();
-
-                        Ventana ventana = new Ventana();
-                        ventana.setVisible(true);
-
-                        // Obtener el tamaño de la pantalla
-                        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                        int screenWidth = screenSize.width;
-                        int screenHeight = screenSize.height;
-
-                        // Obtener el tamaño de la ventana
-                        int windowWidth = ventana.getWidth();
-                        int windowHeight = ventana.getHeight();
-
-                        // Calcular las coordenadas para centrar la ventana
-                        int x = (screenWidth - windowWidth) / 2;
-                        int y = (screenHeight - windowHeight) / 2;
-
-                        ventana.setLocation(x, y);
+                        iniciarVentana();
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
                         e.printStackTrace();
                 }
+
+        }
+
+        public static void probarRankingActividades() {
+                Fabrica factory = new Fabrica();
+                IControllerRanking controllerRanking = factory.getControladorRankingActividad();
+                List<ActividadDeportiva> ranking = controllerRanking.obtenerRankingDeActividades();
+                System.out.println("Ranking funcionando " + ranking);
 
         }
 
@@ -84,6 +74,26 @@ public class App {
                         e.printStackTrace();
                 }
 
+        }
+
+        private static void iniciarVentana() {
+                Ventana ventana = new Ventana();
+                ventana.setVisible(true);
+
+                // Obtener el tamaño de la pantalla
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                int screenWidth = screenSize.width;
+                int screenHeight = screenSize.height;
+
+                // Obtener el tamaño de la ventana
+                int windowWidth = ventana.getWidth();
+                int windowHeight = ventana.getHeight();
+
+                // Calcular las coordenadas para centrar la ventana
+                int x = (screenWidth - windowWidth) / 2;
+                int y = (screenHeight - windowHeight) / 2;
+
+                ventana.setLocation(x, y);
         }
 
 }

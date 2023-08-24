@@ -1,8 +1,15 @@
 package logic.ActividadDeportiva;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import logic.Clase.Clase;
 
 @Entity
 public class ActividadDeportiva {
@@ -14,7 +21,9 @@ public class ActividadDeportiva {
     private int duracion;
     private float costo;
     private LocalDate fechaReg;
-    
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Clase> clase = new ArrayList<Clase>();
 
     public ActividadDeportiva() {
     }

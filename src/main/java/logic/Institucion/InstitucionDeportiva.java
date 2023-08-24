@@ -1,7 +1,14 @@
 package logic.Institucion;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import logic.Clase.Clase;
 
 @Entity
 public class InstitucionDeportiva {
@@ -11,6 +18,9 @@ public class InstitucionDeportiva {
     private String descripcion;
 
     private String url;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Clase> clase = new ArrayList<Clase>();
 
     // Métodos getters y setters para los atributos
 

@@ -10,8 +10,10 @@ import logic.Usuario.controllers.IControllerAltaUsuario;
 import logic.Usuario.controllers.IControllerConsultaUsuario;
 import logic.Clase.controllers.ControllerAltaClase;
 import logic.Clase.controllers.ControllerDictadoClase;
+import logic.Clase.controllers.ControllerRanking;
 import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerDictadoClase;
+import logic.Clase.controllers.IControllerRanking;
 
 public class Fabrica {
 
@@ -37,6 +39,10 @@ public class Fabrica {
 
     public IControllerConsultaUsuario getControladorConsultaUsuario() {
         return new ControllerConsultaUsuario();
+    }
+
+    public IControllerRanking getControladorRankingActividad() {
+        return new ControllerRanking();
     }
 
 }
