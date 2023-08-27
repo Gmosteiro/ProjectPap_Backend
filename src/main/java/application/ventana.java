@@ -192,11 +192,6 @@ public class Ventana extends javax.swing.JFrame {
 
         TextoIngresedatosU.setText("Ingrese los siguientes datos:");
 
-        jTextFieldNombreU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreUActionPerformed(evt);
-            }
-        });
 
         jSpinnerFNanio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2023, 1));
 
@@ -390,11 +385,6 @@ public class Ventana extends javax.swing.JFrame {
 
         TextoFIC.setText("Fecha de inicio:");
 
-        jTextFieldProfesorC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProfesorCActionPerformed(evt);
-            }
-        });
 
         TextoHIC.setText("Hora de Inicio:");
 
@@ -408,11 +398,6 @@ public class Ventana extends javax.swing.JFrame {
 
         TextoURLC.setText("URL:");
 
-        jTextFieldURLC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldURLCActionPerformed(evt);
-            }
-        });
 
         jSpinnerFICdia.setModel(new javax.swing.SpinnerNumberModel());
 
@@ -785,6 +770,7 @@ public class Ventana extends javax.swing.JFrame {
                 );
 
                 RegistrarInstitucionCU.setTitle("Registar Institucion");
+                RegistrarInstitucionCU.setMaximumSize(new java.awt.Dimension(397, 301));
                 RegistrarInstitucionCU.setVisible(true);
 
                 jLabelNombreInstitucion.setText("Nombre Institucion");
@@ -814,11 +800,12 @@ public class Ventana extends javax.swing.JFrame {
                             .addComponent(jLabelurlInstitucion)
                             .addComponent(jButtonCancelarInst))
                         .addGap(52, 52, 52)
-                        .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDescInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldNombreInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonAceptarInt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldDescInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldNombreInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonAceptarInt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(68, Short.MAX_VALUE))
                 );
                 RegistrarInstitucionCULayout.setVerticalGroup(
@@ -1003,7 +990,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAceptarIntActionPerformed
 
     private void jMenuRInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRInstitucionActionPerformed
-        RegistrarInstitucionCU.setSize(560, 500);
+        RegistrarInstitucionCU.setSize(397, 301);
                 RegistrarInstitucionCU.setLocation(50, 50);
                 RegistrarInstitucionCU.setVisible(true);
                 jDesktopPane1.add(RegistrarInstitucionCU);
@@ -1016,7 +1003,7 @@ public class Ventana extends javax.swing.JFrame {
 
                 tableModel.setRowCount(0);
 
-                tableModel = (DefaultTableModel) jTable2.getModel();
+                tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
 
                 tableModel.setRowCount(0);
                 ConsultarUsuarioCU.dispose();
@@ -1043,17 +1030,17 @@ public class Ventana extends javax.swing.JFrame {
                 }
         }// GEN-LAST:event_jTableInformacionAsociadaMouseClicked
 
-        private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable2MouseClicked
+        private void jTableListaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableListaUsuarioMouseClicked
                 System.out.println("In event");
-                int viewRow = jTable2.getSelectedRow();
+                int viewRow = jTableListaUsuario.getSelectedRow();
 
                 if (viewRow != -1) {
 
                         // Better to access table row using modelRow rather than viewRow
-                        int modelRow = jTable2.convertRowIndexToModel(viewRow);
+                        int modelRow = jTableListaUsuario.convertRowIndexToModel(viewRow);
 
                         // Access value at selected row at the second column (columnIndex = 1)
-                        Object modelvalue = jTable2.getModel().getValueAt(modelRow, 0);
+                        Object modelvalue = jTableListaUsuario.getModel().getValueAt(modelRow, 0);
 
                         // Print cell value
                         System.out.println(modelvalue);
@@ -1096,7 +1083,7 @@ public class Ventana extends javax.swing.JFrame {
 
                 }
 
-        }// GEN-LAST:event_jTable2MouseClicked
+        }// GEN-LAST:event_jTableListaUsuarioMouseClicked
 
         private void jButtonBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonBuscarUsuarioActionPerformed
                 String input = jTextFieldBuscarUsuario.getText();
@@ -1108,7 +1095,7 @@ public class Ventana extends javax.swing.JFrame {
 
                         if (!searchResult.isEmpty() || searchResult.get(0) != null) {
 
-                                DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
+                                DefaultTableModel tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
 
                                 tableModel.setRowCount(0);
 
@@ -1170,8 +1157,8 @@ public class Ventana extends javax.swing.JFrame {
                 IControllerConsultaUsuario controllerConsultaUsuario = factory.getControladorConsultaUsuario();
                 List<Usuario> resultados = controllerConsultaUsuario.getUsuarios();
 
-                // Obtener el modelo de la tabla jTable2
-                DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
+                // Obtener el modelo de la tabla jTableListaUsuario
+                DefaultTableModel tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
 
                 // Iterar a través de los resultados y agregar cada fila a la tabla
                 for (Usuario fila : resultados) {
@@ -1188,108 +1175,64 @@ public class Ventana extends javax.swing.JFrame {
 
         }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
 
-        private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem3ActionPerformed
-                RegistrarClaseCU.setSize(560, 500);
-                RegistrarClaseCU.setLocation(50, 50);
-                RegistrarClaseCU.setVisible(true);
-                // internalFrame.setSize(300, 200);
-                // internalFrame.setVisible(true);
-                jDesktopPane1.add(RegistrarClaseCU);
-                RegistrarClaseCU.toFront();
-        }// GEN-LAST:event_jMenuItem3ActionPerformed
-
-        private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField15ActionPerformed
-
-        }// GEN-LAST:event_jTextField15ActionPerformed
-
-        private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField14ActionPerformed
-
-        }// GEN-LAST:event_jTextField14ActionPerformed
 
         private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCCActionPerformed
                 RegistrarClaseCU.dispose();
-                jTextField12.setText("");
-                jTextField14.setText("");
-                jTextField15.setText("");
+                jTextFieldNombreC.setText("");
+                jTextFieldProfesorC.setText("");
+                jTextFieldURLC.setText("");
         }// GEN-LAST:event_jButtonRCCActionPerformed
 
         private void jButtonRCAActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCAActionPerformed
                 Fabrica factory = new Fabrica();
                 IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
 
-                final LocalDate fechaInicio = LocalDate.of((int) jSpinner11.getValue(), (int) jSpinner10.getValue(),
-                                (int) jSpinner6.getValue());
-                final LocalDate fechaAlta = LocalDate.of((int) jSpinner14.getValue(), (int) jSpinner13.getValue(),
-                                (int) jSpinner12.getValue());
-                final LocalTime horaInicio = LocalTime.of((int) jSpinner4.getValue(), (int) jSpinner5.getValue());
+                final LocalDate fechaInicio = LocalDate.of((int) jSpinnerFICanio.getValue(), (int) jSpinnerFICmes.getValue(),
+                                (int) jSpinnerFICdia.getValue());
+                final LocalDate fechaAlta = LocalDate.of((int) jSpinnerFACanio.getValue(), (int) jSpinnerFACmes.getValue(),
+                                (int) jSpinnerFACdia.getValue());
+                final LocalTime horaInicio = LocalTime.of((int) jSpinnerHICh.getValue(), (int) jSpinnerHICm.getValue());
 
-                String nombre = jTextField12.getText();
+                String nombre = jTextFieldNombreC.getText();
                 // String profesor = jTextField14.getText();
-                String url = jTextField15.getText();
+                String url = jTextFieldURLC.getText();
 
                 controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta, "Tonga");
-                jTextField12.setText("");
-                jTextField14.setText("");
-                jTextField15.setText("");
+                jTextFieldNombreC.setText("");
+                jTextFieldProfesorC.setText("");
+                jTextFieldURLC.setText("");
         }// GEN-LAST:event_jButtonRCAActionPerformed
 
-        private void jComboBox9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox9ActionPerformed
-                Object selectedItem = jComboBox9.getSelectedItem();
+        private void jComboBoxNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox9ActionPerformed
+                Object selectedItem = jComboBoxNombreC.getSelectedItem();
 
                 // Realizar acciones basadas en el elemento seleccionado
                 if (selectedItem != null) {
                         String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextField12.setText(selectedText); // Establecer el texto en el JTextField
+                        jTextFieldNombreC.setText(selectedText); // Establecer el texto en el JTextField
                 }
         }// GEN-LAST:event_jComboBox9ActionPerformed
 
-        private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox8ActionPerformed
-                Object selectedItem = jComboBox8.getSelectedItem();
+        private void jComboBoxProfesorCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox8ActionPerformed
+                Object selectedItem = jComboBoxProfesorC.getSelectedItem();
 
                 // Realizar acciones basadas en el elemento seleccionado
                 if (selectedItem != null) {
                         String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextField14.setText(selectedText); // Establecer el texto en el JTextField
+                        jTextFieldProfesorC.setText(selectedText); // Establecer el texto en el JTextField
                 }
         }// GEN-LAST:event_jComboBox8ActionPerformed
 
-        private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox7ActionPerformed
-                Object selectedItem = jComboBox7.getSelectedItem();
+        private void jComboBoxURLCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox7ActionPerformed
+                Object selectedItem = jComboBoxURLC.getSelectedItem();
 
                 // Realizar acciones basadas en el elemento seleccionado
                 if (selectedItem != null) {
                         String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextField15.setText(selectedText); // Establecer el texto en el JTextField
+                        jTextFieldURLC.setText(selectedText); // Establecer el texto en el JTextField
                 }
         }// GEN-LAST:event_jComboBox7ActionPerformed
 
-        private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem4ActionPerformed
-                jInternalFrame1.setSize(560, 500);
-                jInternalFrame1.setLocation(50, 50);
-                jInternalFrame1.setVisible(true);
-                // internalFrame.setSize(300, 200);
-                // internalFrame.setVisible(true);
-                jDesktopPane1.add(jInternalFrame1);
-                RegistrarClienteCU.toFront();
-
-                Fabrica factory = new Fabrica();
-                IControllerDictadoClase controllerAltaClase = factory.getControladorDictadoClase();
-                List<InstitucionDeportiva> resultados = controllerAltaClase.getInstituciones();
-
-                // Obtener el modelo de la tabla jTable1
-                DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
-
-                // Iterar a través de los resultados y agregar cada fila a la tabla
-                for (InstitucionDeportiva fila : resultados) {
-                        Object[] rowData = { fila.getNombre(), fila.getDescripcion(), fila.getUrl(), /*
-                                                                                                      * Otros atributos
-                                                                                                      */ };
-                        tableModel.addRow(rowData);
-                }
-
-                // Notificar al modelo de la tabla que se han realizado cambios
-                tableModel.fireTableDataChanged();
-        }// GEN-LAST:event_jMenuItem4ActionPerformed
 
         private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField10ActionPerformed
 
@@ -1378,14 +1321,6 @@ public class Ventana extends javax.swing.JFrame {
                 }
         }// GEN-LAST:event_jComboBox1ActionPerformed
 
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-
-        }// GEN-LAST:event_jButton1ActionPerformed
-
-        private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField1ActionPerformed
-
-        }// GEN-LAST:event_jTextField1ActionPerformed
-
         private void jButtonRUCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
                 RegistrarClienteCU.dispose();
                 jTextFieldNombreU.setText("");
@@ -1398,8 +1333,8 @@ public class Ventana extends javax.swing.JFrame {
         }// GEN-LAST:event_jButton3ActionPerformed
 // GEN-LAST:event_jButton3ActionPerformed
 
-        private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBox1ActionPerformed
-                if (jCheckBox1.isSelected()) {
+        private void jCheckBoxPROFActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBoxPROFActionPerformed
+                if (jCheckBoxPROF.isSelected()) {
                         jTextFieldDescProf.setEnabled(true);
                         jTextFieldBioProf.setEnabled(true);
                         jTextFieldWebProf.setEnabled(true);
@@ -1407,7 +1342,7 @@ public class Ventana extends javax.swing.JFrame {
                         jTextFieldDescProf.setEnabled(false);
                         jTextFieldBioProf.setEnabled(false);
                         jTextFieldWebProf.setEnabled(false);
-                } // GEN-LAST:event_jCheckBox1ActionPerformed
+                } // GEN-LAST:event_jCheckBoxPROFActionPerformed
         }
     // GEN-LAST:event_jMenuItem1ActionPerformed
     // GEN-LAST:event_jComboBox1ActionPerformed
@@ -1435,7 +1370,7 @@ public class Ventana extends javax.swing.JFrame {
                         String sitioweb = jTextFieldWebProf.getText();
                         boolean action;
                         // Llamar a tu función pasando la variable como argumento
-                        if (jCheckBox1.isSelected()) {
+                        if (jCheckBoxPROF.isSelected()) {
                                 action = controllerAltaUsuario.addProfesor(nickname, nombre, apellido, email,
                                                 fechaNacimiento,
                                                 descripcion,
