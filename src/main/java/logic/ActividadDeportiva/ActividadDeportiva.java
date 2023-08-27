@@ -23,7 +23,7 @@ public class ActividadDeportiva {
     private LocalDate fechaReg;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Clase> clase = new ArrayList<Clase>();
+    private List<Clase> Clases = new ArrayList<Clase>();
 
     public ActividadDeportiva() {
     }
@@ -76,6 +76,10 @@ public class ActividadDeportiva {
 
     public void setFechaReg(LocalDate fechaReg) {
         this.fechaReg = fechaReg;
+    }
+    
+    public List<Clase> getClases(){
+        return Clases;
     }
 
 }

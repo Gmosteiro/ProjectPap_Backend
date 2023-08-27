@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import logic.Clase.Clase;
 
 public class ManejadorActividad {
     private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
@@ -51,6 +52,17 @@ public class ManejadorActividad {
 
         return actividad;
     }
+    
+    public void agregarClaseA(Clase clase, String actividad) {
+                ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
+                try {
+                        Actividad.getClases().add(clase);
+                        //actividad.add(clase);
+                } catch (Exception exceptionAgregarClase) {
+                        System.out.println("Catch agregarClase: " + exceptionAgregarClase);
+                        System.out.println("ERROR");
+                }
+        }
 
     public static List<ActividadDeportiva> getActividades() {
 

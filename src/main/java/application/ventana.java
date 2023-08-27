@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import application.Ventana;
+//import application.Ventana;
 import logic.Fabrica;
 import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
 import logic.Usuario.Profesor;
@@ -1657,7 +1657,7 @@ public class Ventana extends javax.swing.JFrame {
                 // String profesor = jTextField14.getText();
                 String url = jTextField15.getText();
 
-                controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta, "Tonga");
+                //controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta, "Tonga");
                 jTextField12.setText("");
                 jTextField14.setText("");
                 jTextField15.setText("");
