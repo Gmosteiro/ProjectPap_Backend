@@ -192,7 +192,6 @@ public class Ventana extends javax.swing.JFrame {
 
         TextoIngresedatosU.setText("Ingrese los siguientes datos:");
 
-
         jSpinnerFNanio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2023, 1));
 
         jButtonRUA.setText("Aceptar");
@@ -780,6 +779,11 @@ public class Ventana extends javax.swing.JFrame {
                 jLabelurlInstitucion.setText("URL");
 
                 jButtonCancelarInst.setText("Cancelar");
+                jButtonCancelarInst.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButtonCancelarInstActionPerformed(evt);
+                    }
+                });
 
                 jButtonAceptarInt.setText("Aceptar");
                 jButtonAceptarInt.addActionListener(new java.awt.event.ActionListener() {
@@ -996,6 +1000,10 @@ public class Ventana extends javax.swing.JFrame {
                 jDesktopPane1.add(RegistrarInstitucionCU);
                 RegistrarInstitucionCU.toFront();
     }//GEN-LAST:event_jMenuRInstitucionActionPerformed
+
+    private void jButtonCancelarInstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarInstActionPerformed
+        RegistrarInstitucionCU.dispose();
+    }//GEN-LAST:event_jButtonCancelarInstActionPerformed
 
         private void jButtonCancelarConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonCancelarConsultaUsuarioActionPerformed
 
