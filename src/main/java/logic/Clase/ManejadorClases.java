@@ -29,7 +29,6 @@ public class ManejadorClases {
                         System.out.println("ERROR");
                 }
         }
-
         public static List<Clase> getClasesByProfe(String profesor) {
 
                 try {

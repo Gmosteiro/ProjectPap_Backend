@@ -7,8 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import logic.Clase.Clase;
+import logic.ActividadDeportiva.ActividadDeportiva;
+//import logic.Clase.Clase;
 
 @Entity
 public class InstitucionDeportiva {
@@ -20,7 +20,7 @@ public class InstitucionDeportiva {
     private String url;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Clase> clase = new ArrayList<Clase>();
+    private List<ActividadDeportiva> actividades = new ArrayList<>();
 
     // Métodos getters y setters para los atributos
 

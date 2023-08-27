@@ -9,6 +9,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
+import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.ManejadorActividad;
 
 public class ControllerAltaClase implements IControllerAltaClase {
 
@@ -22,7 +24,7 @@ public class ControllerAltaClase implements IControllerAltaClase {
 
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
-            String profesor) {
+            String profesor, String actividad) {
         try {
 
             if (!validateClassData(nombre, "Clase")) {
@@ -32,9 +34,9 @@ public class ControllerAltaClase implements IControllerAltaClase {
             Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg, profesor);
 
             ManejadorClases manejador = new ManejadorClases();
-
+            ManejadorActividad manejadorA = new ManejadorActividad();
             manejador.agregarClase(nuevaclase);
-
+            manejadorA.agregarClaseA(nuevaclase, actividad);
             System.out.println("Clase Creada");
 
         } catch (Exception errorException) {
