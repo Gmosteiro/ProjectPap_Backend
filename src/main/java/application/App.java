@@ -20,6 +20,7 @@ public class App {
 
                 try {
                         iniciarVentana();
+                        probarAddInstituciones();
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
@@ -40,7 +41,7 @@ public class App {
                 Fabrica factory = new Fabrica();
                 IControllerAltaInstitucionDeportiva controllerInstituciones = factory
                                 .getControladorAltaInstitucionDeportiva();
-                controllerInstituciones.addInstitucionDeportiva("Gimnasio", "Alex No va", "gym.com");
+                controllerInstituciones.addInstitucionDeportiva("Gimnasio2", "Alex No va", "gym.com");
 
         }
 
@@ -59,7 +60,7 @@ public class App {
                        Fabrica factory = new Fabrica();
                        LocalDate fecha = LocalDate.of(2023, 8, 17);
                        IControllerAltaActividad controllerActividad = factory.getControladorAltaActividad();
-                       controllerActividad.altaActividad("fulvo", "fulvito", 40, 45, fecha);
+                       //controllerActividad.altaActividad("fulvo", "fulvito", 40, 45, fecha);
                }
         public static void probarClases() {
 
