@@ -4,13 +4,19 @@
  */
 package application;
 
+import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-//import application.Ventana;
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JYearChooser;
+
+import application.Ventana;
 import logic.Fabrica;
 import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
 import logic.Usuario.Profesor;
@@ -29,18 +35,19 @@ import logic.Institucion.InstitucionDeportiva;
  */
 public class Ventana extends javax.swing.JFrame {
 
-        /**
-         * Creates new form Ventana
-         */
-        public Ventana() {
-                initComponents();
-        }
+    /**
+     * Creates new form Ventana
+     */
+    public Ventana() {
+        initComponents();
+    }
 
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
-        // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -99,12 +106,9 @@ public class Ventana extends javax.swing.JFrame {
         jComboBoxProfesorC = new javax.swing.JComboBox<>();
         jComboBoxNombreC = new javax.swing.JComboBox<>();
         RegistrarActividadCU = new javax.swing.JInternalFrame();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButtonAceptarActividad = new javax.swing.JButton();
+        jButtonCancelarActividad = new javax.swing.JButton();
         jTextField8 = new javax.swing.JTextField();
-        jSpinner7 = new javax.swing.JSpinner();
-        jSpinner8 = new javax.swing.JSpinner();
-        jSpinner9 = new javax.swing.JSpinner();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -113,7 +117,9 @@ public class Ventana extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBoxInstituciones = new javax.swing.JComboBox<>();
+        jCalendarFechaActividad = new com.toedter.calendar.JCalendar();
+        jLabelInstituciones = new javax.swing.JLabel();
         ConsultarUsuarioCU = new javax.swing.JInternalFrame();
         jScrollPaneConsultaUsuario = new javax.swing.JScrollPane();
         jTableListaUsuario = new javax.swing.JTable();
@@ -191,6 +197,7 @@ public class Ventana extends javax.swing.JFrame {
         jSpinnerFNmes.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
 
         TextoIngresedatosU.setText("Ingrese los siguientes datos:");
+
 
         jSpinnerFNanio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2023, 1));
 
@@ -398,6 +405,7 @@ public class Ventana extends javax.swing.JFrame {
         TextoURLC.setText("URL:");
 
 
+
         jSpinnerFICdia.setModel(new javax.swing.SpinnerNumberModel());
 
         jSpinnerFICmes.setModel(new javax.swing.SpinnerNumberModel());
@@ -542,31 +550,15 @@ public class Ventana extends javax.swing.JFrame {
         }
         RegistrarActividadCU.setVisible(false);
 
-        jButton4.setText("OKAY");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        jButtonAceptarActividad.setText("Aceptar");
 
-        jButton5.setText("CANCELO");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
+        jButtonCancelarActividad.setText("Cancelar");
 
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
             }
         });
-
-        jSpinner7.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-
-        jSpinner8.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
-
-        jSpinner9.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2023, 1));
 
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -590,86 +582,80 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel14.setText("Fecha:");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxInstituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxInstituciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
+                jComboBoxInstitucionesActionPerformed(evt);
             }
         });
+
+        jLabelInstituciones.setText("Instituciones");
 
         javax.swing.GroupLayout RegistrarActividadCULayout = new javax.swing.GroupLayout(RegistrarActividadCU.getContentPane());
         RegistrarActividadCU.getContentPane().setLayout(RegistrarActividadCULayout);
         RegistrarActividadCULayout.setHorizontalGroup(
             RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegistrarActividadCULayout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarActividadCULayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5))
                     .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addComponent(jButtonCancelarActividad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAceptarActividad))
+                    .addGroup(RegistrarActividadCULayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(47, 47, 47)
-                                .addComponent(jSpinner7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jSpinner8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10))
-                                .addGap(62, 62, 62)
-                                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField10)
-                                    .addComponent(jTextField9)
-                                    .addComponent(jTextField8)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox5, 0, 1, Short.MAX_VALUE)))))
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabelInstituciones))
+                        .addGap(48, 48, 48)
+                        .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCalendarFechaActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jComboBoxInstituciones, javax.swing.GroupLayout.Alignment.LEADING, 0, 197, Short.MAX_VALUE))
+                            .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))
+                        .addGap(0, 276, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         RegistrarActividadCULayout.setVerticalGroup(
             RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarActividadCULayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelInstituciones))
+                .addGap(32, 32, 32)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(32, 32, 32)
                 .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                        .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13)))
-                .addGap(10, 10, 10)
-                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCalendarFechaActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap())
+                    .addComponent(jButtonCancelarActividad)
+                    .addComponent(jButtonAceptarActividad))
+                .addGap(17, 17, 17))
         );
 
         ConsultarUsuarioCU.setClosable(true);
@@ -770,7 +756,7 @@ public class Ventana extends javax.swing.JFrame {
 
                 RegistrarInstitucionCU.setTitle("Registar Institucion");
                 RegistrarInstitucionCU.setMaximumSize(new java.awt.Dimension(397, 301));
-                RegistrarInstitucionCU.setVisible(true);
+                RegistrarInstitucionCU.setVisible(false);
 
                 jLabelNombreInstitucion.setText("Nombre Institucion");
 
@@ -810,7 +796,7 @@ public class Ventana extends javax.swing.JFrame {
                                 .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextFieldNombreInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButtonAceptarInt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(68, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 RegistrarInstitucionCULayout.setVerticalGroup(
                     RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -827,7 +813,7 @@ public class Ventana extends javax.swing.JFrame {
                         .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelurlInstitucion)
                             .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonCancelarInst)
                             .addComponent(jButtonAceptarInt))
@@ -915,7 +901,7 @@ public class Ventana extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(387, 387, 387)
-                            .addComponent(RegistrarInstitucionCU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RegistrarInstitucionCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addContainerGap(387, Short.MAX_VALUE)))
                 );
                 layout.setVerticalGroup(
@@ -944,7 +930,7 @@ public class Ventana extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(335, 335, 335)
-                            .addComponent(RegistrarInstitucionCU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RegistrarInstitucionCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addContainerGap(335, Short.MAX_VALUE)))
                 );
 
@@ -955,382 +941,417 @@ public class Ventana extends javax.swing.JFrame {
                 pack();
             }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemRClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRClaseActionPerformed
+    private void jMenuItemRClaseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRClaseActionPerformed
         RegistrarClaseCU.setSize(560, 500);
-                RegistrarClaseCU.setLocation(50, 50);
-                RegistrarClaseCU.setVisible(true);
-                // internalFrame.setSize(300, 200);
-                // internalFrame.setVisible(true);
-                jDesktopPane1.add(RegistrarClaseCU);
-                RegistrarClaseCU.toFront(); // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemRClaseActionPerformed
+        RegistrarClaseCU.setLocation(50, 50);
+        RegistrarClaseCU.setVisible(true);
+        // internalFrame.setSize(300, 200);
+        // internalFrame.setVisible(true);
+        jDesktopPane1.add(RegistrarClaseCU);
+        RegistrarClaseCU.toFront(); // TODO add your handling code here:
+    }// GEN-LAST:event_jMenuItemRClaseActionPerformed
 
-    private void jMenuItemRActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRActividadActionPerformed
+    private void jMenuItemRActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRActividadActionPerformed
         RegistrarActividadCU.setSize(560, 500);
-                RegistrarActividadCU.setLocation(50, 50);
-                RegistrarActividadCU.setVisible(true);
-                // internalFrame.setSize(300, 200);
-                // internalFrame.setVisible(true);
-                jDesktopPane1.add(RegistrarActividadCU);
-                RegistrarActividadCU.toFront();// TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemRActividadActionPerformed
+        RegistrarActividadCU.setLocation(50, 50);
+        RegistrarActividadCU.setVisible(true);
+        // internalFrame.setSize(300, 200);
+        // internalFrame.setVisible(true);
+        jDesktopPane1.add(RegistrarActividadCU);
+        RegistrarActividadCU.toFront();// TODO add your handling code here:
+    }// GEN-LAST:event_jMenuItemRActividadActionPerformed
 
-    private void jMenuItemRClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRClienteActionPerformed
+    private void jMenuItemRClienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRClienteActionPerformed
         RegistrarClienteCU.setSize(560, 500);
-                RegistrarClienteCU.setLocation(50, 50);
-                RegistrarClienteCU.setVisible(true);
-                jTextFieldDescProf.setEnabled(false);
-                jTextFieldBioProf.setEnabled(false);
-                jTextFieldWebProf.setEnabled(false);
-                // internalFrame.setSize(300, 200);
-                // internalFrame.setVisible(true);
-                jDesktopPane1.add(RegistrarClienteCU);
-                RegistrarClienteCU.toFront();
-    }//GEN-LAST:event_jMenuItemRClienteActionPerformed
+        RegistrarClienteCU.setLocation(50, 50);
+        RegistrarClienteCU.setVisible(true);
+        jTextFieldDescProf.setEnabled(false);
+        jTextFieldBioProf.setEnabled(false);
+        jTextFieldWebProf.setEnabled(false);
+        // internalFrame.setSize(300, 200);
+        // internalFrame.setVisible(true);
+        jDesktopPane1.add(RegistrarClienteCU);
+        RegistrarClienteCU.toFront();
+    }// GEN-LAST:event_jMenuItemRClienteActionPerformed
 
-    private void jButtonAceptarIntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarIntActionPerformed
+    private void jButtonAceptarIntActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAceptarIntActionPerformed
         // TODO add your handling code here:
         System.out.print("Add logic ");
-    }//GEN-LAST:event_jButtonAceptarIntActionPerformed
+    }// GEN-LAST:event_jButtonAceptarIntActionPerformed
 
-    private void jMenuRInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRInstitucionActionPerformed
+    private void jMenuRInstitucionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuRInstitucionActionPerformed
         RegistrarInstitucionCU.setSize(397, 301);
-                RegistrarInstitucionCU.setLocation(50, 50);
-                RegistrarInstitucionCU.setVisible(true);
-                jDesktopPane1.add(RegistrarInstitucionCU);
-                RegistrarInstitucionCU.toFront();
-    }//GEN-LAST:event_jMenuRInstitucionActionPerformed
+        RegistrarInstitucionCU.setLocation(50, 50);
+        RegistrarInstitucionCU.setVisible(true);
+        jDesktopPane1.add(RegistrarInstitucionCU);
+        RegistrarInstitucionCU.toFront();
+    }// GEN-LAST:event_jMenuRInstitucionActionPerformed
 
-    private void jButtonCancelarInstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarInstActionPerformed
+    private void jButtonCancelarInstActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonCancelarInstActionPerformed
         RegistrarInstitucionCU.dispose();
-    }//GEN-LAST:event_jButtonCancelarInstActionPerformed
+    }// GEN-LAST:event_jButtonCancelarInstActionPerformed
 
-        private void jButtonCancelarConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonCancelarConsultaUsuarioActionPerformed
+    private void jButtonCancelarConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonCancelarConsultaUsuarioActionPerformed
 
-                DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada.getModel();
 
-                tableModel.setRowCount(0);
+        tableModel.setRowCount(0);
 
-                tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
+        tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
 
-                tableModel.setRowCount(0);
-                ConsultarUsuarioCU.dispose();
-        }// GEN-LAST:event_jButtonCancelarConsultaUsuarioActionPerformed
+        tableModel.setRowCount(0);
+        ConsultarUsuarioCU.dispose();
+    }// GEN-LAST:event_jButtonCancelarConsultaUsuarioActionPerformed
 
-        private void jTableInformacionAsociadaMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableInformacionAsociadaMouseClicked
-                int selectedRow = jTableInformacionAsociada.getSelectedRow();
+    private void jTableInformacionAsociadaMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableInformacionAsociadaMouseClicked
+        int selectedRow = jTableInformacionAsociada.getSelectedRow();
 
-                if (selectedRow != -1) {
-                        DefaultTableModel model = (DefaultTableModel) jTableInformacionAsociada.getModel();
+        if (selectedRow != -1) {
+            DefaultTableModel model = (DefaultTableModel) jTableInformacionAsociada.getModel();
 
-                        String nickname = model.getValueAt(selectedRow, 0).toString();
-                        String nombre = model.getValueAt(selectedRow, 1).toString();
-                        String apellido = model.getValueAt(selectedRow, 2).toString();
-                        String email = model.getValueAt(selectedRow, 3).toString();
-                        String fechaNacimiento = model.getValueAt(selectedRow, 4).toString();
+            String nickname = model.getValueAt(selectedRow, 0).toString();
+            String nombre = model.getValueAt(selectedRow, 1).toString();
+            String apellido = model.getValueAt(selectedRow, 2).toString();
+            String email = model.getValueAt(selectedRow, 3).toString();
+            String fechaNacimiento = model.getValueAt(selectedRow, 4).toString();
 
-                        // Now you can use the extracted data for further processing or display
-                        System.out.println("Nickname: " + nickname);
-                        System.out.println("Nombre: " + nombre);
-                        System.out.println("Apellido: " + apellido);
-                        System.out.println("Email: " + email);
-                        System.out.println("Fecha de nacimiento: " + fechaNacimiento);
-                }
-        }// GEN-LAST:event_jTableInformacionAsociadaMouseClicked
+            // Now you can use the extracted data for further processing or display
+            System.out.println("Nickname: " + nickname);
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Apellido: " + apellido);
+            System.out.println("Email: " + email);
+            System.out.println("Fecha de nacimiento: " + fechaNacimiento);
+        }
+    }// GEN-LAST:event_jTableInformacionAsociadaMouseClicked
 
-        private void jTableListaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableListaUsuarioMouseClicked
-                System.out.println("In event");
-                int viewRow = jTableListaUsuario.getSelectedRow();
+    private void jTableListaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableListaUsuarioMouseClicked
+        System.out.println("In event");
+        int viewRow = jTableListaUsuario.getSelectedRow();
 
-                if (viewRow != -1) {
+        if (viewRow != -1) {
 
-                        // Better to access table row using modelRow rather than viewRow
-                        int modelRow = jTableListaUsuario.convertRowIndexToModel(viewRow);
+            // Better to access table row using modelRow rather than viewRow
+            int modelRow = jTableListaUsuario.convertRowIndexToModel(viewRow);
 
-                        // Access value at selected row at the second column (columnIndex = 1)
-                        Object modelvalue = jTableListaUsuario.getModel().getValueAt(modelRow, 0);
+            // Access value at selected row at the second column (columnIndex = 1)
+            Object modelvalue = jTableListaUsuario.getModel().getValueAt(modelRow, 0);
 
-                        // Print cell value
-                        System.out.println(modelvalue);
-                        Fabrica factory = new Fabrica();
+            // Print cell value
+            System.out.println(modelvalue);
+            Fabrica factory = new Fabrica();
 
-                        IControllerConsultaUsuario consultaUsuario = factory.getControladorConsultaUsuario();
+            IControllerConsultaUsuario consultaUsuario = factory.getControladorConsultaUsuario();
 
-                        String nickname = (String) modelvalue;
+            String nickname = (String) modelvalue;
 
-                        Usuario selectedUser = consultaUsuario.getUsuarios(nickname).get(0);
+            Usuario selectedUser = consultaUsuario.getUsuarios(nickname).get(0);
 
-                        if (selectedUser instanceof Profesor) {
-                                // Profesor profesor = (Profesor) selectedUser; // Puedes hacer un casting a
-                                // Profesor
-                                System.out.println("El usuario seleccionado es un Profesor.");
+            if (selectedUser instanceof Profesor) {
+                // Profesor profesor = (Profesor) selectedUser; // Puedes hacer un casting a
+                // Profesor
+                System.out.println("El usuario seleccionado es un Profesor.");
 
-                                List<Clase> searchResult = consultaUsuario.getClasesAsociadas(nickname);
+                List<Clase> searchResult = consultaUsuario.getClasesAsociadas(nickname);
 
-                                if (!searchResult.isEmpty() || searchResult.get(0) != null) {
+                if (!searchResult.isEmpty() || searchResult.get(0) != null) {
 
-                                        DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada
-                                                        .getModel();
+                    DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada
+                            .getModel();
 
-                                        tableModel.setRowCount(0);
+                    tableModel.setRowCount(0);
 
-                                        for (Clase fila : searchResult) {
-                                                Object[] rowData = { fila.getNombre(), fila.getUrl() };
-                                                tableModel.addRow(rowData);
-                                        }
+                    for (Clase fila : searchResult) {
+                        Object[] rowData = { fila.getNombre(), fila.getUrl() };
+                        tableModel.addRow(rowData);
+                    }
 
-                                        // Notificar al modelo de la tabla que se han realizado cambios
-                                        tableModel.fireTableDataChanged();
-                                }
-
-                        } else if (selectedUser instanceof Socio) {
-                                // Socio socio = (Socio) selectedUser; // Puedes hacer un casting a Socio
-                                System.out.println("El usuario seleccionado es un Socio.");
-
-                        }
-
+                    // Notificar al modelo de la tabla que se han realizado cambios
+                    tableModel.fireTableDataChanged();
                 }
 
-        }// GEN-LAST:event_jTableListaUsuarioMouseClicked
+            } else if (selectedUser instanceof Socio) {
+                // Socio socio = (Socio) selectedUser; // Puedes hacer un casting a Socio
+                System.out.println("El usuario seleccionado es un Socio.");
 
-        private void jButtonBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonBuscarUsuarioActionPerformed
-                String input = jTextFieldBuscarUsuario.getText();
+            }
 
-                if (input.length() > 3) {
-                        Fabrica factory = new Fabrica();
-                        IControllerConsultaUsuario consultaUsuario = factory.getControladorConsultaUsuario();
-                        List<Usuario> searchResult = consultaUsuario.getUsuarios(input);
+        }
 
-                        if (!searchResult.isEmpty() || searchResult.get(0) != null) {
+    }// GEN-LAST:event_jTableListaUsuarioMouseClicked
 
-                                DefaultTableModel tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
+    private void jButtonBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonBuscarUsuarioActionPerformed
+        String input = jTextFieldBuscarUsuario.getText();
 
-                                tableModel.setRowCount(0);
+        if (input.length() > 3) {
+            Fabrica factory = new Fabrica();
+            IControllerConsultaUsuario consultaUsuario = factory.getControladorConsultaUsuario();
+            List<Usuario> searchResult = consultaUsuario.getUsuarios(input);
 
-                                for (Usuario fila : searchResult) {
-                                        Object[] rowData = { fila.getNickname(), fila.getNombre(), fila.getApellido(),
-                                                        fila.getEmail(),
-                                                        fila.getFechaNacFromatted() };
-                                        tableModel.addRow(rowData);
-                                }
+            if (!searchResult.isEmpty() || searchResult.get(0) != null) {
 
-                                // Notificar al modelo de la tabla que se han realizado cambios
-                                tableModel.fireTableDataChanged();
-                        }
-
-                }
-
-        }// GEN-LAST:event_jButtonBuscarUsuarioActionPerformed
-
-        private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox5ActionPerformed
-                jComboBox5.removeAllItems();
-
-                // Obtiene la lista de instituciones utilizando el controlador
-                Fabrica factory = new Fabrica();
-                IControllerAltaActividad ControllerAltaActividad = factory.getControladorAltaActividad();
-                List<InstitucionDeportiva> instituciones = ControllerAltaActividad.getInstituciones();
-
-                // Agrega los nombres de las instituciones al JComboBox
-                for (InstitucionDeportiva institucion : instituciones) {
-                        jComboBox5.addItem(institucion.getNombre());
-                }
-
-                Object selectedItem = jComboBox5.getSelectedItem();
-
-                // Realizar acciones basadas en el elemento seleccionado
-                if (selectedItem != null) {
-                        String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextField8.setText(selectedText); // Establecer el texto en el JTextField
-                }
-        }// GEN-LAST:event_jComboBox5ActionPerformed
-
-        private void jMenuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsultarUsuarioActionPerformed
-                ConsultarUsuarioCU.setSize(750, 600); // Establecer el tamaño deseado
-
-                // Obtener dimensiones del jDesktopPane1
-                int desktopWidth = jDesktopPane1.getWidth();
-                int desktopHeight = jDesktopPane1.getHeight();
-
-                // Calcular coordenadas para centrar el JInternalFrame
-                int x = (desktopWidth - ConsultarUsuarioCU.getWidth()) / 2;
-                int y = (desktopHeight - ConsultarUsuarioCU.getHeight()) / 2;
-
-                ConsultarUsuarioCU.setLocation(x - 10, y - 20); // Establecer ubicación centrada
-
-                ConsultarUsuarioCU.setVisible(true);
-                jDesktopPane1.add(ConsultarUsuarioCU);
-                ConsultarUsuarioCU.toFront();
-
-                Fabrica factory = new Fabrica();
-                IControllerConsultaUsuario controllerConsultaUsuario = factory.getControladorConsultaUsuario();
-                List<Usuario> resultados = controllerConsultaUsuario.getUsuarios();
-
-                // Obtener el modelo de la tabla jTableListaUsuario
                 DefaultTableModel tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
 
-                // Iterar a través de los resultados y agregar cada fila a la tabla
-                for (Usuario fila : resultados) {
-                        Object[] rowData = { fila.getNickname(), fila.getNombre(), fila.getApellido(), fila.getEmail(),
-                                        fila.getFechaNacFromatted() /*
-                                                                     * Otros
-                                                                     * atributos
-                                                                     */ };
-                        tableModel.addRow(rowData);
+                tableModel.setRowCount(0);
+
+                for (Usuario fila : searchResult) {
+                    Object[] rowData = { fila.getNickname(), fila.getNombre(), fila.getApellido(),
+                            fila.getEmail(),
+                            fila.getFechaNacFromatted() };
+                    tableModel.addRow(rowData);
                 }
 
                 // Notificar al modelo de la tabla que se han realizado cambios
                 tableModel.fireTableDataChanged();
-
-        }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
-
-
-        private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCCActionPerformed
-                RegistrarClaseCU.dispose();
-                jTextFieldNombreC.setText("");
-                jTextFieldProfesorC.setText("");
-                jTextFieldURLC.setText("");
-        }// GEN-LAST:event_jButtonRCCActionPerformed
-
-        private void jButtonRCAActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCAActionPerformed
-                Fabrica factory = new Fabrica();
-                IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
-
-                final LocalDate fechaInicio = LocalDate.of((int) jSpinnerFICanio.getValue(), (int) jSpinnerFICmes.getValue(),
-                                (int) jSpinnerFICdia.getValue());
-                final LocalDate fechaAlta = LocalDate.of((int) jSpinnerFACanio.getValue(), (int) jSpinnerFACmes.getValue(),
-                                (int) jSpinnerFACdia.getValue());
-                final LocalTime horaInicio = LocalTime.of((int) jSpinnerHICh.getValue(), (int) jSpinnerHICm.getValue());
-
-                String nombre = jTextFieldNombreC.getText();
-                // String profesor = jTextField14.getText();
-                String url = jTextFieldURLC.getText();
-
-                controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta, "Tonga");
-                jTextFieldNombreC.setText("");
-                jTextFieldProfesorC.setText("");
-                jTextFieldURLC.setText("");
-        }// GEN-LAST:event_jButtonRCAActionPerformed
-
-        private void jComboBoxNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox9ActionPerformed
-                Object selectedItem = jComboBoxNombreC.getSelectedItem();
-
-                // Realizar acciones basadas en el elemento seleccionado
-                if (selectedItem != null) {
-                        String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextFieldNombreC.setText(selectedText); // Establecer el texto en el JTextField
-                }
-        }// GEN-LAST:event_jComboBox9ActionPerformed
-
-        private void jComboBoxProfesorCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox8ActionPerformed
-                Object selectedItem = jComboBoxProfesorC.getSelectedItem();
-
-                // Realizar acciones basadas en el elemento seleccionado
-                if (selectedItem != null) {
-                        String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextFieldProfesorC.setText(selectedText); // Establecer el texto en el JTextField
-                }
-        }// GEN-LAST:event_jComboBox8ActionPerformed
-
-        private void jComboBoxURLCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox7ActionPerformed
-                Object selectedItem = jComboBoxURLC.getSelectedItem();
-
-                // Realizar acciones basadas en el elemento seleccionado
-                if (selectedItem != null) {
-                        String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextFieldURLC.setText(selectedText); // Establecer el texto en el JTextField
-                }
-        }// GEN-LAST:event_jComboBox7ActionPerformed
-
-
-        private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField10ActionPerformed
-
-        }// GEN-LAST:event_jTextField10ActionPerformed
-
-        private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField8ActionPerformed
-
-        }// GEN-LAST:event_jTextField8ActionPerformed
-// GEN-LAST:event_jTextField8ActionPerformed
-
-        private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField11ActionPerformed
+            }
 
         }
+
+    }// GEN-LAST:event_jButtonBuscarUsuarioActionPerformed
+
+    private void jComboBoxInstitucionesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBoxInstitucionesActionPerformed
+        jComboBoxInstituciones.removeAllItems();
+
+        // Obtiene la lista de instituciones utilizando el controlador
+        Fabrica factory = new Fabrica();
+        IControllerAltaActividad ControllerAltaActividad = factory.getControladorAltaActividad();
+        List<InstitucionDeportiva> instituciones = ControllerAltaActividad.getInstituciones();
+
+        // Agrega los nombres de las instituciones al JComboBox
+        for (InstitucionDeportiva institucion : instituciones) {
+            jComboBoxInstituciones.addItem(institucion.getNombre());
+        }
+
+        Object selectedItem = jComboBoxInstituciones.getSelectedItem();
+
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextField8.setText(selectedText); // Establecer el texto en el JTextField
+        }
+    }// GEN-LAST:event_jComboBoxInstitucionesActionPerformed
+
+    private void jMenuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsultarUsuarioActionPerformed
+        ConsultarUsuarioCU.setSize(750, 600); // Establecer el tamaño deseado
+
+        // Obtener dimensiones del jDesktopPane1
+        int desktopWidth = jDesktopPane1.getWidth();
+        int desktopHeight = jDesktopPane1.getHeight();
+
+        // Calcular coordenadas para centrar el JInternalFrame
+        int x = (desktopWidth - ConsultarUsuarioCU.getWidth()) / 2;
+        int y = (desktopHeight - ConsultarUsuarioCU.getHeight()) / 2;
+
+        ConsultarUsuarioCU.setLocation(x - 10, y - 20); // Establecer ubicación centrada
+
+        ConsultarUsuarioCU.setVisible(true);
+        jDesktopPane1.add(ConsultarUsuarioCU);
+        ConsultarUsuarioCU.toFront();
+
+        Fabrica factory = new Fabrica();
+        IControllerConsultaUsuario controllerConsultaUsuario = factory.getControladorConsultaUsuario();
+        List<Usuario> resultados = controllerConsultaUsuario.getUsuarios();
+
+        // Obtener el modelo de la tabla jTableListaUsuario
+        DefaultTableModel tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
+
+        // Iterar a través de los resultados y agregar cada fila a la tabla
+        for (Usuario fila : resultados) {
+            Object[] rowData = { fila.getNickname(), fila.getNombre(), fila.getApellido(), fila.getEmail(),
+                    fila.getFechaNacFromatted() /*
+                                                 * Otros
+                                                 * atributos
+                                                 */ };
+            tableModel.addRow(rowData);
+        }
+
+        // Notificar al modelo de la tabla que se han realizado cambios
+        tableModel.fireTableDataChanged();
+
+    }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
+
+    private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCCActionPerformed
+        RegistrarClaseCU.dispose();
+        jTextFieldNombreC.setText("");
+        jTextFieldProfesorC.setText("");
+        jTextFieldURLC.setText("");
+    }// GEN-LAST:event_jButtonRCCActionPerformed
+
+    private void jButtonRCAActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCAActionPerformed
+        Fabrica factory = new Fabrica();
+        IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
+
+        final LocalDate fechaInicio = LocalDate.of((int) jSpinnerFICanio.getValue(), (int) jSpinnerFICmes.getValue(),
+                (int) jSpinnerFICdia.getValue());
+        final LocalDate fechaAlta = LocalDate.of((int) jSpinnerFACanio.getValue(), (int) jSpinnerFACmes.getValue(),
+                (int) jSpinnerFACdia.getValue());
+        final LocalTime horaInicio = LocalTime.of((int) jSpinnerHICh.getValue(), (int) jSpinnerHICm.getValue());
+
+        String nombre = jTextFieldNombreC.getText();
+        // String profesor = jTextField14.getText();
+        String url = jTextFieldURLC.getText();
+
+        controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta, "Tonga");
+        jTextFieldNombreC.setText("");
+        jTextFieldProfesorC.setText("");
+        jTextFieldURLC.setText("");
+    }// GEN-LAST:event_jButtonRCAActionPerformed
+
+    private void jComboBoxNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox9ActionPerformed
+        Object selectedItem = jComboBoxNombreC.getSelectedItem();
+
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldNombreC.setText(selectedText); // Establecer el texto en el JTextField
+        }
+    }// GEN-LAST:event_jComboBox9ActionPerformed
+
+    private void jComboBoxProfesorCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox8ActionPerformed
+        Object selectedItem = jComboBoxProfesorC.getSelectedItem();
+
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldProfesorC.setText(selectedText); // Establecer el texto en el JTextField
+        }
+    }// GEN-LAST:event_jComboBox8ActionPerformed
+
+    private void jComboBoxURLCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox7ActionPerformed
+        Object selectedItem = jComboBoxURLC.getSelectedItem();
+
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldURLC.setText(selectedText); // Establecer el texto en el JTextField
+        }
+    }// GEN-LAST:event_jComboBox7ActionPerformed
+
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField10ActionPerformed
+
+    }// GEN-LAST:event_jTextField10ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField8ActionPerformed
+
+    }// GEN-LAST:event_jTextField8ActionPerformed
+    // GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField11ActionPerformed
+
+    }
     // GEN-LAST:event_jMenuItem2ActionPerformed
     // GEN-LAST:event_jTextField11ActionPerformed
 
-        private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
-                RegistrarActividadCU.dispose();
-                jTextField8.setText("");
-                jTextField9.setText("");
-                jTextField10.setText("");
-                jTextField11.setText("");
-        }// GEN-LAST:event_jButton5ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
+        RegistrarActividadCU.dispose();
+        jTextField8.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+        jTextField11.setText("");
+    }// GEN-LAST:event_jButton5ActionPerformed
 
-        private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
-                Fabrica factory = new Fabrica();
-                IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
+    private void jComboBoxEmailUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox4ActionPerformed
+        // Obtener el elemento seleccionado del JComboBox
+        Object selectedItem = jComboBoxEmailU.getSelectedItem();
 
-                final LocalDate fecha = LocalDate.of((int) jSpinner9.getValue(), (int) jSpinner8.getValue(),
-                                (int) jSpinner7.getValue());
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldEmailU.setText(selectedText); // Establecer el texto en el JTextField
+        }
+    }// GEN-LAST:event_jComboBox4ActionPerformed
 
-                String nombre = jTextField8.getText();
-                String costoStr = jTextField11.getText();
-                String descripcion = jTextField9.getText();
-                String duracionStr = jTextField10.getText();
-                int duracion = Integer.parseInt(duracionStr);
-                int costo = Integer.parseInt(costoStr);
-                controllerAltaActividad.altaActividad(nombre, descripcion, duracion, costo, fecha);
-                jTextField8.setText("");
-                jTextField9.setText("");
-                jTextField10.setText("");
-                jTextField11.setText("");
-        }// GEN-LAST:event_jButton4ActionPerformed
+    private void jComboBoxNicknameUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox3ActionPerformed
+        // Obtener el elemento seleccionado del JComboBox
+        Object selectedItem = jComboBoxNicknameU.getSelectedItem();
 
-        private void jComboBoxEmailUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox4ActionPerformed
-                // Obtener el elemento seleccionado del JComboBox
-                Object selectedItem = jComboBoxEmailU.getSelectedItem();
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldNicknameU.setText(selectedText); // Establecer el texto en el JTextField
+        }
+    }// GEN-LAST:event_jComboBox3ActionPerformed
 
-                // Realizar acciones basadas en el elemento seleccionado
-                if (selectedItem != null) {
-                        String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextFieldEmailU.setText(selectedText); // Establecer el texto en el JTextField
-                }
-        }// GEN-LAST:event_jComboBox4ActionPerformed
+    private void jComboBoxApellidoUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox2ActionPerformed
+        // Obtener el elemento seleccionado del JComboBox
+        Object selectedItem = jComboBoxApellidoU.getSelectedItem();
 
-        private void jComboBoxNicknameUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox3ActionPerformed
-                // Obtener el elemento seleccionado del JComboBox
-                Object selectedItem = jComboBoxNicknameU.getSelectedItem();
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldApellidoU.setText(selectedText); // Establecer el texto en el JTextField
+        }
+    }// GEN-LAST:event_jComboBox2ActionPerformed
 
-                // Realizar acciones basadas en el elemento seleccionado
-                if (selectedItem != null) {
-                        String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextFieldNicknameU.setText(selectedText); // Establecer el texto en el JTextField
-                }
-        }// GEN-LAST:event_jComboBox3ActionPerformed
+    private void jComboBoxNombreUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox1ActionPerformed
+        // Obtener el elemento seleccionado del JComboBox
+        Object selectedItem = jComboBoxNombreU.getSelectedItem();
 
-        private void jComboBoxApellidoUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox2ActionPerformed
-                // Obtener el elemento seleccionado del JComboBox
-                Object selectedItem = jComboBoxApellidoU.getSelectedItem();
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldNombreU.setText(selectedText); // Establecer el texto en el JTextField
+        }
+    }// GEN-LAST:event_jComboBox1ActionPerformed
 
-                // Realizar acciones basadas en el elemento seleccionado
-                if (selectedItem != null) {
-                        String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextFieldApellidoU.setText(selectedText); // Establecer el texto en el JTextField
-                }
-        }// GEN-LAST:event_jComboBox2ActionPerformed
+    private void jButtonRUCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+        RegistrarClienteCU.dispose();
+        jTextFieldNombreU.setText("");
+        jTextFieldApellidoU.setText("");
+        jTextFieldNicknameU.setText("");
+        jTextFieldEmailU.setText("");
+        jTextFieldDescProf.setText("");
+        jTextFieldBioProf.setText("");
+        jTextFieldWebProf.setText("");
+    }// GEN-LAST:event_jButton3ActionPerformed
+    // GEN-LAST:event_jButton3ActionPerformed
 
-        private void jComboBoxNombreUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox1ActionPerformed
-                // Obtener el elemento seleccionado del JComboBox
-                Object selectedItem = jComboBoxNombreU.getSelectedItem();
+    private void jCheckBoxPROFActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBoxPROFActionPerformed
+        if (jCheckBoxPROF.isSelected()) {
+            jTextFieldDescProf.setEnabled(true);
+            jTextFieldBioProf.setEnabled(true);
+            jTextFieldWebProf.setEnabled(true);
+        } else {
+            jTextFieldDescProf.setEnabled(false);
+            jTextFieldBioProf.setEnabled(false);
+            jTextFieldWebProf.setEnabled(false);
+        } // GEN-LAST:event_jCheckBoxPROFActionPerformed
+    }
+    // GEN-LAST:event_jMenuItem1ActionPerformed
+    // GEN-LAST:event_jComboBox1ActionPerformed
 
-                // Realizar acciones basadas en el elemento seleccionado
-                if (selectedItem != null) {
-                        String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                        jTextFieldNombreU.setText(selectedText); // Establecer el texto en el JTextField
-                }
-        }// GEN-LAST:event_jComboBox1ActionPerformed
+    /**
+     * @param args the command line arguments
+     */
+    private void jButtonRUAActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            Fabrica factory = new Fabrica();
 
-        private void jButtonRUCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
-                RegistrarClienteCU.dispose();
+            IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
+
+            final LocalDate fechaNacimiento = LocalDate.of((int) jSpinnerFNanio.getValue(),
+                    (int) jSpinnerFNmes.getValue(),
+                    (int) jSpinnerFNdia.getValue());
+
+            String nickname = jTextFieldNicknameU.getText();
+            String nombre = jTextFieldNombreU.getText();
+            String apellido = jTextFieldApellidoU.getText();
+            String email = jTextFieldEmailU.getText();
+            String descripcion = jTextFieldDescProf.getText();
+            String biografia = jTextFieldBioProf.getText();
+            String sitioweb = jTextFieldWebProf.getText();
+            boolean action;
+            // Llamar a tu función pasando la variable como argumento
+            if (jCheckBoxPROF.isSelected()) {
+                action = controllerAltaUsuario.addProfesor(nickname, nombre, apellido, email,
+                        fechaNacimiento,
+                        descripcion,
+                        biografia, sitioweb);
+            } else {
+                action = controllerAltaUsuario.addSocio(nickname, nombre, apellido, email,
+                        fechaNacimiento);
+            }
+
+            if (action) {
                 jTextFieldNombreU.setText("");
                 jTextFieldApellidoU.setText("");
                 jTextFieldNicknameU.setText("");
@@ -1338,71 +1359,13 @@ public class Ventana extends javax.swing.JFrame {
                 jTextFieldDescProf.setText("");
                 jTextFieldBioProf.setText("");
                 jTextFieldWebProf.setText("");
-        }// GEN-LAST:event_jButton3ActionPerformed
-// GEN-LAST:event_jButton3ActionPerformed
+            }
 
-        private void jCheckBoxPROFActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBoxPROFActionPerformed
-                if (jCheckBoxPROF.isSelected()) {
-                        jTextFieldDescProf.setEnabled(true);
-                        jTextFieldBioProf.setEnabled(true);
-                        jTextFieldWebProf.setEnabled(true);
-                } else {
-                        jTextFieldDescProf.setEnabled(false);
-                        jTextFieldBioProf.setEnabled(false);
-                        jTextFieldWebProf.setEnabled(false);
-                } // GEN-LAST:event_jCheckBoxPROFActionPerformed
+        } catch (NumberFormatException e) {
+            // Manejar una excepción si no se puede convertir el texto a un número
+            System.out.println("El texto no es un número válido");
         }
-    // GEN-LAST:event_jMenuItem1ActionPerformed
-    // GEN-LAST:event_jComboBox1ActionPerformed
-
-
-        /**
-         * @param args the command line arguments
-         */
-        private void jButtonRUAActionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                        Fabrica factory = new Fabrica();
-
-                        IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
-
-                        final LocalDate fechaNacimiento = LocalDate.of((int) jSpinnerFNanio.getValue(),
-                                        (int) jSpinnerFNmes.getValue(),
-                                        (int) jSpinnerFNdia.getValue());
-
-                        String nickname = jTextFieldNicknameU.getText();
-                        String nombre = jTextFieldNombreU.getText();
-                        String apellido = jTextFieldApellidoU.getText();
-                        String email = jTextFieldEmailU.getText();
-                        String descripcion = jTextFieldDescProf.getText();
-                        String biografia = jTextFieldBioProf.getText();
-                        String sitioweb = jTextFieldWebProf.getText();
-                        boolean action;
-                        // Llamar a tu función pasando la variable como argumento
-                        if (jCheckBoxPROF.isSelected()) {
-                                action = controllerAltaUsuario.addProfesor(nickname, nombre, apellido, email,
-                                                fechaNacimiento,
-                                                descripcion,
-                                                biografia, sitioweb);
-                        } else {
-                                action = controllerAltaUsuario.addSocio(nickname, nombre, apellido, email,
-                                                fechaNacimiento);
-                        }
-
-                        if (action) {
-                                jTextFieldNombreU.setText("");
-                                jTextFieldApellidoU.setText("");
-                                jTextFieldNicknameU.setText("");
-                                jTextFieldEmailU.setText("");
-                                jTextFieldDescProf.setText("");
-                                jTextFieldBioProf.setText("");
-                                jTextFieldWebProf.setText("");
-                        }
-
-                } catch (NumberFormatException e) {
-                        // Manejar una excepción si no se puede convertir el texto a un número
-                        System.out.println("El texto no es un número válido");
-                }
-        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JInternalFrame ConsultarUsuarioCU;
@@ -1426,20 +1389,21 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel TextoProfesorC;
     private javax.swing.JLabel TextoURLC;
     private javax.swing.JLabel TextoWebProf;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonAceptarActividad;
     private javax.swing.JButton jButtonAceptarInt;
     private javax.swing.JButton jButtonBuscarUsuario;
+    private javax.swing.JButton jButtonCancelarActividad;
     private javax.swing.JButton jButtonCancelarConsultaUsuario;
     private javax.swing.JButton jButtonCancelarInst;
     private javax.swing.JButton jButtonRCA;
     private javax.swing.JButton jButtonRCC;
     private javax.swing.JButton jButtonRUA;
     private javax.swing.JButton jButtonRUC;
+    private com.toedter.calendar.JCalendar jCalendarFechaActividad;
     private javax.swing.JCheckBox jCheckBoxPROF;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBoxApellidoU;
     private javax.swing.JComboBox<String> jComboBoxEmailU;
+    private javax.swing.JComboBox<String> jComboBoxInstituciones;
     private javax.swing.JComboBox<String> jComboBoxNicknameU;
     private javax.swing.JComboBox<String> jComboBoxNombreC;
     private javax.swing.JComboBox<String> jComboBoxNombreU;
@@ -1454,6 +1418,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabelDescInstitucion;
+    private javax.swing.JLabel jLabelInstituciones;
     private javax.swing.JLabel jLabelNombreInstitucion;
     private javax.swing.JLabel jLabelurlInstitucion;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1467,9 +1432,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuRegistro;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPaneConsultaUsuario;
-    private javax.swing.JSpinner jSpinner7;
-    private javax.swing.JSpinner jSpinner8;
-    private javax.swing.JSpinner jSpinner9;
     private javax.swing.JSpinner jSpinnerFACanio;
     private javax.swing.JSpinner jSpinnerFACdia;
     private javax.swing.JSpinner jSpinnerFACmes;
