@@ -15,7 +15,7 @@ public class ControllerModificarInstitucion implements IControllerModificarInsti
         
         if (institucion != null) {
             institucion.setDescripcion(nuevaDescripcion);
-            institucion.setURL(nuevaURL);
+            institucion.setUrl(nuevaURL);
             manejadorInstitucion.actualizarInstitucion(institucion);
         } else {
             // Manejar la institución no encontrada
