@@ -50,3 +50,5 @@ Manjeadores:
     Usuarios
     Clases
     Institucion
+
+    //jComboBoxInstitucionesClase

@@ -19,8 +19,8 @@ public class App {
         public static void main(String[] args) {
 
                 try {
-                        // iniciarVentana();
-                        probarGetInstituciones();
+                        iniciarVentana();
+                        // probarGetInstituciones();
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
@@ -56,12 +56,14 @@ public class App {
                 IControllerDictadoClase controllerDictado = factory.getControladorDictadoClase();
                 controllerDictado.getActividades();
         }
+
         public static void probarsetActividades() {
-                       Fabrica factory = new Fabrica();
-                       LocalDate fecha = LocalDate.of(2023, 8, 17);
-                       IControllerAltaActividad controllerActividad = factory.getControladorAltaActividad();
-                       //controllerActividad.altaActividad("fulvo", "fulvito", 40, 45, fecha);
-               }
+                Fabrica factory = new Fabrica();
+                LocalDate fecha = LocalDate.of(2023, 8, 17);
+                IControllerAltaActividad controllerActividad = factory.getControladorAltaActividad();
+                // controllerActividad.altaActividad("fulvo", "fulvito", 40, 45, fecha);
+        }
+
         public static void probarClases() {
 
                 String esi = "ESI"; // estructura para probar funciones
@@ -74,7 +76,7 @@ public class App {
 
                         IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
 
-                        controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga","fulvo");
+                        controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga", "fulvo");
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
@@ -82,9 +84,7 @@ public class App {
                 }
 
         }
-        
 
-        
         public static void ALTACLASECOMPLETO() {
 
                 String esi = "ESI"; // estructura para probar funciones
@@ -97,7 +97,7 @@ public class App {
 
                         IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
 
-                        //controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga");
+                        // controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga");
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
