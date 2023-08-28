@@ -46,11 +46,7 @@ CREATE TABLE IF NOT EXISTS public.instituciondeportiva (
     CONSTRAINT instituciondeportiva_pkey PRIMARY KEY (nombre)
 );
 
-
-
-Ignore this
-{
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; // Make all cells non-editable
-            }}
+Manjeadores:
+    Usuarios
+    Clases
+    Institucion
