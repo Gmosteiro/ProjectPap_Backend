@@ -562,72 +562,64 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="TextoFAC" max="32767" attributes="0"/>
-                      <Component id="TextoHIC" alignment="1" max="32767" attributes="0"/>
-                      <Component id="TextoProfesorC" alignment="1" max="32767" attributes="0"/>
-                      <Component id="TextoURLC" alignment="1" max="32767" attributes="0"/>
-                      <Component id="TextoNombreC" alignment="1" max="32767" attributes="0"/>
-                      <Component id="TextoFIC" alignment="1" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel20" min="-2" pref="52" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jSpinnerHICh" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButtonRCA" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jButtonRCC" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jSpinnerFICdia" min="-2" pref="64" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="jSpinnerFICmes" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jTextFieldURLC" min="-2" pref="201" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jSpinnerFICanio" max="32767" attributes="0"/>
-                              <Component id="jSpinnerHICm" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jSpinnerFACanio" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jComboBoxURLC" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="TextoURLC" min="-2" pref="85" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jTextFieldURLC" min="-2" pref="201" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jSpinnerFACdia" min="-2" pref="64" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="jSpinnerFACmes" min="-2" pref="64" max="-2" attributes="0"/>
+                          <Component id="TextoIngreseDatosC" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jComboBoxInstitucionesClase" min="-2" pref="201" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="TextoIngreseDatosC" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jComboBoxInstitucionesClase" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="TextoProfesorC" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jComboBoxProfesorC" min="-2" pref="200" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="TextoFAC" max="32767" attributes="0"/>
+                              <Component id="TextoNombreC" alignment="1" max="32767" attributes="0"/>
+                              <Component id="TextoFIC" alignment="1" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextFieldProfesorC" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldNombreC" min="-2" pref="201" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jComboBoxProfesorC" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxNombreC" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTextFieldNombreC" alignment="1" min="-2" pref="201" max="-2" attributes="0"/>
+                              <Component id="jCalendar1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Component id="jButtonRCC" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCalendar2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jButtonRCA" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="TextoHIC" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="TextoActividadC" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxActividadesC" min="-2" pref="156" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jComboBoxURLC" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxNombreC" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -635,60 +627,79 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextoIngreseDatosC" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxInstitucionesClase" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextFieldNombreC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="TextoNombreC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jComboBoxNombreC" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextoProfesorC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jTextFieldProfesorC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jComboBoxProfesorC" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="TextoFIC" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jSpinnerFICdia" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jSpinnerFICmes" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jSpinnerFICanio" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="TextoIngreseDatosC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jComboBoxInstitucionesClase" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jTextFieldNombreC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="TextoNombreC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="TextoProfesorC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jComboBoxProfesorC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" pref="21" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="TextoFIC" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="TextoHIC" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jCalendar1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxURLC" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="9" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldURLC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="TextoURLC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                                  <Component id="TextoFAC" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace type="separate" pref="51" max="32767" attributes="0"/>
+                                  <Component id="jCalendar2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="TextoActividadC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxActividadesC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jComboBoxNombreC" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jSpinnerHICm" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TextoHIC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jSpinnerHICh" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel20" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel21" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                          <Component id="jButtonRCC" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jButtonRCA" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextoURLC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jTextFieldURLC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jComboBoxURLC" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextoFAC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jSpinnerFACmes" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jSpinnerFACanio" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jSpinnerFACdia" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonRCC" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonRCA" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -704,7 +715,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="TextoIngreseDatosC">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ingresar Datos de Clase:"/>
+            <Property name="text" type="java.lang.String" value="Institucion:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="TextoNombreC">
@@ -727,38 +738,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNombreCActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldProfesorC">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldProfesorCActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="TextoHIC">
           <Properties>
             <Property name="text" type="java.lang.String" value="Hora de Inicio:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerHICh">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0" maximum="23" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel20">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Hora:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel21">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Minutos:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerHICm">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0" maximum="59" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="TextoURLC">
@@ -771,37 +753,10 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldURLCActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerFICdia">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerFICmes">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerFICanio">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="TextoFAC">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha de Alta"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerFACmes">
-        </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerFACanio">
-        </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerFACdia">
         </Component>
         <Component class="javax.swing.JButton" name="jButtonRCA">
           <Properties>
@@ -866,6 +821,30 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxInstitucionesClase">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="com.toedter.calendar.JCalendar" name="jCalendar1">
+        </Component>
+        <Component class="com.toedter.calendar.JCalendar" name="jCalendar2">
+        </Component>
+        <Component class="javax.swing.JLabel" name="TextoActividadC">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actividad"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBoxActividadesC">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
