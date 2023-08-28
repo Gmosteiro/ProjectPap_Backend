@@ -1,5 +1,11 @@
 package logic.Institucion.controllers;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import javax.swing.JOptionPane;
+import logic.Clase.Clase;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 
@@ -22,8 +28,8 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
     public void addInstitucionDeportiva(String nombre, String descripcion, String url) {
         try {
 
-            if (validateInstData(nombre)) {
-
+            if (!validateInstData (nombre, "InstitucionDeportiva")) {
+                    return;
             }
 
             InstitucionDeportiva nuevaInstitucion = new InstitucionDeportiva(nombre, descripcion, url);
@@ -41,9 +47,41 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
 
     }
 
-    private boolean validateInstData(String nombre) {
+    private boolean validateInstData(String nombre, String queryValue) {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+        EntityManager entityManager = emFactory.createEntityManager();
 
-        return true;
+        try {
+            TypedQuery<InstitucionDeportiva> query = entityManager.createQuery(
+                    "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
+                    InstitucionDeportiva.class);
+            query.setParameter("nombre", nombre);
+
+            if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
+                return true;
+            } else {
+
+                InstitucionDeportiva instituto = query.getSingleResult();
+
+                String queryNombre = instituto.getNombre();
+                String errorMessage = "";
+
+                if (queryNombre.equals(nombre)) {
+                    errorMessage = "Ya existe una Institución con ese nombre";
+                }
+                JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } finally {
+            entityManager.close();
+            emFactory.close();
+        }
     }
 
+    private String extractErrorMessage(String fullErrorMessage) {
+        int startIndex = fullErrorMessage.indexOf(":") + 1; // Encuentra la posición después del primer ":"
+
+        return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
+                : fullErrorMessage;
+    }
 }

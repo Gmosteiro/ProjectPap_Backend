@@ -25,12 +25,15 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
     }
 
     @Override
-    public void altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg) {
+    public void altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, String nombrei) {
         try {
 
             if (validateActivityData(nombre)) {
                 ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
                 manejadorActividad.agregarActividad(actividad);
+                
+                ManejadorInstitucion manejadorI = new ManejadorInstitucion();
+                manejadorI.agregarActividadI(actividad, nombrei);
             } else {
                 System.out.println("Ya existe una  actividad con ese nombre (santi arregla esto)");
                 // Manejar el caso de actividad duplicada

@@ -63,7 +63,7 @@ public class ManejadorActividad {
                         System.out.println("ERROR");
                 }
         }
-
+    
     public static List<ActividadDeportiva> getActividades() {
 
         List<ActividadDeportiva> actividades;
