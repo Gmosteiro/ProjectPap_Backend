@@ -1251,7 +1251,7 @@ public class Ventana extends javax.swing.JFrame {
     private void addInstitucionesToComboBox(String option) {
 
         List<InstitucionDeportiva> instituciones = ManejadorInstitucion.getInstituciones();
-        Object selectedItem;
+       // Object selectedItem;
 
         switch (option) {
             case "Actividad":
@@ -1262,11 +1262,11 @@ public class Ventana extends javax.swing.JFrame {
                     jComboBoxInstituciones.addItem(institucion.getNombre());
                 }
 
-                selectedItem = jComboBoxInstituciones.getSelectedItem();
+                // selectedItem = jComboBoxInstituciones.getSelectedItem();
 
-                if (selectedItem != null) {
-                    String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                }
+                // if (selectedItem != null) {
+                //     String selectedText = selectedItem.toString(); // Convertir el elemento a String
+                // }
 
                 break;
             case "Clase":
@@ -1277,11 +1277,11 @@ public class Ventana extends javax.swing.JFrame {
                     jComboBoxInstitucionesClase.addItem(institucion.getNombre());
                 }
 
-                selectedItem = jComboBoxInstitucionesClase.getSelectedItem();
+                // selectedItem = jComboBoxInstitucionesClase.getSelectedItem();
 
-                if (selectedItem != null) {
-                    String selectedText = selectedItem.toString(); // Convertir el elemento a String
-                }
+                // if (selectedItem != null) {
+                //     String selectedText = selectedItem.toString(); // Convertir el elemento a String
+                // }
 
                 break;
 
@@ -1329,21 +1329,7 @@ public class Ventana extends javax.swing.JFrame {
 
     }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField10ActionPerformed
-
-    }// GEN-LAST:event_jTextField10ActionPerformed
-
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField8ActionPerformed
-
-    }// GEN-LAST:event_jTextField8ActionPerformed
-     // GEN-LAST:event_jTextField8ActionPerformed
-
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField11ActionPerformed
-
-    }
-    // GEN-LAST:event_jMenuItem2ActionPerformed
-    // GEN-LAST:event_jTextField11ActionPerformed
-
+    
     private void jButtonCancelarActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
         RegistrarActividadCU.dispose();
         jTextFieldNombreA.setText("");
