@@ -26,7 +26,17 @@ public class ManejadorInstitucion {
 		emFactory.close();
 
 	}
+    
+	public void actualizarInstitucion(InstitucionDeportiva institucion) {
+        EntityManager entityManager = emFactory.createEntityManager();
+        entityManager.getTransaction().begin();
 
+        entityManager.merge(institucion);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+	
 	public static List<InstitucionDeportiva> getInstituciones() {
 
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");

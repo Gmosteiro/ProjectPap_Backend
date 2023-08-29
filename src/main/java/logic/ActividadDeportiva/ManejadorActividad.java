@@ -63,6 +63,19 @@ public class ManejadorActividad {
                         System.out.println("ERROR");
                 }
         }
+
+        public List<ActividadDeportiva> obtenerTodasLasActividades() {
+            EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+            EntityManager entityManager = emFactory.createEntityManager();
+    
+            try {
+                return entityManager.createQuery("SELECT a FROM ActividadDeportiva a", ActividadDeportiva.class)
+                    .getResultList();
+            } finally {
+                entityManager.close();
+                emFactory.close();
+            }
+        }
     
     public static List<ActividadDeportiva> getActividades() {
 

@@ -14,13 +14,6 @@ import logic.ActividadDeportiva.ManejadorActividad;
 
 public class ControllerAltaClase implements IControllerAltaClase {
 
-    /*
-     * private ManejadorClases manejadorClases;
-     * 
-     * public ControllerAltaClase() {
-     * manejadorClases = new ManejadorClases();
-     * }
-     */
 
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
