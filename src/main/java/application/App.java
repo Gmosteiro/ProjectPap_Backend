@@ -23,8 +23,7 @@ public class App {
 
                 try {
                         iniciarVentana();
-                        // probarGetInstituciones();
-
+                        //  probarAddInstituciones();
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
                         e.printStackTrace();
