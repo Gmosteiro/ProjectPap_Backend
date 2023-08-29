@@ -8,7 +8,10 @@ import java.util.List;
 
 import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.ManejadorActividad;
+import logic.ActividadDeportiva.controllers.ControllerModificarActividad;
 import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
+import logic.ActividadDeportiva.controllers.IControllerModificarActividad;
 import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerDictadoClase;
 import logic.Clase.controllers.IControllerRanking;
@@ -26,7 +29,7 @@ public class App {
                         System.out.println("Catch main: " + e.getMessage());
                         e.printStackTrace();
                 }
-
+               
         }
 
         public static void probarRankingActividades() {
@@ -125,5 +128,21 @@ public class App {
 
                 ventana.setLocation(x, y);
         }
+ 
+       
+        public static void probarModificarActividad() {
+                Fabrica factory = new Fabrica();
+                IControllerModificarActividad controllerActividad = factory.getControllerModificarActividad();
+                
+                String nombreActividad = "pepe";
+                String nuevaDescripcion = "Nueva descripción";
+                int nuevaDuracion = 60;
+                float nuevoCosto = 50.0f;
+        
+                controllerActividad.modificarActividad(nombreActividad, nuevaDescripcion, nuevaDuracion, nuevoCosto);
+        
+                System.out.println("Actividad modificada exitosamente.");
+            }
+            
 
 }

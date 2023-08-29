@@ -6,6 +6,10 @@ import logic.ActividadDeportiva.ManejadorActividad;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class ControllerModificarActividad implements IControllerModificarActividad {
     private final ManejadorActividad manejadorActividad;
 
@@ -14,14 +18,31 @@ public class ControllerModificarActividad implements IControllerModificarActivid
     }
 
     public void modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto) {
-        ActividadDeportiva actividad = manejadorActividad.obtenerActividadPorNombre(nombre);
-        if (actividad != null) {
-            actividad.setDescripcion(nuevaDescripcion);
-            actividad.setDuracion(nuevaDuracion);
-            actividad.setCosto(nuevoCosto);
-            manejadorActividad.actualizarActividad(actividad);
-        } else {
-            // Manejar la actividad no encontrada
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            ActividadDeportiva actividad = em.find(ActividadDeportiva.class, nombre);
+            if (actividad != null) {
+                actividad.setDescripcion(nuevaDescripcion);
+                actividad.setDuracion(nuevaDuracion);
+                actividad.setCosto(nuevoCosto);
+                em.merge(actividad); // Actualizar la entidad
+
+                em.getTransaction().commit();
+                System.out.println("Actividad modificada exitosamente.");
+            } else {
+                // Manejar la actividad no encontrada
+                System.out.println("No se encontró la actividad.");
+            }
+        } catch (Exception e) {
+            // Manejar excepciones
+            e.printStackTrace();
+        } finally {
+            em.close();
+            emf.close();
         }
     }
 
