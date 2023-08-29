@@ -34,7 +34,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
                     null, // Parent component (null for default)
                     "Profesor Creado!", // Message text
                     "Success", // Dialog title
-                    JOptionPane.INFORMATION_MESSAGE // Message type
+                    JOptionPane.INFORMATION_MESSAGE // Message type   merecuetengue dijo el juan
             );
 
             return true;
