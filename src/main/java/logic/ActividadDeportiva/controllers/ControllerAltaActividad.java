@@ -30,12 +30,10 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
 
             if (validateActivityData(nombre)) {
                 ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
-                manejadorActividad.agregarActividad(actividad);
-                
                 ManejadorInstitucion manejadorI = new ManejadorInstitucion();
                 manejadorI.agregarActividadI(actividad, nombrei);
             } else {
-                System.out.println("Ya existe una  actividad con ese nombre (santi arregla esto)");
+                System.out.println("Ya existe una  actividad con ese nombre");
                 // Manejar el caso de actividad duplicada
             }
         } catch (Exception errorException) {

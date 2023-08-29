@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JYearChooser;
+import com.toedter.calendar.JDateChooser;
 
 import application.Ventana;
 import logic.Fabrica;
@@ -51,7 +52,7 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -89,26 +90,20 @@ public class Ventana extends javax.swing.JFrame {
         TextoProfesorC = new javax.swing.JLabel();
         TextoFIC = new javax.swing.JLabel();
         jTextFieldNombreC = new javax.swing.JTextField();
-        jTextFieldProfesorC = new javax.swing.JTextField();
         TextoHIC = new javax.swing.JLabel();
-        jSpinnerHICh = new javax.swing.JSpinner();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jSpinnerHICm = new javax.swing.JSpinner();
         TextoURLC = new javax.swing.JLabel();
         jTextFieldURLC = new javax.swing.JTextField();
-        jSpinnerFICdia = new javax.swing.JSpinner();
-        jSpinnerFICmes = new javax.swing.JSpinner();
-        jSpinnerFICanio = new javax.swing.JSpinner();
         TextoFAC = new javax.swing.JLabel();
-        jSpinnerFACmes = new javax.swing.JSpinner();
-        jSpinnerFACanio = new javax.swing.JSpinner();
-        jSpinnerFACdia = new javax.swing.JSpinner();
         jButtonRCA = new javax.swing.JButton();
         jComboBoxURLC = new javax.swing.JComboBox<>();
         jComboBoxProfesorC = new javax.swing.JComboBox<>();
         jComboBoxNombreC = new javax.swing.JComboBox<>();
         jComboBoxInstitucionesClase = new javax.swing.JComboBox<>();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jCalendar2 = new com.toedter.calendar.JCalendar();
+        TextoActividadC = new javax.swing.JLabel();
+        jComboBoxActividadesC = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         RegistrarActividadCU = new javax.swing.JInternalFrame();
         jButtonAceptarActividad = new javax.swing.JButton();
         jButtonCancelarActividad = new javax.swing.JButton();
@@ -122,8 +117,8 @@ public class Ventana extends javax.swing.JFrame {
         jTextFieldCostoA = new javax.swing.JTextField();
         TextoFechaA = new javax.swing.JLabel();
         jComboBoxInstituciones = new javax.swing.JComboBox<>();
-        jCalendarFechaActividad = new com.toedter.calendar.JCalendar();
         jLabelInstituciones = new javax.swing.JLabel();
+        jDateChooserFActividad = new com.toedter.calendar.JDateChooser();
         ConsultarUsuarioCU = new javax.swing.JInternalFrame();
         jScrollPaneConsultaUsuario = new javax.swing.JScrollPane();
         jTableListaUsuario = new javax.swing.JTable();
@@ -161,11 +156,13 @@ public class Ventana extends javax.swing.JFrame {
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
-                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 804, Short.MAX_VALUE));
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 804, Short.MAX_VALUE)
+        );
         jDesktopPane1Layout.setVerticalGroup(
-                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 700, Short.MAX_VALUE));
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+        );
 
         RegistrarClienteCU.setResizable(true);
         RegistrarClienteCU.setTitle("Registrar Usuario");
@@ -201,12 +198,6 @@ public class Ventana extends javax.swing.JFrame {
 
         TextoIngresedatosU.setText("Ingrese los siguientes datos:");
 
-        // jTextFieldNombreU.addActionListener(new java.awt.event.ActionListener() {
-        // ic void actionPerformed(java.awt.event.ActionEvent evt) {
-        // ldNombreUActionPerformed(evt);
-        //
-        // });
-
         jSpinnerFNanio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2023, 1));
 
         jButtonRUA.setText("Aceptar");
@@ -216,32 +207,28 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxNombreU.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxNombreU.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxNombreU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxNombreUActionPerformed(evt);
             }
         });
 
-        jComboBoxApellidoU.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxApellidoU.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxApellidoU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxApellidoUActionPerformed(evt);
             }
         });
 
-        jComboBoxNicknameU.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxNicknameU.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxNicknameU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxNicknameUActionPerformed(evt);
             }
         });
 
-        jComboBoxEmailU.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEmailU.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxEmailU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEmailUActionPerformed(evt);
@@ -261,243 +248,121 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout RegistrarClienteCULayout = new javax.swing.GroupLayout(
-                RegistrarClienteCU.getContentPane());
+        javax.swing.GroupLayout RegistrarClienteCULayout = new javax.swing.GroupLayout(RegistrarClienteCU.getContentPane());
         RegistrarClienteCU.getContentPane().setLayout(RegistrarClienteCULayout);
         RegistrarClienteCULayout.setHorizontalGroup(
-                RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(RegistrarClienteCULayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                RegistrarClienteCULayout.createSequentialGroup()
-                                                        .addGap(0, 0, Short.MAX_VALUE)
-                                                        .addComponent(jButtonRUA)
-                                                        .addGap(44, 44, 44)
-                                                        .addComponent(jButtonRUC)
-                                                        .addGap(131, 131, 131))
-                                        .addGroup(RegistrarClienteCULayout.createSequentialGroup()
-                                                .addGroup(RegistrarClienteCULayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(RegistrarClienteCULayout.createSequentialGroup()
-                                                                .addGap(155, 155, 155)
-                                                                .addComponent(TextoIngresedatosU))
-                                                        .addComponent(jCheckBoxPROF)
-                                                        .addGroup(RegistrarClienteCULayout.createSequentialGroup()
-                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        false)
-                                                                        .addComponent(TextoNombreU,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                67,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(TextoApellidoU,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                67,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(TextoNicknameU,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                67,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(TextoEmailU)
-                                                                        .addComponent(TextoFNU,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(TextoDescProf,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(TextoBioProf,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(TextoWebProf,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE))
-                                                                .addGap(145, 145, 145)
-                                                                .addGroup(RegistrarClienteCULayout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jTextFieldWebProf,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                201,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(jTextFieldDescProf,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                201,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGroup(RegistrarClienteCULayout
-                                                                                .createSequentialGroup()
-                                                                                .addComponent(jTextFieldNicknameU,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        201,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jComboBoxNicknameU,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                        .addGroup(RegistrarClienteCULayout
-                                                                                .createSequentialGroup()
-                                                                                .addComponent(jTextFieldNombreU,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        201,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jComboBoxNombreU,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                        .addGroup(RegistrarClienteCULayout
-                                                                                .createSequentialGroup()
-                                                                                .addComponent(jTextFieldApellidoU,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        201,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jComboBoxApellidoU,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                        .addGroup(RegistrarClienteCULayout
-                                                                                .createSequentialGroup()
-                                                                                .addComponent(jSpinnerFNdia,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        53,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addGap(38, 38, 38)
-                                                                                .addComponent(jSpinnerFNmes,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        57,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jSpinnerFNanio,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        81,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                        .addGroup(RegistrarClienteCULayout
-                                                                                .createSequentialGroup()
-                                                                                .addComponent(jTextFieldEmailU,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        201,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(jComboBoxEmailU,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                        .addComponent(jTextFieldBioProf,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                201,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGap(0, 0, Short.MAX_VALUE)))));
+            RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClienteCULayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonRUA)
+                        .addGap(44, 44, 44)
+                        .addComponent(jButtonRUC)
+                        .addGap(131, 131, 131))
+                    .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                        .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addComponent(TextoIngresedatosU))
+                            .addComponent(jCheckBoxPROF)
+                            .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TextoNombreU, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TextoApellidoU, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TextoNicknameU, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TextoEmailU)
+                                    .addComponent(TextoFNU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(TextoDescProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(TextoBioProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(TextoWebProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(145, 145, 145)
+                                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldWebProf, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldDescProf, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                                        .addComponent(jTextFieldNicknameU, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxNicknameU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                                        .addComponent(jTextFieldNombreU, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxNombreU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                                        .addComponent(jTextFieldApellidoU, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxApellidoU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                                        .addComponent(jSpinnerFNdia, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jSpinnerFNmes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jSpinnerFNanio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                                        .addComponent(jTextFieldEmailU, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxEmailU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldBioProf, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
         RegistrarClienteCULayout.setVerticalGroup(
-                RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(RegistrarClienteCULayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(TextoIngresedatosU)
-                                .addGap(14, 14, 14)
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextFieldNombreU, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBoxNombreU, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TextoNombreU, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(TextoApellidoU, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(RegistrarClienteCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jTextFieldApellidoU, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        32, Short.MAX_VALUE)
-                                                .addComponent(jComboBoxApellidoU,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(TextoNicknameU, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(RegistrarClienteCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jTextFieldNicknameU, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        32, Short.MAX_VALUE)
-                                                .addComponent(jComboBoxNicknameU,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(TextoEmailU, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(RegistrarClienteCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jTextFieldEmailU, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        31, Short.MAX_VALUE)
-                                                .addComponent(jComboBoxEmailU, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(TextoFNU)
-                                        .addComponent(jSpinnerFNdia, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jSpinnerFNmes, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jSpinnerFNanio, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(RegistrarClienteCULayout.createSequentialGroup()
-                                                .addGap(19, 19, 19)
-                                                .addComponent(jTextFieldDescProf,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(RegistrarClienteCULayout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(TextoDescProf, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(6, 6, 6)
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(TextoBioProf, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldBioProf, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(13, 13, 13)
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(TextoWebProf, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldWebProf, javax.swing.GroupLayout.PREFERRED_SIZE, 31,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBoxPROF)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(RegistrarClienteCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButtonRUA)
-                                        .addComponent(jButtonRUC))
-                                .addGap(25, 25, 25)));
+            RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(TextoIngresedatosU)
+                .addGap(14, 14, 14)
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNombreU, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxNombreU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextoNombreU, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TextoApellidoU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldApellidoU, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(jComboBoxApellidoU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TextoNicknameU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldNicknameU, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                        .addComponent(jComboBoxNicknameU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TextoEmailU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldEmailU, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                        .addComponent(jComboBoxEmailU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextoFNU)
+                    .addComponent(jSpinnerFNdia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerFNmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerFNanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jTextFieldDescProf, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(RegistrarClienteCULayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(TextoDescProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(6, 6, 6)
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextoBioProf, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldBioProf, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextoWebProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldWebProf, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxPROF)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(RegistrarClienteCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRUA)
+                    .addComponent(jButtonRUC))
+                .addGap(25, 25, 25))
+        );
 
         RegistrarClaseCU.setResizable(true);
         RegistrarClaseCU.setTitle("Registrar Clase");
@@ -512,22 +377,16 @@ public class Ventana extends javax.swing.JFrame {
         RegistrarClaseCU.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 RegistrarClaseCUInternalFrameOpened(evt);
             }
@@ -540,7 +399,7 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
-        TextoIngreseDatosC.setText("Ingresar Datos de Clase:");
+        TextoIngreseDatosC.setText("Institucion:");
 
         TextoNombreC.setText("Nombre de Clase:");
 
@@ -554,35 +413,15 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
-        // jTextFieldProfesorC.addActionListener(new java.awt.event.ActionListener() {
-        // ic void actionPerformed(java.awt.event.ActionEvent evt) {
-        // ldProfesorCActionPerformed(evt);
-        //
-        // });
-
         TextoHIC.setText("Hora de Inicio:");
-
-        jSpinnerHICh.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-
-        jLabel20.setText("Hora:");
-
-        jLabel21.setText("Minutos:");
-
-        jSpinnerHICm.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
 
         TextoURLC.setText("URL:");
 
-        // jTextFieldURLC.addActionListener(new java.awt.event.ActionListener() {
-        // ic void actionPerformed(java.awt.event.ActionEvent evt) {
-        // ldURLCActionPerformed(evt);
-        //
-        // });
-
-        jSpinnerFICdia.setModel(new javax.swing.SpinnerNumberModel());
-
-        jSpinnerFICmes.setModel(new javax.swing.SpinnerNumberModel());
-
-        jSpinnerFICanio.setModel(new javax.swing.SpinnerNumberModel());
+        jTextFieldURLC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldURLCActionPerformed(evt);
+            }
+        });
 
         TextoFAC.setText("Fecha de Alta");
 
@@ -593,241 +432,145 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxURLC.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxURLC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxURLC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxURLCActionPerformed(evt);
             }
         });
 
-        jComboBoxProfesorC.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxProfesorC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxProfesorC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxProfesorCActionPerformed(evt);
             }
         });
 
-        jComboBoxNombreC.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxNombreC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxNombreC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxNombreCActionPerformed(evt);
             }
         });
 
-        jComboBoxInstitucionesClase.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxInstitucionesClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        TextoActividadC.setText("Actividad");
+
+        jComboBoxActividadesC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout RegistrarClaseCULayout = new javax.swing.GroupLayout(RegistrarClaseCU.getContentPane());
         RegistrarClaseCU.getContentPane().setLayout(RegistrarClaseCULayout);
         RegistrarClaseCULayout.setHorizontalGroup(
-                RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(RegistrarClaseCULayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(RegistrarClaseCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(TextoFAC, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextoHIC, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextoProfesorC, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextoURLC, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextoNombreC, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextoFIC, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(57, 57, 57)
-                                .addGroup(RegistrarClaseCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(RegistrarClaseCULayout.createSequentialGroup()
-                                                .addGroup(RegistrarClaseCULayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                false)
-                                                        .addGroup(RegistrarClaseCULayout.createSequentialGroup()
-                                                                .addComponent(jLabel20,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 52,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jSpinnerHICh,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jLabel21))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                RegistrarClaseCULayout.createSequentialGroup()
-                                                                        .addComponent(jButtonRCA)
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(jButtonRCC))
-                                                        .addGroup(RegistrarClaseCULayout.createSequentialGroup()
-                                                                .addComponent(jSpinnerFICdia,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 64,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(43, 43, 43)
-                                                                .addComponent(jSpinnerFICmes,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(jTextFieldURLC,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 201,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(RegistrarClaseCULayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                false)
-                                                        .addComponent(jSpinnerFICanio)
-                                                        .addComponent(jSpinnerHICm)
-                                                        .addComponent(jSpinnerFACanio)
-                                                        .addComponent(jComboBoxURLC,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(RegistrarClaseCULayout.createSequentialGroup()
-                                                .addComponent(jSpinnerFACdia, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(39, 39, 39)
-                                                .addComponent(jSpinnerFACmes, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(RegistrarClaseCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(RegistrarClaseCULayout.createSequentialGroup()
-                                                        .addComponent(TextoIngreseDatosC)
-                                                        .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jComboBoxInstitucionesClase,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(RegistrarClaseCULayout.createSequentialGroup()
-                                                        .addGroup(RegistrarClaseCULayout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        false)
-                                                                .addComponent(jTextFieldProfesorC)
-                                                                .addComponent(jTextFieldNombreC,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 201,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGap(18, 18, 18)
-                                                        .addGroup(RegistrarClaseCULayout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jComboBoxProfesorC,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(jComboBoxNombreC,
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                        .addComponent(TextoURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, RegistrarClaseCULayout.createSequentialGroup()
+                        .addComponent(TextoIngreseDatosC)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBoxInstitucionesClase, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, RegistrarClaseCULayout.createSequentialGroup()
+                        .addComponent(TextoProfesorC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, RegistrarClaseCULayout.createSequentialGroup()
+                        .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TextoFAC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TextoNombreC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TextoFIC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNombreC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCalendar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButtonRCC)
+                                .addComponent(jCalendar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(31, 31, 31)
+                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonRCA)
+                    .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                        .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                                .addComponent(TextoActividadC)
+                                .addGap(27, 27, 27)
+                                .addComponent(jComboBoxActividadesC, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51))
+                            .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TextoHIC, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(151, 151, 151)))
+                        .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxURLC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
         RegistrarClaseCULayout.setVerticalGroup(
-                RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                RegistrarClaseCULayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addGroup(RegistrarClaseCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(TextoIngreseDatosC)
-                                                .addComponent(jComboBoxInstitucionesClase,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(12, 12, 12)
-                                        .addGroup(RegistrarClaseCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jTextFieldNombreC, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(TextoNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jComboBoxNombreC, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, Short.MAX_VALUE)
-                                        .addGroup(RegistrarClaseCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(TextoProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextFieldProfesorC,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(
-                                                        jComboBoxProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, Short.MAX_VALUE)
-                                        .addGroup(RegistrarClaseCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(TextoFIC, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(RegistrarClaseCULayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(jSpinnerFICdia,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(
-                                                                jSpinnerFICmes, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jSpinnerFICanio,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(18, 18, Short.MAX_VALUE)
-                                        .addGroup(RegistrarClaseCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jSpinnerHICm, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(RegistrarClaseCULayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(TextoHIC, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jSpinnerHICh,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(18, 18, Short.MAX_VALUE)
-                                        .addGroup(RegistrarClaseCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(TextoURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextFieldURLC, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jComboBoxURLC, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, Short.MAX_VALUE)
-                                        .addGroup(RegistrarClaseCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(TextoFAC, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jSpinnerFACmes, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jSpinnerFACanio, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jSpinnerFACdia, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, Short.MAX_VALUE)
-                                        .addGroup(RegistrarClaseCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jButtonRCC)
-                                                .addComponent(jButtonRCA))
-                                        .addContainerGap()));
+            RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClaseCULayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                        .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(TextoIngreseDatosC)
+                                    .addComponent(jComboBoxInstitucionesClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
+                                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextFieldNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TextoNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(TextoProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClaseCULayout.createSequentialGroup()
+                                        .addComponent(TextoFIC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(147, 147, 147))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                                            .addComponent(TextoHIC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jComboBoxURLC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(136, 136, 136)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextoURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(TextoFAC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(jCalendar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextoActividadC)
+                            .addComponent(jComboBoxActividadesC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBoxNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jButtonRCC)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClaseCULayout.createSequentialGroup()
+                        .addComponent(jButtonRCA)
+                        .addGap(23, 23, 23))))
+        );
 
+        RegistrarActividadCU.setTitle("Registrar Actividad");
         try {
             RegistrarActividadCU.setSelected(true);
         } catch (java.beans.PropertyVetoException e1) {
@@ -837,22 +580,16 @@ public class Ventana extends javax.swing.JFrame {
         RegistrarActividadCU.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 RegistrarActividadCUInternalFrameOpened(evt);
             }
@@ -872,18 +609,6 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
-        // jTextFieldNombreA.addActionListener(new java.awt.event.ActionListener() {
-        // ic void actionPerformed(java.awt.event.ActionEvent evt) {
-        // ldNombreAActionPerformed(evt);
-        //
-        // });
-
-        // jTextFieldDuracionA.addActionListener(new java.awt.event.ActionListener() {
-        // ic void actionPerformed(java.awt.event.ActionEvent evt) {
-        // ldDuracionAActionPerformed(evt);
-        //
-        // });
-
         TextoNombreA.setText("Nombre:");
 
         TextoDescA.setText("Descripcion:");
@@ -892,16 +617,9 @@ public class Ventana extends javax.swing.JFrame {
 
         TextoCostoA.setText("Costo:");
 
-        // jTextFieldCostoA.addActionListener(new java.awt.event.ActionListener() {
-        // ic void actionPerformed(java.awt.event.ActionEvent evt) {
-        // ldCostoAActionPerformed(evt);
-        //
-        // });
-
         TextoFechaA.setText("Fecha:");
 
-        jComboBoxInstituciones.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxInstituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxInstituciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxInstitucionesActionPerformed(evt);
@@ -910,113 +628,68 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabelInstituciones.setText("Instituciones");
 
-        javax.swing.GroupLayout RegistrarActividadCULayout = new javax.swing.GroupLayout(
-                RegistrarActividadCU.getContentPane());
+        javax.swing.GroupLayout RegistrarActividadCULayout = new javax.swing.GroupLayout(RegistrarActividadCU.getContentPane());
         RegistrarActividadCU.getContentPane().setLayout(RegistrarActividadCULayout);
         RegistrarActividadCULayout.setHorizontalGroup(
-                RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addGroup(RegistrarActividadCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                                                .addComponent(jButtonCancelarActividad)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jButtonAceptarActividad))
-                                        .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                                                .addGap(9, 9, 9)
-                                                .addGroup(RegistrarActividadCULayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(TextoCostoA)
-                                                        .addComponent(TextoDuracionA)
-                                                        .addComponent(TextoDescA)
-                                                        .addComponent(TextoNombreA)
-                                                        .addComponent(TextoFechaA)
-                                                        .addComponent(jLabelInstituciones))
-                                                .addGap(48, 48, 48)
-                                                .addGroup(RegistrarActividadCULayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jCalendarFechaActividad,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(RegistrarActividadCULayout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                        false)
-                                                                .addComponent(jTextFieldDescA,
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jTextFieldNombreA,
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jComboBoxInstituciones,
-                                                                        javax.swing.GroupLayout.Alignment.LEADING, 0,
-                                                                        197, Short.MAX_VALUE))
-                                                        .addGroup(RegistrarActividadCULayout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                        false)
-                                                                .addComponent(jTextFieldDuracionA,
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jTextFieldCostoA,
-                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE, 198,
-                                                                        Short.MAX_VALUE)))
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap()));
+            RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RegistrarActividadCULayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextoCostoA)
+                    .addComponent(TextoDuracionA)
+                    .addComponent(TextoDescA)
+                    .addComponent(TextoNombreA)
+                    .addComponent(TextoFechaA)
+                    .addComponent(jLabelInstituciones))
+                .addGap(48, 48, 48)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextFieldDescA, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldNombreA, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jComboBoxInstituciones, javax.swing.GroupLayout.Alignment.LEADING, 0, 197, Short.MAX_VALUE))
+                    .addComponent(jTextFieldDuracionA)
+                    .addComponent(jTextFieldCostoA, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(jDateChooserFActividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAceptarActividad, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(11, 11, 11))
+            .addGroup(RegistrarActividadCULayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jButtonCancelarActividad)
+                .addContainerGap())
+        );
         RegistrarActividadCULayout.setVerticalGroup(
-                RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarActividadCULayout
-                                .createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(RegistrarActividadCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jComboBoxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabelInstituciones))
-                                .addGap(32, 32, 32)
-                                .addGroup(RegistrarActividadCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextFieldNombreA, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TextoNombreA))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(RegistrarActividadCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextFieldDescA, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TextoDescA))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(RegistrarActividadCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextFieldDuracionA, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TextoDuracionA))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(RegistrarActividadCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextFieldCostoA, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TextoCostoA))
-                                .addGap(32, 32, 32)
-                                .addGroup(RegistrarActividadCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCalendarFechaActividad, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TextoFechaA))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(RegistrarActividadCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButtonCancelarActividad)
-                                        .addComponent(jButtonAceptarActividad))
-                                .addGap(17, 17, 17)));
+            RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarActividadCULayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelInstituciones))
+                .addGap(32, 32, 32)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNombreA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextoNombreA))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDescA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextoDescA))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDuracionA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextoDuracionA))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCostoA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextoCostoA))
+                .addGap(32, 32, 32)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextoFechaA)
+                    .addComponent(jDateChooserFActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCancelarActividad)
+                    .addComponent(jButtonAceptarActividad))
+                .addGap(17, 17, 17))
+        );
 
         ConsultarUsuarioCU.setClosable(true);
         ConsultarUsuarioCU.setTitle("Consultar Usuario");
@@ -1025,345 +698,358 @@ public class Ventana extends javax.swing.JFrame {
         ConsultarUsuarioCU.setVisible(false);
 
         jTableListaUsuario.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                },
-                new String[] {
-                        "Nickname", "Nombre", "Apellido", "Email", "Fecha de Nacimiento"
-                }) {
+            new Object [][] {
+            },
+            new String [] {
+                "Nickname", "Nombre", "Apellido", "Email","Fecha de Nacimiento"
+            }
+        ){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Make all cells non-editable
-            }
-        });
-        jTableListaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableListaUsuarioMouseClicked(evt);
-            }
-        });
-        jScrollPaneConsultaUsuario.setViewportView(jTableListaUsuario);
+            }});
+            jTableListaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jTableListaUsuarioMouseClicked(evt);
+                }
+            });
+            jScrollPaneConsultaUsuario.setViewportView(jTableListaUsuario);
 
-        jButtonBuscarUsuario.setText("Buscar");
-        jButtonBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarUsuarioActionPerformed(evt);
-            }
-        });
+            jButtonBuscarUsuario.setText("Buscar");
+            jButtonBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonBuscarUsuarioActionPerformed(evt);
+                }
+            });
 
-        jButtonCancelarConsultaUsuario.setText("Cancelar");
-        jButtonCancelarConsultaUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarConsultaUsuarioActionPerformed(evt);
-            }
-        });
+            jButtonCancelarConsultaUsuario.setText("Cancelar");
+            jButtonCancelarConsultaUsuario.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonCancelarConsultaUsuarioActionPerformed(evt);
+                }
+            });
 
-        jTableInformacionAsociada.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
+            jTableInformacionAsociada.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
                 },
-                new String[] {
-                        "Clase", "URL", "Actividad Deportiva", "Descripcion"
-                }) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; // Make all cells non-editable
-            }
-        });
-        jTableInformacionAsociada.setEnabled(false);
-        jTableInformacionAsociada.setName("Informacion Asociada"); // NOI18N
-        jTableInformacionAsociada.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableInformacionAsociadaMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTableInformacionAsociada);
+                new String [] {
+                    "Clase", "URL", "Actividad Deportiva", "Descripcion"
+                }
+            ){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Make all cells non-editable
+                }});
+                jTableInformacionAsociada.setEnabled(false);
+                jTableInformacionAsociada.setName("Informacion Asociada"); // NOI18N
+                jTableInformacionAsociada.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        jTableInformacionAsociadaMouseClicked(evt);
+                    }
+                });
+                jScrollPane2.setViewportView(jTableInformacionAsociada);
 
-        javax.swing.GroupLayout ConsultarUsuarioCULayout = new javax.swing.GroupLayout(
-                ConsultarUsuarioCU.getContentPane());
-        ConsultarUsuarioCU.getContentPane().setLayout(ConsultarUsuarioCULayout);
-        ConsultarUsuarioCULayout.setHorizontalGroup(
-                ConsultarUsuarioCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                ConsultarUsuarioCULayout.createSequentialGroup()
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButtonBuscarUsuario)
-                                        .addGap(28, 28, 28))
-                        .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(ConsultarUsuarioCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
-                                                .addComponent(jButtonCancelarConsultaUsuario)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
-                                                .addGroup(ConsultarUsuarioCULayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jScrollPane2,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                                Short.MAX_VALUE)
-                                                        .addComponent(jScrollPaneConsultaUsuario,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                                Short.MAX_VALUE))
-                                                .addContainerGap()))));
-        ConsultarUsuarioCULayout.setVerticalGroup(
-                ConsultarUsuarioCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(ConsultarUsuarioCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextFieldBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButtonBuscarUsuario))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPaneConsultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 144,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                javax.swing.GroupLayout ConsultarUsuarioCULayout = new javax.swing.GroupLayout(ConsultarUsuarioCU.getContentPane());
+                ConsultarUsuarioCU.getContentPane().setLayout(ConsultarUsuarioCULayout);
+                ConsultarUsuarioCULayout.setHorizontalGroup(
+                    ConsultarUsuarioCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConsultarUsuarioCULayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonBuscarUsuario)
+                        .addGap(28, 28, 28))
+                    .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(ConsultarUsuarioCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
                                 .addComponent(jButtonCancelarConsultaUsuario)
-                                .addGap(20, 20, 20)));
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
+                                .addGroup(ConsultarUsuarioCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jScrollPaneConsultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addContainerGap())))
+                );
+                ConsultarUsuarioCULayout.setVerticalGroup(
+                    ConsultarUsuarioCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ConsultarUsuarioCULayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(ConsultarUsuarioCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonBuscarUsuario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPaneConsultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCancelarConsultaUsuario)
+                        .addGap(20, 20, 20))
+                );
 
-        RegistrarInstitucionCU.setTitle("Registar Institucion");
-        RegistrarInstitucionCU.setMaximumSize(new java.awt.Dimension(397, 301));
-        RegistrarInstitucionCU.setVisible(false);
+                RegistrarInstitucionCU.setTitle("Registar Institucion");
+                RegistrarInstitucionCU.setMaximumSize(new java.awt.Dimension(397, 301));
+                RegistrarInstitucionCU.setVisible(false);
 
-        jLabelNombreInstitucion.setText("Nombre Institucion");
+                jLabelNombreInstitucion.setText("Nombre Institucion");
 
-        jLabelDescInstitucion.setText("Descripcion");
+                jLabelDescInstitucion.setText("Descripcion");
 
-        jLabelurlInstitucion.setText("URL");
+                jLabelurlInstitucion.setText("URL");
 
-        jButtonCancelarInst.setText("Cancelar");
-        jButtonCancelarInst.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarInstActionPerformed(evt);
-            }
-        });
+                jButtonCancelarInst.setText("Cancelar");
+                jButtonCancelarInst.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButtonCancelarInstActionPerformed(evt);
+                    }
+                });
 
-        jButtonAceptarInt.setText("Aceptar");
-        jButtonAceptarInt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAceptarIntActionPerformed(evt);
-            }
-        });
+                jButtonAceptarInt.setText("Aceptar");
+                jButtonAceptarInt.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jButtonAceptarIntActionPerformed(evt);
+                    }
+                });
 
-        javax.swing.GroupLayout RegistrarInstitucionCULayout = new javax.swing.GroupLayout(
-                RegistrarInstitucionCU.getContentPane());
-        RegistrarInstitucionCU.getContentPane().setLayout(RegistrarInstitucionCULayout);
-        RegistrarInstitucionCULayout.setHorizontalGroup(
-                RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(RegistrarInstitucionCULayout.createSequentialGroup()
-                                .addGap(68, 68, 68)
-                                .addGroup(RegistrarInstitucionCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelNombreInstitucion)
-                                        .addComponent(jLabelDescInstitucion)
-                                        .addComponent(jLabelurlInstitucion)
-                                        .addComponent(jButtonCancelarInst))
-                                .addGap(52, 52, 52)
-                                .addGroup(RegistrarInstitucionCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(RegistrarInstitucionCULayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextFieldDescInstitucion,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 113,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextFieldNombreInstitucion,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 113,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jButtonAceptarInt, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-        RegistrarInstitucionCULayout.setVerticalGroup(
-                RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(RegistrarInstitucionCULayout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(RegistrarInstitucionCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabelNombreInstitucion)
-                                        .addComponent(jTextFieldNombreInstitucion,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)
-                                .addGroup(RegistrarInstitucionCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabelDescInstitucion)
-                                        .addComponent(jTextFieldDescInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
-                                .addGroup(RegistrarInstitucionCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabelurlInstitucion)
-                                        .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(RegistrarInstitucionCULayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButtonCancelarInst)
-                                        .addComponent(jButtonAceptarInt))
-                                .addGap(35, 35, 35)));
+                javax.swing.GroupLayout RegistrarInstitucionCULayout = new javax.swing.GroupLayout(RegistrarInstitucionCU.getContentPane());
+                RegistrarInstitucionCU.getContentPane().setLayout(RegistrarInstitucionCULayout);
+                RegistrarInstitucionCULayout.setHorizontalGroup(
+                    RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegistrarInstitucionCULayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNombreInstitucion)
+                            .addComponent(jLabelDescInstitucion)
+                            .addComponent(jLabelurlInstitucion)
+                            .addComponent(jButtonCancelarInst))
+                        .addGap(52, 52, 52)
+                        .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldDescInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldNombreInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonAceptarInt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+                RegistrarInstitucionCULayout.setVerticalGroup(
+                    RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegistrarInstitucionCULayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelNombreInstitucion)
+                            .addComponent(jTextFieldNombreInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelDescInstitucion)
+                            .addComponent(jTextFieldDescInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelurlInstitucion)
+                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(RegistrarInstitucionCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonCancelarInst)
+                            .addComponent(jButtonAceptarInt))
+                        .addGap(35, 35, 35))
+                );
 
-        jMenuInicio.setText("Inicio");
-        jMenuBar1.add(jMenuInicio);
+                jMenuInicio.setText("Inicio");
+                jMenuBar1.add(jMenuInicio);
 
-        jMenuRegistro.setText("Registros");
+                jMenuRegistro.setText("Registros");
 
-        jMenuRInstitucion.setText("Registrar Institucion");
-        jMenuRInstitucion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuRInstitucionActionPerformed(evt);
-            }
-        });
-        jMenuRegistro.add(jMenuRInstitucion);
+                jMenuRInstitucion.setText("Registrar Institucion");
+                jMenuRInstitucion.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jMenuRInstitucionActionPerformed(evt);
+                    }
+                });
+                jMenuRegistro.add(jMenuRInstitucion);
 
-        jMenuItemRCliente.setText("Registrar Cliente");
-        jMenuItemRCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemRClienteActionPerformed(evt);
-            }
-        });
-        jMenuRegistro.add(jMenuItemRCliente);
+                jMenuItemRCliente.setText("Registrar Cliente");
+                jMenuItemRCliente.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jMenuItemRClienteActionPerformed(evt);
+                    }
+                });
+                jMenuRegistro.add(jMenuItemRCliente);
 
-        jMenuItemRActividad.setText("Registrar Actividad");
-        jMenuItemRActividad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemRActividadActionPerformed(evt);
-            }
-        });
-        jMenuRegistro.add(jMenuItemRActividad);
+                jMenuItemRActividad.setText("Registrar Actividad");
+                jMenuItemRActividad.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jMenuItemRActividadActionPerformed(evt);
+                    }
+                });
+                jMenuRegistro.add(jMenuItemRActividad);
 
-        jMenuItemRClase.setText("Registrar Clase");
-        jMenuItemRClase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemRClaseActionPerformed(evt);
-            }
-        });
-        jMenuRegistro.add(jMenuItemRClase);
+                jMenuItemRClase.setText("Registrar Clase");
+                jMenuItemRClase.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jMenuItemRClaseActionPerformed(evt);
+                    }
+                });
+                jMenuRegistro.add(jMenuItemRClase);
 
-        jMenuBar1.add(jMenuRegistro);
+                jMenuBar1.add(jMenuRegistro);
 
-        jMenuConsultas.setText("Consultas");
+                jMenuConsultas.setText("Consultas");
 
-        jMenuConsultarUsuario.setText("Consultar Usuario");
-        jMenuConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuConsultarUsuarioActionPerformed(evt);
-            }
-        });
-        jMenuConsultas.add(jMenuConsultarUsuario);
+                jMenuConsultarUsuario.setText("Consultar Usuario");
+                jMenuConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jMenuConsultarUsuarioActionPerformed(evt);
+                    }
+                });
+                jMenuConsultas.add(jMenuConsultarUsuario);
 
-        jMenuConsutaActividad.setText("Consutar Actividad");
-        jMenuConsutaActividad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuConsutaActividadActionPerformed(evt);
-            }
-        });
-        jMenuConsultas.add(jMenuConsutaActividad);
+                jMenuConsutaActividad.setText("Consutar Actividad");
+                jMenuConsutaActividad.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jMenuConsutaActividadActionPerformed(evt);
+                    }
+                });
+                jMenuConsultas.add(jMenuConsutaActividad);
 
-        jMenuBar1.add(jMenuConsultas);
+                jMenuBar1.add(jMenuConsultas);
 
-        setJMenuBar(jMenuBar1);
+                setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(324, 324, 324)
-                                        .addComponent(RegistrarClienteCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(480, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(218, 218, 218)
-                                        .addComponent(RegistrarActividadCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(586, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(RegistrarClaseCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                Short.MAX_VALUE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(41, 41, 41)
-                                        .addComponent(ConsultarUsuarioCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(763, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(387, 387, 387)
-                                        .addComponent(RegistrarInstitucionCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(227, 227, 227)
-                                        .addComponent(RegistrarClienteCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(473, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(229, 229, 229)
-                                        .addComponent(RegistrarActividadCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(471, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(RegistrarClaseCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(54, 54, 54)
-                                        .addComponent(ConsultarUsuarioCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(646, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGap(335, 335, 335)
-                                        .addComponent(RegistrarInstitucionCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(335, Short.MAX_VALUE))));
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+                getContentPane().setLayout(layout);
+                layout.setHorizontalGroup(
+                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(324, 324, 324)
+                            .addComponent(RegistrarClienteCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(480, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(218, 218, 218)
+                            .addComponent(RegistrarActividadCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(586, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(RegistrarClaseCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(41, 41, 41)
+                            .addComponent(ConsultarUsuarioCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(763, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(387, 387, 387)
+                            .addComponent(RegistrarInstitucionCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                );
+                layout.setVerticalGroup(
+                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(227, 227, 227)
+                            .addComponent(RegistrarClienteCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(473, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(229, 229, 229)
+                            .addComponent(RegistrarActividadCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(471, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(RegistrarClaseCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(54, 54, 54)
+                            .addComponent(ConsultarUsuarioCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(646, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(335, 335, 335)
+                            .addComponent(RegistrarInstitucionCU, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(335, Short.MAX_VALUE)))
+                );
 
-        RegistrarInstitucionCU.getAccessibleContext().setAccessibleName("Registrar Institucion");
+                RegistrarInstitucionCU.getAccessibleContext().setAccessibleName("Registrar Institucion");
 
-        getAccessibleContext().setAccessibleName("Ventanita");
+                getAccessibleContext().setAccessibleName("Ventanita");
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+                pack();
+            }// </editor-fold>//GEN-END:initComponents
+
+    private void RegistrarClaseCUInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_RegistrarClaseCUInternalFrameOpened
+        addInstitucionesToComboBox("Clase");// TODO add your handling code here:
+    }//GEN-LAST:event_RegistrarClaseCUInternalFrameOpened
+
+    private void jComboBoxNombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNombreCActionPerformed
+        Object selectedItem = jComboBoxNombreC.getSelectedItem();
+
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldNombreC.setText(selectedText); // Establecer el texto en el JTextField
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxNombreCActionPerformed
+
+    private void jComboBoxProfesorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProfesorCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxProfesorCActionPerformed
+
+    private void jComboBoxURLCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxURLCActionPerformed
+        Object selectedItem = jComboBoxURLC.getSelectedItem();
+
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldURLC.setText(selectedText); // Establecer el texto en el JTextField
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxURLCActionPerformed
+
+    private void jButtonRCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRCAActionPerformed
+        Fabrica factory = new Fabrica();
+        IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
+
+        //final LocalDate fechaInicio = LocalDate.of((int) jSpinnerFICanio.getValue(), (int) jSpinnerFICmes.getValue(), (int) jSpinnerFICdia.getValue());
+        //final LocalDate fechaAlta = LocalDate.of((int) jSpinnerFACanio.getValue(), (int) jSpinnerFACmes.getValue(), (int) jSpinnerFACdia.getValue());
+        //final LocalTime horaInicio = LocalTime.of((int) jSpinnerHICh.getValue(), (int) jSpinnerHICm.getValue());
+
+        String nombre = jTextFieldNombreC.getText();
+        // String profesor = jTextField14.getText();
+        String url = jTextFieldURLC.getText();
+
+        // controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta,
+        // "Tonga"
+        jTextFieldNombreC.setText("");
+        jTextFieldURLC.setText("");// TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRCAActionPerformed
+
+    private void jTextFieldURLCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldURLCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldURLCActionPerformed
+
+    private void jTextFieldNombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNombreCActionPerformed
+
+    private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRCCActionPerformed
+        RegistrarClaseCU.dispose();
+        jTextFieldNombreC.setText("");
+        jTextFieldURLC.setText("");
+    // GEN-LAST:event_jButtonRCCActionPerformed// TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRCCActionPerformed
 
     private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jMenuConsutaActividadActionPerformed
 
-    private void RegistrarClaseCUInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {// GEN-FIRST:event_RegistrarClaseCUInternalFrameOpened
-        addInstitucionesToComboBox("Clase");
-    }// GEN-LAST:event_RegistrarClaseCUInternalFrameOpened
-
-    private void jTextFieldNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextFieldNombreCActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTextFieldNombreCActionPerformed
+//    private void jTextFieldNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextFieldNombreCActionPerformed
+//        // TODO add your handling code here:
+//    }// GEN-LAST:event_jTextFieldNombreCActionPerformed
 
     private void RegistrarActividadCUInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {// GEN-FIRST:event_RegistrarActividadCUInternalFrameOpened
         addInstitucionesToComboBox("Actividad");
@@ -1409,7 +1095,24 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jButtonAceptarActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAceptarIntActionPerformed
         // TODO add your handling code here:
-        System.out.print("Add logic ");
+        try {        
+                Date selectedDate = jDateChooserFActividad.getDate();
+                LocalDate localDate = selectedDate.toInstant().atZone(jDateChooserFActividad.getCalendar().getTimeZone().toZoneId()).toLocalDate();
+                Fabrica factory = new Fabrica();
+                IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
+                String nombre = jTextFieldNombreA.getText();
+                String desc = jTextFieldDescA.getText();
+                int duracion = Integer.parseInt(jTextFieldDuracionA.getText());
+                float costo = Float.parseFloat(jTextFieldCostoA.getText());
+                Object instituciones = jComboBoxInstituciones.getSelectedItem();
+                String institucion = instituciones.toString();
+                controllerAltaActividad.altaActividad(nombre, desc, duracion, costo, localDate, institucion);
+                jTextFieldNombreC.setText("");
+                jTextFieldURLC.setText("");
+        } catch (NumberFormatException e) {
+    // Manejar la excepción si el valor ingresado no es un número válido
+        System.out.println("Error: El valor no es un número válido.");
+        }
     }
 
     private void jMenuRInstitucionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuRInstitucionActionPerformed
@@ -1626,66 +1329,6 @@ public class Ventana extends javax.swing.JFrame {
 
     }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
 
-    private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCCActionPerformed
-        RegistrarClaseCU.dispose();
-        jTextFieldNombreC.setText("");
-        jTextFieldProfesorC.setText("");
-        jTextFieldURLC.setText("");
-    }// GEN-LAST:event_jButtonRCCActionPerformed
-
-    private void jButtonRCAActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCAActionPerformed
-        Fabrica factory = new Fabrica();
-        IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
-
-        final LocalDate fechaInicio = LocalDate.of((int) jSpinnerFICanio.getValue(),
-                (int) jSpinnerFICmes.getValue(),
-                (int) jSpinnerFICdia.getValue());
-        final LocalDate fechaAlta = LocalDate.of((int) jSpinnerFACanio.getValue(),
-                (int) jSpinnerFACmes.getValue(),
-                (int) jSpinnerFACdia.getValue());
-        final LocalTime horaInicio = LocalTime.of((int) jSpinnerHICh.getValue(), (int) jSpinnerHICm.getValue());
-
-        String nombre = jTextFieldNombreC.getText();
-        // String profesor = jTextField14.getText();
-        String url = jTextFieldURLC.getText();
-
-        // controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta,
-        // "Tonga"
-        jTextFieldNombreC.setText("");
-        jTextFieldProfesorC.setText("");
-        jTextFieldURLC.setText("");
-    }// GEN-LAST:event_jButtonRCAActionPerformed
-
-    private void jComboBoxNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox9ActionPerformed
-        Object selectedItem = jComboBoxNombreC.getSelectedItem();
-
-        // Realizar acciones basadas en el elemento seleccionado
-        if (selectedItem != null) {
-            String selectedText = selectedItem.toString(); // Convertir el elemento a String
-            jTextFieldNombreC.setText(selectedText); // Establecer el texto en el JTextField
-        }
-    }// GEN-LAST:event_jComboBox9ActionPerformed
-
-    private void jComboBoxProfesorCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox8ActionPerformed
-        Object selectedItem = jComboBoxProfesorC.getSelectedItem();
-
-        // Realizar acciones basadas en el elemento seleccionado
-        if (selectedItem != null) {
-            String selectedText = selectedItem.toString(); // Convertir el elemento a String
-            jTextFieldProfesorC.setText(selectedText); // Establecer el texto en el JTextField
-        }
-    }// GEN-LAST:event_jComboBox8ActionPerformed
-
-    private void jComboBoxURLCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox7ActionPerformed
-        Object selectedItem = jComboBoxURLC.getSelectedItem();
-
-        // Realizar acciones basadas en el elemento seleccionado
-        if (selectedItem != null) {
-            String selectedText = selectedItem.toString(); // Convertir el elemento a String
-            jTextFieldURLC.setText(selectedText); // Establecer el texto en el JTextField
-        }
-    }// GEN-LAST:event_jComboBox7ActionPerformed
-
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField10ActionPerformed
 
     }// GEN-LAST:event_jTextField10ActionPerformed
@@ -1833,6 +1476,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JInternalFrame RegistrarClaseCU;
     private javax.swing.JInternalFrame RegistrarClienteCU;
     private javax.swing.JInternalFrame RegistrarInstitucionCU;
+    private javax.swing.JLabel TextoActividadC;
     private javax.swing.JLabel TextoApellidoU;
     private javax.swing.JLabel TextoBioProf;
     private javax.swing.JLabel TextoCostoA;
@@ -1864,8 +1508,10 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRCC;
     private javax.swing.JButton jButtonRUA;
     private javax.swing.JButton jButtonRUC;
-    private com.toedter.calendar.JCalendar jCalendarFechaActividad;
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private com.toedter.calendar.JCalendar jCalendar2;
     private javax.swing.JCheckBox jCheckBoxPROF;
+    private javax.swing.JComboBox<String> jComboBoxActividadesC;
     private javax.swing.JComboBox<String> jComboBoxApellidoU;
     private javax.swing.JComboBox<String> jComboBoxEmailU;
     private javax.swing.JComboBox<String> jComboBoxInstituciones;
@@ -1875,9 +1521,9 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxNombreU;
     private javax.swing.JComboBox<String> jComboBoxProfesorC;
     private javax.swing.JComboBox<String> jComboBoxURLC;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooserFActividad;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabelDescInstitucion;
     private javax.swing.JLabel jLabelInstituciones;
     private javax.swing.JLabel jLabelNombreInstitucion;
@@ -1894,17 +1540,9 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuRegistro;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPaneConsultaUsuario;
-    private javax.swing.JSpinner jSpinnerFACanio;
-    private javax.swing.JSpinner jSpinnerFACdia;
-    private javax.swing.JSpinner jSpinnerFACmes;
-    private javax.swing.JSpinner jSpinnerFICanio;
-    private javax.swing.JSpinner jSpinnerFICdia;
-    private javax.swing.JSpinner jSpinnerFICmes;
     private javax.swing.JSpinner jSpinnerFNanio;
     private javax.swing.JSpinner jSpinnerFNdia;
     private javax.swing.JSpinner jSpinnerFNmes;
-    private javax.swing.JSpinner jSpinnerHICh;
-    private javax.swing.JSpinner jSpinnerHICm;
     private javax.swing.JTable jTableInformacionAsociada;
     private javax.swing.JTable jTableListaUsuario;
     private javax.swing.JTextField jTextFieldApellidoU;
@@ -1921,7 +1559,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNombreC;
     private javax.swing.JTextField jTextFieldNombreInstitucion;
     private javax.swing.JTextField jTextFieldNombreU;
-    private javax.swing.JTextField jTextFieldProfesorC;
     private javax.swing.JTextField jTextFieldURLC;
     private javax.swing.JTextField jTextFieldUrl;
     private javax.swing.JTextField jTextFieldWebProf;

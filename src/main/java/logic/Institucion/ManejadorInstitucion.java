@@ -51,18 +51,25 @@ public class ManejadorInstitucion {
         public InstitucionDeportiva obtenerInstitucionPorNombre(String nombre) {
         InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
 
-        entityManager.close();
-        emFactory.close();
+//        entityManager.close();
+//        emFactory.close();
 
         return institucion;
     }
         
          public void agregarActividadI(ActividadDeportiva actividad, String nombrei) {
                 InstitucionDeportiva Institucion = obtenerInstitucionPorNombre(nombrei);
+                 System.out.println("a ver que tal");
                 try {
+                        //Institucion.setActividades(actividad);
                         Institucion.getActividades().add(actividad);
+                        entityManager.getTransaction().begin();
+                        entityManager.persist(Institucion);
+                        entityManager.getTransaction().commit();
+                        entityManager.close();
+                        emFactory.close();
                 } catch (Exception exceptionAgregarClase) {
-                        System.out.println("Catch agregarClase: " + exceptionAgregarClase);
+                        System.out.println("Catch agregarActividadI: " + exceptionAgregarClase);
                         System.out.println("ERROR");
                 }
         }
