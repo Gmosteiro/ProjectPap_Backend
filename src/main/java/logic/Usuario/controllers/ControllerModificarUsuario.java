@@ -2,18 +2,12 @@ package logic.Usuario.controllers;
 
 import logic.Usuario.*;
 
+import java.time.LocalDate;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-
-// El caso de uso comienza cuando el administrador desea modificar el perfil de un usuario.
-//  Para ello el sistema muestra la lista de todos los usuarios y el administrador elige uno.
-//   Luego, el sistema muestra todos los datos básicos del usuario. 
-//   El administrador puede editar todos los datos básicos, menos el nickname y el correo electrónico.
-//    Cuando termina la edición, el sistema actualiza los datos del usuario.
-
-// CUANDO HAGAN LA VENTANA EL LIST ESTA EN EL MANEJADOR (LLAMALO DE AHI, ESTA FUNCION NO LO TIENE XQ LLAMAR)
+import javax.persistence.TypedQuery;
+import javax.swing.JOptionPane;
 
 public class ControllerModificarUsuario implements IControllerModificarUsuario {
     private final ManejadorUsuarios manejadorUsuarios;
@@ -31,9 +25,15 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
 
             Usuario usuario = manejadorUsuarios.getUser(nickname);
             if (usuario != null) {
-                // Actualizar los datos del usuario con los valores editados
-                usuario.setNombre(nuevoNombre);
-                usuario.setApellido(nuevoApellido);
+                if (usuario instanceof Profesor) {
+                    Profesor profesor = (Profesor) usuario;
+                    profesor.setNombre(nuevoNombre);
+                    profesor.setApellido(nuevoApellido);
+                } else if (usuario instanceof Socio) {
+                    Socio socio = (Socio) usuario;
+                    socio.setNombre(nuevoNombre);
+                    socio.setApellido(nuevoApellido);
+                }
 
                 em.merge(usuario); // Actualizar la entidad
                 em.getTransaction().commit();
