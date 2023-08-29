@@ -60,4 +60,9 @@ public class InstitucionDeportiva {
     public List<ActividadDeportiva> getActividades(){
         return actividades;
     }
+    
+    public void setActividades(List<ActividadDeportiva> actividades) {
+        this.actividades = actividades;
+    }
+    
 }

@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JYearChooser;
+import com.toedter.calendar.JDateChooser;
 
 import application.Ventana;
 import logic.Fabrica;
@@ -102,6 +103,7 @@ public class Ventana extends javax.swing.JFrame {
         jCalendar2 = new com.toedter.calendar.JCalendar();
         TextoActividadC = new javax.swing.JLabel();
         jComboBoxActividadesC = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         RegistrarActividadCU = new javax.swing.JInternalFrame();
         jButtonAceptarActividad = new javax.swing.JButton();
         jButtonCancelarActividad = new javax.swing.JButton();
@@ -115,8 +117,8 @@ public class Ventana extends javax.swing.JFrame {
         jTextFieldCostoA = new javax.swing.JTextField();
         TextoFechaA = new javax.swing.JLabel();
         jComboBoxInstituciones = new javax.swing.JComboBox<>();
-        jCalendarFechaActividad = new com.toedter.calendar.JCalendar();
         jLabelInstituciones = new javax.swing.JLabel();
+        jDateChooserFActividad = new com.toedter.calendar.JDateChooser();
         ConsultarUsuarioCU = new javax.swing.JInternalFrame();
         jScrollPaneConsultaUsuario = new javax.swing.JScrollPane();
         jTableListaUsuario = new javax.swing.JTable();
@@ -195,12 +197,6 @@ public class Ventana extends javax.swing.JFrame {
         jSpinnerFNmes.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
 
         TextoIngresedatosU.setText("Ingrese los siguientes datos:");
-
-        jTextFieldNombreU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreUActionPerformed(evt);
-            }
-        });
 
         jSpinnerFNanio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2023, 1));
 
@@ -500,17 +496,19 @@ public class Ventana extends javax.swing.JFrame {
                     .addGroup(RegistrarClaseCULayout.createSequentialGroup()
                         .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(RegistrarClaseCULayout.createSequentialGroup()
-                                .addComponent(TextoHIC, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(151, 151, 151))
-                            .addGroup(RegistrarClaseCULayout.createSequentialGroup()
                                 .addComponent(TextoActividadC)
                                 .addGap(27, 27, 27)
                                 .addComponent(jComboBoxActividadesC, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)))
+                                .addGap(51, 51, 51))
+                            .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                                .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TextoHIC, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(151, 151, 151)))
                         .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxURLC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RegistrarClaseCULayout.setVerticalGroup(
             RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,31 +529,32 @@ public class Ventana extends javax.swing.JFrame {
                                 .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(TextoProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBoxProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 21, Short.MAX_VALUE)
+                                .addGap(18, 18, Short.MAX_VALUE)
                                 .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClaseCULayout.createSequentialGroup()
                                         .addComponent(TextoFIC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(147, 147, 147))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(TextoHIC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(RegistrarClaseCULayout.createSequentialGroup()
+                                            .addComponent(TextoHIC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(RegistrarClaseCULayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jComboBoxURLC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(136, 136, 136)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextoURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(RegistrarClaseCULayout.createSequentialGroup()
                                 .addGap(64, 64, 64)
-                                .addComponent(TextoFAC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(TextoFAC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(RegistrarClaseCULayout.createSequentialGroup()
-                                .addGap(18, 51, Short.MAX_VALUE)
-                                .addComponent(jCalendar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(jCalendar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(RegistrarClaseCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TextoActividadC)
@@ -571,6 +570,7 @@ public class Ventana extends javax.swing.JFrame {
                         .addGap(23, 23, 23))))
         );
 
+        RegistrarActividadCU.setTitle("Registrar Actividad");
         try {
             RegistrarActividadCU.setSelected(true);
         } catch (java.beans.PropertyVetoException e1) {
@@ -609,18 +609,6 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldNombreA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreAActionPerformed(evt);
-            }
-        });
-
-        jTextFieldDuracionA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDuracionAActionPerformed(evt);
-            }
-        });
-
         TextoNombreA.setText("Nombre:");
 
         TextoDescA.setText("Descripcion:");
@@ -628,12 +616,6 @@ public class Ventana extends javax.swing.JFrame {
         TextoDuracionA.setText("Duracion:");
 
         TextoCostoA.setText("Costo:");
-
-        jTextFieldCostoA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCostoAActionPerformed(evt);
-            }
-        });
 
         TextoFechaA.setText("Fecha:");
 
@@ -651,32 +633,28 @@ public class Ventana extends javax.swing.JFrame {
         RegistrarActividadCULayout.setHorizontalGroup(
             RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(25, 25, 25)
                 .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                        .addComponent(jButtonCancelarActividad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAceptarActividad))
-                    .addGroup(RegistrarActividadCULayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextoCostoA)
-                            .addComponent(TextoDuracionA)
-                            .addComponent(TextoDescA)
-                            .addComponent(TextoNombreA)
-                            .addComponent(TextoFechaA)
-                            .addComponent(jLabelInstituciones))
-                        .addGap(48, 48, 48)
-                        .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCalendarFechaActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldDescA, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldNombreA, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBoxInstituciones, javax.swing.GroupLayout.Alignment.LEADING, 0, 197, Short.MAX_VALUE))
-                            .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldDuracionA, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldCostoA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(TextoCostoA)
+                    .addComponent(TextoDuracionA)
+                    .addComponent(TextoDescA)
+                    .addComponent(TextoNombreA)
+                    .addComponent(TextoFechaA)
+                    .addComponent(jLabelInstituciones))
+                .addGap(48, 48, 48)
+                .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextFieldDescA, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldNombreA, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jComboBoxInstituciones, javax.swing.GroupLayout.Alignment.LEADING, 0, 197, Short.MAX_VALUE))
+                    .addComponent(jTextFieldDuracionA)
+                    .addComponent(jTextFieldCostoA, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(jDateChooserFActividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAceptarActividad, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(11, 11, 11))
+            .addGroup(RegistrarActividadCULayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jButtonCancelarActividad)
                 .addContainerGap())
         );
         RegistrarActividadCULayout.setVerticalGroup(
@@ -704,9 +682,9 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(TextoCostoA))
                 .addGap(32, 32, 32)
                 .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCalendarFechaActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextoFechaA))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextoFechaA)
+                    .addComponent(jDateChooserFActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(RegistrarActividadCULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelarActividad)
                     .addComponent(jButtonAceptarActividad))
@@ -1005,11 +983,17 @@ public class Ventana extends javax.swing.JFrame {
             }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarClaseCUInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_RegistrarClaseCUInternalFrameOpened
-        // TODO add your handling code here:
+        addInstitucionesToComboBox("Clase");// TODO add your handling code here:
     }//GEN-LAST:event_RegistrarClaseCUInternalFrameOpened
 
     private void jComboBoxNombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNombreCActionPerformed
-        // TODO add your handling code here:
+        Object selectedItem = jComboBoxNombreC.getSelectedItem();
+
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldNombreC.setText(selectedText); // Establecer el texto en el JTextField
+        }// TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxNombreCActionPerformed
 
     private void jComboBoxProfesorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProfesorCActionPerformed
@@ -1017,11 +1001,31 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxProfesorCActionPerformed
 
     private void jComboBoxURLCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxURLCActionPerformed
-        // TODO add your handling code here:
+        Object selectedItem = jComboBoxURLC.getSelectedItem();
+
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            String selectedText = selectedItem.toString(); // Convertir el elemento a String
+            jTextFieldURLC.setText(selectedText); // Establecer el texto en el JTextField
+        }// TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxURLCActionPerformed
 
     private void jButtonRCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRCAActionPerformed
-        // TODO add your handling code here:
+        Fabrica factory = new Fabrica();
+        IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
+
+        //final LocalDate fechaInicio = LocalDate.of((int) jSpinnerFICanio.getValue(), (int) jSpinnerFICmes.getValue(), (int) jSpinnerFICdia.getValue());
+        //final LocalDate fechaAlta = LocalDate.of((int) jSpinnerFACanio.getValue(), (int) jSpinnerFACmes.getValue(), (int) jSpinnerFACdia.getValue());
+        //final LocalTime horaInicio = LocalTime.of((int) jSpinnerHICh.getValue(), (int) jSpinnerHICm.getValue());
+
+        String nombre = jTextFieldNombreC.getText();
+        // String profesor = jTextField14.getText();
+        String url = jTextFieldURLC.getText();
+
+        // controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta,
+        // "Tonga"
+        jTextFieldNombreC.setText("");
+        jTextFieldURLC.setText("");// TODO add your handling code here:
     }//GEN-LAST:event_jButtonRCAActionPerformed
 
     private void jTextFieldURLCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldURLCActionPerformed
@@ -1033,20 +1037,19 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNombreCActionPerformed
 
     private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRCCActionPerformed
-        // TODO add your handling code here:
+        RegistrarClaseCU.dispose();
+        jTextFieldNombreC.setText("");
+        jTextFieldURLC.setText("");
+    // GEN-LAST:event_jButtonRCCActionPerformed// TODO add your handling code here:
     }//GEN-LAST:event_jButtonRCCActionPerformed
 
     private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jMenuConsutaActividadActionPerformed
 
-    private void RegistrarClaseCUInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {// GEN-FIRST:event_RegistrarClaseCUInternalFrameOpened
-        addInstitucionesToComboBox("Clase");
-    }// GEN-LAST:event_RegistrarClaseCUInternalFrameOpened
-
-    private void jTextFieldNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextFieldNombreCActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jTextFieldNombreCActionPerformed
+//    private void jTextFieldNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextFieldNombreCActionPerformed
+//        // TODO add your handling code here:
+//    }// GEN-LAST:event_jTextFieldNombreCActionPerformed
 
     private void RegistrarActividadCUInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {// GEN-FIRST:event_RegistrarActividadCUInternalFrameOpened
         addInstitucionesToComboBox("Actividad");
@@ -1092,7 +1095,24 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jButtonAceptarActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAceptarIntActionPerformed
         // TODO add your handling code here:
-        System.out.print("Add logic ");
+        try {        
+                Date selectedDate = jDateChooserFActividad.getDate();
+                LocalDate localDate = selectedDate.toInstant().atZone(jDateChooserFActividad.getCalendar().getTimeZone().toZoneId()).toLocalDate();
+                Fabrica factory = new Fabrica();
+                IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
+                String nombre = jTextFieldNombreA.getText();
+                String desc = jTextFieldDescA.getText();
+                int duracion = Integer.parseInt(jTextFieldDuracionA.getText());
+                float costo = Float.parseFloat(jTextFieldCostoA.getText());
+                Object instituciones = jComboBoxInstituciones.getSelectedItem();
+                String institucion = instituciones.toString();
+                controllerAltaActividad.altaActividad(nombre, desc, duracion, costo, localDate, institucion);
+                jTextFieldNombreC.setText("");
+                jTextFieldURLC.setText("");
+        } catch (NumberFormatException e) {
+    // Manejar la excepción si el valor ingresado no es un número válido
+        System.out.println("Error: El valor no es un número válido.");
+        }
     }
 
     private void jMenuRInstitucionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuRInstitucionActionPerformed
@@ -1309,66 +1329,6 @@ public class Ventana extends javax.swing.JFrame {
 
     }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
 
-    private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCCActionPerformed
-        RegistrarClaseCU.dispose();
-        jTextFieldNombreC.setText("");
-        jTextFieldProfesorC.setText("");
-        jTextFieldURLC.setText("");
-    }// GEN-LAST:event_jButtonRCCActionPerformed
-
-    private void jButtonRCAActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCAActionPerformed
-        Fabrica factory = new Fabrica();
-        IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
-
-        final LocalDate fechaInicio = LocalDate.of((int) jSpinnerFICanio.getValue(),
-                (int) jSpinnerFICmes.getValue(),
-                (int) jSpinnerFICdia.getValue());
-        final LocalDate fechaAlta = LocalDate.of((int) jSpinnerFACanio.getValue(),
-                (int) jSpinnerFACmes.getValue(),
-                (int) jSpinnerFACdia.getValue());
-        final LocalTime horaInicio = LocalTime.of((int) jSpinnerHICh.getValue(), (int) jSpinnerHICm.getValue());
-
-        String nombre = jTextFieldNombreC.getText();
-        // String profesor = jTextField14.getText();
-        String url = jTextFieldURLC.getText();
-
-        // controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechaAlta,
-        // "Tonga"
-        jTextFieldNombreC.setText("");
-        jTextFieldProfesorC.setText("");
-        jTextFieldURLC.setText("");
-    }// GEN-LAST:event_jButtonRCAActionPerformed
-
-    private void jComboBoxNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox9ActionPerformed
-        Object selectedItem = jComboBoxNombreC.getSelectedItem();
-
-        // Realizar acciones basadas en el elemento seleccionado
-        if (selectedItem != null) {
-            String selectedText = selectedItem.toString(); // Convertir el elemento a String
-            jTextFieldNombreC.setText(selectedText); // Establecer el texto en el JTextField
-        }
-    }// GEN-LAST:event_jComboBox9ActionPerformed
-
-    private void jComboBoxProfesorCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox8ActionPerformed
-        Object selectedItem = jComboBoxProfesorC.getSelectedItem();
-
-        // Realizar acciones basadas en el elemento seleccionado
-        if (selectedItem != null) {
-            String selectedText = selectedItem.toString(); // Convertir el elemento a String
-            jTextFieldProfesorC.setText(selectedText); // Establecer el texto en el JTextField
-        }
-    }// GEN-LAST:event_jComboBox8ActionPerformed
-
-    private void jComboBoxURLCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox7ActionPerformed
-        Object selectedItem = jComboBoxURLC.getSelectedItem();
-
-        // Realizar acciones basadas en el elemento seleccionado
-        if (selectedItem != null) {
-            String selectedText = selectedItem.toString(); // Convertir el elemento a String
-            jTextFieldURLC.setText(selectedText); // Establecer el texto en el JTextField
-        }
-    }// GEN-LAST:event_jComboBox7ActionPerformed
-
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField10ActionPerformed
 
     }// GEN-LAST:event_jTextField10ActionPerformed
@@ -1550,7 +1510,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRUC;
     private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JCalendar jCalendar2;
-    private com.toedter.calendar.JCalendar jCalendarFechaActividad;
     private javax.swing.JCheckBox jCheckBoxPROF;
     private javax.swing.JComboBox<String> jComboBoxActividadesC;
     private javax.swing.JComboBox<String> jComboBoxApellidoU;
@@ -1562,6 +1521,8 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxNombreU;
     private javax.swing.JComboBox<String> jComboBoxProfesorC;
     private javax.swing.JComboBox<String> jComboBoxURLC;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooserFActividad;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabelDescInstitucion;
     private javax.swing.JLabel jLabelInstituciones;

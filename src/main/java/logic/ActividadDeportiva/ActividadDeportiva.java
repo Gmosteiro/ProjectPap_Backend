@@ -81,5 +81,6 @@ public class ActividadDeportiva {
     public List<Clase> getClases(){
         return Clases;
     }
+    
 
 }
