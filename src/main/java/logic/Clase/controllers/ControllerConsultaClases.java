@@ -1,74 +1,76 @@
+
 package logic.Clase.controllers;
 
-import logic.Clase.Clase;
-import logic.Clase.ManejadorClases;
-import logic.Institucion.InstitucionDeportiva;
-import logic.ActividadDeportiva.ActividadDeportiva;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.Clase.Clase;
 
 public class ControllerConsultaClases implements IControllerConsultaClases {
+
     private EntityManagerFactory emf;
 
     public ControllerConsultaClases() {
         emf = Persistence.createEntityManagerFactory("project_pap");
     }
 
-    public List<String> obtenerActividadesDeportivasPorInstitucion(String nombreInstitucion) {
+    public List<ActividadDeportiva> obtenerActividadesPorInstitucion(String nombreInstitucion) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
 
             Query query = em.createQuery(
-                    "SELECT i FROM InstitucionDeportiva i WHERE i.nombre = :nombreInstitucion",
-                    InstitucionDeportiva.class);
+                    "SELECT a FROM ActividadDeportiva a WHERE a.institucion.nombre = :nombreInstitucion",
+                    ActividadDeportiva.class);
             query.setParameter("nombreInstitucion", nombreInstitucion);
 
-            InstitucionDeportiva institucion = (InstitucionDeportiva) query.getSingleResult();
-
-            List<String> nombresActividades = new ArrayList<>();
-            for (ActividadDeportiva actividad : institucion.getActividades()) {
-                nombresActividades.add(actividad.getNombre());
-            }
+            final List<ActividadDeportiva> actividades = query.getResultList();
 
             em.getTransaction().commit();
 
-            return nombresActividades;
+            return actividades;
         } finally {
             em.close();
         }
     }
 
-    public List<Clase> obtenerClasesPorActividad(String nombreActividad) {
-        ManejadorClases manejadorClases = new ManejadorClases();
-        return manejadorClases.getClasesByActividad(nombreActividad);
-    }
-
-    public Clase obtenerDetallesClase(String nombreClase) {
+    public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-    
+
             Query query = em.createQuery(
-                    "SELECT c FROM Clase c WHERE c.nombre = :nombreClase", Clase.class);
-            query.setParameter("nombreClase", nombreClase);
-    
-            Clase clase = (Clase) query.getSingleResult();
-    
+                    "SELECT c FROM Clase c WHERE c.actividad = :actividad",
+                    Clase.class);
+            query.setParameter("actividad", actividad);
+
+            final List<Clase> clases = query.getResultList();
+
             em.getTransaction().commit();
-    
+
+            return clases;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Clase obtenerClasePorNombre(String nombreClase) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+
+            Clase clase = em.find(Clase.class, nombreClase);
+
+            em.getTransaction().commit();
+
             return clase;
         } finally {
             em.close();
         }
     }
-    
 
     public void closeEntityManagerFactory() {
         emf.close();
