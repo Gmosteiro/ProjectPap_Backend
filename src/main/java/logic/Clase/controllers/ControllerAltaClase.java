@@ -1,7 +1,6 @@
 package logic.Clase.controllers;
 
 import logic.Clase.Clase;
-import logic.Clase.ManejadorClases;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.persistence.EntityManager;

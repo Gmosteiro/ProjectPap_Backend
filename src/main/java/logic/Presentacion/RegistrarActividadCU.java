@@ -7,25 +7,12 @@ package logic.Presentacion;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
-
-import application.Ventana;
-import java.time.LocalTime;
 import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
 import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
-import logic.Usuario.ManejadorUsuarios;
-import logic.Usuario.Profesor;
-import logic.Usuario.Socio;
-import logic.Usuario.Usuario;
-import logic.Usuario.controllers.IControllerAltaUsuario;
-import logic.Usuario.controllers.IControllerConsultaUsuario;
-import logic.Clase.Clase;
-import logic.Clase.controllers.IControllerAltaClase;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
-import logic.Presentacion.*;
 /**
  *
  * @author Admin

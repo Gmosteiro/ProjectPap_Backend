@@ -3,7 +3,6 @@ package logic.ActividadDeportiva.controllers;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
