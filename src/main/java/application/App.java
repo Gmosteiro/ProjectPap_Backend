@@ -20,8 +20,8 @@ public class App {
         public static void main(String[] args) {
 
                 try {
-                        //iniciarVentana();
-                        probarClases();
+                        iniciarVentana();
+                        //probarClases();
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
                         e.printStackTrace();
