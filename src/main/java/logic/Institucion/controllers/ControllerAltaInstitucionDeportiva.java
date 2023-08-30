@@ -5,24 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-import logic.Clase.Clase;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 
 public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstitucionDeportiva {
-
-    /*
-     * Actores: Administrador del sistema
-     * 
-     * El caso de uso comienza cuando el administrador desea dar de alta una
-     * institución.
-     * Para ello, indica el nombre de la institución (único), una descripción y
-     * una URL.
-     * Si ya existe una institución con igual nombre, el administrador puede
-     * reingresar
-     * los datos o cancelar el caso de uso. Finalmente, el sistema da de alta la
-     * institución deportiva
-     */
 
     @Override
     public void addInstitucionDeportiva(String nombre, String descripcion, String url) {
@@ -76,12 +62,5 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
             entityManager.close();
             emFactory.close();
         }
-    }
-
-    private String extractErrorMessage(String fullErrorMessage) {
-        int startIndex = fullErrorMessage.indexOf(":") + 1; // Encuentra la posición después del primer ":"
-
-        return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
-                : fullErrorMessage;
     }
 }

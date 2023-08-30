@@ -16,8 +16,8 @@ public class Clase {
     private String url;
     private LocalDate fechaReg;
     private String profesor;
-    private String ClaseACT;
 
+    
     public Clase() {
 
     }

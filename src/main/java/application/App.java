@@ -8,9 +8,6 @@ import java.util.List;
 
 import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
-import logic.ActividadDeportiva.ManejadorActividad;
-import logic.ActividadDeportiva.controllers.ControllerModificarActividad;
-import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
 import logic.ActividadDeportiva.controllers.IControllerModificarActividad;
 import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerDictadoClase;
@@ -22,14 +19,13 @@ public class App {
 
         public static void main(String[] args) {
 
-                // try {
-                //         iniciarVentana();
-                //         // probarGetInstituciones();
+                try {
+                        iniciarVentana();
 
-                // } catch (Exception e) {
-                //         System.out.println("Catch main: " + e.getMessage());
-                //         e.printStackTrace();
-                // }
+                } catch (Exception e) {
+                        System.out.println("Catch main: " + e.getMessage());
+                        e.printStackTrace();
+                }
 
                         probarModificarUsuario();
                

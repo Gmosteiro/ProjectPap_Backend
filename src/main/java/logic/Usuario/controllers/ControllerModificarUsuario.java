@@ -2,19 +2,11 @@ package logic.Usuario.controllers;
 
 import logic.Usuario.*;
 
-import java.time.LocalDate;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import javax.swing.JOptionPane;
 
 public class ControllerModificarUsuario implements IControllerModificarUsuario {
-    private final ManejadorUsuarios manejadorUsuarios;
-
-    public ControllerModificarUsuario() {
-        manejadorUsuarios = new ManejadorUsuarios();
-    }
 
     public void modificarUsuario(String nickname, String nuevoNombre, String nuevoApellido) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
@@ -23,7 +15,7 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
         try {
             em.getTransaction().begin();
 
-            Usuario usuario = manejadorUsuarios.getUser(nickname);
+            Usuario usuario = ManejadorUsuarios.getUser(nickname);
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
                     Profesor profesor = (Profesor) usuario;

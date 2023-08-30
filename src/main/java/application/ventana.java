@@ -4,21 +4,10 @@
  */
 package application;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
 import javax.swing.table.DefaultTableModel;
-
-import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JYearChooser;
-import com.toedter.calendar.JDateChooser;
 
 import application.Ventana;
 import logic.Fabrica;
@@ -33,7 +22,6 @@ import logic.Usuario.controllers.IControllerAltaUsuario;
 import logic.Usuario.controllers.IControllerConsultaUsuario;
 import logic.Clase.Clase;
 import logic.Clase.controllers.IControllerAltaClase;
-import logic.Clase.controllers.IControllerDictadoClase;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 

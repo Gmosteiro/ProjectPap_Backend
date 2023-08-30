@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import logic.ActividadDeportiva.ActividadDeportiva;
-import logic.Clase.Clase;
-//import logic.Clase.Clase;
 
 @Entity
 public class InstitucionDeportiva {
