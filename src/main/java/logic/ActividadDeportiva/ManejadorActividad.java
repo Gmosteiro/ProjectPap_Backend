@@ -52,37 +52,34 @@ public class ManejadorActividad {
 
         return actividad;
     }
-    
-    public void agregarClaseA(Clase clase, String actividad) {
-                ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
-                try {
-                        Actividad.getClases().add(clase);
-                        //actividad.add(clase);
-                } catch (Exception exceptionAgregarClase) {
-                        System.out.println("Catch agregarClase: " + exceptionAgregarClase);
-                        System.out.println("ERROR");
-                }
-        }
 
-        public List<ActividadDeportiva> obtenerTodasLasActividades() {
-            EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-            EntityManager entityManager = emFactory.createEntityManager();
-    
-            try {
-                return entityManager.createQuery("SELECT a FROM ActividadDeportiva a", ActividadDeportiva.class)
-                    .getResultList();
-            } finally {
-                entityManager.close();
-                emFactory.close();
-            }
+    public void agregarClaseA(Clase clase, String actividad) {
+        ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
+        try {
+            Actividad.getClases().add(clase);
+            // actividad.add(clase);
+        } catch (Exception exceptionAgregarClase) {
+            System.out.println("Catch agregarClase: " + exceptionAgregarClase);
+            System.out.println("ERROR");
         }
-    
+    }
+
     public static List<ActividadDeportiva> getActividades() {
 
         List<ActividadDeportiva> actividades;
 
         actividades = entityManager
                 .createQuery("SELECT a FROM ActividadDeportiva a", ActividadDeportiva.class).getResultList();
+
+        return actividades;
+    }
+
+      public static List<ActividadDeportiva> getActividadesByInstitucion(String institucion) {
+
+        List<ActividadDeportiva> actividades;
+
+        actividades = entityManager
+                .createQuery("SELECT a FROM ActividadDeportiva a WHERE a.", ActividadDeportiva.class).getResultList();
 
         return actividades;
     }

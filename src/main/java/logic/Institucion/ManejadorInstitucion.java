@@ -10,58 +10,61 @@ import logic.ActividadDeportiva.ActividadDeportiva;
 public class ManejadorInstitucion {
         private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
         private static EntityManager entityManager = emFactory.createEntityManager();
-	public ManejadorInstitucion() {
-	}
 
-	public void agregarInstitucion(InstitucionDeportiva institucion) {
+        public ManejadorInstitucion() {
+        }
 
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-		EntityManager entityManager = emFactory.createEntityManager();
-		entityManager.getTransaction().begin();
+        public void agregarInstitucion(InstitucionDeportiva institucion) {
 
-		entityManager.persist(institucion);
-		entityManager.getTransaction().commit();
+                EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+                EntityManager entityManager = emFactory.createEntityManager();
+                entityManager.getTransaction().begin();
 
-		entityManager.close();
-		emFactory.close();
+                entityManager.persist(institucion);
+                entityManager.getTransaction().commit();
 
-	}
-    
-	public void actualizarInstitucion(InstitucionDeportiva institucion) {
-        EntityManager entityManager = emFactory.createEntityManager();
-        entityManager.getTransaction().begin();
+                entityManager.close();
+                emFactory.close();
 
-        entityManager.merge(institucion);
+        }
 
-        entityManager.getTransaction().commit();
-        entityManager.close();
-    }
-	
-	public static List<InstitucionDeportiva> getInstituciones() {
+        public void actualizarInstitucion(InstitucionDeportiva institucion) {
+                EntityManager entityManager = emFactory.createEntityManager();
+                entityManager.getTransaction().begin();
 
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-		EntityManager entityManager = emFactory.createEntityManager();
-		List<InstitucionDeportiva> instituciones;
+                entityManager.merge(institucion);
 
-		instituciones = entityManager
-				.createQuery("SELECT e FROM InstitucionDeportiva e", InstitucionDeportiva.class).getResultList();
+                entityManager.getTransaction().commit();
+                entityManager.close();
+        }
 
-		return instituciones;
-	}
+        public static List<InstitucionDeportiva> getInstituciones() {
+
+                EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+                EntityManager entityManager = emFactory.createEntityManager();
+                List<InstitucionDeportiva> instituciones;
+
+                instituciones = entityManager
+                                .createQuery("SELECT e FROM InstitucionDeportiva e", InstitucionDeportiva.class)
+                                .getResultList();
+
+                return instituciones;
+        }
+
         public InstitucionDeportiva obtenerInstitucionPorNombre(String nombre) {
-        InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
+                InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
 
-//        entityManager.close();
-//        emFactory.close();
+                // entityManager.close();
+                // emFactory.close();
 
-        return institucion;
-    }
-        
-         public void agregarActividadI(ActividadDeportiva actividad, String nombrei) {
-                InstitucionDeportiva Institucion = obtenerInstitucionPorNombre(nombrei);
-                 System.out.println("a ver que tal");
+                return institucion;
+        }
+
+        public void agregarActividadI(ActividadDeportiva actividad, String nombrei) {
                 try {
-                        //Institucion.setActividades(actividad);
+                        InstitucionDeportiva Institucion = obtenerInstitucionPorNombre(nombrei);
+
+                        // Institucion.setActividades(actividad);
                         Institucion.getActividades().add(actividad);
                         entityManager.getTransaction().begin();
                         entityManager.persist(Institucion);
@@ -73,6 +76,5 @@ public class ManejadorInstitucion {
                         System.out.println("ERROR");
                 }
         }
-         
 
 }

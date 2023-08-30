@@ -63,12 +63,7 @@ public class App {
                 controllerDictado.getActividades();
         }
 
-        public static void probarsetActividades() {
-                Fabrica factory = new Fabrica();
-                LocalDate fecha = LocalDate.of(2023, 8, 17);
-                IControllerAltaActividad controllerActividad = factory.getControladorAltaActividad();
-                // controllerActividad.altaActividad("fulvo", "fulvito", 40, 45, fecha);
-        }
+
 
         public static void probarClases() {
 
@@ -83,27 +78,6 @@ public class App {
                         IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
 
                         controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga", "fulvo");
-
-                } catch (Exception e) {
-                        System.out.println("Catch main: " + e.getMessage());
-                        e.printStackTrace();
-                }
-
-        }
-
-        public static void ALTACLASECOMPLETO() {
-
-                String esi = "ESI"; // estructura para probar funciones
-                LocalDate fecha = LocalDate.of(2023, 8, 17);
-                LocalTime hora = LocalTime.of(14, 30);
-                String campus = "Campus";
-                LocalDate fechareg = LocalDate.of(2023, 8, 17);
-                try {
-                        Fabrica factory = new Fabrica();
-
-                        IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
-
-                        // controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga");
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
