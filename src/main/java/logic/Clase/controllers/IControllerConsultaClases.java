@@ -1,11 +1,16 @@
 package logic.Clase.controllers;
 
+import java.util.List;
+import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
 
-import java.util.List;
-
 public interface IControllerConsultaClases {
-    List<String> obtenerActividadesDeportivasPorInstitucion(String nombreInstitucion);
-    List<Clase> obtenerClasesPorActividad(String nombreActividad);
-    Clase obtenerDetallesClase(String nombreClase);
+
+    List<ActividadDeportiva> obtenerActividadesPorInstitucion(String nombreInstitucion);
+
+    List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad);
+
+    Clase obtenerClasePorNombre(String nombreClase);
+
+    void closeEntityManagerFactory();
 }

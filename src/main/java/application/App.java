@@ -16,19 +16,22 @@ import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerDictadoClase;
 import logic.Clase.controllers.IControllerRanking;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
+import logic.Usuario.controllers.IControllerModificarUsuario;
 
 public class App {
 
         public static void main(String[] args) {
 
-                try {
-                        iniciarVentana();
-                        // probarGetInstituciones();
+                // try {
+                //         iniciarVentana();
+                //         // probarGetInstituciones();
 
-                } catch (Exception e) {
-                        System.out.println("Catch main: " + e.getMessage());
-                        e.printStackTrace();
-                }
+                // } catch (Exception e) {
+                //         System.out.println("Catch main: " + e.getMessage());
+                //         e.printStackTrace();
+                // }
+
+                        probarModificarUsuario();
                
         }
 
@@ -143,6 +146,22 @@ public class App {
         
                 System.out.println("Actividad modificada exitosamente.");
             }
+
+
+            public static void probarModificarUsuario() {
+                Fabrica factory = new Fabrica();
+                IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
+            
+                String nickname = "Item 2";
+                String nuevoNombre = "NuevoNombre";
+                String nuevoApellido = "NuevoApellido";
+            
+                controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido);
+            
+                System.out.println("Usuario modificado exitosamente.");
+            }
+            
+
             
 
 }
