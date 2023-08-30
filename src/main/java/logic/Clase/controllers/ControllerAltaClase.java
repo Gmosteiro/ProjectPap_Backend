@@ -24,10 +24,7 @@ public class ControllerAltaClase implements IControllerAltaClase {
             }
 
             Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg, profesor);
-
-            ManejadorClases manejador = new ManejadorClases();
             ManejadorActividad manejadorA = new ManejadorActividad();
-            manejador.agregarClase(nuevaclase);
             manejadorA.agregarClaseA(nuevaclase, actividad);
             System.out.println("Clase Creada");
 

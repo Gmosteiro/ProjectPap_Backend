@@ -46,23 +46,24 @@ public class ManejadorActividad {
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombre) {
         ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class, nombre);
-
-        entityManager.close();
-        emFactory.close();
-
         return actividad;
     }
 
-    public void agregarClaseA(Clase clase, String actividad) {
-        ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
-        try {
-            Actividad.getClases().add(clase);
-            // actividad.add(clase);
-        } catch (Exception exceptionAgregarClase) {
-            System.out.println("Catch agregarClase: " + exceptionAgregarClase);
-            System.out.println("ERROR");
+        public void agregarClaseA(Clase clase, String actividad) {
+            try {   
+                            ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
+                            Actividad.getClases().add(clase);
+                // actividad.add(clase);
+                            entityManager.getTransaction().begin();
+                            entityManager.persist(Actividad);
+                            entityManager.getTransaction().commit();
+                            entityManager.close();
+                            emFactory.close();
+            } catch (Exception exceptionAgregarClase) {
+                System.out.println("Catch agregarClase: " + exceptionAgregarClase);
+                System.out.println("ERROR");
+            }
         }
-    }
 
     public static List<ActividadDeportiva> getActividades() {
 

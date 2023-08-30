@@ -20,14 +20,14 @@ public class App {
         public static void main(String[] args) {
 
                 try {
-                        iniciarVentana();
-
+                        //iniciarVentana();
+                        probarClases();
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
                         e.printStackTrace();
                 }
 
-                        probarModificarUsuario();
+                        //probarModificarUsuario();
                
         }
 
@@ -66,14 +66,14 @@ public class App {
                 String esi = "ESI"; // estructura para probar funciones
                 LocalDate fecha = LocalDate.of(2023, 8, 17);
                 LocalTime hora = LocalTime.of(14, 30);
-                String campus = "Campus";
+                String campus = "Campuss";
                 LocalDate fechareg = LocalDate.of(2023, 8, 17);
                 try {
                         Fabrica factory = new Fabrica();
 
                         IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
 
-                        controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga", "fulvo");
+                        controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga", "alidgs");
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
