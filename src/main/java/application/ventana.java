@@ -25,6 +25,7 @@ import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
 import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
+import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Profesor;
 import logic.Usuario.Socio;
 import logic.Usuario.Usuario;
@@ -578,7 +579,7 @@ public class Ventana extends javax.swing.JFrame {
         });
 
         jComboBoxProfesorC.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                new javax.swing.DefaultComboBoxModel<>(new String[] { "Profesor" }));
         jComboBoxProfesorC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxProfesorCActionPerformed(evt);
@@ -594,12 +595,12 @@ public class Ventana extends javax.swing.JFrame {
         });
 
         jComboBoxInstitucionesClase.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                new javax.swing.DefaultComboBoxModel<>(new String[] { "Institucion" }));
 
         TextoActividadC.setText("Actividad");
 
         jComboBoxActividadesC.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                new javax.swing.DefaultComboBoxModel<>(new String[] { "Actividad"}));
         jComboBoxActividadesC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jComboBoxActividadesCFocusGained(evt);
@@ -1302,12 +1303,13 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jComboBoxActividadesCFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jComboBoxActividadesCFocusGained
         String current = (String) jComboBoxInstitucionesClase.getSelectedItem();
-        addActividadesToComboBox("Clase",current);
+        addActividadesToComboBox("Clase", current);
 
     }// GEN-LAST:event_jComboBoxActividadesCFocusGained
 
     private void RegistrarClaseCUInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {// GEN-FIRST:event_RegistrarClaseCUInternalFrameOpened
         addInstitucionesToComboBox("Clase");
+        addProfesoresToComboBox();
     }// GEN-LAST:event_RegistrarClaseCUInternalFrameOpened
 
     private void jComboBoxNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBoxNombreCActionPerformed
@@ -1622,7 +1624,20 @@ public class Ventana extends javax.swing.JFrame {
         }
     }
 
-    private void addActividadesToComboBox(String option,String institucion) {
+    private void addProfesoresToComboBox() {
+
+        List<Usuario> profesores = ManejadorUsuarios.getProfesores();
+
+        jComboBoxProfesorC.removeAllItems();
+
+        for (Usuario profesor : profesores) {
+            jComboBoxProfesorC.addItem(profesor.getNickname());
+
+        }
+
+    }
+
+    private void addActividadesToComboBox(String option, String institucion) {
 
         List<ActividadDeportiva> actividades = ManejadorActividad.getActividades();
         // Object selectedItem;
@@ -1633,7 +1648,7 @@ public class Ventana extends javax.swing.JFrame {
                 // jComboBoxInstituciones.removeAllItems();
 
                 // for (InstitucionDeportiva institucion : actividades) {
-                //     jComboBoxInstituciones.addItem(institucion.getNombre());
+                // jComboBoxInstituciones.addItem(institucion.getNombre());
                 // }
 
                 // // selectedItem = jComboBoxInstituciones.getSelectedItem();

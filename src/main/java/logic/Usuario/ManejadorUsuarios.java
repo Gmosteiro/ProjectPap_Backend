@@ -51,6 +51,17 @@ public class ManejadorUsuarios {
 		return usuarios;
 	}
 
+	public static List<Usuario> getProfesores() {
+
+		List<Usuario> profesores = entityManager.createQuery(
+				"SELECT p " +
+						"FROM Profesor p",
+				Usuario.class)
+				.getResultList();
+
+		return profesores;
+	}
+
 	public static Usuario getUser(String nickname) {
 		try {
 
