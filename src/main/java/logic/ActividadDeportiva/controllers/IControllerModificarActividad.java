@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IControllerModificarActividad {
     void modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto);
-    List<ActividadDeportiva> obtenerTodasLasActividades();
+    List<ActividadDeportiva> getActividades();
     ActividadDeportiva obtenerActividadPorNombre(String nombre);
 }

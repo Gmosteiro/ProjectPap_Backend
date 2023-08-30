@@ -46,8 +46,8 @@ public class ControllerModificarActividad implements IControllerModificarActivid
         }
     }
 
-    public List<ActividadDeportiva> obtenerTodasLasActividades() {
-        return manejadorActividad.obtenerTodasLasActividades();
+    public List<ActividadDeportiva> getActividades() {
+        return manejadorActividad.getActividades();
     }
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombre) {
