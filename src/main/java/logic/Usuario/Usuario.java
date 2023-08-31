@@ -3,21 +3,22 @@ package logic.Usuario;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.MappedSuperclass;
 
-import persistance.UsuarioID;
-
 @MappedSuperclass
-@IdClass(UsuarioID.class)
-
 public abstract class Usuario {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_usuario")
+	private Long id_usuario;
+
 	protected String nickname;
 
-	@Id
 	protected String email;
 
 	protected String nombre, apellido;

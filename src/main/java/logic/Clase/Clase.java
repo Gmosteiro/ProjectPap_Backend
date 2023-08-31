@@ -2,8 +2,14 @@ package logic.Clase;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import logic.Registro;
 
 @Entity
 public class Clase {
@@ -11,13 +17,13 @@ public class Clase {
     @Id
     private String nombre;
 
-    private LocalDate fecha;
+    private LocalDate fecha, fechaReg;
     private LocalTime hora;
-    private String url;
-    private LocalDate fechaReg;
-    private String profesor;
+    private String url, profesor;
 
-    
+    @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Registro> registros;
+
     public Clase() {
 
     }
@@ -77,6 +83,18 @@ public class Clase {
 
     public void setFechaReg(LocalDate fechaReg) {
         this.fechaReg = fechaReg;
+    }
+
+    public List<Registro> getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(List<Registro> registros) {
+        this.registros = registros;
+    }
+
+    public void addRegistro(Registro registro) {
+        this.registros.add(registro);
     }
 
 }
