@@ -211,7 +211,9 @@ public class RegistrarActividadCU extends javax.swing.JInternalFrame {
             String institucion = instituciones.toString();
             controllerAltaActividad.altaActividad(nombre, desc, duracion, costo, localDate, institucion);
             jTextFieldNombreA.setText("");
-            // jTextFieldURL.setText("");
+            jTextFieldDescA.setText("");
+            jTextFieldDuracionA.setText("");
+            jTextFieldCostoA.setText("");
         } catch (NumberFormatException e) {
             // Manejar la excepción si el valor ingresado no es un número válido
             System.out.println("Error: El valor no es un número válido.");

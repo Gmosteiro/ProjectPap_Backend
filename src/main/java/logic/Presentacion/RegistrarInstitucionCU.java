@@ -119,9 +119,15 @@ public class RegistrarInstitucionCU extends javax.swing.JInternalFrame {
         String descrInstitucion = jTextFieldDescInstitucion.getText();
         String urlInstitucion = jTextFieldUrl.getText();
         controller.addInstitucionDeportiva(nombreInstitucion, descrInstitucion, urlInstitucion);
+        jTextFieldNombreInstitucion.setText("");
+        jTextFieldDescInstitucion.setText("");
+        jTextFieldUrl.setText("");
     }// GEN-LAST:event_jButtonAceptarIntActionPerformed
 
     private void jButtonCancelarInstActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonCancelarInstActionPerformed
+        jTextFieldNombreInstitucion.setText("");
+        jTextFieldDescInstitucion.setText("");
+        jTextFieldUrl.setText("");
         this.dispose();
     }// GEN-LAST:event_jButtonCancelarInstActionPerformed
 
