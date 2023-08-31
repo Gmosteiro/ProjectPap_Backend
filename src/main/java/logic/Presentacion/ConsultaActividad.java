@@ -223,11 +223,11 @@ public class ConsultaActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableInformacionAsociadaaMouseClicked
 
     private void jButtonCancelarConsultaActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarConsultaActividadActionPerformed
-        DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociadaa.getModel();
 
         tableModel.setRowCount(0);
 
-        tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
+        tableModel = (DefaultTableModel) jTableListaActividad.getModel();
 
         tableModel.setRowCount(0);
         this.dispose();// TODO add your handling code here:
