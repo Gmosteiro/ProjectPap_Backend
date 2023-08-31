@@ -11,8 +11,8 @@ public class ControllerModificarInstitucion implements IControllerModificarInsti
     }
 
     public void modificarInstitucion(String nombre, String nuevaDescripcion, String nuevaURL) {
-        InstitucionDeportiva institucion = manejadorInstitucion.obtenerInstitucionPorNombre(nombre);
-        
+        InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombre);
+
         if (institucion != null) {
             institucion.setDescripcion(nuevaDescripcion);
             institucion.setUrl(nuevaURL);

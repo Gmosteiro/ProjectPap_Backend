@@ -21,14 +21,14 @@ public class App {
 
                 try {
                         iniciarVentana();
-                        //probarClases();
+                        // probarAddInstituciones();
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
                         e.printStackTrace();
                 }
 
-                        //probarModificarUsuario();
-               
+                // probarModificarUsuario();
+
         }
 
         public static void probarRankingActividades() {
@@ -59,9 +59,7 @@ public class App {
                 controllerDictado.getActividades();
         }
 
-
-
-        public static void probarClases() {
+        public static void probarAddClase() {
 
                 String esi = "ESI"; // estructura para probar funciones
                 LocalDate fecha = LocalDate.of(2023, 8, 17);
@@ -101,37 +99,32 @@ public class App {
 
                 ventana.setLocation(x, y);
         }
- 
-       
+
         public static void probarModificarActividad() {
                 Fabrica factory = new Fabrica();
                 IControllerModificarActividad controllerActividad = factory.getControllerModificarActividad();
-                
+
                 String nombreActividad = "pepe";
                 String nuevaDescripcion = "Nueva descripción";
                 int nuevaDuracion = 60;
                 float nuevoCosto = 50.0f;
-        
+
                 controllerActividad.modificarActividad(nombreActividad, nuevaDescripcion, nuevaDuracion, nuevoCosto);
-        
+
                 System.out.println("Actividad modificada exitosamente.");
-            }
+        }
 
-
-            public static void probarModificarUsuario() {
+        public static void probarModificarUsuario() {
                 Fabrica factory = new Fabrica();
                 IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
-            
+
                 String nickname = "Item 2";
                 String nuevoNombre = "NuevoNombre";
                 String nuevoApellido = "NuevoApellido";
-            
-                controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido);
-            
-                System.out.println("Usuario modificado exitosamente.");
-            }
-            
 
-            
+                controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido);
+
+                System.out.println("Usuario modificado exitosamente.");
+        }
 
 }

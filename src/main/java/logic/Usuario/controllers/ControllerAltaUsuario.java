@@ -1,5 +1,6 @@
 package logic.Usuario.controllers;
 
+import logic.Institucion.InstitucionDeportiva;
 import logic.Usuario.*;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
     @Override
     public boolean addProfesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
-            String descripcion, String biografia, String sitioWeb) {
+            String descripcion, String biografia, String sitioWeb, InstitucionDeportiva institucion) {
         try {
 
             String validation = validateUserData(nickname, email, "Socio");
@@ -22,7 +23,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
                 return false;
             }
 
-            Profesor nuevoProfesor = new Profesor(nickname, nombre, apellido, email, fechaNac, email, descripcion,
+            Profesor nuevoProfesor = new Profesor(nickname, nombre, apellido, email, fechaNac, institucion, descripcion,
                     biografia, sitioWeb);
 
             ManejadorUsuarios manejador = new ManejadorUsuarios();
@@ -34,7 +35,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
                     null, // Parent component (null for default)
                     "Profesor Creado!", // Message text
                     "Success", // Dialog title
-                    JOptionPane.INFORMATION_MESSAGE // Message type   merecuetengue dijo el juan
+                    JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
             );
 
             return true;
@@ -64,7 +65,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             manejador.agregarUsuario(nuevoSocio);
 
             System.out.println("Socio Creado");
-             JOptionPane.showMessageDialog(
+            JOptionPane.showMessageDialog(
                     null, // Parent component (null for default)
                     "Socio Creado!", // Message text
                     "Success", // Dialog title

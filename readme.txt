@@ -51,4 +51,4 @@ Manjeadores:
     Clases
     Institucion
 
-    //jComboBoxInstitucionesClase
+JOptionPane.showMessageDialog(null, "Institucion Creada!", "Success", JOptionPane.INFORMATION_MESSAGE);

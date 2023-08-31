@@ -51,7 +51,7 @@ public class ManejadorInstitucion {
                 return instituciones;
         }
 
-        public InstitucionDeportiva obtenerInstitucionPorNombre(String nombre) {
+        public static InstitucionDeportiva getInstitucionesByName(String nombre) {
                 InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
 
                 // entityManager.close();
@@ -62,7 +62,7 @@ public class ManejadorInstitucion {
 
         public void agregarActividadI(ActividadDeportiva actividad, String nombrei) {
                 try {
-                        InstitucionDeportiva Institucion = obtenerInstitucionPorNombre(nombrei);
+                        InstitucionDeportiva Institucion = getInstitucionesByName(nombrei);
 
                         // Institucion.setActividades(actividad);
                         Institucion.getActividades().add(actividad);

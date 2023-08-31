@@ -2,13 +2,37 @@ package logic;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import logic.Clase.Clase;
 import logic.Usuario.Socio;
 
+@Entity
 public class Registro {
-    private LocalDate fechaReg;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     private Socio socio;
+
+    @ManyToOne
+    @JoinColumn(name = "clase_id", referencedColumnName = "nombre")
     private Clase clase;
+
+    private LocalDate fechaReg;
+
+    public Registro() {
+    }
 
     public Registro(LocalDate fechaReg, Socio socio, Clase clase) {
         this.fechaReg = fechaReg;

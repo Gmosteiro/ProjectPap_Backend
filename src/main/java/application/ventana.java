@@ -6,6 +6,7 @@ package application;
 
 import application.Ventana;
 import logic.Presentacion.*;
+
 /**
  *
  * @author Admin
@@ -29,7 +30,8 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -53,13 +55,11 @@ public class Ventana extends javax.swing.JFrame {
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 804, Short.MAX_VALUE)
-        );
+                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 804, Short.MAX_VALUE));
         jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
+                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 700, Short.MAX_VALUE));
 
         jMenuInicio.setText("Inicio");
         jMenuBar1.add(jMenuInicio);
@@ -120,13 +120,14 @@ public class Ventana extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE));
 
         getAccessibleContext().setAccessibleName("Ventanita");
 
@@ -134,6 +135,7 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
+
         ConsultaActividad conactividad = new ConsultaActividad();
         conactividad.setSize(560, 500);
         conactividad.setLocation(50, 50);
@@ -150,7 +152,6 @@ public class Ventana extends javax.swing.JFrame {
     // // TODO add your handling code here:
     // }// GEN-LAST:event_jTextFieldNombreCActionPerformed
 
-  
     private void jMenuItemRActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRActividadActionPerformed
         RegistrarActividadCU reactividad = new RegistrarActividadCU();
         reactividad.setSize(560, 500);
@@ -169,22 +170,22 @@ public class Ventana extends javax.swing.JFrame {
         reusuario.setVisible(true);
         jDesktopPane1.add(reusuario);
         reusuario.toFront();
-        
+
     }// GEN-LAST:event_jMenuItemRClienteActionPerformed
 
     private void jMenuRInstitucionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuRInstitucionActionPerformed
         RegistrarInstitucionCU reginstitucion = new RegistrarInstitucionCU();
-        reginstitucion.setSize(397, 301);
-        reginstitucion.setLocation(50, 50);
+        reginstitucion.setSize(397, 250);
+        reginstitucion.setLocation(180, 60);
         reginstitucion.setVisible(true);
         jDesktopPane1.add(reginstitucion);
         reginstitucion.toFront();
-    }// GEN-LAST:event_jMenuRInstitucionActionPerformed    
+    }// GEN-LAST:event_jMenuRInstitucionActionPerformed
 
     private void jMenuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsultarUsuarioActionPerformed
         ConsultaUsuario consulta = new ConsultaUsuario();
         consulta.setSize(750, 600); // Establecer el tamaño deseado
-        
+
         // Obtener dimensiones del jDesktopPane1
         int desktopWidth = jDesktopPane1.getWidth();
         int desktopHeight = jDesktopPane1.getHeight();
@@ -199,11 +200,10 @@ public class Ventana extends javax.swing.JFrame {
         consulta.toFront();
     }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
