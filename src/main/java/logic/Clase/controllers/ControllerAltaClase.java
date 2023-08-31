@@ -30,6 +30,7 @@ public class ControllerAltaClase implements IControllerAltaClase {
             ManejadorActividad manejadorA = new ManejadorActividad();
             manejadorA.agregarClaseA(nuevaclase, actividad);
             System.out.println("Clase Creada");
+
             JOptionPane.showMessageDialog(
                     null, // Parent component (null for default)
                     "Clase Creada!", // Message text
