@@ -14,8 +14,8 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
     public void addInstitucionDeportiva(String nombre, String descripcion, String url) {
         try {
 
-            if (!validateInstData (nombre, "InstitucionDeportiva")) {
-                    return;
+            if (!validateInstData(nombre, "InstitucionDeportiva")) {
+                return;
             }
 
             InstitucionDeportiva nuevaInstitucion = new InstitucionDeportiva(nombre, descripcion, url);
@@ -25,6 +25,8 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
             manejador.agregarInstitucion(nuevaInstitucion);
 
             System.out.println("Institucion Creada");
+
+            JOptionPane.showMessageDialog(null, "Institucion Creada!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception errorException) {
             System.out.println("AddInstitucionDeportiva catch: " + errorException);
