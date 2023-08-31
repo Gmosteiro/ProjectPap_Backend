@@ -16,7 +16,6 @@ public class ActividadDeportiva {
 
     @Id
     private String nombre;
-
     private String descripcion;
     private int duracion;
     private float costo;
