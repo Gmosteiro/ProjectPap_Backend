@@ -4,6 +4,7 @@
  */
 package logic.Presentacion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -145,7 +146,7 @@ public class ConsultaActividad extends javax.swing.JFrame {
             Fabrica factory = new Fabrica();
             IControllerConsultaActividad consultaActividad = factory.getControllerConsultaActividad();
             ActividadDeportiva ActividadDep =  consultaActividad.obtenerActividadPorNombre(input);
-            List<ActividadDeportiva> searchResult = NewArrayList[];
+            List<ActividadDeportiva> searchResult = new ArrayList<>();
             searchResult.add(ActividadDep);
             
 
@@ -194,10 +195,11 @@ public class ConsultaActividad extends javax.swing.JFrame {
 
             String nickname = (String) modelvalue;
 
-            ActividadDeportiva selectedUser = consultaActividad.getNombre(Nombre).get(0);
+            ActividadDeportiva ActividadDep = consultaActividad.obtenerActividadPorNombre(nickname);
 
-            List<ActividadDeportiva> searchResult = NewArrayList[];
+            List<ActividadDeportiva> searchResult = new ArrayList<>();
             searchResult.add(ActividadDep);
+        }
 
     }//GEN-LAST:event_jTableListaActividadMouseClicked
 
