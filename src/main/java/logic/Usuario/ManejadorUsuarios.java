@@ -92,4 +92,25 @@ public class ManejadorUsuarios {
 		}
 	}
 
+	public static Profesor getProfesor(String nickname) {
+		try {
+
+			List<Profesor> listUsuario;
+
+			listUsuario = entityManager.createQuery(
+					"SELECT p FROM Profesor p WHERE p.nickname LIKE :nickname", Profesor.class)
+					.setParameter("nickname", "%" + nickname + "%")
+					.getResultList();
+
+			if (!listUsuario.isEmpty()) {
+				return listUsuario.get(0);
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("Error catch getProfesor " + e);
+			return null;
+		}
+	}
+
 }

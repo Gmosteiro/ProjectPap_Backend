@@ -1,6 +1,9 @@
 package logic.Clase.controllers;
 
 import logic.Clase.Clase;
+import logic.Usuario.ManejadorUsuarios;
+import logic.Usuario.Profesor;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.persistence.EntityManager;
@@ -12,20 +15,27 @@ import logic.ActividadDeportiva.ManejadorActividad;
 
 public class ControllerAltaClase implements IControllerAltaClase {
 
-
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
-            String profesor, String actividad) {
+            String nombreProfesor, String actividad) {
         try {
 
             if (!validateClassData(nombre, "Clase")) {
                 return;
             }
 
+            Profesor profesor = ManejadorUsuarios.getProfesor(nombreProfesor);
+
             Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg, profesor);
             ManejadorActividad manejadorA = new ManejadorActividad();
             manejadorA.agregarClaseA(nuevaclase, actividad);
             System.out.println("Clase Creada");
+            JOptionPane.showMessageDialog(
+                    null, // Parent component (null for default)
+                    "Clase Creada!", // Message text
+                    "Success", // Dialog title
+                    JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
+            );
 
         } catch (Exception errorException) {
             System.out.println("Catch addClase: " + errorException);
