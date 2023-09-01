@@ -4,6 +4,12 @@
  */
 package logic.Presentacion;
 
+import java.util.List;
+import logic.Institucion.InstitucionDeportiva;
+import logic.Institucion.ManejadorInstitucion;
+import logic.Usuario.ManejadorUsuarios;
+import logic.Usuario.Usuario;
+
 /**
  *
  * @author Admin
@@ -26,21 +32,180 @@ public class RegistrarDictadoClase extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TextoActividadD = new javax.swing.JLabel();
+        jComboBoxActividadesD = new javax.swing.JComboBox<>();
+        TextoInstitucionD = new javax.swing.JLabel();
+        jComboBoxInstitucionesDictado = new javax.swing.JComboBox<>();
+        jComboBoxSocioD = new javax.swing.JComboBox<>();
+        jButtonRDA = new javax.swing.JButton();
+        TextoSocioD = new javax.swing.JLabel();
+        jButtonRDC = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        setTitle("Registrar Dictado de Clase");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
+
+        TextoActividadD.setText("Actividad");
+
+        jComboBoxActividadesD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        TextoInstitucionD.setText("Institucion:");
+
+        jComboBoxInstitucionesDictado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxSocioD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSocioD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSocioDActionPerformed(evt);
+            }
+        });
+
+        jButtonRDA.setText("Aceptar");
+
+        TextoSocioD.setText("Socio:");
+
+        jButtonRDC.setText("Cancelar");
+
+        jLabel1.setText("Clases");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(TextoSocioD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextoInstitucionD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBoxInstitucionesDictado, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(TextoActividadD)
+                        .addGap(53, 53, 53)
+                        .addComponent(jComboBoxActividadesD, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxSocioD, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonRDA)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRDC)
+                .addGap(58, 58, 58))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextoInstitucionD)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxInstitucionesDictado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextoActividadD))
+                    .addComponent(jComboBoxActividadesD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextoSocioD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSocioD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRDC)
+                    .addComponent(jButtonRDA))
+                .addGap(29, 29, 29))
         );
+
+        jButtonRDA.getAccessibleContext().setAccessibleName("jButtonRDA");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addSociosToComboBox() {
+
+        List<Usuario> Socios = ManejadorUsuarios.getSocios();
+
+        jComboBoxSocioD.removeAllItems();
+
+        for (Usuario Socio : Socios) {
+            jComboBoxSocioD.addItem(Socio.getNickname());
+
+        }
+
+    }
+    
+    private void addInstitucionesToComboBox(String option) {
+
+        List<InstitucionDeportiva> instituciones = ManejadorInstitucion.getInstituciones();
+        // Object selectedItem;
+
+        switch (option) {
+            case "Clase":
+
+                jComboBoxInstitucionesDictado.removeAllItems();
+
+                for (InstitucionDeportiva institucion : instituciones) {
+                    jComboBoxInstitucionesDictado.addItem(institucion.getNombre());
+
+                }
+
+                // selectedItem = jComboBoxInstitucionesClase.getSelectedItem();
+
+                // if (selectedItem != null) {
+                // String selectedText = selectedItem.toString(); // Convertir el elemento a
+                // String
+                // }
+
+                break;
+            default:
+                break;
+        }
+    }
+    
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        //addInstitucionesToComboBox("Clase");
+        //addSociosToComboBox();
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    private void jComboBoxSocioDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSocioDActionPerformed
+        Object selectedItem = jComboBoxActividadesD.getSelectedItem();
+
+        // Realizar acciones basadas en el elemento seleccionado
+        if (selectedItem != null) {
+            
+            
+        }
+    }//GEN-LAST:event_jComboBoxSocioDActionPerformed
+/**/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TextoActividadD;
+    private javax.swing.JLabel TextoInstitucionD;
+    private javax.swing.JLabel TextoSocioD;
+    private javax.swing.JButton jButtonRDA;
+    private javax.swing.JButton jButtonRDC;
+    private javax.swing.JComboBox<String> jComboBoxActividadesD;
+    private javax.swing.JComboBox<String> jComboBoxInstitucionesDictado;
+    private javax.swing.JComboBox<String> jComboBoxSocioD;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

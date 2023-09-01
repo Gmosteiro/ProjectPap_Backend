@@ -26,8 +26,8 @@ public class App {
 
                 try {
                         // autoInsert();
-                        // iniciarVentana();
-                        probarAddRegistroDictado();
+                         iniciarVentana();
+                        //probarAddRegistroDictado();
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
