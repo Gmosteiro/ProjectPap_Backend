@@ -5,6 +5,7 @@
 package application;
 
 import application.Ventana;
+import javax.swing.JInternalFrame;
 import logic.Presentacion.*;
 
 /**
@@ -31,6 +32,7 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -65,6 +67,15 @@ public class Ventana extends javax.swing.JFrame {
         );
 
         jMenuInicio.setText("Inicio");
+        jMenuInicio.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenuInicioMenuSelected(evt);
+            }
+        });
         jMenuBar1.add(jMenuInicio);
 
         jMenuRegistro.setText("Registros");
@@ -94,6 +105,11 @@ public class Ventana extends javax.swing.JFrame {
         jMenuRegistro.add(jMenuItemRActividad);
 
         jMenuItemRClase.setText("Registrar Clase");
+        jMenuItemRClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRClaseActionPerformed(evt);
+            }
+        });
         jMenuRegistro.add(jMenuItemRClase);
 
         jMenuBar1.add(jMenuRegistro);
@@ -143,6 +159,23 @@ public class Ventana extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jMenuInicioMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenuInicioMenuSelected
+        JInternalFrame[] frames = jDesktopPane1.getAllFrames();
+    for (JInternalFrame frame : frames) {
+        frame.dispose();}
+    }//GEN-LAST:event_jMenuInicioMenuSelected
+
+    private void jMenuItemRClaseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRClaseActionPerformed
+        RegistrarClaseCU reclase = new RegistrarClaseCU();
+        reclase.setSize(760, 500);
+        reclase.setLocation(15, 50);
+        reclase.setVisible(true);
+        // internalFrame.setSize(300, 200);
+        // internalFrame.setVisible(true);
+        jDesktopPane1.add(reclase);
+        reclase.toFront();
+    }// GEN-LAST:event_jMenuItemRClaseActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:

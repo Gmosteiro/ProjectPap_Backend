@@ -7,9 +7,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import logic.Registro;
+import logic.Institucion.InstitucionDeportiva;
+import logic.Usuario.Profesor;
+import logic.Usuario.Registro;
 
 @Entity
 public class Clase {
@@ -19,7 +23,11 @@ public class Clase {
 
     private LocalDate fecha, fechaReg;
     private LocalTime hora;
-    private String url, profesor;
+    private String url;
+
+    @ManyToOne
+    @JoinColumn(name = "profesor")
+    private Profesor profesor;
 
     @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Registro> registros;
@@ -28,7 +36,7 @@ public class Clase {
 
     }
 
-    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg, String profesor) {
+    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg, Profesor profesor) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.hora = hora;
@@ -37,11 +45,11 @@ public class Clase {
         this.profesor = profesor;
     }
 
-    public String getProfesor() {
+    public Profesor getProfesor() {
         return profesor;
     }
 
-    public void setProfesor(String profesor) {
+    public void setProfesor(Profesor profesor) {
         this.profesor = profesor;
     }
 

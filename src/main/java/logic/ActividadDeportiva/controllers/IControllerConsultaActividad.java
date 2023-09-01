@@ -2,9 +2,9 @@ package logic.ActividadDeportiva.controllers;
 
 import java.util.List;
 
-import logic.Registro;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
+import logic.Usuario.Registro;
 
 public interface IControllerConsultaActividad {
 

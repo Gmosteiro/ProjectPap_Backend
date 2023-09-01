@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
-import logic.Registro;
+import logic.Usuario.Registro;
 
 public class ControllerConsultaActividad implements IControllerConsultaActividad {
 

@@ -1,4 +1,4 @@
-package logic;
+package logic.Usuario;
 
 import java.time.LocalDate;
 
@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import logic.Clase.Clase;
-import logic.Usuario.Socio;
 
 @Entity
 public class Registro {

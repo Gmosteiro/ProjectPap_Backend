@@ -5,7 +5,6 @@ import logic.ActividadDeportiva.ManejadorActividad;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,22 +24,31 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
     }
 
     @Override
-    public void altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, String nombrei) {
+    public boolean altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg,
+            String nombrei) {
         try {
 
             if (validateActivityData(nombre)) {
                 ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
                 ManejadorInstitucion manejadorI = new ManejadorInstitucion();
                 manejadorI.agregarActividadI(actividad, nombrei);
+                System.out.println("Actividad Creada");
+                JOptionPane.showMessageDialog(
+                        null, // Parent component (null for default)
+                        "Actividad Creada!", // Message text
+                        "Success", // Dialog title
+                        JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
+                );
             } else {
-                System.out.println("Ya existe una  actividad con ese nombre");
                 // Manejar el caso de actividad duplicada
             }
         } catch (Exception errorException) {
             System.out.println("Catch addActividad: " + errorException);
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
+        return false;
     }
 
     @Override
@@ -88,7 +96,7 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
         }
     }
 
-     @Override
+    @Override
     public List<InstitucionDeportiva> getInstituciones() {
         try {
             List<InstitucionDeportiva> instituciones = ManejadorInstitucion.getInstituciones();

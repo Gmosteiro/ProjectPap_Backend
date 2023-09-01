@@ -8,26 +8,67 @@ import java.util.List;
 
 import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
 import logic.ActividadDeportiva.controllers.IControllerModificarActividad;
 import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerDictadoClase;
 import logic.Clase.controllers.IControllerRanking;
+import logic.Institucion.InstitucionDeportiva;
+import logic.Institucion.ManejadorInstitucion;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
+import logic.Usuario.controllers.IControllerAltaUsuario;
 import logic.Usuario.controllers.IControllerModificarUsuario;
+import logic.Usuario.controllers.IControllerRegistroDictado;
 
 public class App {
 
         public static void main(String[] args) {
 
                 try {
-                        iniciarVentana();
-                        // probarAddInstituciones();
+                        // autoInsert();
+                        // iniciarVentana();
+                        probarAddRegistroDictado();
+
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
                         e.printStackTrace();
                 }
 
                 // probarModificarUsuario();
+
+        }
+
+        public static void autoInsert() {
+                probarAddInstituciones();
+                probarAddActividad();
+                probarAddUsuarios();
+                probarAddClase();
+        }
+
+        public static void probarAddRegistroDictado() {
+                try {
+
+                        Fabrica factory = new Fabrica();
+                        IControllerRegistroDictado controllerDictado = factory.getControllerRegistroDictado();
+                        LocalDate fecha = LocalDate.of(2023, 8, 17);
+                        controllerDictado.addRegistroDictado("socio1", "Matematica", fecha);
+                } catch (Exception e) {
+                        System.out.println("Error: " + e);
+                }
+        }
+
+        public static void probarAddUsuarios() {
+                LocalDate fecha = LocalDate.of(2023, 8, 17);
+
+                InstitucionDeportiva institucionDeportiva = ManejadorInstitucion
+                                .getInstitucionesByName("ESI");
+
+                Fabrica factory = new Fabrica();
+                IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
+                controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
+                                "Soy alto Profe", "JuanProfe.com",
+                                institucionDeportiva);
+                controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha);
 
         }
 
@@ -43,7 +84,7 @@ public class App {
                 Fabrica factory = new Fabrica();
                 IControllerAltaInstitucionDeportiva controllerInstituciones = factory
                                 .getControladorAltaInstitucionDeportiva();
-                controllerInstituciones.addInstitucionDeportiva("Gimnasio2", "Alex No va", "gym.com");
+                controllerInstituciones.addInstitucionDeportiva("ESI", "La UTU", "utu.com");
 
         }
 
@@ -61,17 +102,32 @@ public class App {
 
         public static void probarAddClase() {
 
-                String esi = "ESI"; // estructura para probar funciones
                 LocalDate fecha = LocalDate.of(2023, 8, 17);
                 LocalTime hora = LocalTime.of(14, 30);
-                String campus = "Campuss";
                 LocalDate fechareg = LocalDate.of(2023, 8, 17);
                 try {
                         Fabrica factory = new Fabrica();
 
                         IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
 
-                        controllerAltaClase.addClase(esi, fecha, hora, campus, fechareg, "Tonga", "alidgs");
+                        controllerAltaClase.addClase("Matematica", fecha, hora, "ESI", fechareg, "Juan", "Matematica");
+
+                } catch (Exception e) {
+                        System.out.println("Catch main: " + e.getMessage());
+                        e.printStackTrace();
+                }
+
+        }
+
+        public static void probarAddActividad() {
+
+                try {
+                        Fabrica factory = new Fabrica();
+
+                        IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
+                        LocalDate fechareg = LocalDate.of(2023, 8, 17);
+
+                        controllerAltaActividad.altaActividad("Matematica", "numeritos", 10, 100, fechareg, "ESI");
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
