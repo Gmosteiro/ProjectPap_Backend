@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import logic.Clase.Clase;
+import logic.Institucion.InstitucionDeportiva;
 import logic.Usuario.Profesor;
 
 public class ManejadorActividad {
@@ -77,12 +78,21 @@ public class ManejadorActividad {
 
     public static List<ActividadDeportiva> getActividadesByInstitucion(String institucion) {
 
-        List<ActividadDeportiva> actividades;
+        try {
+            List<ActividadDeportiva> resultList = entityManager.createQuery(
+                    "SELECT a " +
+                            "FROM ActividadDeportiva a " +
+                            "INNER JOIN a.instituciones i " +
+                            "WHERE i = :institucionDeportiva",
+                    ActividadDeportiva.class)
+                    .setParameter("institucionDeportiva", institucion)
+                    .getResultList();
 
-        actividades = entityManager
-                .createQuery("SELECT a FROM ActividadDeportiva a WHERE a.", ActividadDeportiva.class).getResultList();
-
-        return actividades;
+            return resultList;
+        } catch (Exception e) {
+            System.out.println("Error catch getActividadesByInstitucionDeportiva " + e);
+            return null;
+        }
     }
 
     public static List<ActividadDeportiva> getActividadesByProfe(Profesor profesor) {

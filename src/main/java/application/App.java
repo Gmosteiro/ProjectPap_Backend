@@ -26,8 +26,8 @@ public class App {
 
                 try {
                         // autoInsert();
-                        // iniciarVentana();
-                        probarModificarUsuario();
+                        iniciarVentana();
+                        // probarModificarActividad();
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
@@ -160,10 +160,10 @@ public class App {
                 Fabrica factory = new Fabrica();
                 IControllerModificarActividad controllerActividad = factory.getControllerModificarActividad();
 
-                String nombreActividad = "pepe";
+                String nombreActividad = "Matematica";
                 String nuevaDescripcion = "Nueva descripción";
                 int nuevaDuracion = 60;
-                float nuevoCosto = 50.0f;
+                float nuevoCosto = 50;
 
                 controllerActividad.modificarActividad(nombreActividad, nuevaDescripcion, nuevaDuracion, nuevoCosto);
 
