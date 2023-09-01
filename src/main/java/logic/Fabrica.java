@@ -8,9 +8,11 @@ import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
 import logic.Usuario.controllers.ControllerAltaUsuario;
 import logic.Usuario.controllers.ControllerConsultaUsuario;
 import logic.Usuario.controllers.ControllerModificarUsuario;
+import logic.Usuario.controllers.ControllerRegistroDictado;
 import logic.Usuario.controllers.IControllerAltaUsuario;
 import logic.Usuario.controllers.IControllerConsultaUsuario;
 import logic.Usuario.controllers.IControllerModificarUsuario;
+import logic.Usuario.controllers.IControllerRegistroDictado;
 import logic.Clase.controllers.ControllerAltaClase;
 import logic.Clase.controllers.ControllerDictadoClase;
 import logic.Clase.controllers.ControllerRanking;
@@ -48,13 +50,17 @@ public class Fabrica {
     public IControllerRanking getControladorRankingActividad() {
         return new ControllerRanking();
     }
-    
-    public IControllerModificarActividad getControllerModificarActividad(){
+
+    public IControllerModificarActividad getControllerModificarActividad() {
         return new ControllerModificarActividad();
     }
 
-    public IControllerModificarUsuario getControllerModificarUsuario(){
+    public IControllerModificarUsuario getControllerModificarUsuario() {
         return new ControllerModificarUsuario();
+    }
+
+    public IControllerRegistroDictado getControllerRegistroDictado() {
+        return new ControllerRegistroDictado();
     }
 
 }

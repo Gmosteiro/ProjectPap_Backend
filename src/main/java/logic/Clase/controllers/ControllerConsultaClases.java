@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
+import logic.Clase.ManejadorClases;
 
 public class ControllerConsultaClases implements IControllerConsultaClases {
 
@@ -47,7 +48,7 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
                     Clase.class);
             query.setParameter("actividad", actividad);
 
-            final List<Clase> clases = query.getResultList();
+            List<Clase> clases = query.getResultList();
 
             em.getTransaction().commit();
 
@@ -58,18 +59,7 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
     }
 
     public Clase obtenerClasePorNombre(String nombreClase) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-
-            Clase clase = em.find(Clase.class, nombreClase);
-
-            em.getTransaction().commit();
-
-            return clase;
-        } finally {
-            em.close();
-        }
+        return ManejadorClases.getClaseByNombre(nombreClase);
     }
 
     public void closeEntityManagerFactory() {

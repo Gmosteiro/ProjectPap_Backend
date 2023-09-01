@@ -24,6 +24,12 @@ public class ControllerAltaClase implements IControllerAltaClase {
                 return;
             }
 
+            if (nombreProfesor.length() == 0) {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un profesor ", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             Profesor profesor = ManejadorUsuarios.getProfesor(nombreProfesor);
 
             Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg, profesor);

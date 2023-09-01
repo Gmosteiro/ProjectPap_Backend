@@ -26,9 +26,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             Profesor nuevoProfesor = new Profesor(nickname, nombre, apellido, email, fechaNac, institucion, descripcion,
                     biografia, sitioWeb);
 
-            ManejadorUsuarios manejador = new ManejadorUsuarios();
-
-            manejador.agregarUsuario(nuevoProfesor);
+            ManejadorUsuarios.agregarUsuario(nuevoProfesor);
 
             System.out.println("Profesor Creado");
             JOptionPane.showMessageDialog(
