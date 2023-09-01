@@ -38,11 +38,18 @@
                       <Component id="jButtonCancelarConsultaUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
                   </Group>
+
+                  <Component id="jScrollPane2" alignment="0" pref="392" max="32767" attributes="0"/>
+                  <Component id="jScrollPaneConsultaUsuario" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="1" pref="392" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jScrollPaneConsultaUsuario" pref="0" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="LabelClasesAsociadas" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="LabelActividadesAsociadas" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
+
               </Group>
           </Group>
       </Group>
@@ -57,9 +64,16 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPaneConsultaUsuario" min="-2" pref="144" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="205" max="-2" attributes="0"/>
-              <EmptySpace pref="76" max="32767" attributes="0"/>
+
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="LabelClasesAsociadas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="88" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="LabelActividadesAsociadas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+              <Component id="jScrollPane3" min="-2" pref="88" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
               <Component id="jButtonCancelarConsultaUsuario" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -136,5 +150,42 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="LabelClasesAsociadas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Clases Asociadas:"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="jTableActividadesAsociadas">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Clase&quot;, &quot;URL&quot;, &quot;Actividad Deportiva&quot;, &quot;Descripcion&quot;&#xa;    }&#xa;){&#xa;            @Override&#xa;            public boolean isCellEditable(int row, int column) {&#xa;                return false; // Make all cells non-editable&#xa;            }}" type="code"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="Informacion Asociada" noResource="true"/>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableActividadesAsociadasMouseClicked"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="LabelActividadesAsociadas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Actividades Asociadas:"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

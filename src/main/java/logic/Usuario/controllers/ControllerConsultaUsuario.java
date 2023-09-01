@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.ManejadorActividad;
 import logic.Clase.Clase;
 import logic.Clase.ManejadorClases;
 import logic.Usuario.ManejadorUsuarios;
+import logic.Usuario.Profesor;
+import logic.Usuario.Socio;
 import logic.Usuario.Usuario;
 
 public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
@@ -41,10 +45,10 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
         }
     }
 
-    public List<Clase> getClasesAsociadas(String filter) {
+    public List<Clase> getClasesAsociadasByProfe(Profesor filter) {
         try {
             // Aplicar lógica de filtrado solo si filter no es nulo o vacío
-            if (filter != null && !filter.isEmpty()) {
+            if (filter != null) {
                 // Aplicar lógica de filtrado aquí
                 return ManejadorClases.getClasesByProfe(filter);
 
@@ -53,7 +57,49 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             }
 
         } catch (Exception errorException) {
-            System.out.println("Catch getClasesAsociadas: " + errorException);
+            System.out.println("Catch getClasesAsociadasByProfe: " + errorException);
+            String errorMessage = extractErrorMessage(errorException.getMessage());
+            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+
+            return new ArrayList<>();
+        }
+
+    };
+
+    public List<Clase> getClasesAsociadasBySocio(Socio filter) {
+        try {
+            // Aplicar lógica de filtrado solo si filter no es nulo o vacío
+            if (filter != null) {
+                // Aplicar lógica de filtrado aquí
+                return ManejadorClases.getClasesBySocio(filter);
+
+            } else {
+                return new ArrayList<>();
+            }
+
+        } catch (Exception errorException) {
+            System.out.println("Catch getClasesAsociadasByProfe: " + errorException);
+            String errorMessage = extractErrorMessage(errorException.getMessage());
+            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+
+            return new ArrayList<>();
+        }
+
+    };
+
+    public List<ActividadDeportiva> getActividadesAsociadas(Profesor filter) {
+        try {
+            // Aplicar lógica de filtrado solo si filter no es nulo o vacío
+            if (filter != null) {
+                // Aplicar lógica de filtrado aquí
+                return ManejadorActividad.getActividadesByProfe(filter);
+
+            } else {
+                return new ArrayList<>();
+            }
+
+        } catch (Exception errorException) {
+            System.out.println("Catch getClasesAsociadasByProfe: " + errorException);
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 

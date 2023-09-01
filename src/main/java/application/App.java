@@ -26,8 +26,10 @@ public class App {
 
                 try {
                         // autoInsert();
+
                          iniciarVentana();
                       
+
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
@@ -174,9 +176,9 @@ public class App {
                 Fabrica factory = new Fabrica();
                 IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
 
-                String nickname = "Item 2";
-                String nuevoNombre = "NuevoNombre";
-                String nuevoApellido = "NuevoApellido";
+                String nickname = "socio1";
+                String nuevoNombre = "Alex";
+                String nuevoApellido = "Ribeiro";
 
                 controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido);
 
