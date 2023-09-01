@@ -5,6 +5,7 @@ import java.util.List;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
 import logic.Usuario.Profesor;
+import logic.Usuario.Socio;
 import logic.Usuario.Usuario;
 
 public interface IControllerConsultaUsuario {
@@ -13,7 +14,9 @@ public interface IControllerConsultaUsuario {
 
     List<Usuario> getUsuarios(String filter);
 
-    List<Clase> getClasesAsociadas(Profesor profesor);
+    List<Clase> getClasesAsociadasByProfe(Profesor profesor);
+
+    List<Clase> getClasesAsociadasBySocio(Socio profesor);
 
     List<ActividadDeportiva> getActividadesAsociadas(Profesor profesor);
 

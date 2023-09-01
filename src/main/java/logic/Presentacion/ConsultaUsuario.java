@@ -223,7 +223,7 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
 
             if (selectedUser instanceof Profesor) {
 
-                List<Clase> searchResult = consultaUsuario.getClasesAsociadas((Profesor) selectedUser);
+                List<Clase> searchResult = consultaUsuario.getClasesAsociadasByProfe((Profesor) selectedUser);
 
                 if (!searchResult.isEmpty() || searchResult.get(0) != null) {
 
@@ -241,8 +241,6 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                     // Notificar al modelo de la tabla que se han realizado cambios
                     tableModel.fireTableDataChanged();
                 }
-
-                // ------------------------------------------------
 
                 List<ActividadDeportiva> Actividades = consultaUsuario.getActividadesAsociadas((Profesor) selectedUser);
 
@@ -265,6 +263,24 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
             } else if (selectedUser instanceof Socio) {
                 // Socio socio = (Socio) selectedUser; // Puedes hacer un casting a Socio
                 System.out.println("El usuario seleccionado es un Socio.");
+
+                List<Clase> listaClasesSocio = consultaUsuario.getClasesAsociadasBySocio((Socio) selectedUser);
+
+                if (!listaClasesSocio.isEmpty() || listaClasesSocio.get(0) != null) {
+
+                    DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada
+                            .getModel();
+
+                    tableModel.setRowCount(0);
+
+                    for (Clase clase : listaClasesSocio) {
+                        Object[] rowData = { clase.getNombre(), clase.getFechaFormatted(), clase.getHora(),
+                                clase.getUrl() };
+                        tableModel.addRow(rowData);
+                    }
+
+                    tableModel.fireTableDataChanged();
+                }
 
             }
 

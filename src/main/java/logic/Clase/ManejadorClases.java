@@ -5,8 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
+import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Usuario.Profesor;
+import logic.Usuario.Socio;
 
 public class ManejadorClases {
     static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
@@ -37,6 +40,25 @@ public class ManejadorClases {
             return listClase;
         } catch (Exception e) {
             System.out.println("Error catch getClasesByProfe " + e);
+            return null;
+        }
+    }
+
+    public static List<Clase> getClasesBySocio(Socio socio) {
+        try {
+            List<Clase> resultList = entityManager.createQuery(
+                    "SELECT c " +
+                            "FROM Registro r " +
+                            "INNER JOIN r.socio s " +
+                            "INNER JOIN r.clase c " +
+                            "WHERE s = :socio",
+                    Clase.class)
+                    .setParameter("socio", socio)
+                    .getResultList();
+
+            return resultList;
+        } catch (Exception e) {
+            System.out.println("Error catch getClasesBySocio " + e);
             return null;
         }
     }

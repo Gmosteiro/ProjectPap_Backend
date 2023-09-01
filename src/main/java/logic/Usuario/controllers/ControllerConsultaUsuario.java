@@ -11,6 +11,7 @@ import logic.Clase.Clase;
 import logic.Clase.ManejadorClases;
 import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Profesor;
+import logic.Usuario.Socio;
 import logic.Usuario.Usuario;
 
 public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
@@ -44,7 +45,7 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
         }
     }
 
-    public List<Clase> getClasesAsociadas(Profesor filter) {
+    public List<Clase> getClasesAsociadasByProfe(Profesor filter) {
         try {
             // Aplicar lógica de filtrado solo si filter no es nulo o vacío
             if (filter != null) {
@@ -56,7 +57,28 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             }
 
         } catch (Exception errorException) {
-            System.out.println("Catch getClasesAsociadas: " + errorException);
+            System.out.println("Catch getClasesAsociadasByProfe: " + errorException);
+            String errorMessage = extractErrorMessage(errorException.getMessage());
+            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+
+            return new ArrayList<>();
+        }
+
+    };
+
+    public List<Clase> getClasesAsociadasBySocio(Socio filter) {
+        try {
+            // Aplicar lógica de filtrado solo si filter no es nulo o vacío
+            if (filter != null) {
+                // Aplicar lógica de filtrado aquí
+                return ManejadorClases.getClasesBySocio(filter);
+
+            } else {
+                return new ArrayList<>();
+            }
+
+        } catch (Exception errorException) {
+            System.out.println("Catch getClasesAsociadasByProfe: " + errorException);
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -77,7 +99,7 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             }
 
         } catch (Exception errorException) {
-            System.out.println("Catch getClasesAsociadas: " + errorException);
+            System.out.println("Catch getClasesAsociadasByProfe: " + errorException);
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 

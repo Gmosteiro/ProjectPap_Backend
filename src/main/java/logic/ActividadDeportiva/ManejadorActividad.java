@@ -54,7 +54,6 @@ public class ManejadorActividad {
         try {
             ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
             Actividad.getClases().add(clase);
-            // actividad.add(clase);
             entityManager.getTransaction().begin();
             entityManager.persist(Actividad);
             entityManager.getTransaction().commit();
@@ -88,22 +87,6 @@ public class ManejadorActividad {
 
     public static List<ActividadDeportiva> getActividadesByProfe(Profesor profesor) {
 
-        // try {
-
-        // List<ActividadDeportiva> listActividades;
-        // listActividades = entityManager.createQuery(
-        // "select a.nombre ,a.costo ,a.descripcion ,a.duracion ,a.fechaReg from
-        // ActividadDeportiva a inner join actividaddeportiva_clase ac on
-        // ac.actividaddeportiva_nombre =a.nombre inner join clase c on c.nombre =
-        // ac.clases_nombre where c.profesor = :profesor",
-        // ActividadDeportiva.class)
-        // .setParameter("profesor", profesor)
-        // .getResultList();
-        // return listActividades;
-        // } catch (Exception e) {
-        // System.out.println("Error catch getClasesByProfe " + e);
-        // return null;
-        // }
         try {
             List<ActividadDeportiva> resultList = entityManager.createQuery(
                     "SELECT a " +
