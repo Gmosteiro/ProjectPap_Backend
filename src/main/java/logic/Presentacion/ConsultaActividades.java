@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.ManejadorActividad;
 import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
 import logic.Clase.Clase;
 import logic.Fabrica;
@@ -201,26 +202,55 @@ public class ConsultaActividades extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBoxInstitucionesActividadActionPerformed
 
     private void jButtonBuscarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActividadActionPerformed
-            // Obtener el nombre de la institución seleccionada en el ComboBox
+//            // Obtener el nombre de la institución seleccionada en el ComboBox
+//    String nombreInstitucion = jComboBoxInstitucionesActividad.getSelectedItem().toString();
+//
+//    // Verificar que se haya seleccionado una institución válida
+//    if (nombreInstitucion != null && !nombreInstitucion.isEmpty()) {
+//        // Crear una instancia del controlador
+//        Fabrica factory = new Fabrica();
+//        IControllerConsultaActividad consultaActividad = factory.getControllerConsultaActividad();
+//
+//        // Obtener la lista de actividades deportivas por institución
+//        List<ActividadDeportiva> actividades = consultaActividad.obtenerActividadesPorInstitucion(nombreInstitucion);
+//
+//        // Obtener el modelo de datos de jTableListaActividad
+//        DefaultTableModel model = (DefaultTableModel) jTableListaActividad.getModel();
+//
+//        // Limpiar cualquier dato existente en la tabla
+//        model.setRowCount(0);
+//
+//        // Agregar cada actividad a la tabla
+//        for (ActividadDeportiva actividad : actividades) {
+//            model.addRow(new Object[] {
+//                actividad.getNombre(),
+//                actividad.getDescripcion(),
+//                actividad.getDuracion(),
+//                actividad.getCosto()
+//            });
+//        }
+//    } else {
+//        // Mostrar un mensaje de error o manejar el caso en el que no se seleccionó una institución válida
+//    }
+    // Obtener el nombre de la institución seleccionada en el ComboBox
     String nombreInstitucion = jComboBoxInstitucionesActividad.getSelectedItem().toString();
 
     // Verificar que se haya seleccionado una institución válida
     if (nombreInstitucion != null && !nombreInstitucion.isEmpty()) {
-        // Crear una instancia del controlador
-        Fabrica factory = new Fabrica();
-        IControllerConsultaActividad consultaActividad = factory.getControllerConsultaActividad();
+        // Crear una instancia del manejador de actividades
+        ManejadorActividad manejadorActividades = new ManejadorActividad();
 
         // Obtener la lista de actividades deportivas por institución
-        List<ActividadDeportiva> actividades = consultaActividad.obtenerActividadesPorInstitucion(nombreInstitucion);
+        List<ActividadDeportiva> actividades = manejadorActividades.getActividadesByInstitucion(nombreInstitucion);
 
-        // Aquí debes mostrar la lista de actividades en tu interfaz de usuario
-        // Puedes usar un JTable, un JComboBox u otro componente según tus necesidades
-
-        // Por ejemplo, si tienes un JTable llamado jTableActividades, puedes actualizar sus datos así:
+        // Obtener el modelo de datos de jTableListaActividad
         DefaultTableModel model = (DefaultTableModel) jTableListaActividad.getModel();
-        model.setRowCount(0); // Limpiar cualquier dato existente en la tabla
+
+        // Limpiar cualquier dato existente en la tabla
+        model.setRowCount(0);
+
+        // Agregar cada actividad a la tabla
         for (ActividadDeportiva actividad : actividades) {
-            // Agregar cada actividad a la tabla
             model.addRow(new Object[] {
                 actividad.getNombre(),
                 actividad.getDescripcion(),
