@@ -2,6 +2,7 @@ package logic.Clase;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -103,6 +104,15 @@ public class Clase {
 
     public void addRegistro(Registro registro) {
         this.registros.add(registro);
+    }
+
+    public String getFechaFormatted() {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // Convert LocalDate to LocalDateTime to enable formatting
+        String formattedDate = fecha.atStartOfDay().format(formatter);
+        return formattedDate;
     }
 
 }
