@@ -282,7 +282,7 @@ public class ConsultaActividad extends javax.swing.JFrame {
         // Por ejemplo, podrías asignar los valores a etiquetas o campos de texto
         
         // También puedes imprimir información en la consola para verificar
-        System.out.println("Detalles de la clase seleccionada: " + clase);
+        //System.out.println("Detalles de la clase seleccionada: " + clase);
     }
     }//GEN-LAST:event_jTableInformacionAsociadaaMouseClicked
 
