@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import logic.Usuario.Profesor;
+
 public class ManejadorClases {
     static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
     static EntityManager entityManager = emFactory.createEntityManager();
@@ -24,8 +26,9 @@ public class ManejadorClases {
         }
     }
 
-    public static List<Clase> getClasesByProfe(String profesor) {
+    public static List<Clase> getClasesByProfe(Profesor profesor) {
         try {
+
             List<Clase> listClase;
             listClase = entityManager.createQuery(
                     "SELECT c FROM Clase c WHERE c.profesor = :profesor", Clase.class)

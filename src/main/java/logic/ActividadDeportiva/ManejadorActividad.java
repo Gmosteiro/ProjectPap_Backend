@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import logic.Clase.Clase;
+import logic.Usuario.Profesor;
 
 public class ManejadorActividad {
     private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
@@ -49,21 +50,21 @@ public class ManejadorActividad {
         return actividad;
     }
 
-        public void agregarClaseA(Clase clase, String actividad) {
-            try {   
-                            ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
-                            Actividad.getClases().add(clase);
-                // actividad.add(clase);
-                            entityManager.getTransaction().begin();
-                            entityManager.persist(Actividad);
-                            entityManager.getTransaction().commit();
-                            entityManager.close();
-                            emFactory.close();
-            } catch (Exception exceptionAgregarClase) {
-                System.out.println("Catch agregarClase: " + exceptionAgregarClase);
-                System.out.println("ERROR");
-            }
+    public void agregarClaseA(Clase clase, String actividad) {
+        try {
+            ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
+            Actividad.getClases().add(clase);
+            // actividad.add(clase);
+            entityManager.getTransaction().begin();
+            entityManager.persist(Actividad);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            emFactory.close();
+        } catch (Exception exceptionAgregarClase) {
+            System.out.println("Catch agregarClase: " + exceptionAgregarClase);
+            System.out.println("ERROR");
         }
+    }
 
     public static List<ActividadDeportiva> getActividades() {
 
@@ -75,7 +76,7 @@ public class ManejadorActividad {
         return actividades;
     }
 
-      public static List<ActividadDeportiva> getActividadesByInstitucion(String institucion) {
+    public static List<ActividadDeportiva> getActividadesByInstitucion(String institucion) {
 
         List<ActividadDeportiva> actividades;
 
@@ -83,6 +84,43 @@ public class ManejadorActividad {
                 .createQuery("SELECT a FROM ActividadDeportiva a WHERE a.", ActividadDeportiva.class).getResultList();
 
         return actividades;
+    }
+
+    public static List<ActividadDeportiva> getActividadesByProfe(Profesor profesor) {
+
+        // try {
+
+        // List<ActividadDeportiva> listActividades;
+        // listActividades = entityManager.createQuery(
+        // "select a.nombre ,a.costo ,a.descripcion ,a.duracion ,a.fechaReg from
+        // ActividadDeportiva a inner join actividaddeportiva_clase ac on
+        // ac.actividaddeportiva_nombre =a.nombre inner join clase c on c.nombre =
+        // ac.clases_nombre where c.profesor = :profesor",
+        // ActividadDeportiva.class)
+        // .setParameter("profesor", profesor)
+        // .getResultList();
+        // return listActividades;
+        // } catch (Exception e) {
+        // System.out.println("Error catch getClasesByProfe " + e);
+        // return null;
+        // }
+        try {
+            List<ActividadDeportiva> resultList = entityManager.createQuery(
+                    "SELECT a " +
+                            "FROM ActividadDeportiva a " +
+                            "INNER JOIN a.Clases c " +
+                            "INNER JOIN c.profesor p " +
+                            "WHERE p = :profesor",
+                    ActividadDeportiva.class)
+                    .setParameter("profesor", profesor)
+                    .getResultList();
+
+            return resultList;
+        } catch (Exception e) {
+            System.out.println("Error catch getClasesByProfe " + e);
+            return null;
+        }
+
     }
 
 }
