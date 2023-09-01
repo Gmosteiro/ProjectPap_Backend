@@ -276,7 +276,7 @@ public class RegistrarDictadoClase extends javax.swing.JInternalFrame {
                         int modelRow = jTableClases.convertRowIndexToModel(viewRow);
 
                         Object modelvalue = jTableClases.getModel().getValueAt(modelRow, 0);
-                        Object modelvalue2 = jTableClases.getModel().getValueAt(modelRow, 0);
+                        Object modelvalue2 = jTableClases.getModel().getValueAt(modelRow, 1);
                         
                         String nombre = (String) modelvalue;
                         LocalDate fecha = (LocalDate) modelvalue2;
