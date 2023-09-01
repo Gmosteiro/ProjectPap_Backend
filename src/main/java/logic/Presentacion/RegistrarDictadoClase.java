@@ -5,10 +5,16 @@
 package logic.Presentacion;
 
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import logic.Clase.Clase;
+import logic.Clase.controllers.IControllerDictadoClase;
+import logic.Fabrica;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 import logic.Usuario.ManejadorUsuarios;
+import logic.Usuario.Socio;
 import logic.Usuario.Usuario;
+import logic.Usuario.controllers.IControllerConsultaUsuario;
 
 /**
  *
@@ -41,6 +47,8 @@ public class RegistrarDictadoClase extends javax.swing.JInternalFrame {
         TextoSocioD = new javax.swing.JLabel();
         jButtonRDC = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableClases = new javax.swing.JTable();
 
         setTitle("Registrar Dictado de Clase");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -84,61 +92,86 @@ public class RegistrarDictadoClase extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Clases");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(TextoSocioD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TextoInstitucionD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxInstitucionesDictado, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(TextoActividadD)
-                        .addGap(53, 53, 53)
-                        .addComponent(jComboBoxActividadesD, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBoxSocioD, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonRDA)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonRDC)
-                .addGap(58, 58, 58))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextoInstitucionD)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxInstitucionesDictado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(TextoActividadD))
-                    .addComponent(jComboBoxActividadesD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextoSocioD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSocioD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jTableClases.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "Clase", "URL", "Actividad Deportiva", "Descripcion"
+            }
+        ){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Make all cells non-editable
+            }});
+            jTableClases.setEnabled(false);
+            jTableClases.setName("Informacion Asociada"); // NOI18N
+            jTableClases.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jTableClasesMouseClicked(evt);
+                }
+            });
+            jScrollPane2.setViewportView(jTableClases);
+
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(TextoSocioD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(TextoInstitucionD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jComboBoxInstitucionesDictado, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(TextoActividadD)
+                            .addGap(53, 53, 53)
+                            .addComponent(jComboBoxActividadesD, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBoxSocioD, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(66, 66, 66))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonRDA)
+                    .addGap(18, 18, 18)
                     .addComponent(jButtonRDC)
-                    .addComponent(jButtonRDA))
-                .addGap(29, 29, 29))
-        );
+                    .addGap(58, 58, 58))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jLabel1)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                    .addContainerGap())
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(TextoInstitucionD)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxInstitucionesDictado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextoActividadD))
+                        .addComponent(jComboBoxActividadesD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TextoSocioD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxSocioD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel1)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonRDC)
+                        .addComponent(jButtonRDA))
+                    .addGap(29, 29, 29))
+            );
 
-        jButtonRDA.getAccessibleContext().setAccessibleName("jButtonRDA");
+            jButtonRDA.getAccessibleContext().setAccessibleName("jButtonRDA");
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
 
     private void addSociosToComboBox() {
 
@@ -182,8 +215,8 @@ public class RegistrarDictadoClase extends javax.swing.JInternalFrame {
     }
     
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        //addInstitucionesToComboBox("Clase");
-        //addSociosToComboBox();
+        addInstitucionesToComboBox("Clase");
+        addSociosToComboBox();
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void jComboBoxSocioDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSocioDActionPerformed
@@ -191,10 +224,34 @@ public class RegistrarDictadoClase extends javax.swing.JInternalFrame {
 
         // Realizar acciones basadas en el elemento seleccionado
         if (selectedItem != null) {
-            
+            String actividad = selectedItem.toString();
+            Fabrica factory = new Fabrica();
+
+            IControllerDictadoClase controlaDicclase = factory.getControladorDictadoClase();
+            List<Clase> listaClases = controlaDicclase.getClasesByActividad(actividad);
+
+                if (!listaClases.isEmpty() || listaClases.get(0) != null) {
+
+                    DefaultTableModel tableModel = (DefaultTableModel) jTableClases.getModel();
+
+                    tableModel.setRowCount(0);
+
+                    for (Clase clase : listaClases) {
+                        Object[] rowData = { clase.getNombre(), clase.getFechaFormatted(), clase.getHora(),
+                                clase.getUrl() };
+                        tableModel.addRow(rowData);
+                    }
+
+                    tableModel.fireTableDataChanged();
+                }
             
         }
+            
     }//GEN-LAST:event_jComboBoxSocioDActionPerformed
+
+    private void jTableClasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClasesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableClasesMouseClicked
 /**/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -207,5 +264,7 @@ public class RegistrarDictadoClase extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBoxInstitucionesDictado;
     private javax.swing.JComboBox<String> jComboBoxSocioD;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableClases;
     // End of variables declaration//GEN-END:variables
 }

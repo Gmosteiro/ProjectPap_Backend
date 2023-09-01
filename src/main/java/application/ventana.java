@@ -189,7 +189,14 @@ public class Ventana extends javax.swing.JFrame {
     }// GEN-LAST:event_jMenuItemRClaseActionPerformed
 
     private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
-
+//        ConsultaActividades conactividad = new ConsultaActividades();
+//        conactividad.setSize(760, 500);
+//        conactividad.setLocation(15, 50);
+//        conactividad.setVisible(true);
+//        // internalFrame.setSize(300, 200);
+//        // internalFrame.setVisible(true);
+//        jDesktopPane1.add(conactividad);
+//        conactividad.toFront();
         // Establecer ubicación centrada
     }// GEN-LAST:event_jMenuConsutaActividadActionPerformed
 
