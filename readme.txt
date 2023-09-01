@@ -46,9 +46,6 @@ CREATE TABLE IF NOT EXISTS public.instituciondeportiva (
     CONSTRAINT instituciondeportiva_pkey PRIMARY KEY (nombre)
 );
 
-Manjeadores:
-    Usuarios
-    Clases
-    Institucion
+
 
 JOptionPane.showMessageDialog(null, "Institucion Creada!", "Success", JOptionPane.INFORMATION_MESSAGE);

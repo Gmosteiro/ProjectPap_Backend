@@ -51,4 +51,34 @@ public class ManejadorClases {
             return null;
         }
     }
+
+    public static List<Clase> getClasesByNombre(String nombreActividad) {
+        try {
+            List<Clase> listClase;
+            listClase = entityManager.createQuery(
+                    "SELECT c FROM Clase c WHERE c.ClaseACT = :nombreActividad", Clase.class)
+                    .setParameter("nombreActividad", nombreActividad)
+                    .getResultList();
+            return listClase;
+        } catch (Exception e) {
+            System.out.println("Error catch getClasesByActividad " + e);
+            return null;
+        }
+    }
+
+    public static Clase getClaseByNombre(String nombreClase) {
+        try {
+            entityManager.getTransaction().begin();
+
+            Clase clase = entityManager.find(Clase.class, nombreClase);
+
+            entityManager.getTransaction().commit();
+
+            return clase;
+        } catch (Exception e) {
+            System.out.println("Error catch getClaseByNombre " + e);
+            return null;
+        }
+    }
+
 }
