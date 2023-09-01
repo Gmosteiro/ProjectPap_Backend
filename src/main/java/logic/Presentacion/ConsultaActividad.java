@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import javassist.expr.NewArray;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
+import logic.Clase.Clase;
 import logic.Fabrica;
 
 /**
@@ -176,52 +177,113 @@ public class ConsultaActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscarActividadActionPerformed
 
     private void jTableListaActividadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaActividadMouseClicked
-        System.out.println("In event");
-        int viewRow = jTableListaActividad.getSelectedRow();
+//        System.out.println("In event");
+//        int viewRow = jTableListaActividad.getSelectedRow();
+//
+//        if (viewRow != -1) {
+//
+//            // Better to access table row using modelRow rather than viewRow
+//            int modelRow = jTableListaActividad.convertRowIndexToModel(viewRow);
+//
+//            // Access value at selected row at the second column (columnIndex = 1)
+//            Object modelvalue = jTableListaActividad.getModel().getValueAt(modelRow, 0);
+//
+//            // Print cell value
+//            System.out.println(modelvalue);
+//            Fabrica factory = new Fabrica();
+//
+//            IControllerConsultaActividad consultaActividad = factory.getControllerConsultaActividad();
+//
+//            String nombre = (String) modelvalue;
+//
+//            ActividadDeportiva ActividadDep = consultaActividad.obtenerActividadPorNombre(nombre);
+//
+//            List<ActividadDeportiva> searchResult = new ArrayList<>();
+//            searchResult.add(ActividadDep);
+//        }
+    int viewRow = jTableListaActividad.getSelectedRow();
 
-        if (viewRow != -1) {
+    if (viewRow != -1) {
+        int modelRow = jTableListaActividad.convertRowIndexToModel(viewRow);
+        Object modelValue = jTableListaActividad.getModel().getValueAt(modelRow, 0);
 
-            // Better to access table row using modelRow rather than viewRow
-            int modelRow = jTableListaActividad.convertRowIndexToModel(viewRow);
+        String nombre = (String) modelValue;
 
-            // Access value at selected row at the second column (columnIndex = 1)
-            Object modelvalue = jTableListaActividad.getModel().getValueAt(modelRow, 0);
+        Fabrica factory = new Fabrica();
+        IControllerConsultaActividad consultaActividad = factory.getControllerConsultaActividad();
 
-            // Print cell value
-            System.out.println(modelvalue);
-            Fabrica factory = new Fabrica();
+        ActividadDeportiva actividadDep = consultaActividad.obtenerActividadPorNombre(nombre);
+        
+        // Aquí se llama a la función del controlador para obtener la lista de clases por actividad
+        List<Clase> clases = consultaActividad.obtenerClasesPorActividad(actividadDep);
 
-            IControllerConsultaActividad consultaActividad = factory.getControllerConsultaActividad();
+        List<ActividadDeportiva> searchResult = new ArrayList<>();
+        searchResult.add(actividadDep);
 
-            String nickname = (String) modelvalue;
-
-            ActividadDeportiva ActividadDep = consultaActividad.obtenerActividadPorNombre(nickname);
-
-            List<ActividadDeportiva> searchResult = new ArrayList<>();
-            searchResult.add(ActividadDep);
+        // Hacer lo que necesites con la información de la actividad y las clases
+        // Por ejemplo, mostrarlos en la interfaz gráfica
+        // También puedes imprimir información en la consola para verificar
+        
+        System.out.println("Información de la actividad: " + actividadDep);
+        
+        for (Clase clase : clases) {
+            System.out.println("Información de la clase: " + clase);
         }
+    }
 
     }//GEN-LAST:event_jTableListaActividadMouseClicked
 
     private void jTableInformacionAsociadaaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableInformacionAsociadaaMouseClicked
-        int selectedRow = jTableInformacionAsociadaa.getSelectedRow();
+//        int selectedRow = jTableInformacionAsociadaa.getSelectedRow();
+//
+//        if (selectedRow != -1) {
+//            DefaultTableModel model = (DefaultTableModel) jTableInformacionAsociadaa.getModel();
+//            
+//                // private String nombre;
+//                // private String descripcion;
+//                // private int duracion;
+//                //  private float costo;
+//                // private LocalDate fechaReg;
+//            String nombre = model.getValueAt(selectedRow, 0).toString();
+//            String descripcion = model.getValueAt(selectedRow, 1).toString();
+//            String duracion = model.getValueAt(selectedRow, 2).toString();
+//            String costo = model.getValueAt(selectedRow, 3).toString();
+//            String fechaReg = model.getValueAt(selectedRow, 4).toString();
+//
+//            // Now you can use the extracted data for further processing or display
+//            System.out.println("nombre: " + nombre);
+//            System.out.println("descripcion: " + descripcion);
+//            System.out.println("duracion: " + duracion);
+//            System.out.println("costo: " + costo);
+//            System.out.println("Fecha de registro: " + fechaReg);
+//        }
+  int selectedRow = jTableInformacionAsociadaa.getSelectedRow();
 
-        if (selectedRow != -1) {
-            DefaultTableModel model = (DefaultTableModel) jTableInformacionAsociadaa.getModel();
+    if (selectedRow != -1) {
+        DefaultTableModel model = (DefaultTableModel) jTableInformacionAsociadaa.getModel();
+        
+        // Obtener los valores de la fila seleccionada
+        String nombre = model.getValueAt(selectedRow, 0).toString();
 
-            String nickname = model.getValueAt(selectedRow, 0).toString();
-            String nombre = model.getValueAt(selectedRow, 1).toString();
-            String apellido = model.getValueAt(selectedRow, 2).toString();
-            String email = model.getValueAt(selectedRow, 3).toString();
-            String fechaNacimiento = model.getValueAt(selectedRow, 4).toString();
+        // Ahora, puedes utilizar la función del controlador para obtener los detalles de la clase
+        Fabrica factory = new Fabrica();
+        IControllerConsultaActividad consultaActividad = factory.getControllerConsultaActividad();
 
-            // Now you can use the extracted data for further processing or display
-            System.out.println("Nickname: " + nickname);
-            System.out.println("Nombre: " + nombre);
-            System.out.println("Apellido: " + apellido);
-            System.out.println("Email: " + email);
-            System.out.println("Fecha de nacimiento: " + fechaNacimiento);
-        }
+        // Aquí se debe llamar a la función para obtener los detalles de la clase
+         ActividadDeportiva actividadDep = consultaActividad.obtenerActividadPorNombre(nombre);
+        
+        // Aquí se llama a la función del controlador para obtener la lista de clases por actividad
+        List<Clase> clases = consultaActividad.obtenerClasesPorActividad(actividadDep);
+
+        List<ActividadDeportiva> searchResult = new ArrayList<>();
+        searchResult.add(actividadDep);
+
+        // Ahora puedes mostrar los detalles de la clase en la interfaz gráfica
+        // Por ejemplo, podrías asignar los valores a etiquetas o campos de texto
+        
+        // También puedes imprimir información en la consola para verificar
+        System.out.println("Detalles de la clase seleccionada: " + clase);
+    }
     }//GEN-LAST:event_jTableInformacionAsociadaaMouseClicked
 
     private void jButtonCancelarConsultaActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarConsultaActividadActionPerformed
