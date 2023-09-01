@@ -14,6 +14,8 @@ import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
 import logic.Clase.Clase;
 import logic.Fabrica;
+import logic.Institucion.InstitucionDeportiva;
+import logic.Institucion.ManejadorInstitucion;
 
 /**
  *
@@ -44,6 +46,7 @@ public class ConsultaActividad extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableInformacionAsociadaa = new javax.swing.JTable();
         jButtonCancelarConsultaActividad = new javax.swing.JButton();
+        jComboBoxInstitucionesActividad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta Actividad");
@@ -59,7 +62,7 @@ public class ConsultaActividad extends javax.swing.JFrame {
             new Object [][] {
             },
             new String [] {
-                "Nickname", "Nombre", "Apellido", "Email","Fecha de Nacimiento"
+                "Nombre", "Descripcion", "Duracion", "Costo","Fecha de Registro"
             }
         ){
             @Override
@@ -100,41 +103,53 @@ public class ConsultaActividad extends javax.swing.JFrame {
                     }
                 });
 
+                jComboBoxInstitucionesActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                jComboBoxInstitucionesActividad.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jComboBoxInstitucionesActividadActionPerformed(evt);
+                    }
+                });
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jTextFieldBuscarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBuscarActividad)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPaneConsultaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+                        .addComponent(jScrollPaneConsultaUsuario)
                         .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonCancelarConsultaActividad)
-                        .addGap(31, 31, 31))
+                        .addGap(26, 26, 26))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jButtonBuscarActividad)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldBuscarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxInstitucionesActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(33, Short.MAX_VALUE))
                 );
                 layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldBuscarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonBuscarActividad))
-                        .addGap(18, 18, 18)
+                            .addComponent(jButtonBuscarActividad)
+                            .addComponent(jComboBoxInstitucionesActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addComponent(jScrollPaneConsultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonCancelarConsultaActividad)
-                        .addContainerGap(20, Short.MAX_VALUE))
+                        .addContainerGap())
                 );
 
                 pack();
@@ -297,6 +312,43 @@ public class ConsultaActividad extends javax.swing.JFrame {
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarConsultaActividadActionPerformed
 
+    private void addInstitucionesToComboBox(String option) {
+
+        List<InstitucionDeportiva> instituciones = ManejadorInstitucion.getInstituciones();
+        // Object selectedItem;
+
+        switch (option) {
+            case "Clase":
+
+                jComboBoxInstitucionesActividad.removeAllItems();
+
+                for (InstitucionDeportiva institucion : instituciones) {
+                    jComboBoxInstitucionesActividad.addItem(institucion.getNombre());
+
+                }
+
+                // selectedItem = jComboBoxInstitucionesActividad.getSelectedItem();
+
+                // if (selectedItem != null) {
+                // String selectedText = selectedItem.toString(); // Convertir el elemento a
+                // String
+                // }
+
+                break;
+            default:
+                break;
+        }
+    }
+    
+       private void jComboBoxActividadesCFocusGained(java.awt.event.FocusEvent evt) {                                                  
+        String current = (String) jComboBoxInstitucionesActividad.getSelectedItem();
+     
+    } 
+    
+    private void jComboBoxInstitucionesActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInstitucionesActividadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxInstitucionesActividadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -335,6 +387,7 @@ public class ConsultaActividad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscarActividad;
     private javax.swing.JButton jButtonCancelarConsultaActividad;
+    private javax.swing.JComboBox<String> jComboBoxInstitucionesActividad;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPaneConsultaUsuario;
     private javax.swing.JTable jTableInformacionAsociadaa;
