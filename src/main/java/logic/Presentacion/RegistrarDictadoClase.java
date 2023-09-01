@@ -4,6 +4,7 @@
  */
 package logic.Presentacion;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import logic.Clase.Clase;
@@ -15,6 +16,7 @@ import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Socio;
 import logic.Usuario.Usuario;
 import logic.Usuario.controllers.IControllerConsultaUsuario;
+import logic.Usuario.controllers.IControllerRegistroDictado;
 
 /**
  *
@@ -85,10 +87,20 @@ public class RegistrarDictadoClase extends javax.swing.JInternalFrame {
         });
 
         jButtonRDA.setText("Aceptar");
+        jButtonRDA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRDAActionPerformed(evt);
+            }
+        });
 
         TextoSocioD.setText("Socio:");
 
         jButtonRDC.setText("Cancelar");
+        jButtonRDC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRDCActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Clases");
 
@@ -250,8 +262,34 @@ public class RegistrarDictadoClase extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBoxSocioDActionPerformed
 
     private void jTableClasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClasesMouseClicked
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_jTableClasesMouseClicked
+
+    private void jButtonRDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRDCActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonRDCActionPerformed
+
+    private void jButtonRDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRDAActionPerformed
+        try {
+                        int viewRow = jTableClases.getSelectedRow();
+                        if (viewRow != -1) {
+                        int modelRow = jTableClases.convertRowIndexToModel(viewRow);
+
+                        Object modelvalue = jTableClases.getModel().getValueAt(modelRow, 0);
+                        Object modelvalue2 = jTableClases.getModel().getValueAt(modelRow, 0);
+                        
+                        String nombre = (String) modelvalue;
+                        LocalDate fecha = (LocalDate) modelvalue2;
+                        String socio = jComboBoxSocioD.getSelectedItem().toString();
+                        
+                        Fabrica factory = new Fabrica();
+                        IControllerRegistroDictado controllerDictado = factory.getControllerRegistroDictado();
+                        controllerDictado.addRegistroDictado(socio, nombre, fecha);
+                        }
+                } catch (Exception e) {
+                        System.out.println("Error: " + e);
+                }
+    }//GEN-LAST:event_jButtonRDAActionPerformed
 /**/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
