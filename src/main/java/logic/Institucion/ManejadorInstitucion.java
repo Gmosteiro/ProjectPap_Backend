@@ -69,8 +69,7 @@ public class ManejadorInstitucion {
                         entityManager.getTransaction().begin();
                         entityManager.persist(Institucion);
                         entityManager.getTransaction().commit();
-                        entityManager.close();
-                        emFactory.close();
+
                 } catch (Exception exceptionAgregarClase) {
                         System.out.println("Catch agregarActividadI: " + exceptionAgregarClase);
                         System.out.println("ERROR");

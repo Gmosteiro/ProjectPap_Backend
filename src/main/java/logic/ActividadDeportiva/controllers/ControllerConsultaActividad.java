@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
-import logic.Registro;
+import logic.Usuario.Registro;
 
 public class ControllerConsultaActividad implements IControllerConsultaActividad {
 

@@ -87,4 +87,8 @@ public abstract class Usuario {
 		this.fechaNac = fechaNac;
 	}
 
+	public Long getId_usuario() {
+		return id_usuario;
+	}
+
 }

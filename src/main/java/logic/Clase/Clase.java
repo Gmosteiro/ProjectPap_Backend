@@ -11,9 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import logic.Registro;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Usuario.Profesor;
+import logic.Usuario.Registro;
 
 @Entity
 public class Clase {
