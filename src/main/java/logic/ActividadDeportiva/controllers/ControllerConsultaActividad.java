@@ -39,6 +39,7 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
         }
     }
 
+
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
         EntityManager em = emf.createEntityManager();
         try {

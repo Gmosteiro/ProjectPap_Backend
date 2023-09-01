@@ -191,9 +191,9 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt){// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
 
-        ConsultaActividad conactividad = new ConsultaActividad();
-        conactividad.setSize(560, 500);
-        conactividad.setLocation(50, 50);
+        ConsultaActividades conactividad = new ConsultaActividades();
+        conactividad.setSize(760, 500);
+        conactividad.setLocation(15, 50);
         conactividad.setVisible(true);
         // internalFrame.setSize(300, 200);
         // internalFrame.setVisible(true);

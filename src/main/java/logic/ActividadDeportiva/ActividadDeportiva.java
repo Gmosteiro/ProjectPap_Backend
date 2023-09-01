@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import logic.Clase.Clase;
@@ -20,6 +21,9 @@ public class ActividadDeportiva {
     private int duracion;
     private float costo;
     private LocalDate fechaReg;
+
+
+
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Clase> Clases = new ArrayList<Clase>();
