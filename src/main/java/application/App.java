@@ -28,8 +28,7 @@ public class App {
                 try {
                         // autoInsert();
                         iniciarVentana();
-                        // probarModificarActividad();
-                        //probarModificarInstitucion();
+                        // probarGetActividades();
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
@@ -185,7 +184,7 @@ public class App {
 
                 System.out.println("Usuario modificado exitosamente.");
         }
-        
+
         public static void probarModificarInstitucion() {
                 Fabrica factory = new Fabrica();
                 IControllerModificarInstitucion controllerInstitucion = factory.getControllerModificarInstitucion();

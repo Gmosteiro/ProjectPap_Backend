@@ -53,7 +53,8 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPaneConsultaUsuario = new javax.swing.JScrollPane();
@@ -72,132 +73,144 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         jTableListaUsuario.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-            },
-            new String [] {
-                "Nickname", "Nombre", "Apellido", "Email","Fecha de Nacimiento"
-            }
-        ){
+                new Object[][] {
+                },
+                new String[] {
+                        "Nickname", "Nombre", "Apellido", "Email", "Fecha de Nacimiento"
+                }) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Make all cells non-editable
-            }});
-            jTableListaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    jTableListaUsuarioMouseClicked(evt);
-                }
-            });
-            jScrollPaneConsultaUsuario.setViewportView(jTableListaUsuario);
+            }
+        });
+        jTableListaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListaUsuarioMouseClicked(evt);
+            }
+        });
+        jScrollPaneConsultaUsuario.setViewportView(jTableListaUsuario);
 
-            jButtonBuscarUsuario.setText("Buscar");
-            jButtonBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButtonBuscarUsuarioActionPerformed(evt);
-                }
-            });
+        jButtonBuscarUsuario.setText("Buscar");
+        jButtonBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarUsuarioActionPerformed(evt);
+            }
+        });
 
-            jButtonCancelarConsultaUsuario.setText("Cancelar");
-            jButtonCancelarConsultaUsuario.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButtonCancelarConsultaUsuarioActionPerformed(evt);
-                }
-            });
+        jButtonCancelarConsultaUsuario.setText("Cancelar");
+        jButtonCancelarConsultaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarConsultaUsuarioActionPerformed(evt);
+            }
+        });
 
-            jTableInformacionAsociada.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
+        jTableInformacionAsociada.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][] {
                 },
-                new String [] {
-                    "Clase", "URL", "Actividad Deportiva", "Descripcion"
-                }
-            ){
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false; // Make all cells non-editable
-                }});
-                jTableInformacionAsociada.setEnabled(false);
-                jTableInformacionAsociada.setName("Informacion Asociada"); // NOI18N
-                jTableInformacionAsociada.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        jTableInformacionAsociadaMouseClicked(evt);
-                    }
-                });
-                jScrollPane2.setViewportView(jTableInformacionAsociada);
-
-                LabelClasesAsociadas.setText("Clases Asociadas:");
-
-                jTableActividadesAsociadas.setModel(new javax.swing.table.DefaultTableModel(
-                    new Object [][] {
-                    },
-                    new String [] {
+                new String[] {
                         "Clase", "URL", "Actividad Deportiva", "Descripcion"
-                    }
-                ){
-                    @Override
-                    public boolean isCellEditable(int row, int column) {
-                        return false; // Make all cells non-editable
-                    }});
-                    jTableActividadesAsociadas.setEnabled(false);
-                    jTableActividadesAsociadas.setName("Informacion Asociada"); // NOI18N
-                    jTableActividadesAsociadas.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseClicked(java.awt.event.MouseEvent evt) {
-                            jTableActividadesAsociadasMouseClicked(evt);
-                        }
-                    });
-                    jScrollPane3.setViewportView(jTableActividadesAsociadas);
+                }) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Make all cells non-editable
+            }
+        });
+        jTableInformacionAsociada.setEnabled(false);
+        jTableInformacionAsociada.setName("Informacion Asociada"); // NOI18N
+        jTableInformacionAsociada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableInformacionAsociadaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableInformacionAsociada);
 
-                    LabelActividadesAsociadas.setText("Actividades Asociadas:");
+        LabelClasesAsociadas.setText("Clases Asociadas:");
 
-                    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-                    getContentPane().setLayout(layout);
-                    layout.setHorizontalGroup(
-                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jTableActividadesAsociadas.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        "Clase", "URL", "Actividad Deportiva", "Descripcion"
+                }) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Make all cells non-editable
+            }
+        });
+        jTableActividadesAsociadas.setEnabled(false);
+        jTableActividadesAsociadas.setName("Informacion Asociada"); // NOI18N
+        jTableActividadesAsociadas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableActividadesAsociadasMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTableActividadesAsociadas);
+
+        LabelActividadesAsociadas.setText("Actividades Asociadas:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jTextFieldBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButtonBuscarUsuario)
-                                    .addGap(22, 22, 22))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButtonCancelarConsultaUsuario)
-                                    .addGap(277, 277, 277))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
-                                .addComponent(jScrollPaneConsultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(LabelClasesAsociadas)
-                                        .addComponent(LabelActividadesAsociadas))
-                                    .addGap(0, 0, Short.MAX_VALUE)))
-                            .addContainerGap())
-                    );
-                    layout.setVerticalGroup(
-                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
+                                                .createSequentialGroup()
+                                                .addComponent(jTextFieldBuscarUsuario,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 247,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jButtonBuscarUsuario)
+                                                .addGap(22, 22, 22))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButtonCancelarConsultaUsuario)
+                                                .addGap(277, 277, 277))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 392,
+                                                Short.MAX_VALUE)
+                                        .addComponent(jScrollPaneConsultaUsuario,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(LabelClasesAsociadas)
+                                                        .addComponent(LabelActividadesAsociadas))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap()));
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(0, 0, 0)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextFieldBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButtonBuscarUsuario))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPaneConsultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(LabelClasesAsociadas)
-                            .addGap(3, 3, 3)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(LabelActividadesAsociadas)
-                            .addGap(3, 3, 3)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(81, 81, 81)
-                            .addComponent(jButtonCancelarConsultaUsuario))
-                    );
+                                .addGap(0, 0, 0)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextFieldBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonBuscarUsuario))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPaneConsultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 144,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LabelClasesAsociadas)
+                                .addGap(3, 3, 3)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LabelActividadesAsociadas)
+                                .addGap(3, 3, 3)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 88,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(81, 81, 81)
+                                .addComponent(jButtonCancelarConsultaUsuario)));
 
-                    pack();
-                }// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
     private void jTableActividadesAsociadasMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableActividadesAsociadasMouseClicked
-        // TODO add your handling code here:
+
+        ConsultarActividades newConsulta = new ConsultarActividades("Matematica", "esi");
+
     }// GEN-LAST:event_jTableActividadesAsociadasMouseClicked
 
     private void jTableListaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableListaUsuarioMouseClicked

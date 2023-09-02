@@ -287,7 +287,7 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
         }// GEN-LAST:event_jComboBoxNombreCActionPerformed
 
         private void jTextFieldNombreCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextFieldNombreCActionPerformed
-                // TODO add your handling code here:
+
         }// GEN-LAST:event_jTextFieldNombreCActionPerformed
 
         private void addActividadesToComboBox(String institucion) {
