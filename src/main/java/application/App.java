@@ -25,7 +25,7 @@ public class App {
         public static void main(String[] args) {
 
                 try {
-                        //autoInsert();
+                        // autoInsert();
                         iniciarVentana();
                         // probarModificarActividad();
 
@@ -139,6 +139,7 @@ public class App {
         private static void iniciarVentana() {
                 Ventana ventana = new Ventana();
                 ventana.setVisible(true);
+                ventana.setSize(880, 700);
 
                 // Obtener el tamaño de la pantalla
                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -76,19 +76,10 @@ public class ManejadorActividad {
         return actividades;
     }
 
-    public static List<ActividadDeportiva> getActividadesByInstitucion(String institucion) {
+    public static List<ActividadDeportiva> getActividadesByInstitucion(InstitucionDeportiva institucion) {
 
         try {
-            List<ActividadDeportiva> resultList = entityManager.createQuery(
-                    "SELECT a " +
-                            "FROM ActividadDeportiva a " +
-                            "INNER JOIN a.instituciones i " +
-                            "WHERE i = :institucionDeportiva",
-                    ActividadDeportiva.class)
-                    .setParameter("institucionDeportiva", institucion)
-                    .getResultList();
-
-            return resultList;
+            return institucion.getActividades();
         } catch (Exception e) {
             System.out.println("Error catch getActividadesByInstitucionDeportiva " + e);
             return null;
@@ -115,8 +106,8 @@ public class ManejadorActividad {
         }
 
     }
-    
-        public List<Clase> getClases(){
+
+    public List<Clase> getClases() {
         return getClases();
     }
 
