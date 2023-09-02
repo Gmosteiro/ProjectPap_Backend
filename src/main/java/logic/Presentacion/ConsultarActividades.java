@@ -29,8 +29,10 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    public ConsultarActividades(String actividad) {
+    public ConsultarActividades(String actividad, String institucion) {
         initComponents();
+
+        mostarActividadEspecifica(actividad, institucion);
 
     }
 
@@ -218,6 +220,10 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mostarActividadEspecifica(String actividad, String institucion) {
+
+    }
 
     private void jComboBoxInstitucionesFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jComboBoxInstitucionesFocusGained
 
