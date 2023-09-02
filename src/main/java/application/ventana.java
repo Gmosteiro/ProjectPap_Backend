@@ -193,21 +193,13 @@ public class Ventana extends javax.swing.JFrame {
     }// GEN-LAST:event_jMenuItemRClaseActionPerformed
 
     private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
-        // ConsultaActividades conactividad = new ConsultaActividades();
-        // conactividad.setSize(760, 500);
-        // conactividad.setLocation(15, 50);
-        // conactividad.setVisible(true);
-        // // internalFrame.setSize(300, 200);
-        // // internalFrame.setVisible(true);
-        // jDesktopPane1.add(conactividad);
-        // conactividad.toFront();
-        // Establecer ubicación centrada
+        ConsultarActividades ventanaConsultaActividad = new ConsultarActividades();
+        ventanaConsultaActividad.setSize(760, 500);
+        ventanaConsultaActividad.setLocation(15, 50);
+        ventanaConsultaActividad.setVisible(true);
+        jDesktopPane1.add(ventanaConsultaActividad);
+        ventanaConsultaActividad.toFront();
     }// GEN-LAST:event_jMenuConsutaActividadActionPerformed
-
-    // private void jTextFieldNombreCActionPerformed(java.awt.event.ActionEvent evt)
-    // {// GEN-FIRST:event_jTextFieldNombreCActionPerformed
-    // // TODO add your handling code here:
-    // }// GEN-LAST:event_jTextFieldNombreCActionPerformed
 
     private void jMenuItemRActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRActividadActionPerformed
         RegistrarActividadCU reactividad = new RegistrarActividadCU();

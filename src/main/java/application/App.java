@@ -27,7 +27,7 @@ public class App {
                 try {
                         // autoInsert();
                         iniciarVentana();
-                        // probarModificarActividad();
+                        // probarGetActividades();
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
