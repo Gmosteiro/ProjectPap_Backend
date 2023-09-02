@@ -28,7 +28,7 @@ public class App {
                 try {
                         // autoInsert();
                         iniciarVentana();
-                        // probarGetActividades();
+                        //probarModificarUsuario();
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
@@ -176,11 +176,12 @@ public class App {
                 Fabrica factory = new Fabrica();
                 IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
 
-                String nickname = "socio1";
+                String nickname = "alexis";
                 String nuevoNombre = "Alex";
                 String nuevoApellido = "Ribeiro";
+                LocalDate nuevafecha = LocalDate.of(2023, 12, 24);
 
-                controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido);
+                controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido, nuevafecha);
 
                 System.out.println("Usuario modificado exitosamente.");
         }
