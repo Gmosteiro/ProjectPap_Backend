@@ -5,6 +5,7 @@
 package logic.Presentacion;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
@@ -71,6 +72,11 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
         TextoActividadD.setText("Actividad");
 
         jComboBoxInstitucionesDictado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxInstitucionesDictado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBoxInstitucionesDictadoFocusGained(evt);
+            }
+        });
 
         jComboBoxActividadesD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxActividadesD.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -174,7 +180,7 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
             ActividadDeportiva actividaddeportiva = ManejadorActividad.obtenerActividadPorNombre(actividad);
             List<Clase> listaClases = actividaddeportiva.getClases();
 
-            if (!listaClases.isEmpty() || listaClases.get(0) != null) {
+            if (!listaClases.isEmpty() && listaClases.get(0) != null) {
 
                 DefaultTableModel tableModel = (DefaultTableModel) jTableClases.getModel();
 
@@ -187,14 +193,20 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
                 }
 
                 tableModel.fireTableDataChanged();
-            } else {
-                DefaultTableModel tableModel = (DefaultTableModel) jTableClases.getModel();
+            }
+            else{
+            JOptionPane.showMessageDialog(
+                        null, // Parent component (null for default)
+                        "Esta Actividad no tiene clases", // Message text
+                        "Warnin", // Dialog title
+                        JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
+                );
+            DefaultTableModel tableModel = (DefaultTableModel) jTableClases.getModel();
 
                 tableModel.setRowCount(0);
+                tableModel.fireTableDataChanged();
             }
-
         }
-
     }
     
     private void addActividadesToComboBox(String institucion) {
@@ -214,7 +226,7 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
         String current = (String) jComboBoxInstitucionesDictado.getSelectedItem();
         if (current != null) {
             addActividadesToComboBox(current);
-            ClasesDeActividad();
+//            ClasesDeActividad();
         }
     }//GEN-LAST:event_jComboBoxActividadesDFocusGained
 
@@ -235,6 +247,12 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
         addInstitucionesToComboBox();
     }//GEN-LAST:event_formInternalFrameOpened
 
+    private void jComboBoxInstitucionesDictadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxInstitucionesDictadoFocusGained
+       String current = (String) jComboBoxInstitucionesDictado.getSelectedItem();
+        if (current != null) {
+           addActividadesToComboBox(current);
+    }//GEN-LAST:event_jComboBoxInstitucionesDictadoFocusGained
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TextoActividadD;
