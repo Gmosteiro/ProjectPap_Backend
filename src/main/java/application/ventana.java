@@ -35,7 +35,7 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -50,6 +50,7 @@ public class Ventana extends javax.swing.JFrame {
         jMenuConsultas = new javax.swing.JMenu();
         jMenuConsultarUsuario = new javax.swing.JMenuItem();
         jMenuConsutaActividad = new javax.swing.JMenuItem();
+        jMenuItemConsultarClase = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 720));
@@ -60,20 +61,20 @@ public class Ventana extends javax.swing.JFrame {
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
-                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 850, Short.MAX_VALUE));
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 850, Short.MAX_VALUE)
+        );
         jDesktopPane1Layout.setVerticalGroup(
-                jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 700, Short.MAX_VALUE));
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+        );
 
         jMenuInicio.setText("Inicio");
         jMenuInicio.addMenuListener(new javax.swing.event.MenuListener() {
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
-
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
-
             public void menuSelected(javax.swing.event.MenuEvent evt) {
                 jMenuInicioMenuSelected(evt);
             }
@@ -142,6 +143,14 @@ public class Ventana extends javax.swing.JFrame {
         });
         jMenuConsultas.add(jMenuConsutaActividad);
 
+        jMenuItemConsultarClase.setText("Consultar Clase");
+        jMenuItemConsultarClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConsultarClaseActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemConsultarClase);
+
         jMenuBar1.add(jMenuConsultas);
 
         setJMenuBar(jMenuBar1);
@@ -149,19 +158,29 @@ public class Ventana extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         getAccessibleContext().setAccessibleName("Ventanita");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemConsultarClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultarClaseActionPerformed
+        ConsultaDictadoClase clase = new ConsultaDictadoClase();
+        clase.setSize(760, 500);
+        clase.setLocation(15, 50);
+        clase.setVisible(true);
+        // internalFrame.setSize(300, 200);
+        // internalFrame.setVisible(true);
+        jDesktopPane1.add(clase);
+        clase.toFront();
+    }//GEN-LAST:event_jMenuItemConsultarClaseActionPerformed
 
     private void jMenuInicioMenuSelected(javax.swing.event.MenuEvent evt) {// GEN-FIRST:event_jMenuInicioMenuSelected
         JInternalFrame[] frames = jDesktopPane1.getAllFrames();
@@ -268,6 +287,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenuItem jMenuConsutaActividad;
     private javax.swing.JMenu jMenuInicio;
+    private javax.swing.JMenuItem jMenuItemConsultarClase;
     private javax.swing.JMenuItem jMenuItemRActividad;
     private javax.swing.JMenuItem jMenuItemRClase;
     private javax.swing.JMenuItem jMenuItemRCliente;
