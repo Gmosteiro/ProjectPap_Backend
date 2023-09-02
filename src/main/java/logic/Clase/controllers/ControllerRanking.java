@@ -20,24 +20,25 @@ public class ControllerRanking implements IControllerRanking {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-
+    
             TypedQuery<ActividadDeportiva> query = em.createQuery(
-                    "SELECT a.nombre, a.descripcion, a.duracion, a.costo, COUNT(ac.clase_nombre) AS cantidad_clases " +
-                            "FROM ActividadDeportiva a " +
-                            "LEFT JOIN a.clases ac " +
-                            "GROUP BY a.nombre, a.descripcion, a.duracion, a.costo " +
-                            "ORDER BY COUNT(ac.clase_nombre) DESC",
-                    ActividadDeportiva.class);
-
+                "SELECT a " +
+                "FROM ActividadDeportiva a " +
+                "LEFT JOIN a.Clases ac " +
+                "GROUP BY a " +
+                "ORDER BY COUNT(ac) DESC",
+                ActividadDeportiva.class);
+    
             List<ActividadDeportiva> resultados = query.getResultList();
-
+    
             em.getTransaction().commit();
-
+    
             return resultados;
         } finally {
             em.close();
         }
     }
+    
 
     @Override
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
