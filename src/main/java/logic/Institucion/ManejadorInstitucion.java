@@ -75,5 +75,9 @@ public class ManejadorInstitucion {
                         System.out.println("ERROR");
                 }
         }
+        
+        public List<ActividadDeportiva> getActividades(){
+        return getActividades();
+        }
 
 }

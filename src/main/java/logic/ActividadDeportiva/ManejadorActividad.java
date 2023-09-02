@@ -45,7 +45,7 @@ public class ManejadorActividad {
         emFactory.close();
     }
 
-    public ActividadDeportiva obtenerActividadPorNombre(String nombre) {
+    public static ActividadDeportiva obtenerActividadPorNombre(String nombre) {
         ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class, nombre);
         return actividad;
     }
@@ -77,10 +77,14 @@ public class ManejadorActividad {
 
     public static List<ActividadDeportiva> getActividadesByInstitucion(String institucion) {
 
-        List<ActividadDeportiva> actividades;
-
-        actividades = entityManager
-                .createQuery("SELECT a FROM ActividadDeportiva a WHERE a.", ActividadDeportiva.class).getResultList();
+        List<ActividadDeportiva> actividades = entityManager.createQuery(
+                "SELECT a " +
+                        "FROM ActividadDeportiva a " + 
+                        "INNER JOIN a.InstitucionDeportiva i " +
+                        "WHERE i = :Instituciondeportiva",
+                ActividadDeportiva.class)
+                .setParameter("Instituciondeportiva", institucion)
+                .getResultList();
 
         return actividades;
     }
@@ -104,6 +108,10 @@ public class ManejadorActividad {
             return null;
         }
 
+    }
+    
+        public List<Clase> getClases(){
+        return getClases();
     }
 
 }

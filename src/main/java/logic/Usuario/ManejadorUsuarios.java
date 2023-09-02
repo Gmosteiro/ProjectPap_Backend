@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
+import logic.Institucion.InstitucionDeportiva;
 
 public class ManejadorUsuarios {
 	private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
@@ -88,12 +89,24 @@ public class ManejadorUsuarios {
 	}
         
         public static List<Usuario> getSocios() {
+//                EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+//                EntityManager entityManager = emFactory.createEntityManager();
+//                List<Usuario> socios = entityManager.createQuery("SELECT s FROM Socio s", Usuario.class).getResultList();
+                    List<Usuario> usuarios = new ArrayList<>();
+
+//		List<Usuario> profesores = entityManager.createQuery(
+//				"SELECT p " +
+//						"FROM Profesor p",
+//				Usuario.class)
+//				.getResultList();
 
 		List<Usuario> socios = entityManager.createQuery(
-				"SELECTs " +
+				"SELECT s " +
 						"FROM Socio s",
 				Usuario.class)
 				.getResultList();
+
+		usuarios.addAll(socios);
 
 		return socios;
 	}
