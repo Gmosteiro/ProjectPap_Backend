@@ -44,6 +44,7 @@ public class Ventana extends javax.swing.JFrame {
         jMenuItemRCliente = new javax.swing.JMenuItem();
         jMenuItemRActividad = new javax.swing.JMenuItem();
         jMenuItemRClase = new javax.swing.JMenuItem();
+        jMenuItemRDictado = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuConsultarUsuario = new javax.swing.JMenuItem();
         jMenuConsutaActividad = new javax.swing.JMenuItem();
@@ -111,6 +112,14 @@ public class Ventana extends javax.swing.JFrame {
         });
         jMenuRegistro.add(jMenuItemRClase);
 
+        jMenuItemRDictado.setText("Registrar Dictado");
+        jMenuItemRDictado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRDictadoActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItemRDictado);
+
         jMenuBar1.add(jMenuRegistro);
 
         jMenuConsultas.setText("Consultas");
@@ -157,6 +166,17 @@ public class Ventana extends javax.swing.JFrame {
         frame.dispose();}
     }//GEN-LAST:event_jMenuInicioMenuSelected
 
+    private void jMenuItemRDictadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRDictadoActionPerformed
+        RegistrarDictadoClase diclase = new RegistrarDictadoClase();
+        diclase.setSize(760, 500);
+        diclase.setLocation(15, 50);
+        diclase.setVisible(true);
+        // internalFrame.setSize(300, 200);
+        // internalFrame.setVisible(true);
+        jDesktopPane1.add(diclase);
+        diclase.toFront();
+    }//GEN-LAST:event_jMenuItemRDictadoActionPerformed
+
     private void jMenuItemRClaseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRClaseActionPerformed
         RegistrarClaseCU reclase = new RegistrarClaseCU();
         reclase.setSize(760, 500);
@@ -169,7 +189,14 @@ public class Ventana extends javax.swing.JFrame {
     }// GEN-LAST:event_jMenuItemRClaseActionPerformed
 
     private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
-
+//        ConsultaActividades conactividad = new ConsultaActividades();
+//        conactividad.setSize(760, 500);
+//        conactividad.setLocation(15, 50);
+//        conactividad.setVisible(true);
+//        // internalFrame.setSize(300, 200);
+//        // internalFrame.setVisible(true);
+//        jDesktopPane1.add(conactividad);
+//        conactividad.toFront();
         // Establecer ubicación centrada
     }// GEN-LAST:event_jMenuConsutaActividadActionPerformed
 
@@ -240,6 +267,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemRActividad;
     private javax.swing.JMenuItem jMenuItemRClase;
     private javax.swing.JMenuItem jMenuItemRCliente;
+    private javax.swing.JMenuItem jMenuItemRDictado;
     private javax.swing.JMenuItem jMenuRInstitucion;
     private javax.swing.JMenu jMenuRegistro;
     // End of variables declaration//GEN-END:variables

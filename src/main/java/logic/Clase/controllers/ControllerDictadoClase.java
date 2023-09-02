@@ -4,11 +4,14 @@ import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
+import logic.Clase.Clase;
+import logic.Clase.ManejadorClases;
 
 import javax.swing.JOptionPane;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ControllerDictadoClase implements IControllerDictadoClase {
 
@@ -49,6 +52,11 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
 
         return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
                 : fullErrorMessage;
+    }
+    
+    public List<Clase> getClasesByActividad(String actividad){
+        List<Clase> clases = ManejadorClases.getClasesByActividad(actividad);
+        return clases;
     }
 
 }

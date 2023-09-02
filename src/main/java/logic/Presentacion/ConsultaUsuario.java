@@ -265,8 +265,7 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
 
                 if (!listaClasesSocio.isEmpty() || listaClasesSocio.get(0) != null) {
 
-                    DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada
-                            .getModel();
+                    DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada.getModel();
 
                     tableModel.setRowCount(0);
 

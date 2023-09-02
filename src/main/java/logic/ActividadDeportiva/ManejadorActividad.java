@@ -46,7 +46,7 @@ public class ManejadorActividad {
         emFactory.close();
     }
 
-    public ActividadDeportiva obtenerActividadPorNombre(String nombre) {
+    public static ActividadDeportiva obtenerActividadPorNombre(String nombre) {
         ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class, nombre);
         return actividad;
     }
@@ -114,6 +114,10 @@ public class ManejadorActividad {
             return null;
         }
 
+    }
+    
+        public List<Clase> getClases(){
+        return getClases();
     }
 
 }

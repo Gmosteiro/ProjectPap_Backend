@@ -62,5 +62,9 @@ public class Fabrica {
     public IControllerRegistroDictado getControllerRegistroDictado() {
         return new ControllerRegistroDictado();
     }
+    
+    public IControllerDictadoClase getControllerDictadoClase() {
+        return new ControllerDictadoClase();
+    }
 
 }
