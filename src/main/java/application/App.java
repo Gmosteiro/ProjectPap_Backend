@@ -16,6 +16,7 @@ import logic.Clase.controllers.IControllerRanking;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
+import logic.Institucion.controllers.IControllerModificarInstitucion;
 import logic.Usuario.controllers.IControllerAltaUsuario;
 import logic.Usuario.controllers.IControllerModificarUsuario;
 import logic.Usuario.controllers.IControllerRegistroDictado;
@@ -28,6 +29,7 @@ public class App {
                         // autoInsert();
                         iniciarVentana();
                         // probarModificarActividad();
+                        //probarModificarInstitucion();
 
                 } catch (Exception e) {
                         System.out.println("Catch main: " + e.getMessage());
@@ -180,6 +182,19 @@ public class App {
                 String nuevoApellido = "Ribeiro";
 
                 controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido);
+
+                System.out.println("Usuario modificado exitosamente.");
+        }
+        
+        public static void probarModificarInstitucion() {
+                Fabrica factory = new Fabrica();
+                IControllerModificarInstitucion controllerInstitucion = factory.getControllerModificarInstitucion();
+
+                String nickname = "ALEX";
+                String nuevodesc = "Alex";
+                String nuevoURL = "Ribeiro";
+
+                controllerInstitucion.modificarInstitucion(nickname, nuevodesc, nuevoURL);
 
                 System.out.println("Usuario modificado exitosamente.");
         }

@@ -28,7 +28,7 @@ public class ManejadorInstitucion {
 
         }
 
-        public void actualizarInstitucion(InstitucionDeportiva institucion) {
+         public void actualizarInstitucion(InstitucionDeportiva institucion) {
                 EntityManager entityManager = emFactory.createEntityManager();
                 entityManager.getTransaction().begin();
 

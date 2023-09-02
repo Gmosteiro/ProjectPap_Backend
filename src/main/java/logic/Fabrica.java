@@ -20,6 +20,8 @@ import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerDictadoClase;
 import logic.Clase.controllers.IControllerRanking;
 import logic.ActividadDeportiva.controllers.ControllerModificarActividad;
+import logic.Institucion.controllers.ControllerModificarInstitucion;
+import logic.Institucion.controllers.IControllerModificarInstitucion;
 
 public class Fabrica {
 
@@ -65,6 +67,10 @@ public class Fabrica {
     
     public IControllerDictadoClase getControllerDictadoClase() {
         return new ControllerDictadoClase();
+    }
+    
+    public IControllerModificarInstitucion getControllerModificarInstitucion() {
+        return new ControllerModificarInstitucion();
     }
 
 }

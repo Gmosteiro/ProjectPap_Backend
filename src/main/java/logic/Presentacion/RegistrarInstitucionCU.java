@@ -7,6 +7,7 @@ package logic.Presentacion;
 import logic.Fabrica;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
 
+
 /**
  *
  * @author Admin
@@ -28,10 +29,10 @@ public class RegistrarInstitucionCU extends javax.swing.JInternalFrame {
     // @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonAceptarInt = new javax.swing.JButton();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabelNombreInstitucion = new javax.swing.JLabel();
         jTextFieldNombreInstitucion = new javax.swing.JTextField();
         jLabelDescInstitucion = new javax.swing.JLabel();
@@ -39,15 +40,11 @@ public class RegistrarInstitucionCU extends javax.swing.JInternalFrame {
         jLabelurlInstitucion = new javax.swing.JLabel();
         jTextFieldUrl = new javax.swing.JTextField();
         jButtonCancelarInst = new javax.swing.JButton();
+        jButtonRIModificar = new javax.swing.JButton();
+        jButtonAceptarInt = new javax.swing.JButton();
 
         setTitle("Registrar Institucion");
-
-        jButtonAceptarInt.setText("Aceptar");
-        jButtonAceptarInt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAceptarIntActionPerformed(evt);
-            }
-        });
+        setPreferredSize(new java.awt.Dimension(750, 332));
 
         jLabelNombreInstitucion.setText("Nombre Institucion");
 
@@ -62,65 +59,109 @@ public class RegistrarInstitucionCU extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonRIModificar.setText("Modificar.Inst");
+        jButtonRIModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRIModificarActionPerformed(evt);
+            }
+        });
+
+        jButtonAceptarInt.setText("Aceptar");
+        jButtonAceptarInt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarIntActionPerformed(evt);
+            }
+        });
+
+        jDesktopPane1.setLayer(jLabelNombreInstitucion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jTextFieldNombreInstitucion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabelDescInstitucion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jTextFieldDescInstitucion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabelurlInstitucion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jTextFieldUrl, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButtonCancelarInst, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButtonRIModificar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButtonAceptarInt, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNombreInstitucion)
+                            .addComponent(jLabelDescInstitucion)
+                            .addComponent(jLabelurlInstitucion))
+                        .addGap(52, 52, 52)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDescInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNombreInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jButtonCancelarInst)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButtonRIModificar)
+                        .addGap(32, 32, 32)
+                        .addComponent(jButtonAceptarInt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(203, Short.MAX_VALUE))
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNombreInstitucion)
+                    .addComponent(jTextFieldNombreInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDescInstitucion)
+                    .addComponent(jTextFieldDescInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelurlInstitucion)
+                    .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCancelarInst)
+                    .addComponent(jButtonAceptarInt)
+                    .addComponent(jButtonRIModificar))
+                .addGap(154, 154, 154))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jButtonCancelarInst)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonAceptarInt, javax.swing.GroupLayout.PREFERRED_SIZE, 97,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33))
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelNombreInstitucion)
-                                        .addComponent(jLabelDescInstitucion)
-                                        .addComponent(jLabelurlInstitucion))
-                                .addGap(52, 52, 52)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldDescInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 113,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldNombreInstitucion,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE, 113,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(135, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabelNombreInstitucion)
-                                        .addComponent(jTextFieldNombreInstitucion,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabelDescInstitucion)
-                                        .addComponent(jTextFieldDescInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabelurlInstitucion)
-                                        .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60,
-                                        Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButtonCancelarInst)
-                                        .addComponent(jButtonAceptarInt))
-                                .addGap(29, 29, 29)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRIModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRIModificarActionPerformed
+        ModificarInstitucion instim = new ModificarInstitucion();
+        instim.setSize(358, 280);
+        int desktopWidth = jDesktopPane1.getWidth();
+        int desktopHeight = jDesktopPane1.getHeight();
+
+        // Calcular coordenadas para centrar el JInternalFrame
+        int x = (desktopWidth - instim.getWidth()) / 2;
+        int y = (desktopHeight - instim.getHeight()) / 2;
+        instim.setLocation(x - 10, y - 20);
+        instim.setVisible(true);
+        // internalFrame.setSize(300, 200);
+        // internalFrame.setVisible(true);
+        jDesktopPane1.add(instim);
+        instim.toFront();
+    }//GEN-LAST:event_jButtonRIModificarActionPerformed
 
     private void jButtonAceptarIntActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonAceptarIntActionPerformed
         Fabrica factory = new Fabrica();
@@ -146,6 +187,8 @@ public class RegistrarInstitucionCU extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptarInt;
     private javax.swing.JButton jButtonCancelarInst;
+    private javax.swing.JButton jButtonRIModificar;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabelDescInstitucion;
     private javax.swing.JLabel jLabelNombreInstitucion;
     private javax.swing.JLabel jLabelurlInstitucion;

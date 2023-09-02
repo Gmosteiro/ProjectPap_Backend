@@ -251,8 +251,16 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jMenuRInstitucionActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuRInstitucionActionPerformed
         RegistrarInstitucionCU reginstitucion = new RegistrarInstitucionCU();
-        reginstitucion.setSize(397, 250);
-        reginstitucion.setLocation(180, 60);
+        reginstitucion.setSize(615, 501);
+        
+        int desktopWidth = jDesktopPane1.getWidth();
+        int desktopHeight = jDesktopPane1.getHeight();
+
+        // Calcular coordenadas para centrar el JInternalFrame
+        int x = (desktopWidth - reginstitucion.getWidth()) / 2;
+        int y = (desktopHeight - reginstitucion.getHeight()) / 2;
+
+        reginstitucion.setLocation(x - 10, y - 20);
         reginstitucion.setVisible(true);
         jDesktopPane1.add(reginstitucion);
         reginstitucion.toFront();

@@ -1,5 +1,6 @@
 package logic.Institucion.controllers;
 
+import javax.swing.JOptionPane;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 
@@ -17,6 +18,13 @@ public class ControllerModificarInstitucion implements IControllerModificarInsti
             institucion.setDescripcion(nuevaDescripcion);
             institucion.setUrl(nuevaURL);
             manejadorInstitucion.actualizarInstitucion(institucion);
+            JOptionPane.showMessageDialog(
+                        null, // Parent component (null for default)
+                        "Institucion Actualizada!", // Message text
+                        "Success", // Dialog title
+                        JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
+                );
+
         } else {
             // Manejar la institución no encontrada
         }

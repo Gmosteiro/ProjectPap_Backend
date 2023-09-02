@@ -41,351 +41,230 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
         // <editor-fold defaultstate="collapsed" desc="Generated
-        // Code">//GEN-BEGIN:initComponents
-        private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-                jButtonRCC = new javax.swing.JButton();
-                TextoIngreseDatosC = new javax.swing.JLabel();
-                jComboBoxProfesorC = new javax.swing.JComboBox<>();
-                TextoNombreC = new javax.swing.JLabel();
-                jComboBoxNombreC = new javax.swing.JComboBox<>();
-                TextoProfesorC = new javax.swing.JLabel();
-                jComboBoxInstitucionesClase = new javax.swing.JComboBox<>();
-                TextoFIC = new javax.swing.JLabel();
-                TextoActividadC = new javax.swing.JLabel();
-                jTextFieldNombreC = new javax.swing.JTextField();
-                jComboBoxActividadesC = new javax.swing.JComboBox<>();
-                TextoHIC = new javax.swing.JLabel();
-                jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
-                TextoURLC = new javax.swing.JLabel();
-                jDateChooserFechaAlta = new com.toedter.calendar.JDateChooser();
-                jTextFieldURLC = new javax.swing.JTextField();
-                jSpinnerRCHinicio = new javax.swing.JSpinner();
-                TextoFAC = new javax.swing.JLabel();
-                jSpinnerRCMinicio = new javax.swing.JSpinner();
-                jButtonRCA = new javax.swing.JButton();
+        jButtonRCC = new javax.swing.JButton();
+        TextoIngreseDatosC = new javax.swing.JLabel();
+        jComboBoxProfesorC = new javax.swing.JComboBox<>();
+        TextoNombreC = new javax.swing.JLabel();
+        jComboBoxNombreC = new javax.swing.JComboBox<>();
+        TextoProfesorC = new javax.swing.JLabel();
+        jComboBoxInstitucionesClase = new javax.swing.JComboBox<>();
+        TextoFIC = new javax.swing.JLabel();
+        TextoActividadC = new javax.swing.JLabel();
+        jTextFieldNombreC = new javax.swing.JTextField();
+        jComboBoxActividadesC = new javax.swing.JComboBox<>();
+        TextoHIC = new javax.swing.JLabel();
+        jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
+        TextoURLC = new javax.swing.JLabel();
+        jDateChooserFechaAlta = new com.toedter.calendar.JDateChooser();
+        jTextFieldURLC = new javax.swing.JTextField();
+        jSpinnerRCHinicio = new javax.swing.JSpinner();
+        TextoFAC = new javax.swing.JLabel();
+        jSpinnerRCMinicio = new javax.swing.JSpinner();
+        jButtonRCA = new javax.swing.JButton();
 
-                setTitle("Registrar Clase");
-                addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-                        public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                        }
+        setTitle("Registrar Clase");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
-                        public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                        }
+        jButtonRCC.setText("Cancelar");
+        jButtonRCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRCCActionPerformed(evt);
+            }
+        });
 
-                        public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                        }
+        TextoIngreseDatosC.setText("Institucion:");
 
-                        public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-                        }
+        jComboBoxProfesorC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxProfesorC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxProfesorCActionPerformed(evt);
+            }
+        });
 
-                        public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-                        }
+        TextoNombreC.setText("Nombre de Clase:");
 
-                        public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-                        }
+        jComboBoxNombreC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxNombreC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxNombreCActionPerformed(evt);
+            }
+        });
 
-                        public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                                formInternalFrameOpened(evt);
-                        }
-                });
+        TextoProfesorC.setText("Profesor:");
 
-                jButtonRCC.setText("Cancelar");
-                jButtonRCC.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jButtonRCCActionPerformed(evt);
-                        }
-                });
+        jComboBoxInstitucionesClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-                TextoIngreseDatosC.setText("Institucion:");
+        TextoFIC.setText("Fecha de inicio:");
 
-                jComboBoxProfesorC.setModel(new javax.swing.DefaultComboBoxModel<>(
-                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                jComboBoxProfesorC.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jComboBoxProfesorCActionPerformed(evt);
-                        }
-                });
+        TextoActividadC.setText("Actividad");
 
-                TextoNombreC.setText("Nombre de Clase:");
+        jTextFieldNombreC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreCActionPerformed(evt);
+            }
+        });
 
-                jComboBoxNombreC.setModel(new javax.swing.DefaultComboBoxModel<>(
-                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                jComboBoxNombreC.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jComboBoxNombreCActionPerformed(evt);
-                        }
-                });
+        jComboBoxActividadesC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxActividadesC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBoxActividadesCFocusGained(evt);
+            }
+        });
 
-                TextoProfesorC.setText("Profesor:");
+        TextoHIC.setText("Hora de Inicio:");
 
-                jComboBoxInstitucionesClase.setModel(new javax.swing.DefaultComboBoxModel<>(
-                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        TextoURLC.setText("URL:");
 
-                TextoFIC.setText("Fecha de inicio:");
+        jTextFieldURLC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldURLCActionPerformed(evt);
+            }
+        });
 
-                TextoActividadC.setText("Actividad");
+        jSpinnerRCHinicio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
 
-                jTextFieldNombreC.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jTextFieldNombreCActionPerformed(evt);
-                        }
-                });
+        TextoFAC.setText("Fecha de Alta");
 
-                jComboBoxActividadesC.setModel(new javax.swing.DefaultComboBoxModel<>(
-                                new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                jComboBoxActividadesC.addFocusListener(new java.awt.event.FocusAdapter() {
-                        public void focusGained(java.awt.event.FocusEvent evt) {
-                                jComboBoxActividadesCFocusGained(evt);
-                        }
-                });
+        jSpinnerRCMinicio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
 
-                TextoHIC.setText("Hora de Inicio:");
+        jButtonRCA.setText("Aceptar");
+        jButtonRCA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRCAActionPerformed(evt);
+            }
+        });
 
-                TextoURLC.setText("URL:");
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(TextoIngreseDatosC)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBoxInstitucionesClase, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(TextoProfesorC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextoNombreC, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TextoFIC)
+                            .addComponent(TextoFAC))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonRCC)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(jButtonRCA)
+                        .addGap(139, 139, 139))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(TextoActividadC)
+                                        .addGap(27, 27, 27))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(TextoHIC)
+                                        .addGap(4, 4, 4)))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jSpinnerRCHinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jSpinnerRCMinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextFieldURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jComboBoxActividadesC, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jComboBoxNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TextoURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TextoIngreseDatosC)
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextoNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextoProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBoxInstitucionesClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextoURLC)
+                            .addComponent(jTextFieldURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TextoActividadC)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jComboBoxActividadesC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextoHIC)
+                            .addComponent(jSpinnerRCHinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerRCMinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextoFIC))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextoFAC)
+                    .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRCC)
+                    .addComponent(jButtonRCA))
+                .addGap(53, 53, 53))
+        );
 
-                jTextFieldURLC.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jTextFieldURLCActionPerformed(evt);
-                        }
-                });
-
-                jSpinnerRCHinicio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-
-                TextoFAC.setText("Fecha de Alta");
-
-                jSpinnerRCMinicio.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-
-                jButtonRCA.setText("Aceptar");
-                jButtonRCA.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jButtonRCAActionPerformed(evt);
-                        }
-                });
-
-                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-                getContentPane().setLayout(layout);
-                layout.setHorizontalGroup(
-                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                layout.createSequentialGroup()
-                                                                                                                .addComponent(TextoIngreseDatosC)
-                                                                                                                .addPreferredGap(
-                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                Short.MAX_VALUE)
-                                                                                                                .addComponent(jComboBoxInstitucionesClase,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                201,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                layout.createSequentialGroup()
-                                                                                                                .addComponent(TextoProfesorC,
-                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                Short.MAX_VALUE)
-                                                                                                                .addPreferredGap(
-                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                .addComponent(jComboBoxProfesorC,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                200,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                layout.createSequentialGroup()
-                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                .addComponent(TextoNombreC,
-                                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                                                                .addComponent(TextoFIC)
-                                                                                                                                .addComponent(TextoFAC))
-                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                                .addPreferredGap(
-                                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                .addComponent(jTextFieldNombreC,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                201,
-                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                                .addGap(52, 52, 52)
-                                                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                                                                .addComponent(jButtonRCC)
-                                                                                                                                                                                .addGap(0, 0, Short.MAX_VALUE))
-                                                                                                                                                                .addComponent(jDateChooserFechaInicio,
-                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                                .addComponent(jDateChooserFechaAlta,
-                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                Short.MAX_VALUE))))))
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                .addGap(220, 220, 220)
-                                                                                                .addComponent(jButtonRCA)
-                                                                                                .addGap(139, 139, 139))
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                layout.createSequentialGroup()
-                                                                                                                .addPreferredGap(
-                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                                                                                                layout.createSequentialGroup()
-                                                                                                                                                                                                .addComponent(TextoActividadC)
-                                                                                                                                                                                                .addGap(27, 27, 27))
-                                                                                                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                                                                                                layout.createSequentialGroup()
-                                                                                                                                                                                                .addComponent(TextoHIC)
-                                                                                                                                                                                                .addGap(4, 4, 4)))
-                                                                                                                                                .addGap(26, 26, 26)
-                                                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                                                                                                false)
-                                                                                                                                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                                                                                                                                layout.createSequentialGroup()
-                                                                                                                                                                                                                .addComponent(jSpinnerRCHinicio,
-                                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                                                49,
-                                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                                                .addPreferredGap(
-                                                                                                                                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                                                                                .addComponent(jSpinnerRCMinicio,
-                                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                                                                                .addComponent(jTextFieldURLC,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                154,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                                                                                                .addComponent(jComboBoxActividadesC,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                156,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                .addGap(20, 20, 20)
-                                                                                                                                                                                .addComponent(jComboBoxNombreC,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                                                                                                .addComponent(TextoURLC,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                67,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                                .addContainerGap()))));
-                layout.setVerticalGroup(
-                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-                                                                .createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                .addComponent(TextoIngreseDatosC)
-                                                                                                .addGap(16, 16, 16)
-                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                                .addComponent(jTextFieldNombreC,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                30,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(TextoNombreC,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                30,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                                .addPreferredGap(
-                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                                .addComponent(TextoProfesorC,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                30,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(jComboBoxProfesorC,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                                .addComponent(jComboBoxInstitucionesClase,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                .addGap(74, 74, 74)
-                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                                .addComponent(TextoURLC)
-                                                                                                                .addComponent(jTextFieldURLC,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                30,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                                .addGroup(layout.createSequentialGroup()
-                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                                                .addComponent(TextoActividadC)
-                                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                                                .addComponent(jComboBoxActividadesC,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                                .addComponent(jComboBoxNombreC,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                                                .addGap(18, 18, 18)
-                                                                                                .addGroup(layout.createParallelGroup(
-                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                                .addComponent(TextoHIC)
-                                                                                                                .addComponent(jSpinnerRCHinicio,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(jSpinnerRCMinicio,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(jDateChooserFechaInicio,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(TextoFIC))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(TextoFAC)
-                                                                                .addComponent(jDateChooserFechaAlta,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(51, 51, 51)
-                                                                .addGroup(layout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                .addComponent(jButtonRCC)
-                                                                                .addComponent(jButtonRCA))
-                                                                .addGap(53, 53, 53)));
-
-                pack();
-        }// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
         private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCCActionPerformed
                 jTextFieldNombreC.setText("");
@@ -507,26 +386,26 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
                 addProfesoresToComboBox();
         }// GEN-LAST:event_formInternalFrameOpened
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
-        private javax.swing.JLabel TextoActividadC;
-        private javax.swing.JLabel TextoFAC;
-        private javax.swing.JLabel TextoFIC;
-        private javax.swing.JLabel TextoHIC;
-        private javax.swing.JLabel TextoIngreseDatosC;
-        private javax.swing.JLabel TextoNombreC;
-        private javax.swing.JLabel TextoProfesorC;
-        private javax.swing.JLabel TextoURLC;
-        private javax.swing.JButton jButtonRCA;
-        private javax.swing.JButton jButtonRCC;
-        private javax.swing.JComboBox<String> jComboBoxActividadesC;
-        private javax.swing.JComboBox<String> jComboBoxInstitucionesClase;
-        private javax.swing.JComboBox<String> jComboBoxNombreC;
-        private javax.swing.JComboBox<String> jComboBoxProfesorC;
-        private com.toedter.calendar.JDateChooser jDateChooserFechaAlta;
-        private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
-        private javax.swing.JSpinner jSpinnerRCHinicio;
-        private javax.swing.JSpinner jSpinnerRCMinicio;
-        private javax.swing.JTextField jTextFieldNombreC;
-        private javax.swing.JTextField jTextFieldURLC;
-        // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TextoActividadC;
+    private javax.swing.JLabel TextoFAC;
+    private javax.swing.JLabel TextoFIC;
+    private javax.swing.JLabel TextoHIC;
+    private javax.swing.JLabel TextoIngreseDatosC;
+    private javax.swing.JLabel TextoNombreC;
+    private javax.swing.JLabel TextoProfesorC;
+    private javax.swing.JLabel TextoURLC;
+    private javax.swing.JButton jButtonRCA;
+    private javax.swing.JButton jButtonRCC;
+    private javax.swing.JComboBox<String> jComboBoxActividadesC;
+    private javax.swing.JComboBox<String> jComboBoxInstitucionesClase;
+    private javax.swing.JComboBox<String> jComboBoxNombreC;
+    private javax.swing.JComboBox<String> jComboBoxProfesorC;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaAlta;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
+    private javax.swing.JSpinner jSpinnerRCHinicio;
+    private javax.swing.JSpinner jSpinnerRCMinicio;
+    private javax.swing.JTextField jTextFieldNombreC;
+    private javax.swing.JTextField jTextFieldURLC;
+    // End of variables declaration//GEN-END:variables
 }
