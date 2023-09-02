@@ -48,6 +48,7 @@ public class Ventana extends javax.swing.JFrame {
         jMenuConsultarUsuario = new javax.swing.JMenuItem();
         jMenuConsutaActividad = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemModificarActividad = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 720));
@@ -117,11 +118,11 @@ public class Ventana extends javax.swing.JFrame {
         jMenuConsultas.setText("Consultas");
 
         jMenuConsultarUsuario.setText("Consultar Usuario");
-        jMenuConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuConsultarUsuarioActionPerformed(evt);
-            }
-        });
+        // jMenuConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        //     public void actionPerformed(java.awt.event.ActionEvent evt) {
+        //         jMenuConsultarUsuarioActionPerformed(evt);
+        //     }
+        // });
         jMenuConsultas.add(jMenuConsultarUsuario);
 
         jMenuConsutaActividad.setText("Consutar Actividad");
@@ -139,6 +140,14 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         jMenuConsultas.add(jMenuItem1);
+
+        jMenuItemModificarActividad.setText("Modificar Actividad");
+        jMenuItemModificarActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemModificarActividadActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemModificarActividad);
 
         jMenuBar1.add(jMenuConsultas);
 
@@ -189,6 +198,20 @@ public class Ventana extends javax.swing.JFrame {
         conRanking.toFront();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItemModificarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarActividadActionPerformed
+        // TODO add your handling code here:
+            ModificarActividad modactividad = new ModificarActividad();
+        modactividad.setSize(760, 500);
+        modactividad.setLocation(15, 50);
+        modactividad.setVisible(true);
+        // internalFrame.setSize(300, 200);
+        // internalFrame.setVisible(true);
+        jDesktopPane1.add(modactividad);
+        modactividad.toFront();
+         // Establecer ubicación centrada
+    
+    }//GEN-LAST:event_jMenuItemModificarActividadActionPerformed
+
     private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt){// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
 
         ConsultaActividades conactividad = new ConsultaActividades();
@@ -237,23 +260,23 @@ public class Ventana extends javax.swing.JFrame {
         reginstitucion.toFront();
     }// GEN-LAST:event_jMenuRInstitucionActionPerformed
 
-    private void jMenuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsultarUsuarioActionPerformed
-        ConsultaUsuario consulta = new ConsultaUsuario();
-        consulta.setSize(750, 600); // Establecer el tamaño deseado
+    // private void jMenuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsultarUsuarioActionPerformed
+    //     ConsultaUsuario consulta = new ConsultaUsuario();
+    //     consulta.setSize(750, 600); // Establecer el tamaño deseado
 
-        // Obtener dimensiones del jDesktopPane1
-        int desktopWidth = jDesktopPane1.getWidth();
-        int desktopHeight = jDesktopPane1.getHeight();
+    //     // Obtener dimensiones del jDesktopPane1
+    //     int desktopWidth = jDesktopPane1.getWidth();
+    //     int desktopHeight = jDesktopPane1.getHeight();
 
-        // Calcular coordenadas para centrar el JInternalFrame
-        int x = (desktopWidth - consulta.getWidth()) / 2;
-        int y = (desktopHeight - consulta.getHeight()) / 2;
+    //     // Calcular coordenadas para centrar el JInternalFrame
+    //     int x = (desktopWidth - consulta.getWidth()) / 2;
+    //     int y = (desktopHeight - consulta.getHeight()) / 2;
 
-        consulta.setLocation(x - 10, y - 20);
-        consulta.setVisible(true);
-        jDesktopPane1.add(consulta);
-        consulta.toFront();
-    }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
+    //     consulta.setLocation(x - 10, y - 20);
+    //     consulta.setVisible(true);
+    //     jDesktopPane1.add(consulta);
+    //     consulta.toFront();
+    // }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,6 +290,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuConsutaActividad;
     private javax.swing.JMenu jMenuInicio;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemModificarActividad;
     private javax.swing.JMenuItem jMenuItemRActividad;
     private javax.swing.JMenuItem jMenuItemRClase;
     private javax.swing.JMenuItem jMenuItemRCliente;
