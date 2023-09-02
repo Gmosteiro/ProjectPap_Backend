@@ -179,10 +179,6 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
             // Puedes mostrar un mensaje de error o realizar alguna otra acción
             JOptionPane.showMessageDialog(this, "No se encontró la actividad seleccionada.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } else {
-        // Manejar el caso en el que no se ha seleccionado ningún elemento
-        // Puedes mostrar un mensaje de aviso o realizar alguna otra acción
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione una actividad antes de continuar.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
     }
     }//GEN-LAST:event_jComboBoxActividadesMActionPerformed
 
@@ -192,8 +188,7 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCanceloMAActionPerformed
 
     private void jButtonModificarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActividadActionPerformed
-        // TODO add your handling code here:
-        // Obtener los datos de los campos JTextField
+      // Obtener los datos de los campos JTextField
     String nombreActividadSeleccionada = jComboBoxActividadesM.getSelectedItem().toString();
     String nuevaDescripcion = jTextFieldDescAct.getText();
     int nuevaDuracion = Integer.parseInt(jTextFieldDuracionAct.getText());
@@ -203,7 +198,14 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
     ControllerModificarActividad controller = new ControllerModificarActividad();
 
     // Llamar al método para modificar la actividad
-    controller.modificarActividad(nombreActividadSeleccionada, nuevaDescripcion, nuevaDuracion, nuevoCosto);
+    boolean modificacionExitosa = controller.modificarActividad(nombreActividadSeleccionada, nuevaDescripcion, nuevaDuracion, nuevoCosto);
+
+    // Mostrar un mensaje al usuario
+    if (modificacionExitosa) {
+        JOptionPane.showMessageDialog(this, "Actividad modificada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo modificar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButtonModificarActividadActionPerformed
 
     private void addActividadesToComboBox(String option) {
