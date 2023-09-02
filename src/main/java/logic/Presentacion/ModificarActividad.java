@@ -6,8 +6,10 @@ package logic.Presentacion;
 
 import static java.lang.ProcessHandle.current;
 import java.util.List;
+import javax.swing.JOptionPane;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
+import logic.ActividadDeportiva.controllers.ControllerModificarActividad;
 
 /**
  *
@@ -40,6 +42,7 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
         jTextFieldDuracionAct = new javax.swing.JTextField();
         jTextFieldCosto = new javax.swing.JTextField();
         jButtonModificarActividad = new javax.swing.JButton();
+        jButtonCanceloMA = new javax.swing.JButton();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -75,6 +78,18 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
         jLabel4.setText("Costo");
 
         jButtonModificarActividad.setText("Modificar");
+        jButtonModificarActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActividadActionPerformed(evt);
+            }
+        });
+
+        jButtonCanceloMA.setText("CANCELO");
+        jButtonCanceloMA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCanceloMAActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,24 +98,27 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxActividadesM, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonCanceloMA)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonModificarActividad)
+                        .addGap(83, 83, 83))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldCosto)
-                            .addComponent(jTextFieldDuracionAct)
-                            .addComponent(jTextFieldDescAct))
-                        .addGap(56, 56, 56)))
-                .addGap(125, 125, 125))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonModificarActividad)
-                .addGap(83, 83, 83))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxActividadesM, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldCosto)
+                                    .addComponent(jTextFieldDuracionAct)
+                                    .addComponent(jTextFieldDescAct))
+                                .addGap(56, 56, 56)))
+                        .addGap(125, 125, 125))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +143,9 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jButtonModificarActividad)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonModificarActividad)
+                    .addComponent(jButtonCanceloMA))
                 .addGap(140, 140, 140))
         );
 
@@ -138,59 +158,78 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void jComboBoxActividadesMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActividadesMActionPerformed
-        // TODO add your handling code here:
-            // Obtener el nombre de la actividad seleccionada en el ComboBox
-    String nombreActividadSeleccionada = jComboBoxActividadesM.getSelectedItem().toString();
-    
-    // Obtener la actividad seleccionada del manejador de actividades
-    ActividadDeportiva actividadSeleccionada = ManejadorActividad.obtenerActividadPorNombre(nombreActividadSeleccionada);
-    
-    // Verificar si se encontró la actividad
-    if (actividadSeleccionada != null) {
-        // Cargar los datos de la actividad en los campos correspondientes
-        jTextFieldDescAct.setText(actividadSeleccionada.getDescripcion());
-        jTextFieldDuracionAct.setText(actividadSeleccionada.getDuracion());
-        jTextFieldCosto.setText(String.valueOf(actividadSeleccionada.getCosto()));
+           // Cuando se seleccione una actividad en el JComboBox
+    Object selectedItem = jComboBoxActividadesM.getSelectedItem();
+
+    if (selectedItem != null) {
+        String nombreActividadSeleccionada = selectedItem.toString();
+
+        // Obtener la actividad seleccionada del manejador de actividades
+        ManejadorActividad manejador = new ManejadorActividad();
+        ActividadDeportiva actividadSeleccionada = manejador.obtenerActividadPorNombre(nombreActividadSeleccionada);
+
+        // Verificar si se encontró la actividad
+        if (actividadSeleccionada != null) {
+            // Cargar los datos de la actividad en los campos JTextField
+            jTextFieldDescAct.setText(actividadSeleccionada.getDescripcion());
+            jTextFieldDuracionAct.setText(Integer.toString(actividadSeleccionada.getDuracion()));
+            jTextFieldCosto.setText(String.valueOf(actividadSeleccionada.getCosto()));
+        } else {
+            // Manejar el caso en el que no se encontró la actividad
+            // Puedes mostrar un mensaje de error o realizar alguna otra acción
+            JOptionPane.showMessageDialog(this, "No se encontró la actividad seleccionada.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     } else {
-        // Manejar el caso en el que no se encontró la actividad
-        // Puedes mostrar un mensaje de error o realizar alguna otra acción
+        // Manejar el caso en el que no se ha seleccionado ningún elemento
+        // Puedes mostrar un mensaje de aviso o realizar alguna otra acción
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione una actividad antes de continuar.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
     }
     }//GEN-LAST:event_jComboBoxActividadesMActionPerformed
 
+    private void jButtonCanceloMAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCanceloMAActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonCanceloMAActionPerformed
+
+    private void jButtonModificarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActividadActionPerformed
+        // TODO add your handling code here:
+        // Obtener los datos de los campos JTextField
+    String nombreActividadSeleccionada = jComboBoxActividadesM.getSelectedItem().toString();
+    String nuevaDescripcion = jTextFieldDescAct.getText();
+    int nuevaDuracion = Integer.parseInt(jTextFieldDuracionAct.getText());
+    float nuevoCosto = Float.parseFloat(jTextFieldCosto.getText());
+
+    // Crear una instancia del controlador
+    ControllerModificarActividad controller = new ControllerModificarActividad();
+
+    // Llamar al método para modificar la actividad
+    controller.modificarActividad(nombreActividadSeleccionada, nuevaDescripcion, nuevaDuracion, nuevoCosto);
+    }//GEN-LAST:event_jButtonModificarActividadActionPerformed
+
     private void addActividadesToComboBox(String option) {
+           // Obtener la lista de actividades y cargarlas en el JComboBox
+    List<ActividadDeportiva> actividades = ManejadorActividad.getActividades();
 
-        List<ActividadDeportiva> actividades = ManejadorActividad.getActividades();
-        // Object selectedItem;
+    if (actividades.isEmpty()) {
+        // Manejar el caso en el que no hay actividades disponibles
+        JOptionPane.showMessageDialog(this, "No hay actividades disponibles.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        // Limpiar el JComboBox antes de agregar las actividades
+        jComboBoxActividadesM.removeAllItems();
 
-        switch (option) {
-            case "Actividad":
-
-
-                jComboBoxActividadesM.removeAllItems();
-
-                for (ActividadDeportiva actividad : actividades) {
-                    jComboBoxActividadesM.addItem(actividad.getNombre());
-
-                }
-
-                // selectedItem = jComboBoxInstitucionesClase.getSelectedItem();
-
-                // if (selectedItem != null) {
-                // String selectedText = selectedItem.toString(); // Convertir el elemento a
-                // String
-                // }
-
-                break;
-
-            default:
-                break;
+        // Agregar las actividades al JComboBox
+        for (ActividadDeportiva actividad : actividades) {
+            jComboBoxActividadesM.addItem(actividad.getNombre());
         }
+    }
+       
     }
     
 
  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCanceloMA;
     private javax.swing.JButton jButtonModificarActividad;
     private javax.swing.JComboBox<String> jComboBoxActividadesM;
     private javax.swing.JLabel jLabel1;
