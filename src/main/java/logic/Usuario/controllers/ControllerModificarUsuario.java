@@ -23,14 +23,17 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                     profesor.setNombre(nuevoNombre);
                     profesor.setApellido(nuevoApellido);
                     profesor.setFechaNac(nuevafecha);
+                    em.merge(profesor); // Actualizar la entidad ACA ESTA EL PROBLEMA
+                    em.getTransaction().commit();
                 } else if (usuario instanceof Socio) {
                     Socio socio = (Socio) usuario;
                     socio.setNombre(nuevoNombre);
                     socio.setApellido(nuevoApellido);
                     socio.setFechaNac(nuevafecha);
+
+                    em.merge(socio); // Actualizar la entidad ACA ESTA EL PROBLEMA
+                    em.getTransaction().commit();
                 }
-                em.merge(usuario); // Actualizar la entidad ACA ESTA EL PROBLEMA
-                em.getTransaction().commit();
 
                 System.out.println("Usuario modificado exitosamente.");
                 JOptionPane.showMessageDialog(null, "Usuario Actualizado!", "Success", JOptionPane.INFORMATION_MESSAGE);
