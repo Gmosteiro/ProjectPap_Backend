@@ -18,6 +18,6 @@ public interface IControllerConsultaUsuario {
 
     List<Clase> getClasesAsociadasBySocio(Socio profesor);
 
-    List<ActividadDeportiva> getActividadesAsociadas(Profesor profesor);
+  //  List<ActividadDeportiva> getActividadesAsociadas(Profesor profesor);
 
 }

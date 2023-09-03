@@ -87,26 +87,26 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
 
     };
 
-    public List<ActividadDeportiva> getActividadesAsociadas(Profesor filter) {
-        try {
-            // Aplicar lógica de filtrado solo si filter no es nulo o vacío
-            if (filter != null) {
-                // Aplicar lógica de filtrado aquí
-                return ManejadorActividad.getActividadesByProfe(filter);
-
-            } else {
-                return new ArrayList<>();
-            }
-
-        } catch (Exception errorException) {
-            System.out.println("Catch getClasesAsociadasByProfe: " + errorException);
-            String errorMessage = extractErrorMessage(errorException.getMessage());
-            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
-
-            return new ArrayList<>();
-        }
-
-    };
+//    public List<ActividadDeportiva> getActividadesAsociadas(Profesor filter) {
+//        try {
+//            // Aplicar lógica de filtrado solo si filter no es nulo o vacío
+//            if (filter != null) {
+//                // Aplicar lógica de filtrado aquí
+//               // return ManejadorActividad.getActividadesByProfe(filter);
+//
+//            } else {
+//                return new ArrayList<>();
+//            }
+//
+//        } catch (Exception errorException) {
+//            System.out.println("Catch getClasesAsociadasByProfe: " + errorException);
+//            String errorMessage = extractErrorMessage(errorException.getMessage());
+//            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+//
+//            return new ArrayList<>();
+//        }
+//
+//    }
 
     private String extractErrorMessage(String fullErrorMessage) {
         int startIndex = fullErrorMessage.indexOf(":") + 1; // Encuentra la posición después del primer ":"
