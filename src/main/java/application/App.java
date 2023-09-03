@@ -53,7 +53,7 @@ public class App {
 			Fabrica factory = new Fabrica();
 			IControllerRegistroDictado controllerDictado = factory.getControllerRegistroDictado();
 			LocalDate fecha = LocalDate.of(2023, 8, 17);
-			controllerDictado.addRegistroDictado("socio1", "Matematica", fecha);
+			controllerDictado.addRegistroDictado("socio1", "Running", fecha);
 		} catch (Exception e) {
 			System.out.println("Error: " + e);
 		}
@@ -86,7 +86,7 @@ public class App {
 		Fabrica factory = new Fabrica();
 		IControllerAltaInstitucionDeportiva controllerInstituciones = factory
 				.getControladorAltaInstitucionDeportiva();
-		controllerInstituciones.addInstitucionDeportiva("ESI", "La UTU", "utu.com");
+		controllerInstituciones.addInstitucionDeportiva("Gimnasio", "Gym", "gym.com");
 
 	}
 
@@ -112,7 +112,7 @@ public class App {
 
 			IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
 
-			controllerAltaClase.addClase("Matematica", fecha, hora, "ESI", fechareg, "Juan", "Matematica");
+			controllerAltaClase.addClase("Running", fecha, hora, "run.com", fechareg, "Juan", "Atletismo");
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
@@ -129,7 +129,7 @@ public class App {
 			IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
 			LocalDate fechareg = LocalDate.of(2023, 8, 17);
 
-			controllerAltaActividad.altaActividad("Matematica", "numeritos", 10, 100, fechareg, "ESI");
+			controllerAltaActividad.altaActividad("Atletismo", "Moverse", 10, 100, fechareg, "Gimnasio");
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());

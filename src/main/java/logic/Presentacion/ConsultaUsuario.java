@@ -6,7 +6,11 @@ package logic.Presentacion;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.swing.table.DefaultTableModel;
 
 import logic.Fabrica;
@@ -264,13 +268,18 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                     tableModel.fireTableDataChanged();
                 }
 
-                List<ActividadDeportiva> Actividades = consultaUsuario.getActividadesAsociadas((Profesor) selectedUser);
+                List<ActividadDeportiva> actividadesList1 = consultaUsuario
+                        .getActividadesAsociadas((Profesor) selectedUser);
+
+                Set<ActividadDeportiva> actividadesSet = new HashSet<>(actividadesList1);
+
+                List<ActividadDeportiva> Actividades = new ArrayList<>(actividadesSet);
+
+                DefaultTableModel tableModelActividades = (DefaultTableModel) jTableActividadesAsociadas.getModel();
+
+                tableModelActividades.setRowCount(0);
 
                 if (!Actividades.isEmpty() || Actividades.get(0) != null) {
-
-                    DefaultTableModel tableModelActividades = (DefaultTableModel) jTableActividadesAsociadas.getModel();
-
-                    tableModelActividades.setRowCount(0);
 
                     for (ActividadDeportiva actividad : Actividades) {
                         Object[] rowData = { actividad.getNombre(), "$" + actividad.getCosto(),
@@ -279,21 +288,17 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                         tableModelActividades.addRow(rowData);
                     }
 
-                    // Notificar al modelo de la tabla que se han realizado cambios
                     tableModelActividades.fireTableDataChanged();
                 }
 
             } else if (selectedUser instanceof Socio) {
-                // Socio socio = (Socio) selectedUser; // Puedes hacer un casting a Socio
-                System.out.println("El usuario seleccionado es un Socio.");
 
                 List<Clase> listaClasesSocio = consultaUsuario.getClasesAsociadasBySocio((Socio) selectedUser);
+                DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada.getModel();
+
+                tableModel.setRowCount(0);
 
                 if (!listaClasesSocio.isEmpty() || listaClasesSocio.get(0) != null) {
-
-                    DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada.getModel();
-
-                    tableModel.setRowCount(0);
 
                     for (Clase clase : listaClasesSocio) {
                         Object[] rowData = { clase.getNombre(), clase.getFechaFormatted(),
@@ -305,6 +310,8 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
 
                     tableModel.fireTableDataChanged();
                 }
+
+                jTableActividadesAsociadas.removeAll();
 
             }
 
