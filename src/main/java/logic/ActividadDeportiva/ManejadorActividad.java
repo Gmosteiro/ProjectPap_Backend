@@ -91,28 +91,27 @@ public class ManejadorActividad {
         return actividades;
     }
 
-    // public static List<ActividadDeportiva> getActividadesByProfe(Profesor profesor) {
+     public static List<ActividadDeportiva> getActividadesByProfe(Profesor profesor) {
 
-    //     try {
-    //         List<ActividadDeportiva> resultList = entityManager.createQuery(
-    //                 "SELECT a " +
-    //                         "FROM ActividadDeportiva a " +
-    //                         "INNER JOIN a.Clases c " +
-    //                         "INNER JOIN c.profesor p " +
-    //                         "WHERE p = :profesor",
-    //                 ActividadDeportiva.class)
-    //                 .setParameter("profesor", profesor)
-    //                 .getResultList();
+         try {
+             List<ActividadDeportiva> resultList = entityManager.createQuery(
+                     "SELECT a " +
+                             "FROM ActividadDeportiva a " +
+                             "INNER JOIN a.Clases c " +
+                             "INNER JOIN c.profesor p " +
+                             "WHERE p = :profesor",
+                     ActividadDeportiva.class)
+                     .setParameter("profesor", profesor)
+                     .getResultList();
 
-    //         return resultList;
-    //     } catch (Exception e) {
-    //         System.out.println("Error catch getClasesByProfe " + e);
-    //         return null;
-    //     }
+             return resultList;
+         } catch (Exception e) {
+             System.out.println("Error catch getClasesByProfe " + e);
+             return null;
+         }
 
-    // }
+     }
 
-    //}
 
     public List<Clase> getClases() {
         return getClases();
