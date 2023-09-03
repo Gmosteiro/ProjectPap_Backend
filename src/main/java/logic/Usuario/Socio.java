@@ -1,6 +1,7 @@
 package logic.Usuario;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Socio extends Usuario {
 
-    @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL)
     private List<Registro> clasesRegistradas;
 
     public Socio() {
@@ -20,7 +21,7 @@ public class Socio extends Usuario {
 
     public Socio(String nickname, String nombre, String apellido, String email, LocalDate fechaNac) {
         super(nickname, nombre, apellido, email, fechaNac);
-        // this.clasesRegistradas = new ArrayList<>();
+        this.clasesRegistradas = new ArrayList<>();
     }
 
     public List<Registro> getClasesRegistradas() {

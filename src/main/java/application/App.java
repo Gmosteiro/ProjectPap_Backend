@@ -25,10 +25,10 @@ public class App {
 
 	public static void main(String[] args) {
 
-                try {
-                        // autoInsert();
-                        iniciarVentana();
-                        //probarModificarUsuario();
+		try {
+			// autoInsert();
+			iniciarVentana();
+			// probarModificarUsuario();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
@@ -44,6 +44,7 @@ public class App {
 		probarAddActividad();
 		probarAddUsuarios();
 		probarAddClase();
+		probarAddRegistroDictado();
 	}
 
 	public static void probarAddRegistroDictado() {
@@ -176,12 +177,12 @@ public class App {
 		Fabrica factory = new Fabrica();
 		IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
 
-                String nickname = "alexis";
-                String nuevoNombre = "Alex";
-                String nuevoApellido = "Ribeiro";
-                LocalDate nuevafecha = LocalDate.of(2023, 12, 24);
+		String nickname = "socio1";
+		String nuevoNombre = "Alex";
+		String nuevoApellido = "Ribeiro";
+		LocalDate nuevafecha = LocalDate.of(2023, 12, 24);
 
-                controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido, nuevafecha);
+		controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido, nuevafecha);
 
 		System.out.println("Usuario modificado exitosamente.");
 	}

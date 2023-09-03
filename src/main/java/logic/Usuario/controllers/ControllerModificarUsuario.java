@@ -1,6 +1,8 @@
 package logic.Usuario.controllers;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import logic.Usuario.*;
 
 import javax.persistence.EntityManager;
@@ -19,20 +21,20 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
             Usuario usuario = ManejadorUsuarios.getUser(nickname);
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
-                    Profesor profesor = (Profesor) usuario;
+                    Profesor profesor = em.find(Profesor.class, usuario.getId_usuario());
                     profesor.setNombre(nuevoNombre);
                     profesor.setApellido(nuevoApellido);
                     profesor.setFechaNac(nuevafecha);
-                    em.merge(profesor); // Actualizar la entidad ACA ESTA EL PROBLEMA
+                    em.merge(profesor);
                     em.getTransaction().commit();
                 } else if (usuario instanceof Socio) {
-                    Socio socio = (Socio) usuario;
+                    Socio socio = em.find(Socio.class, usuario.getId_usuario());
                     socio.setNombre(nuevoNombre);
                     socio.setApellido(nuevoApellido);
                     socio.setFechaNac(nuevafecha);
-
-                    em.merge(socio); // Actualizar la entidad ACA ESTA EL PROBLEMA
+                    em.merge(socio);
                     em.getTransaction().commit();
+
                 }
 
                 System.out.println("Usuario modificado exitosamente.");
@@ -48,6 +50,7 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                 );
             }
         } catch (Exception e) {
+            System.out.println("Catch modificarUsuario: " + e);
             e.printStackTrace();
         } finally {
             em.close();
