@@ -241,7 +241,8 @@ public class ConsultaActividades extends javax.swing.JInternalFrame {
         ManejadorActividad manejadorActividades = new ManejadorActividad();
 
         // Obtener la lista de actividades deportivas por institución
-        List<ActividadDeportiva> actividades = manejadorActividades.getActividadesByInstitucion(nombreInstitucion);
+        InstitucionDeportiva instituto = ManejadorInstitucion.getInstitucionesByName(nombreInstitucion);
+        List<ActividadDeportiva> actividades = manejadorActividades.getActividadesByInstitucion(instituto);
 
         // Obtener el modelo de datos de jTableListaActividad
         DefaultTableModel model = (DefaultTableModel) jTableListaActividad.getModel();

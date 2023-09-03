@@ -147,7 +147,6 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButtonCancelarConsultaActividad">
       <Properties>
-
         <Property name="text" type="java.lang.String" value="Clases Asociadas:"/>
       </Properties>
     </Component>
@@ -180,14 +179,8 @@
     </Container>
     <Component class="javax.swing.JLabel" name="LabelActividadesAsociadas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Actividades Asociadas:"/>
-
         <Property name="text" type="java.lang.String" value="Cancelar"/>
-
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarConsultaActividadActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
