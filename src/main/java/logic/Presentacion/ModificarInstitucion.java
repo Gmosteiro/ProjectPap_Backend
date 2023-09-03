@@ -173,6 +173,8 @@ public class ModificarInstitucion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void jButtonMICActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMICActionPerformed
+        jTextFieldMIDesc.setText("");
+        jTextFieldMIURL.setText("");
         this.dispose();
     }//GEN-LAST:event_jButtonMICActionPerformed
 
