@@ -5,8 +5,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
 import logic.Usuario.Registro;
@@ -39,7 +37,6 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
         }
     }
 
-
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -55,25 +52,20 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
         }
     }
 
-  public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
-    EntityManager em = emf.createEntityManager();
-    try {
-        em.getTransaction().begin();
+    public Clase obtenerClasePorNombre(String nombreClase) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
 
-        TypedQuery<Clase> query = em.createQuery(
-            "SELECT c FROM Clase c WHERE c.actividad = :actividad",
-            Clase.class);
-        query.setParameter("actividad", actividad);
+            Clase clase = em.find(Clase.class, nombreClase);
 
-        List<Clase> clases = query.getResultList();
+            em.getTransaction().commit();
 
-        em.getTransaction().commit();
-
-        return clases;
-    } finally {
-        em.close();
+            return clase;
+        } finally {
+            em.close();
+        }
     }
-}
 
     public List<Registro> obtenerRegistrosPorClase(Clase clase) {
         EntityManager em = emf.createEntityManager();

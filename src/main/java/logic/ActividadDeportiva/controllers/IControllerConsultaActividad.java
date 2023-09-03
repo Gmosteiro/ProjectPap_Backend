@@ -12,10 +12,8 @@ public interface IControllerConsultaActividad {
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad);
 
-    List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad);
+    public Clase obtenerClasePorNombre(String nombreClase);
 
     public List<Registro> obtenerRegistrosPorClase(Clase clase);
-
-
 
 }

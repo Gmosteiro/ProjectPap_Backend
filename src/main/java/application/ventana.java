@@ -4,7 +4,6 @@
  */
 package application;
 
-import logic.Presentacion.RankingActividades;
 import application.Ventana;
 import javax.swing.JInternalFrame;
 import logic.Presentacion.*;
@@ -33,13 +32,10 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -56,9 +52,6 @@ public class Ventana extends javax.swing.JFrame {
         jMenuConsultarUsuario = new javax.swing.JMenuItem();
         jMenuConsutaActividad = new javax.swing.JMenuItem();
         jMenuItemConsultarClase = new javax.swing.JMenuItem();
-        jMenuIitemrankingActividad = new javax.swing.JMenuItem();
-        jMenuItemModificarActividad = new javax.swing.JMenuItem();
-
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 720));
@@ -151,7 +144,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         jMenuConsultas.add(jMenuConsutaActividad);
 
-
         jMenuItemConsultarClase.setText("Consultar Clase");
         jMenuItemConsultarClase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,23 +151,6 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         jMenuConsultas.add(jMenuItemConsultarClase);
-
-        jMenuIitemrankingActividad.setText("Ranking Actividades");
-        jMenuIitemrankingActividad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuIitemrankingActividadActionPerformed(evt);
-            }
-        });
-        jMenuConsultas.add(jMenuIitemrankingActividad);
-
-        jMenuItemModificarActividad.setText("Modificar Actividad");
-        jMenuItemModificarActividad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemModificarActividadActionPerformed(evt);
-            }
-        });
-        jMenuConsultas.add(jMenuItemModificarActividad);
-
 
         jMenuBar1.add(jMenuConsultas);
 
@@ -237,7 +212,6 @@ public class Ventana extends javax.swing.JFrame {
         reclase.toFront();
     }// GEN-LAST:event_jMenuItemRClaseActionPerformed
 
-
     private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
         ConsultarActividades ventanaConsultaActividad = new ConsultarActividades();
         ventanaConsultaActividad.setSize(760, 500);
@@ -245,45 +219,6 @@ public class Ventana extends javax.swing.JFrame {
         ventanaConsultaActividad.setVisible(true);
         jDesktopPane1.add(ventanaConsultaActividad);
         ventanaConsultaActividad.toFront();
-
-    private void jMenuIitemrankingActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIitemrankingActividadActionPerformed
-        // TODO add your handling code here:
-                RankingActividades conRanking = new RankingActividades();
-        conRanking.setSize(560, 500);
-        conRanking.setLocation(50, 50);
-        conRanking.setVisible(true);
-        // internalFrame.setSize(300, 200);
-        // internalFrame.setVisible(true);
-        jDesktopPane1.add(conRanking);
-        conRanking.toFront();
-    }//GEN-LAST:event_jMenuIitemrankingActividadActionPerformed
-
-    private void jMenuItemModificarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarActividadActionPerformed
-        // TODO add your handling code here:
-            ModificarActividad modactividad = new ModificarActividad();
-        modactividad.setSize(760, 500);
-        modactividad.setLocation(15, 50);
-        modactividad.setVisible(true);
-        // internalFrame.setSize(300, 200);
-        // internalFrame.setVisible(true);
-        jDesktopPane1.add(modactividad);
-        modactividad.toFront();
-         // Establecer ubicación centrada
-    
-    }//GEN-LAST:event_jMenuItemModificarActividadActionPerformed
-
-    private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt){// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
-
-        ConsultaActividades conactividad = new ConsultaActividades();
-        conactividad.setSize(760, 500);
-        conactividad.setLocation(15, 50);
-        conactividad.setVisible(true);
-        // internalFrame.setSize(300, 200);
-        // internalFrame.setVisible(true);
-        jDesktopPane1.add(conactividad);
-        conactividad.toFront();
-         // Establecer ubicación centrada
-
     }// GEN-LAST:event_jMenuConsutaActividadActionPerformed
 
     private void jMenuItemRActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRActividadActionPerformed
@@ -324,23 +259,23 @@ public class Ventana extends javax.swing.JFrame {
         reginstitucion.toFront();
     }// GEN-LAST:event_jMenuRInstitucionActionPerformed
 
-    // private void jMenuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsultarUsuarioActionPerformed
-    //     ConsultaUsuario consulta = new ConsultaUsuario();
-    //     consulta.setSize(750, 600); // Establecer el tamaño deseado
+    private void jMenuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuConsultarUsuarioActionPerformed
+        ConsultaUsuario consulta = new ConsultaUsuario();
+        consulta.setSize(750, 600); // Establecer el tamaño deseado
 
-    //     // Obtener dimensiones del jDesktopPane1
-    //     int desktopWidth = jDesktopPane1.getWidth();
-    //     int desktopHeight = jDesktopPane1.getHeight();
+        // Obtener dimensiones del jDesktopPane1
+        int desktopWidth = jDesktopPane1.getWidth();
+        int desktopHeight = jDesktopPane1.getHeight();
 
-    //     // Calcular coordenadas para centrar el JInternalFrame
-    //     int x = (desktopWidth - consulta.getWidth()) / 2;
-    //     int y = (desktopHeight - consulta.getHeight()) / 2;
+        // Calcular coordenadas para centrar el JInternalFrame
+        int x = (desktopWidth - consulta.getWidth()) / 2;
+        int y = (desktopHeight - consulta.getHeight()) / 2;
 
-    //     consulta.setLocation(x - 10, y - 20);
-    //     consulta.setVisible(true);
-    //     jDesktopPane1.add(consulta);
-    //     consulta.toFront();
-    // }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
+        consulta.setLocation(x - 10, y - 20);
+        consulta.setVisible(true);
+        jDesktopPane1.add(consulta);
+        consulta.toFront();
+    }// GEN-LAST:event_jMenuConsultarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,10 +287,8 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuConsultarUsuario;
     private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenuItem jMenuConsutaActividad;
-    private javax.swing.JMenuItem jMenuIitemrankingActividad;
     private javax.swing.JMenu jMenuInicio;
     private javax.swing.JMenuItem jMenuItemConsultarClase;
-    private javax.swing.JMenuItem jMenuItemModificarActividad;
     private javax.swing.JMenuItem jMenuItemRActividad;
     private javax.swing.JMenuItem jMenuItemRClase;
     private javax.swing.JMenuItem jMenuItemRCliente;

@@ -18,13 +18,11 @@ public class ActividadDeportiva {
 
     @Id
     private String nombre;
+
     private String descripcion;
     private int duracion;
     private float costo;
     private LocalDate fechaReg;
-
-
-
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Clase> Clases = new ArrayList<>();

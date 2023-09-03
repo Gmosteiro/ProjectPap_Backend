@@ -86,20 +86,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemConsultarClaseActionPerformed"/>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuIitemrankingActividad">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ranking Actividades"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuIitemrankingActividadActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemModificarActividad">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Modificar Actividad"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemModificarActividadActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

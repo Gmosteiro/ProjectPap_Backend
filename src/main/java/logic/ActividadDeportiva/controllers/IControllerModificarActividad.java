@@ -5,7 +5,7 @@ import logic.ActividadDeportiva.ActividadDeportiva;
 import java.util.List;
 
 public interface IControllerModificarActividad {
-    boolean modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto);
+    void modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto);
     List<ActividadDeportiva> getActividades();
     ActividadDeportiva obtenerActividadPorNombre(String nombre);
 }
