@@ -23,179 +23,179 @@ import logic.Usuario.controllers.IControllerRegistroDictado;
 
 public class App {
 
-        public static void main(String[] args) {
+	public static void main(String[] args) {
 
-                try {
-                        // autoInsert();
-                        iniciarVentana();
-                        // probarGetActividades();
+		try {
+			// autoInsert();
+			iniciarVentana();
+			// probarGetActividades();
 
-                } catch (Exception e) {
-                        System.out.println("Catch main: " + e.getMessage());
-                        e.printStackTrace();
-                }
+		} catch (Exception e) {
+			System.out.println("Catch main: " + e.getMessage());
+			e.printStackTrace();
+		}
 
-                // probarModificarUsuario();
+		// probarModificarUsuario();
 
-        }
+	}
 
-        public static void autoInsert() {
-                probarAddInstituciones();
-                probarAddActividad();
-                probarAddUsuarios();
-                probarAddClase();
-        }
+	public static void autoInsert() {
+		probarAddInstituciones();
+		probarAddActividad();
+		probarAddUsuarios();
+		probarAddClase();
+	}
 
-        public static void probarAddRegistroDictado() {
-                try {
+	public static void probarAddRegistroDictado() {
+		try {
 
-                        Fabrica factory = new Fabrica();
-                        IControllerRegistroDictado controllerDictado = factory.getControllerRegistroDictado();
-                        LocalDate fecha = LocalDate.of(2023, 8, 17);
-                        controllerDictado.addRegistroDictado("socio1", "Matematica", fecha);
-                } catch (Exception e) {
-                        System.out.println("Error: " + e);
-                }
-        }
+			Fabrica factory = new Fabrica();
+			IControllerRegistroDictado controllerDictado = factory.getControllerRegistroDictado();
+			LocalDate fecha = LocalDate.of(2023, 8, 17);
+			controllerDictado.addRegistroDictado("socio1", "Matematica", fecha);
+		} catch (Exception e) {
+			System.out.println("Error: " + e);
+		}
+	}
 
-        public static void probarAddUsuarios() {
-                LocalDate fecha = LocalDate.of(2023, 8, 17);
+	public static void probarAddUsuarios() {
+		LocalDate fecha = LocalDate.of(2023, 8, 17);
 
-                InstitucionDeportiva institucionDeportiva = ManejadorInstitucion
-                                .getInstitucionesByName("ESI");
+		InstitucionDeportiva institucionDeportiva = ManejadorInstitucion
+				.getInstitucionesByName("ESI");
 
-                Fabrica factory = new Fabrica();
-                IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
-                controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
-                                "Soy alto Profe", "JuanProfe.com",
-                                institucionDeportiva);
-                controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha);
+		Fabrica factory = new Fabrica();
+		IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
+		controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
+				"Soy alto Profe", "JuanProfe.com",
+				institucionDeportiva);
+		controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha);
 
-        }
+	}
 
-        public static void probarRankingActividades() {
-                Fabrica factory = new Fabrica();
-                IControllerRanking controllerRanking = factory.getControladorRankingActividad();
-                List<ActividadDeportiva> ranking = controllerRanking.obtenerRankingDeActividades();
-                System.out.println("Ranking funcionando " + ranking);
+	public static void probarRankingActividades() {
+		Fabrica factory = new Fabrica();
+		IControllerRanking controllerRanking = factory.getControladorRankingActividad();
+		List<ActividadDeportiva> ranking = controllerRanking.obtenerRankingDeActividades();
+		System.out.println("Ranking funcionando " + ranking);
 
-        }
+	}
 
-        public static void probarAddInstituciones() {
-                Fabrica factory = new Fabrica();
-                IControllerAltaInstitucionDeportiva controllerInstituciones = factory
-                                .getControladorAltaInstitucionDeportiva();
-                controllerInstituciones.addInstitucionDeportiva("ESI", "La UTU", "utu.com");
+	public static void probarAddInstituciones() {
+		Fabrica factory = new Fabrica();
+		IControllerAltaInstitucionDeportiva controllerInstituciones = factory
+				.getControladorAltaInstitucionDeportiva();
+		controllerInstituciones.addInstitucionDeportiva("ESI", "La UTU", "utu.com");
 
-        }
+	}
 
-        public static void probarGetInstituciones() {
-                Fabrica factory = new Fabrica();
-                IControllerDictadoClase controllerDictado = factory.getControladorDictadoClase();
-                controllerDictado.getInstituciones();
-        }
+	public static void probarGetInstituciones() {
+		Fabrica factory = new Fabrica();
+		IControllerDictadoClase controllerDictado = factory.getControladorDictadoClase();
+		controllerDictado.getInstituciones();
+	}
 
-        public static void probarGetActividades() {
-                Fabrica factory = new Fabrica();
-                IControllerDictadoClase controllerDictado = factory.getControladorDictadoClase();
-                controllerDictado.getActividades();
-        }
+	public static void probarGetActividades() {
+		Fabrica factory = new Fabrica();
+		IControllerDictadoClase controllerDictado = factory.getControladorDictadoClase();
+		controllerDictado.getActividades();
+	}
 
-        public static void probarAddClase() {
+	public static void probarAddClase() {
 
-                LocalDate fecha = LocalDate.of(2023, 8, 17);
-                LocalTime hora = LocalTime.of(14, 30);
-                LocalDate fechareg = LocalDate.of(2023, 8, 17);
-                try {
-                        Fabrica factory = new Fabrica();
+		LocalDate fecha = LocalDate.of(2023, 8, 17);
+		LocalTime hora = LocalTime.of(14, 30);
+		LocalDate fechareg = LocalDate.of(2023, 8, 17);
+		try {
+			Fabrica factory = new Fabrica();
 
-                        IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
+			IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
 
-                        controllerAltaClase.addClase("Matematica", fecha, hora, "ESI", fechareg, "Juan", "Matematica");
+			controllerAltaClase.addClase("Matematica", fecha, hora, "ESI", fechareg, "Juan", "Matematica");
 
-                } catch (Exception e) {
-                        System.out.println("Catch main: " + e.getMessage());
-                        e.printStackTrace();
-                }
+		} catch (Exception e) {
+			System.out.println("Catch main: " + e.getMessage());
+			e.printStackTrace();
+		}
 
-        }
+	}
 
-        public static void probarAddActividad() {
+	public static void probarAddActividad() {
 
-                try {
-                        Fabrica factory = new Fabrica();
+		try {
+			Fabrica factory = new Fabrica();
 
-                        IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
-                        LocalDate fechareg = LocalDate.of(2023, 8, 17);
+			IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
+			LocalDate fechareg = LocalDate.of(2023, 8, 17);
 
-                        controllerAltaActividad.altaActividad("Matematica", "numeritos", 10, 100, fechareg, "ESI");
+			controllerAltaActividad.altaActividad("Matematica", "numeritos", 10, 100, fechareg, "ESI");
 
-                } catch (Exception e) {
-                        System.out.println("Catch main: " + e.getMessage());
-                        e.printStackTrace();
-                }
+		} catch (Exception e) {
+			System.out.println("Catch main: " + e.getMessage());
+			e.printStackTrace();
+		}
 
-        }
+	}
 
-        private static void iniciarVentana() {
-                Ventana ventana = new Ventana();
-                ventana.setVisible(true);
-                ventana.setSize(880, 700);
+	private static void iniciarVentana() {
+		Ventana ventana = new Ventana();
+		ventana.setVisible(true);
+		ventana.setSize(880, 700);
 
-                // Obtener el tamaño de la pantalla
-                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                int screenWidth = screenSize.width;
-                int screenHeight = screenSize.height;
+		// Obtener el tamaño de la pantalla
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;
 
-                // Obtener el tamaño de la ventana
-                int windowWidth = ventana.getWidth();
-                int windowHeight = ventana.getHeight();
+		// Obtener el tamaño de la ventana
+		int windowWidth = ventana.getWidth();
+		int windowHeight = ventana.getHeight();
 
-                // Calcular las coordenadas para centrar la ventana
-                int x = (screenWidth - windowWidth) / 2;
-                int y = (screenHeight - windowHeight) / 2;
+		// Calcular las coordenadas para centrar la ventana
+		int x = (screenWidth - windowWidth) / 2;
+		int y = (screenHeight - windowHeight) / 2;
 
-                ventana.setLocation(x, y);
-        }
+		ventana.setLocation(x, y);
+	}
 
-        public static void probarModificarActividad() {
-                Fabrica factory = new Fabrica();
-                IControllerModificarActividad controllerActividad = factory.getControllerModificarActividad();
+	public static void probarModificarActividad() {
+		Fabrica factory = new Fabrica();
+		IControllerModificarActividad controllerActividad = factory.getControllerModificarActividad();
 
-                String nombreActividad = "Matematica";
-                String nuevaDescripcion = "Nueva descripción";
-                int nuevaDuracion = 60;
-                float nuevoCosto = 50;
+		String nombreActividad = "Matematica";
+		String nuevaDescripcion = "Nueva descripción";
+		int nuevaDuracion = 60;
+		float nuevoCosto = 50;
 
-                controllerActividad.modificarActividad(nombreActividad, nuevaDescripcion, nuevaDuracion, nuevoCosto);
+		controllerActividad.modificarActividad(nombreActividad, nuevaDescripcion, nuevaDuracion, nuevoCosto);
 
-                System.out.println("Actividad modificada exitosamente.");
-        }
+		System.out.println("Actividad modificada exitosamente.");
+	}
 
-        public static void probarModificarUsuario() {
-                Fabrica factory = new Fabrica();
-                IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
+	public static void probarModificarUsuario() {
+		Fabrica factory = new Fabrica();
+		IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
 
-                String nickname = "socio1";
-                String nuevoNombre = "Alex";
-                String nuevoApellido = "Ribeiro";
+		String nickname = "socio1";
+		String nuevoNombre = "Alex";
+		String nuevoApellido = "Ribeiro";
 
-                controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido);
+		controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido);
 
-                System.out.println("Usuario modificado exitosamente.");
-        }
+		System.out.println("Usuario modificado exitosamente.");
+	}
 
-        public static void probarModificarInstitucion() {
-                Fabrica factory = new Fabrica();
-                IControllerModificarInstitucion controllerInstitucion = factory.getControllerModificarInstitucion();
+	public static void probarModificarInstitucion() {
+		Fabrica factory = new Fabrica();
+		IControllerModificarInstitucion controllerInstitucion = factory.getControllerModificarInstitucion();
 
-                String nickname = "ALEX";
-                String nuevodesc = "Alex";
-                String nuevoURL = "Ribeiro";
+		String nickname = "ALEX";
+		String nuevodesc = "Alex";
+		String nuevoURL = "Ribeiro";
 
-                controllerInstitucion.modificarInstitucion(nickname, nuevodesc, nuevoURL);
+		controllerInstitucion.modificarInstitucion(nickname, nuevodesc, nuevoURL);
 
-                System.out.println("Usuario modificado exitosamente.");
-        }
+		System.out.println("Usuario modificado exitosamente.");
+	}
 
 }

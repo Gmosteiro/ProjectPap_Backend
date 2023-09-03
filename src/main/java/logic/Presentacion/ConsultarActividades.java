@@ -29,13 +29,6 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    public ConsultarActividades(String actividad, String institucion) {
-        initComponents();
-
-        mostarActividadEspecifica(actividad, institucion);
-
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

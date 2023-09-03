@@ -209,8 +209,6 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
 
     private void jTableActividadesAsociadasMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableActividadesAsociadasMouseClicked
 
-        ConsultarActividades newConsulta = new ConsultarActividades("Matematica", "esi");
-
     }// GEN-LAST:event_jTableActividadesAsociadasMouseClicked
 
     private void jTableListaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableListaUsuarioMouseClicked
