@@ -4,6 +4,8 @@
  */
 package logic.Presentacion;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -214,8 +216,13 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mostarActividadEspecifica(String actividad, String institucion) {
+    public String getFechaFormatted(LocalDate fecha) {
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // Convert LocalDate to LocalDateTime to enable formatting
+        String formattedDate = fecha.atStartOfDay().format(formatter);
+        return formattedDate;
     }
 
     private void jComboBoxInstitucionesFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jComboBoxInstitucionesFocusGained
@@ -246,7 +253,7 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
 
                 for (ActividadDeportiva actividad : listaActividades) {
                     Object[] rowData = { actividad.getNombre(), "$" + actividad.getCosto(), actividad.getDescripcion(),
-                            actividad.getDuracion(), actividad.getFechaReg() };
+                            actividad.getDuracion(), getFechaFormatted(actividad.getFechaReg()) };
                     tableModel.addRow(rowData);
                 }
 
@@ -279,9 +286,10 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
             tableModel.setRowCount(0);
 
             for (Clase clase : listaClases) {
-                Object[] rowData = { clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg(),
+                Object[] rowData = { clase.getNombre(), clase.getFechaFormatted(),
+                        getFechaFormatted(clase.getFechaReg()),
                         clase.getHora(),
-                        clase.getUrl(), clase.getProfesor() };
+                        clase.getUrl(), clase.getProfesor().getNickname() };
                 tableModel.addRow(rowData);
             }
 

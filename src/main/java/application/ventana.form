@@ -74,7 +74,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuConsutaActividad">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consutar Actividad"/>
+                <Property name="text" type="java.lang.String" value="Consultar Actividad"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuConsutaActividadActionPerformed"/>
