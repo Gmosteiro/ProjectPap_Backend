@@ -148,6 +148,32 @@ public class RankingActividades extends javax.swing.JInternalFrame {
 
     private void Buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar1ActionPerformed
         // TODO add your handling code here:
+         // TODO add your handling code here:
+        // Crear una instancia del controlador
+        ControllerRanking controllerRanking = new ControllerRanking();
+
+        // Obtener el ranking de actividades
+        List<ActividadDeportiva> rankingActividades = controllerRanking.obtenerRankingDeActividades();
+
+        // Limpiar el modelo de la tabla
+        DefaultTableModel model = (DefaultTableModel) jTableRankingActividad.getModel();
+        model.setRowCount(0);
+
+        // Llenar la tabla con los resultados del ranking
+        for (ActividadDeportiva actividad : rankingActividades) {
+            // Suponiendo que tienes un modelo de datos que coincida con la estructura de tu JTable
+            Object[] rowData = {
+                actividad.getNombre(),  // Nombre de la actividad
+                actividad.getCosto(),   // Costo de la actividad
+                actividad.getDescripcion()  // Descripción de la actividad
+            };
+
+            // Agregar la fila al modelo de la tabla
+            model.addRow(rowData);
+        }
+
+        // Cerrar el EntityManagerFactory cuando hayas terminado
+        controllerRanking.closeEntityManagerFactory();
     }//GEN-LAST:event_Buscar1ActionPerformed
 
     private void jButtonCancelarRActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarRActividadActionPerformed
