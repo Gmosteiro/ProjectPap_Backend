@@ -2,11 +2,13 @@ package logic;
 
 import logic.ActividadDeportiva.controllers.ControllerAltaActividad;
 import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
+import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
 import logic.ActividadDeportiva.controllers.IControllerModificarActividad;
 import logic.Institucion.controllers.ControllerAltaInstitucionDeportiva;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
 import logic.Usuario.controllers.ControllerAltaUsuario;
 import logic.Usuario.controllers.ControllerConsultaUsuario;
+import logic.ActividadDeportiva.controllers.ControllerConsultaActividad;
 import logic.Usuario.controllers.ControllerModificarUsuario;
 import logic.Usuario.controllers.ControllerRegistroDictado;
 import logic.Usuario.controllers.IControllerAltaUsuario;
@@ -61,8 +63,13 @@ public class Fabrica {
         return new ControllerModificarUsuario();
     }
 
+
+    public IControllerConsultaActividad getControllerConsultaActividad (){
+         return new ControllerConsultaActividad();
+    }
     public IControllerRegistroDictado getControllerRegistroDictado() {
         return new ControllerRegistroDictado();
+
     }
     
     public IControllerDictadoClase getControllerDictadoClase() {

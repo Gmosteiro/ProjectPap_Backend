@@ -78,37 +78,53 @@ public class ManejadorActividad {
 
     public static List<ActividadDeportiva> getActividadesByInstitucion(InstitucionDeportiva institucion) {
 
+
         try {
             return institucion.getActividades();
         } catch (Exception e) {
             System.out.println("Error catch getActividadesByInstitucionDeportiva " + e);
             return null;
         }
-    }
 
-    public static List<ActividadDeportiva> getActividadesByProfe(Profesor profesor) {
+        List<ActividadDeportiva> actividades;
 
-        try {
-            List<ActividadDeportiva> resultList = entityManager.createQuery(
-                    "SELECT a " +
-                            "FROM ActividadDeportiva a " +
-                            "INNER JOIN a.Clases c " +
-                            "INNER JOIN c.profesor p " +
-                            "WHERE p = :profesor",
-                    ActividadDeportiva.class)
-                    .setParameter("profesor", profesor)
-                    .getResultList();
-
-            return resultList;
-        } catch (Exception e) {
-            System.out.println("Error catch getClasesByProfe " + e);
-            return null;
-        }
+        // actividades = entityManager
+        //         .createQuery("SELECT a FROM ActividadDeportiva a WHERE a.", ActividadDeportiva.class).getResultList();
+        actividades = entityManager
+    .createQuery("SELECT a FROM ActividadDeportiva a WHERE a.institucion = :nombreInstitucion", ActividadDeportiva.class)
+    .setParameter("nombreInstitucion", institucion)
+    .getResultList();
+        return actividades;
 
     }
+
+    // public static List<ActividadDeportiva> getActividadesByProfe(Profesor profesor) {
+
+    //     try {
+    //         List<ActividadDeportiva> resultList = entityManager.createQuery(
+    //                 "SELECT a " +
+    //                         "FROM ActividadDeportiva a " +
+    //                         "INNER JOIN a.Clases c " +
+    //                         "INNER JOIN c.profesor p " +
+    //                         "WHERE p = :profesor",
+    //                 ActividadDeportiva.class)
+    //                 .setParameter("profesor", profesor)
+    //                 .getResultList();
+
+    //         return resultList;
+    //     } catch (Exception e) {
+    //         System.out.println("Error catch getClasesByProfe " + e);
+    //         return null;
+    //     }
+
+    // }
+
+}
+
 
     public List<Clase> getClases() {
         return getClases();
     }
 
 }
+
