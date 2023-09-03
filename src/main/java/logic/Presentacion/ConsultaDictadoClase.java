@@ -45,7 +45,6 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableClases = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButtonCancelar = new javax.swing.JButton();
 
         setTitle("ConsultarDictadoClase");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -110,13 +109,6 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
 
             jButton1.setText("Consultar");
 
-            jButtonCancelar.setText("Cancelar");
-            jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButtonCancelarActionPerformed(evt);
-                }
-            });
-
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
@@ -131,11 +123,8 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
                             .addGap(27, 27, 27)
                             .addComponent(TextoActividadD)
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonCancelar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton1)
                                 .addComponent(jComboBoxActividadesD, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -158,8 +147,7 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(jButton1)
-                        .addComponent(jButtonCancelar))
+                        .addComponent(jButton1))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap())
@@ -263,21 +251,13 @@ public class ConsultaDictadoClase extends javax.swing.JInternalFrame {
        String current = (String) jComboBoxInstitucionesDictado.getSelectedItem();
         if (current != null) {
            addActividadesToComboBox(current);
-        }
     }//GEN-LAST:event_jComboBoxInstitucionesDictadoFocusGained
-
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
-
-    
-    
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TextoActividadD;
     private javax.swing.JLabel TextoInstitucionD;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox<String> jComboBoxActividadesD;
     private javax.swing.JComboBox<String> jComboBoxInstitucionesDictado;
     private javax.swing.JLabel jLabel1;
