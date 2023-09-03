@@ -185,7 +185,7 @@ public class ModificarUsuario extends javax.swing.JInternalFrame {
         Usuario user = ManejadorUsuarios.getUser(usuario);
         jTextFieldMUnombre.setText(user.getNombre());
         jTextFieldMUapellido.setText(user.getApellido());
-        jDateChooserMUFnacimiento.setDateFormatString(user.getFechaNacFromatted());
+        //jDateChooserMUFnacimiento.setDateFormatString(user.getFechaNacFromatted());
         
         jTextFieldMUnombre.setEnabled(true);
         jTextFieldMUapellido.setEnabled(true);
