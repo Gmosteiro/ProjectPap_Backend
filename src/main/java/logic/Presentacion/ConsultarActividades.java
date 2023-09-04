@@ -11,12 +11,12 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
-import logic.ActividadDeportiva.ManejadorActividad;
+import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
 import logic.Clase.Clase;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
-import logic.Usuario.Profesor;
 
 /**
  *
@@ -237,13 +237,16 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
 
         Object selectedItem = jComboBoxActividades.getSelectedItem();
 
+        Fabrica factory = new Fabrica();
+        IControllerConsultaActividad controllerConsultaActividad = factory.getControllerConsultaActividad();
+
         // Realizar acciones basadas en el elemento seleccionado
         if (selectedItem != null) {
             String selectedActividad = selectedItem.toString();
 
             List<ActividadDeportiva> listaActividades = new ArrayList<>();
 
-            listaActividades.add(ManejadorActividad.obtenerActividadPorNombre(selectedActividad));
+            listaActividades.add(controllerConsultaActividad.obtenerActividadPorNombre(selectedActividad));
 
             if (!listaActividades.isEmpty() || listaActividades.get(0) != null) {
 
@@ -266,7 +269,6 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
     }// GEN-LAST:event_jButtonBuscarActividadesActionPerformed
 
     private void jComboBoxActividadesFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jComboBoxActividadesFocusGained
-        String currentActividad = (String) jComboBoxActividades.getSelectedItem();
 
         String currentInstitucion = (String) jComboBoxInstituciones.getSelectedItem();
 
@@ -276,7 +278,10 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
 
     private void ClasesDeActividad(String actividad) {
 
-        ActividadDeportiva actividaddeportiva = ManejadorActividad.obtenerActividadPorNombre(actividad);
+        Fabrica factory = new Fabrica();
+        IControllerConsultaActividad controllerConsultaActividad = factory.getControllerConsultaActividad();
+
+        ActividadDeportiva actividaddeportiva = controllerConsultaActividad.obtenerActividadPorNombre(actividad);
         List<Clase> listaClases = actividaddeportiva.getClases();
 
         if (!listaClases.isEmpty() && listaClases.get(0) != null) {
@@ -327,7 +332,10 @@ public class ConsultarActividades extends javax.swing.JInternalFrame {
 
     private void addActividadesToComboBox(String institucion) {
 
-        List<ActividadDeportiva> actividades = ManejadorActividad
+        Fabrica factory = new Fabrica();
+        IControllerConsultaActividad controllerConsultaActividad = factory.getControllerConsultaActividad();
+
+        List<ActividadDeportiva> actividades = controllerConsultaActividad
                 .getActividadesByInstitucion(ManejadorInstitucion.getInstitucionesByName(institucion));
 
         jComboBoxActividades.removeAllItems();

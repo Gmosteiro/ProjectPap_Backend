@@ -26,9 +26,9 @@ public class App {
 	public static void main(String[] args) {
 
 		try {
-			// autoInsert();
-			iniciarVentana();
-			// probarModificarUsuario();
+			autoInsert();
+			// iniciarVentana();
+			probarModificarUsuario();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());

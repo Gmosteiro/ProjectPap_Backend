@@ -5,8 +5,9 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
-import logic.ActividadDeportiva.ManejadorActividad;
+import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
 import logic.Clase.Clase;
 import logic.Clase.ManejadorClases;
 import logic.Usuario.ManejadorUsuarios;
@@ -90,9 +91,13 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
     public List<ActividadDeportiva> getActividadesAsociadas(Profesor filter) {
         try {
             // Aplicar lógica de filtrado solo si filter no es nulo o vacío
-           if (filter != null) {
-                //Aplicar lógica de filtrado aquí
-                return ManejadorActividad.getActividadesByProfe(filter);
+            if (filter != null) {
+                // Aplicar lógica de filtrado aquí
+
+                Fabrica factory = new Fabrica();
+                IControllerConsultaActividad controllerConsultaActividad = factory.getControllerConsultaActividad();
+
+                return controllerConsultaActividad.getActividadesByProfe(filter);
 
             } else {
                 return new ArrayList<>();
@@ -100,12 +105,12 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
 
         } catch (Exception errorException) {
             System.out.println("Catch getClasesAsociadasByProfe: " + errorException);
-           String errorMessage = extractErrorMessage(errorException.getMessage());
-           JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+            String errorMessage = extractErrorMessage(errorException.getMessage());
+            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 
             return new ArrayList<>();
         }
-        
+
     }
 
     private String extractErrorMessage(String fullErrorMessage) {

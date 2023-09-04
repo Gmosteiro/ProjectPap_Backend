@@ -1,5 +1,8 @@
 package logic.Clase.controllers;
 
+import logic.Fabrica;
+import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
 import logic.Clase.Clase;
 import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Profesor;
@@ -11,9 +14,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-import logic.ActividadDeportiva.ManejadorActividad;
 
 public class ControllerAltaClase implements IControllerAltaClase {
+
+    private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+    private static EntityManager entityManager = emFactory.createEntityManager();
 
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
@@ -33,16 +38,11 @@ public class ControllerAltaClase implements IControllerAltaClase {
             Profesor profesor = ManejadorUsuarios.getProfesor(nombreProfesor);
 
             Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg, profesor);
-            ManejadorActividad manejadorA = new ManejadorActividad();
-            manejadorA.agregarClaseA(nuevaclase, actividad);
+
+            agregarClaseA(nuevaclase, actividad);
             System.out.println("Clase Creada");
 
-            JOptionPane.showMessageDialog(
-                    null, // Parent component (null for default)
-                    "Clase Creada!", // Message text
-                    "Success", // Dialog title
-                    JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
-            );
+            JOptionPane.showMessageDialog(null, "Clase Creada!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception errorException) {
             System.out.println("Catch addClase: " + errorException);
@@ -51,6 +51,23 @@ public class ControllerAltaClase implements IControllerAltaClase {
 
         }
 
+    }
+
+    public void agregarClaseA(Clase clase, String actividad) {
+        try {
+            Fabrica factory = new Fabrica();
+            IControllerConsultaActividad controllerConsultaA = factory.getControllerConsultaActividad();
+            ActividadDeportiva Actividad = controllerConsultaA.obtenerActividadPorNombre(actividad);
+            Actividad.getClases().add(clase);
+            entityManager.getTransaction().begin();
+            entityManager.persist(Actividad);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            emFactory.close();
+        } catch (Exception exceptionAgregarClase) {
+            System.out.println("Catch agregarClase: " + exceptionAgregarClase);
+            System.out.println("ERROR");
+        }
     }
 
     private boolean validateClassData(String nombre, String queryValue) {

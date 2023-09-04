@@ -1,7 +1,6 @@
 package logic.ActividadDeportiva.controllers;
 
 import logic.ActividadDeportiva.ActividadDeportiva;
-import logic.ActividadDeportiva.ManejadorActividad;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 
@@ -16,11 +15,10 @@ import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
 public class ControllerAltaActividad implements IControllerAltaActividad {
-
-    private final ManejadorActividad manejadorActividad;
+    private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+    private static EntityManager entityManager = emFactory.createEntityManager();
 
     public ControllerAltaActividad() {
-        manejadorActividad = new ManejadorActividad();
     }
 
     @Override
@@ -33,12 +31,7 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
                 ManejadorInstitucion manejadorI = new ManejadorInstitucion();
                 manejadorI.agregarActividadI(actividad, nombrei);
                 System.out.println("Actividad Creada");
-                JOptionPane.showMessageDialog(
-                        null, // Parent component (null for default)
-                        "Actividad Creada!", // Message text
-                        "Success", // Dialog title
-                        JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
-                );
+                JOptionPane.showMessageDialog(null, "Actividad Creada!", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 // Manejar el caso de actividad duplicada
             }
@@ -53,12 +46,12 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
 
     @Override
     public void modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto) {
-        ActividadDeportiva actividad = manejadorActividad.obtenerActividadPorNombre(nombre);
+        ActividadDeportiva actividad = obtenerActividadPorNombre(nombre);
         if (actividad != null) {
             actividad.setDescripcion(nuevaDescripcion);
             actividad.setDuracion(nuevaDuracion);
             actividad.setCosto(nuevoCosto);
-            manejadorActividad.actualizarActividad(actividad);
+            actualizarActividad(actividad);
         } else {
             // Manejar la actividad no encontrada
         }
@@ -66,12 +59,37 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
 
     @Override
     public void cancelarAltaActividad(String nombre) {
-        ActividadDeportiva actividad = manejadorActividad.obtenerActividadPorNombre(nombre);
+        ActividadDeportiva actividad = obtenerActividadPorNombre(nombre);
         if (actividad != null) {
-            manejadorActividad.eliminarActividad(actividad);
+            eliminarActividad(actividad);
         } else {
             // Manejar la actividad no encontrada
         }
+    }
+
+    public static ActividadDeportiva obtenerActividadPorNombre(String nombre) {
+        ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class, nombre);
+        return actividad;
+    }
+
+    public void eliminarActividad(ActividadDeportiva actividad) {
+        entityManager.getTransaction().begin();
+
+        entityManager.remove(entityManager.contains(actividad) ? actividad : entityManager.merge(actividad));
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        emFactory.close();
+    }
+
+    public void actualizarActividad(ActividadDeportiva actividad) {
+        entityManager.getTransaction().begin();
+
+        entityManager.merge(actividad);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        emFactory.close();
     }
 
     private boolean validateActivityData(String nombre) {
