@@ -293,6 +293,11 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
 
             } else if (selectedUser instanceof Socio) {
 
+                DefaultTableModel tableModelActividades = (DefaultTableModel) jTableActividadesAsociadas.getModel();
+
+                tableModelActividades.setRowCount(0);
+                tableModelActividades.fireTableDataChanged();
+
                 List<Clase> listaClasesSocio = consultaUsuario.getClasesAsociadasBySocio((Socio) selectedUser);
                 DefaultTableModel tableModel = (DefaultTableModel) jTableInformacionAsociada.getModel();
 
