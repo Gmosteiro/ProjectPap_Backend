@@ -1,9 +1,11 @@
 package logic.Clase.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
@@ -40,34 +42,43 @@ public class ControllerRanking implements IControllerRanking {
         }
     }
     
-    @Override
-    public List<Clase> obtenerRankingDeClases() {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
     
-            TypedQuery<Clase> query = em.createQuery(
-                "SELECT c " +
-                "FROM Clase c " +
-                "LEFT JOIN c.Registro cr " +
-                "GROUP BY c " +
-                "ORDER BY COUNT(cr) DESC",
-                    //"SELECT c " + "FROM Clase c" + "LEFT JOIN c.Registro cr ON c.nombre = cr.clase_id" + "GROUP BY c.nombre" + "ORDER BY COUNT(cr.id) DESC",
-//FROM Clase c
-//LEFT JOIN Registro cr ON c.nombre = cr.clase_id
-//GROUP BY c.nombre
-//ORDER BY COUNT(cr.id) DESC;
-                Clase.class);
-    
-            List<Clase> resultados = query.getResultList();
-    
-            em.getTransaction().commit();
-    
-            return resultados;
-        } finally {
-            em.close();
-        }
-    }
+//    public List<Clase> obtenerRankingDeClases() {
+//        EntityManager em = emf.createEntityManager();
+//        
+//        try {
+//            em.getTransaction().begin();
+//    
+//            TypedQuery<Clase> query = em.createQuery(
+//                      "SELECT c " +
+//                      "FROM Clase c " +
+//                      "LEFT JOIN Registro r ON c.nombre = r.clase_id " +
+//                      "LEFT JOIN Socio cr ON r.id_Usuario = cr.id_Usuario " +
+//                      "GROUP BY c " + 
+//                      "ORDER BY COUNT(r.id_Usuario) DESC",
+//                    //"SELECT c " + "FROM Clase c " + "LEFT JOIN Registro r ON c.nombre = r.clase_id " + "LEFT JOIN Socio cr ON r.id_Usuario = cr.id_Usuario " + "GROUP BY c " + "ORDER BY COUNT(r.id_Usuario) DESC",
+//                    /*
+//                    public ArrayList<DtClase> obtRankClases(){
+//                        Conexion conexion = Conexion.getInstancia();
+//                        EntityManager em = conexion.getEntityManager();
+//                        Query query = em.createQuery("select c from Clase c order by size(c.registros) desc");
+//                        ArrayList<DtClase> ret = new ArrayList<>();
+//                        for(Clase c:(List<Clase>) query.getResultList())
+//                                ret.add(c.getDT());
+//                        return ret;
+//                }
+//                    */
+//                Clase.class);
+//    
+//            List<Clase> resultados = query.getResultList();
+//    
+//            em.getTransaction().commit();
+//    
+//            return resultados;
+//        } finally {
+//            em.close();
+//        }
+//    }
     
 
     @Override
@@ -85,6 +96,20 @@ public class ControllerRanking implements IControllerRanking {
             em.close();
         }
     }
+    
+    @Override
+    public List<Clase> obtenerRankingDeClases(){
+                        EntityManager em = emf.createEntityManager();
+                    try {
+                        em.getTransaction().begin();
+                        Query query = em.createQuery("select c from Clase c order by size(c.registros) desc");
+                        List<Clase> resultados = query.getResultList();
+                        em.getTransaction().commit();
+                        return resultados;
+                    } finally {
+                                em.close();
+                            }
+                }
 
     @Override
     public void closeEntityManagerFactory() {

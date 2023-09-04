@@ -32,6 +32,8 @@ public class Clase {
 
     @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Registro> registros;
+    
+    
 
     public Clase() {
 
@@ -114,5 +116,6 @@ public class Clase {
         String formattedDate = fecha.atStartOfDay().format(formatter);
         return formattedDate;
     }
+    
 
 }
