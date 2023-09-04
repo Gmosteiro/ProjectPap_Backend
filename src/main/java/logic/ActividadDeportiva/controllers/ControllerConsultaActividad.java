@@ -9,13 +9,9 @@ import javax.persistence.TypedQuery;
 
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
-import logic.Institucion.InstitucionDeportiva;
-import logic.Usuario.Profesor;
 import logic.Usuario.Registro;
 
 public class ControllerConsultaActividad implements IControllerConsultaActividad {
-    private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-    private static EntityManager entityManager = emFactory.createEntityManager();
 
     private EntityManagerFactory emf;
 
@@ -43,36 +39,6 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
         }
     }
 
-    public List<ActividadDeportiva> getActividadesByProfe(Profesor profesor) {
-
-        try {
-            List<ActividadDeportiva> resultList = entityManager.createQuery(
-                    "SELECT a " +
-                            "FROM ActividadDeportiva a " +
-                            "INNER JOIN a.Clases c " +
-                            "INNER JOIN c.profesor p " +
-                            "WHERE p = :profesor",
-                    ActividadDeportiva.class)
-                    .setParameter("profesor", profesor)
-                    .getResultList();
-
-            return resultList;
-        } catch (Exception e) {
-            System.out.println("Error catch getClasesByProfe " + e);
-            return null;
-        }
-
-    }
-
-    public List<ActividadDeportiva> getActividadesByInstitucion(InstitucionDeportiva institucion) {
-
-        try {
-            return institucion.getActividades();
-        } catch (Exception e) {
-            System.out.println("Error catch getActividadesByInstitucionDeportiva " + e);
-            return null;
-        }
-    }
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
         EntityManager em = emf.createEntityManager();
@@ -89,35 +55,25 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
         }
     }
 
-    public List<ActividadDeportiva> getActividades() {
+  public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
+    EntityManager em = emf.createEntityManager();
+    try {
+        em.getTransaction().begin();
 
-        List<ActividadDeportiva> actividades;
+        TypedQuery<Clase> query = em.createQuery(
+            "SELECT c FROM Clase c WHERE c.actividad = :actividad",
+            Clase.class);
+        query.setParameter("actividad", actividad);
 
-        actividades = entityManager
-                .createQuery("SELECT a FROM ActividadDeportiva a", ActividadDeportiva.class).getResultList();
+        List<Clase> clases = query.getResultList();
 
-        return actividades;
+        em.getTransaction().commit();
+
+        return clases;
+    } finally {
+        em.close();
     }
-
-    public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-
-            TypedQuery<Clase> query = em.createQuery(
-                    "SELECT c FROM Clase c WHERE c.actividad = :actividad",
-                    Clase.class);
-            query.setParameter("actividad", actividad);
-
-            List<Clase> clases = query.getResultList();
-
-            em.getTransaction().commit();
-
-            return clases;
-        } finally {
-            em.close();
-        }
-    }
+}
 
     public List<Registro> obtenerRegistrosPorClase(Clase clase) {
         EntityManager em = emf.createEntityManager();

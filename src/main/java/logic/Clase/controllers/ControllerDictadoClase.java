@@ -1,8 +1,7 @@
 package logic.Clase.controllers;
 
-import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
-import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
+import logic.ActividadDeportiva.ManejadorActividad;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 import logic.Clase.Clase;
@@ -12,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ControllerDictadoClase implements IControllerDictadoClase {
 
@@ -34,9 +34,7 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
     @Override
     public List<ActividadDeportiva> getActividades() {
         try {
-            Fabrica factory = new Fabrica();
-            IControllerConsultaActividad controllerConsulta = factory.getControllerConsultaActividad();
-            List<ActividadDeportiva> actividades = controllerConsulta.getActividades();
+            List<ActividadDeportiva> actividades = ManejadorActividad.getActividades();
             return actividades;
 
         } catch (Exception errorException) {
@@ -55,8 +53,8 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
         return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
                 : fullErrorMessage;
     }
-
-    public List<Clase> getClasesByActividad(String actividad) {
+    
+    public List<Clase> getClasesByActividad(String actividad){
         List<Clase> clases = ManejadorClases.getClasesByActividad(actividad);
         return clases;
     }
