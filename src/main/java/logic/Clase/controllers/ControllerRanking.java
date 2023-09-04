@@ -102,7 +102,14 @@ public class ControllerRanking implements IControllerRanking {
                         EntityManager em = emf.createEntityManager();
                     try {
                         em.getTransaction().begin();
-                        Query query = em.createQuery("select c from Clase c order by size(c.registros) desc");
+                        //Query query = em.createQuery("SELECT c FROM Registro r INNER JOIN r.clase c order by count(clase) desc");
+                        String jpqlQuery = "SELECT c " +
+                          "FROM Clase c " +
+                          "INNER JOIN Registro r ON c.nombre = r.clase " +
+                          "GROUP BY c.nombre " +
+                          "ORDER BY COUNT(r.id) DESC";
+                        
+                        TypedQuery<Clase> query = em.createQuery(jpqlQuery, Clase.class);
                         List<Clase> resultados = query.getResultList();
                         em.getTransaction().commit();
                         return resultados;

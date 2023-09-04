@@ -56,7 +56,7 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
         Registro registroExistente = ManejadorUsuarios.getRegistroBySocio(ManejadorUsuarios.getSocio(nicknameSocio));
 
         // registroExistente.getSocio().getNickname().length() != 0
-        if (registroExistente != null) {
+        if (registroExistente != null && registroExistente.getClase().getNombre() == nombreClase) {
 
             JOptionPane.showMessageDialog(null,
                     extractErrorMessage("Ya existe un registro para este par clase y socio "), "Error",

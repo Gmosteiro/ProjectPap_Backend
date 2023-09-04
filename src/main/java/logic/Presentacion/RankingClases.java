@@ -123,6 +123,7 @@ public class RankingClases extends javax.swing.JInternalFrame {
 
         // Obtener el ranking de actividades
         List<Clase> rankingClases = controllerRanking.obtenerRankingDeClases();
+        
 
         // Limpiar el modelo de la tabla
         DefaultTableModel model = (DefaultTableModel) jTableRankingActividad.getModel();
