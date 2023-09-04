@@ -55,6 +55,7 @@ public class Ventana extends javax.swing.JFrame {
         jMenuItemConsultarClase = new javax.swing.JMenuItem();
         jMenuIitemrankingActividad = new javax.swing.JMenuItem();
         jMenuItemModificarActividad = new javax.swing.JMenuItem();
+        jMenuItemRankClases = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 720));
@@ -154,6 +155,7 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         jMenuConsultas.add(jMenuItemConsultarClase);
+
         jMenuIitemrankingActividad.setText("Ranking Actividades");
         jMenuIitemrankingActividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +171,14 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         jMenuConsultas.add(jMenuItemModificarActividad);
+
+        jMenuItemRankClases.setText("Ranking Clases");
+        jMenuItemRankClases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRankClasesActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemRankClases);
 
         jMenuBar1.add(jMenuConsultas);
 
@@ -265,6 +275,17 @@ public class Ventana extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jMenuItemModificarActividadActionPerformed
 
+    private void jMenuItemRankClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRankClasesActionPerformed
+        RankingClases Rankclases = new RankingClases();
+        Rankclases.setSize(560, 500);
+        Rankclases.setLocation(50, 50);
+        Rankclases.setVisible(true);
+        // internalFrame.setSize(300, 200);
+        // internalFrame.setVisible(true);
+        jDesktopPane1.add(Rankclases);
+        Rankclases.toFront();
+    }//GEN-LAST:event_jMenuItemRankClasesActionPerformed
+
 //    private void jMenuConsutaActividadActionPerformed(java.awt.event.ActionEvent evt){// GEN-FIRST:event_jMenuConsutaActividadActionPerformed
 //
 //        ConsultaActividades conactividad = new ConsultaActividades();
@@ -352,6 +373,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemRClase;
     private javax.swing.JMenuItem jMenuItemRCliente;
     private javax.swing.JMenuItem jMenuItemRDictado;
+    private javax.swing.JMenuItem jMenuItemRankClases;
     private javax.swing.JMenuItem jMenuRInstitucion;
     private javax.swing.JMenu jMenuRegistro;
     // End of variables declaration//GEN-END:variables
