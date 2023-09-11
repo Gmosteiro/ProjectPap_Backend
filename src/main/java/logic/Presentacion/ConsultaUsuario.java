@@ -360,7 +360,7 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         tableModel = (DefaultTableModel) jTableListaUsuario.getModel();
 
         tableModel.setRowCount(0);
-        this.dispose();// TODO add your handling code here:
+        this.dispose();
     }// GEN-LAST:event_jButtonCancelarConsultaUsuarioActionPerformed
 
     private void jTableInformacionAsociadaMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTableInformacionAsociadaMouseClicked

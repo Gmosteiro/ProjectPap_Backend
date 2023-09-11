@@ -31,10 +31,12 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
             final List<ActividadDeportiva> actividades = query.getResultList();
 
             em.getTransaction().commit();
-
-            return actividades;
-        } finally {
             em.close();
+            return actividades;
+        } catch (Exception e) {
+            System.out.println("Catch obtenerActividadesPorInstitucion: " + e);
+            return null;
+
         }
     }
 
@@ -51,10 +53,13 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
             List<Clase> clases = query.getResultList();
 
             em.getTransaction().commit();
-
-            return clases;
-        } finally {
             em.close();
+            return clases;
+
+        } catch (Exception e) {
+            System.out.println("Catch obtenerClasesPorActividad: " + e);
+            return null;
+
         }
     }
 

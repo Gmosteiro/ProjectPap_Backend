@@ -5,9 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
-import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Usuario.Profesor;
 import logic.Usuario.Socio;
 
@@ -23,6 +20,7 @@ public class ManejadorClases {
             entityManager.getTransaction().begin();
             entityManager.persist(clase);
             entityManager.getTransaction().commit();
+            entityManager.close();
         } catch (Exception exceptionAgregarClase) {
             System.out.println("Catch agregarClase: " + exceptionAgregarClase);
             System.out.println("ERROR");
@@ -98,6 +96,7 @@ public class ManejadorClases {
             Clase clase = entityManager.find(Clase.class, nombreClase);
 
             entityManager.getTransaction().commit();
+            entityManager.close();
 
             return clase;
         } catch (Exception e) {
