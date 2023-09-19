@@ -12,83 +12,93 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class Usuario {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
-	private Long id_usuario;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
+    private Long id_usuario;
 
-	protected String nickname;
+    protected String nickname;
 
-	protected String email;
+    protected String email;
 
-	protected String nombre, apellido;
-	protected LocalDate fechaNac;
+    protected String nombre, apellido;
+    protected LocalDate fechaNac;
 
-	public Usuario() {
-		super();
-		// Constructor sin argumentos
-	}
+    protected String contrasena; // Nuevo campo para la contraseña
 
-	public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNac) {
-		super();
-		this.nickname = nickname;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
-		this.fechaNac = fechaNac;
-	}
+    public Usuario() {
+        super();
+        // Constructor sin argumentos
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String contrasena) {
+        super();
+        this.nickname = nickname;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.fechaNac = fechaNac;
+        this.contrasena = contrasena; // Asignar la contraseña
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getNickname() {
-		return nickname;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+    public String getNickname() {
+        return nickname;
+    }
 
-	public String getApellido() {
-		return apellido;
-	}
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+    public String getApellido() {
+        return apellido;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public LocalDate getFechaNac() {
-		return fechaNac;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getFechaNacFromatted() {
+    public LocalDate getFechaNac() {
+        return fechaNac;
+    }
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public String getFechaNacFromatted() {
 
-		// Convert LocalDate to LocalDateTime to enable formatting
-		String formattedDate = fechaNac.atStartOfDay().format(formatter);
-		return formattedDate;
-	}
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-	public void setFechaNac(LocalDate fechaNac) {
-		this.fechaNac = fechaNac;
-	}
+        // Convert LocalDate to LocalDateTime to enable formatting
+        String formattedDate = fechaNac.atStartOfDay().format(formatter);
+        return formattedDate;
+    }
 
-	public Long getId_usuario() {
-		return id_usuario;
-	}
+    public void setFechaNac(LocalDate fechaNac) {
+        this.fechaNac = fechaNac;
+    }
 
+    public Long getId_usuario() {
+        return id_usuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 }

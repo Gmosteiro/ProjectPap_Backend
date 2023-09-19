@@ -69,8 +69,8 @@ public class App {
 		IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
 		controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
 				"Soy alto Profe", "JuanProfe.com",
-				institucionDeportiva);
-		controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha);
+				institucionDeportiva,"contrasena");
+		controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha,"contrasena");
 
 	}
 

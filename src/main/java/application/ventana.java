@@ -312,7 +312,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jMenuItemRClienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRClienteActionPerformed
         RegistrarUsuarioCU reusuario = new RegistrarUsuarioCU();
-        reusuario.setSize(560, 500);
+        reusuario.setSize(600, 550);
         reusuario.setLocation(50, 50);
         reusuario.setVisible(true);
         jDesktopPane1.add(reusuario);

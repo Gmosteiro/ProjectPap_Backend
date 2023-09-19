@@ -14,7 +14,8 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
     @Override
     public boolean addProfesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
-            String descripcion, String biografia, String sitioWeb, InstitucionDeportiva institucion) {
+            String descripcion, String biografia, String sitioWeb, InstitucionDeportiva institucion,
+            String contrasena) {
         try {
 
             String validation = validateUserData(nickname, email, "Socio");
@@ -24,7 +25,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             }
 
             Profesor nuevoProfesor = new Profesor(nickname, nombre, apellido, email, fechaNac, institucion, descripcion,
-                    biografia, sitioWeb);
+                    biografia, sitioWeb, contrasena);
 
             ManejadorUsuarios.agregarUsuario(nuevoProfesor);
 
@@ -48,7 +49,8 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
     }
 
     @Override
-    public boolean addSocio(String nickname, String nombre, String apellido, String email, LocalDate fechaNac) {
+    public boolean addSocio(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
+            String contrasena) {
         try {
             String validation = validateUserData(nickname, email, "Socio");
             if (validation.length() != 0) {
@@ -56,7 +58,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
                 return false;
             }
 
-            Socio nuevoSocio = new Socio(nickname, nombre, apellido, email, fechaNac);
+            Socio nuevoSocio = new Socio(nickname, nombre, apellido, email, fechaNac, contrasena);
 
             ManejadorUsuarios manejador = new ManejadorUsuarios();
 
