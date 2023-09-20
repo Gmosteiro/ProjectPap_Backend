@@ -20,6 +20,7 @@ import logic.Institucion.controllers.IControllerModificarInstitucion;
 import logic.Usuario.Usuario;
 import logic.Usuario.controllers.ControllerInicioSesion;
 import logic.Usuario.controllers.IControllerAltaUsuario;
+import logic.Usuario.controllers.IControllerInicioSesion;
 import logic.Usuario.controllers.IControllerModificarUsuario;
 import logic.Usuario.controllers.IControllerRegistroDictado;
 
@@ -29,9 +30,9 @@ public class App {
 
 		try {
 			// autoInsert();
-			iniciarVentana();
+			// iniciarVentana();
 			// probarModificarUsuario();
-//                        probarInicioSesion();
+			probarInicioSesion();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
@@ -72,25 +73,21 @@ public class App {
 		IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
 		controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
 				"Soy alto Profe", "JuanProfe.com",
-				institucionDeportiva,"contrasena");
-		controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha,"contrasena");
+				institucionDeportiva, "contrasena");
+		controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha, "contrasena");
 
 	}
-        
-public static void probarInicioSesion() {
-    ControllerInicioSesion controllerInicioSesion = new ControllerInicioSesion();
 
-    // Prueba de credenciales válidas
-    Usuario usuarioValido = controllerInicioSesion.iniciarSesion("pepe", "pepi");
-    System.out.println("Resultado 1 (Válidas): " + usuarioValido);
+	public static void probarInicioSesion() {
 
-    // Prueba de credenciales inválidas
-    Usuario usuarioInvalido = controllerInicioSesion.iniciarSesion("UsuarioInvalido", "contrasenaIncorrecta");
-    System.out.println("Resultado 2 (Inválidas): " + usuarioInvalido);
-}
+		Fabrica factory = new Fabrica();
+		IControllerInicioSesion controllerInicioSesion = factory.getControllerInicioSesion();
 
+		Usuario usuario = controllerInicioSesion.iniciarSesion("user", "user");
+		System.out.println("Resultado: " + usuario);
 
-        
+	}
+
 	public static void probarRankingActividades() {
 		Fabrica factory = new Fabrica();
 		IControllerRanking controllerRanking = factory.getControladorRankingActividad();
