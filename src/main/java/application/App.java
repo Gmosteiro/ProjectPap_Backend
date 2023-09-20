@@ -17,6 +17,8 @@ import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
 import logic.Institucion.controllers.IControllerModificarInstitucion;
+import logic.Usuario.Usuario;
+import logic.Usuario.controllers.ControllerInicioSesion;
 import logic.Usuario.controllers.IControllerAltaUsuario;
 import logic.Usuario.controllers.IControllerModificarUsuario;
 import logic.Usuario.controllers.IControllerRegistroDictado;
@@ -27,8 +29,9 @@ public class App {
 
 		try {
 			// autoInsert();
-			iniciarVentana();
+//			iniciarVentana();
 			// probarModificarUsuario();
+                        probarInicioSesion();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
@@ -73,7 +76,21 @@ public class App {
 		controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha,"contrasena");
 
 	}
+        
+public static void probarInicioSesion() {
+    ControllerInicioSesion controllerInicioSesion = new ControllerInicioSesion();
 
+    // Prueba de credenciales válidas
+    Usuario usuarioValido = controllerInicioSesion.iniciarSesion("pepe", "pepi");
+    System.out.println("Resultado 1 (Válidas): " + usuarioValido);
+
+    // Prueba de credenciales inválidas
+    Usuario usuarioInvalido = controllerInicioSesion.iniciarSesion("UsuarioInvalido", "contrasenaIncorrecta");
+    System.out.println("Resultado 2 (Inválidas): " + usuarioInvalido);
+}
+
+
+        
 	public static void probarRankingActividades() {
 		Fabrica factory = new Fabrica();
 		IControllerRanking controllerRanking = factory.getControladorRankingActividad();

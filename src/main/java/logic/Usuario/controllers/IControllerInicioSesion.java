@@ -6,3 +6,5 @@ public interface IControllerInicioSesion {
 
     public abstract Usuario iniciarSesion(String nickname, String contrasena);
 }
+
+

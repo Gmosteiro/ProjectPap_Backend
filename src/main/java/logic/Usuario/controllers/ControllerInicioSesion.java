@@ -6,30 +6,33 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import javax.swing.JOptionPane;
 
-public class ControllerInicioSesion implements IControllerInicioSesion{
 
+import antlr.collections.List;
+
+
+public class ControllerInicioSesion implements IControllerInicioSesion {
+
+    @Override
     public Usuario iniciarSesion(String nickname, String contrasena) {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emFactory.createEntityManager();
-
-        try {
-            TypedQuery<Usuario> query = entityManager.createQuery(
-                    "SELECT u FROM Usuario u WHERE u.nickname = :nickname AND u.contrasena = :contrasena",
-                    Usuario.class);
-            query.setParameter("nickname", nickname);
-            query.setParameter("contrasena", contrasena);
-
-            if (!query.getResultList().isEmpty()) {
-                return query.getSingleResult();
-            } else {
-                // Si no se encuentra un usuario con esos datos, devolver null
-                return null;
-            }
-        } finally {
-            entityManager.close();
-            emFactory.close();
+        // Primero, intentamos obtener un Profesor con el nickname proporcionado
+        Profesor profesor = ManejadorUsuarios.getProfesor(nickname);
+        
+        if (profesor != null && profesor.getContrasena().equals(contrasena)) {
+            // La contraseña coincide, devolvemos al Profesor
+            return profesor;
         }
+
+        // Si no es un Profesor, intentamos obtener un Socio con el nickname proporcionado
+        Socio socio = ManejadorUsuarios.getSocio(nickname);
+        
+        if (socio != null && socio.getContrasena().equals(contrasena)) {
+            // La contraseña coincide, devolvemos al Socio
+            return socio;
+        }
+
+        // Si no encontramos un usuario con ese nickname o la contraseña es incorrecta, devolvemos null
+        return null;
     }
 }
+
