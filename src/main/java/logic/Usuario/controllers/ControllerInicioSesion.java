@@ -15,20 +15,12 @@ public class ControllerInicioSesion implements IControllerInicioSesion {
 
     @Override
     public Usuario iniciarSesion(String nickname, String contrasena) {
-        // Primero, intentamos obtener un Profesor con el nickname proporcionado
-        Profesor profesor = ManejadorUsuarios.getProfesor(nickname);
-        
-        if (profesor != null && profesor.getContrasena().equals(contrasena)) {
-            // La contraseña coincide, devolvemos al Profesor
-            return profesor;
-        }
+        // Intentamos obtener un Usuario con el nickname proporcionado
+        Usuario usuario = ManejadorUsuarios.getUser(nickname);
 
-        // Si no es un Profesor, intentamos obtener un Socio con el nickname proporcionado
-        Socio socio = ManejadorUsuarios.getSocio(nickname);
-        
-        if (socio != null && socio.getContrasena().equals(contrasena)) {
-            // La contraseña coincide, devolvemos al Socio
-            return socio;
+        if (usuario != null && usuario.getContrasena().equals(contrasena)) {
+            // La contraseña coincide, devolvemos al Usuario
+            return usuario;
         }
 
         // Si no encontramos un usuario con ese nickname o la contraseña es incorrecta, devolvemos null
