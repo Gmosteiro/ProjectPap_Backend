@@ -17,6 +17,7 @@ import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
 import logic.Institucion.controllers.IControllerModificarInstitucion;
+import logic.Usuario.Sesion;
 import logic.Usuario.Usuario;
 import logic.Usuario.controllers.ControllerInicioSesion;
 import logic.Usuario.controllers.IControllerAltaUsuario;
@@ -83,7 +84,7 @@ public class App {
 		Fabrica factory = new Fabrica();
 		IControllerInicioSesion controllerInicioSesion = factory.getControllerInicioSesion();
 
-		Usuario usuario = controllerInicioSesion.iniciarSesion("user", "user");
+		Sesion usuario = controllerInicioSesion.iniciarSesion("user", "user");
 		System.out.println("Resultado: " + usuario);
 
 	}

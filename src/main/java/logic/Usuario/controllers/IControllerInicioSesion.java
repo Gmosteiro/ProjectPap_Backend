@@ -1,10 +1,8 @@
 package logic.Usuario.controllers;
 
-import logic.Usuario.Usuario;
+import logic.Usuario.Sesion;
 
 public interface IControllerInicioSesion {
 
-    public abstract Usuario iniciarSesion(String nickname, String contrasena);
+    public abstract Sesion iniciarSesion(String nickname, String contrasena);
 }
-
-
