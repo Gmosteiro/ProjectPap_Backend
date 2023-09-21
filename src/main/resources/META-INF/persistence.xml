@@ -6,6 +6,11 @@
 	<persistence-unit name="project_pap" transaction-type="RESOURCE_LOCAL">
 		<class>logic.Usuario</class>
 		<class>logic.Profesor</class>
+		<class>logic.Socio</class>
+		<class>logic.Registro</class>
+		<class>logic.Clase</class>
+		<class>logic.Institucion</class>
+		<class>logic.ActividadDeportiva</class>
 
 
 		<properties>
