@@ -31,9 +31,9 @@ public class App {
 
 		try {
 			// autoInsert();
-			// iniciarVentana();
+			iniciarVentana();
 			// probarModificarUsuario();
-			probarInicioSesion();
+			// probarInicioSesion();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
