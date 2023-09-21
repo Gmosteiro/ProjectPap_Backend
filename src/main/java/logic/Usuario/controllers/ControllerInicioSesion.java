@@ -12,9 +12,6 @@ public class ControllerInicioSesion implements IControllerInicioSesion {
         // Intentamos obtener un Usuario con el nickname proporcionado
         Usuario usuario = ManejadorUsuarios.getUser(nickname);
 
-        System.out.println("Usuario: " + usuario);
-        System.out.println("usuario.getContrasena() " + usuario.getContrasena());
-
         if (usuario != null && usuario.getContrasena().equals(contrasena)) {
 
             return crearSesion(usuario);
