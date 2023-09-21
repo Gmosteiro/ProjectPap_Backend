@@ -22,6 +22,7 @@ public class ActividadDeportiva {
     private int duracion;
     private float costo;
     private LocalDate fechaReg;
+    private String img;
 
 
 
@@ -35,12 +36,13 @@ public class ActividadDeportiva {
     public ActividadDeportiva() {
     }
 
-    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg) {
+    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, String img) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
         this.costo = costo;
         this.fechaReg = fechaReg;
+        this.img = img;
     }
 
     // Métodos getters y setters para los atributos
@@ -83,6 +85,14 @@ public class ActividadDeportiva {
 
     public void setFechaReg(LocalDate fechaReg) {
         this.fechaReg = fechaReg;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
     
     public List<Clase> getClases(){

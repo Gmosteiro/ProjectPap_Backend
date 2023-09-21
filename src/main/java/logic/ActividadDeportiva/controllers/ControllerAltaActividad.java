@@ -24,12 +24,12 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
     }
 
     @Override
-    public boolean altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg,
+    public boolean altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, String img,
             String nombrei) {
         try {
 
             if (validateActivityData(nombre)) {
-                ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
+                ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg, img);
                 ManejadorInstitucion manejadorI = new ManejadorInstitucion();
                 manejadorI.agregarActividadI(actividad, nombrei);
                 System.out.println("Actividad Creada");
