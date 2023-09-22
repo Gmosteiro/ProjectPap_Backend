@@ -17,7 +17,7 @@ public class ControllerAltaClase implements IControllerAltaClase {
 
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
-            String nombreProfesor, String actividad) {
+            String nombreProfesor, byte[] img, String actividad) {
         try {
 
             if (!validateClassData(nombre, "Clase")) {
@@ -32,7 +32,7 @@ public class ControllerAltaClase implements IControllerAltaClase {
 
             Profesor profesor = ManejadorUsuarios.getProfesor(nombreProfesor);
 
-            Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg, profesor);
+            Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg, profesor, img);
             ManejadorActividad manejadorA = new ManejadorActividad();
             manejadorA.agregarClaseA(nuevaclase, actividad);
             System.out.println("Clase Creada");

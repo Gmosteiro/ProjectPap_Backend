@@ -8,5 +8,5 @@ import logic.Usuario.Profesor;
 public interface IControllerAltaClase {
 
   public abstract void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
-      String nombreProfesor, String actividad);
+      String nombreProfesor, byte[] img, String actividad);
 }

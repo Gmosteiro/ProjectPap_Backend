@@ -2,12 +2,16 @@ package logic.Usuario;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
+
+import logic.Clase.Clase;
 
 @MappedSuperclass
 public abstract class Usuario {
@@ -16,22 +20,20 @@ public abstract class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Long id_usuario;
-
     protected String nickname;
-
     protected String email;
-
     protected String nombre, apellido;
     protected LocalDate fechaNac;
-
     protected String contrasena; // Nuevo campo para la contraseña
+    @Lob
+    protected byte[] img;
 
     public Usuario() {
         super();
         // Constructor sin argumentos
     }
 
-    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String contrasena) {
+    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String contrasena,byte[] img) {
         super();
         this.nickname = nickname;
         this.nombre = nombre;
@@ -39,6 +41,7 @@ public abstract class Usuario {
         this.email = email;
         this.fechaNac = fechaNac;
         this.contrasena = contrasena; // Asignar la contraseña
+        this.img =img;
     }
 
     public String getEmail() {
@@ -101,4 +104,13 @@ public abstract class Usuario {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+
+    public void setImg(byte[] img) {
+    this.img = img;
+    }
+    
+    public byte[] getImg() {
+        return img;
+    }
+
 }

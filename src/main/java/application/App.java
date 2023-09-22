@@ -2,6 +2,8 @@ package application;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -32,7 +34,8 @@ public class App {
 			// autoInsert();
 			// iniciarVentana();
 			// probarModificarUsuario();
-			probarInicioSesion();
+                        probarAddInstituciones();
+			probarAddActividad();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
@@ -64,17 +67,29 @@ public class App {
 	}
 
 	public static void probarAddUsuarios() {
-		LocalDate fecha = LocalDate.of(2023, 8, 17);
+	 try {
+        LocalDate fecha = LocalDate.of(2023, 8, 17);
 
-		InstitucionDeportiva institucionDeportiva = ManejadorInstitucion
-				.getInstitucionesByName("ESI");
+        InstitucionDeportiva institucionDeportiva = ManejadorInstitucion.getInstitucionesByName("ESI");
 
-		Fabrica factory = new Fabrica();
-		IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
-		controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
-				"Soy alto Profe", "JuanProfe.com",
-				institucionDeportiva, "contrasena");
-		controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha, "contrasena");
+        File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
+        FileInputStream fis = new FileInputStream(imagenFile);
+        byte[] imagenBytes = new byte[(int)imagenFile.length()];
+        fis.read(imagenBytes);
+        fis.close();
+
+        Fabrica factory = new Fabrica();
+        IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
+        
+        controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
+                "Soy alto Profe", "JuanProfe.com", institucionDeportiva, "contrasena", imagenBytes);
+        
+        controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha, "contrasena", imagenBytes);
+    } catch (Exception e) {
+        System.out.println("Error al agregar usuarios: " + e.getMessage());
+        e.printStackTrace();
+    }
+
 
 	}
 
@@ -137,20 +152,27 @@ public class App {
 
 	public static void probarAddActividad() {
 
-		try {
-			Fabrica factory = new Fabrica();
+    try {
+        Fabrica factory = new Fabrica();
 
-			IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
-			LocalDate fechareg = LocalDate.of(2023, 8, 17);
+        IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
+        LocalDate fechareg = LocalDate.of(2023, 8, 17);
 
-			controllerAltaActividad.altaActividad("Atletismo", "Moverse", 10, 100, fechareg, "Gimnasio");
+        File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
+        FileInputStream fis = new FileInputStream(imagenFile);
+        byte[] imagenBytes = new byte[(int)imagenFile.length()];
+        fis.read(imagenBytes);
+        fis.close();
 
-		} catch (Exception e) {
-			System.out.println("Catch main: " + e.getMessage());
-			e.printStackTrace();
-		}
+        controllerAltaActividad.altaActividad("Atletismo", "Moverse", 10, 100, fechareg, imagenBytes, "Gimnasio");
 
-	}
+    } catch (Exception e) {
+        System.out.println("Catch main: " + e.getMessage());
+        e.printStackTrace();
+    }
+
+}
+
 
 	private static void iniciarVentana() {
 		Ventana ventana = new Ventana();

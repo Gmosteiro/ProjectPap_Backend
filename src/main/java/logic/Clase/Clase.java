@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -21,10 +22,11 @@ public class Clase {
 
     @Id
     private String nombre;
-
     private LocalDate fecha, fechaReg;
     private LocalTime hora;
     private String url;
+    @Lob
+    protected byte[] img;
 
     @ManyToOne
     @JoinColumn(name = "profesor")
@@ -39,7 +41,7 @@ public class Clase {
 
     }
 
-    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg, Profesor profesor) {
+    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg, Profesor profesor,byte[] img) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.hora = hora;
@@ -117,5 +119,12 @@ public class Clase {
         return formattedDate;
     }
     
+    public void setImg(byte[] img) {
+    this.img = img;
+    }
+
+    public byte[] getImg() {
+        return img;
+    }
 
 }

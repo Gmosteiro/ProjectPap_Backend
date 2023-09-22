@@ -8,7 +8,7 @@ import logic.Institucion.InstitucionDeportiva;
 public interface IControllerAltaActividad {
 
         public abstract boolean altaActividad(String nombre, String descripcion, int duracion, float costo,
-                        LocalDate fechaReg, String img, String nombrei);
+                        LocalDate fechaReg, byte[] img, String nombrei);
 
         public abstract void modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion,
                         float nuevoCosto);

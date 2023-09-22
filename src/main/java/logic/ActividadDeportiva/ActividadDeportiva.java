@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -22,7 +23,8 @@ public class ActividadDeportiva {
     private int duracion;
     private float costo;
     private LocalDate fechaReg;
-    private String img;
+    @Lob
+    private byte[] img;
 
 
 
@@ -36,7 +38,7 @@ public class ActividadDeportiva {
     public ActividadDeportiva() {
     }
 
-    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, String img) {
+    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, byte[] img) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -87,11 +89,11 @@ public class ActividadDeportiva {
         this.fechaReg = fechaReg;
     }
 
-    public String getImg() {
+    public byte[] getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public void setImg(byte[] img) {
         this.img = img;
     }
     

@@ -390,15 +390,18 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
         boolean action;
 
         // Llamar a tu función pasando la variable como argumento
-        if (jCheckBoxPROF.isSelected()) {
-            InstitucionDeportiva institucionDeportiva = ManejadorInstitucion
-                    .getInstitucionesByName(jComboBoxRUInstitucion.getSelectedItem().toString());
+if (jCheckBoxPROF.isSelected()) {
+        InstitucionDeportiva institucionDeportiva = ManejadorInstitucion
+                .getInstitucionesByName(jComboBoxRUInstitucion.getSelectedItem().toString());
+        
+        byte[] img = obtenerImagenComoBytes(); // Asegúrate de tener un método para obtener la imagen en forma de byte[]
 
-            action = controllerAltaUsuario.addProfesor(nickname, nombre, apellido, email, fechaNacimiento,
-                    descripcion, biografia, sitioweb, institucionDeportiva, contrasena);
-        } else {
-            action = controllerAltaUsuario.addSocio(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
-        }
+        action = controllerAltaUsuario.addProfesor(nickname, nombre, apellido, email, fechaNacimiento,
+                descripcion, biografia, sitioweb, institucionDeportiva, contrasena, img);
+    } else {
+        action = controllerAltaUsuario.addSocio(nickname, nombre, apellido, email, fechaNacimiento, contrasena);
+    }
+
 
         if (action) {
             jTextFieldNombreU.setText("");
