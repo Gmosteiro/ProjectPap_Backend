@@ -140,8 +140,12 @@ public class App {
 			Fabrica factory = new Fabrica();
 
 			IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
-
-			controllerAltaClase.addClase("Running", fecha, hora, "run.com", fechareg, "Juan", "Atletismo");
+    File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
+        FileInputStream fis = new FileInputStream(imagenFile);
+        byte[] imagenBytes = new byte[(int)imagenFile.length()];
+        fis.read(imagenBytes);
+        fis.close();
+			controllerAltaClase.addClase("Running", fecha, hora, "run.com", fechareg, "Juan",imagenBytes, "Atletismo");
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
