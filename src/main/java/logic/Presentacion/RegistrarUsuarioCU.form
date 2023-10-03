@@ -25,7 +25,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jDesktopPane1" max="32767" attributes="0"/>
+          <Component id="jDesktopPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -43,44 +43,31 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="190" max="32767" attributes="0"/>
-                          <Component id="jButtonRUA" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Component id="jButtonRUC" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Component id="jButtonRUM" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
-                                  <Component id="TextoIngresedatosU" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="TextoInstiPROF" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextoApellidoU" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                                  <Component id="TextoNicknameU" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                                  <Component id="TextoEmailU" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TextoFNU" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextoDescProf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextoBioProf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TextoWebProf" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jCheckBoxPROF" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TextoNombreU" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jComboBoxRUInstitucion" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldWebProf" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="TextoInstiPROF" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="TextoApellidoU" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                                          <Component id="TextoNicknameU" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                                          <Component id="TextoEmailU" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="TextoFNU" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="TextoDescProf" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="TextoBioProf" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="TextoWebProf" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="TextoNombreU" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jTextFieldBioProf" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jComboBoxRUInstitucion" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldWebProf" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
-                                      </Group>
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="jDateChooserFNU" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jTextFieldDescProf" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
@@ -103,12 +90,28 @@
                                           </Group>
                                       </Group>
                                   </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jFileChooserImgUsuario" min="-2" pref="287" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jCheckBoxPROF" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jButtonRUA" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="jButtonRUC" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jButtonRUM" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="TextoIngresedatosU" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -117,57 +120,64 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="TextoIngresedatosU" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextFieldNombreU" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="TextoNombreU" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jComboBoxNombreU" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextoApellidoU" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jTextFieldApellidoU" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jComboBoxApellidoU" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextFieldNicknameU" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="TextoNicknameU" alignment="3" pref="32" max="32767" attributes="0"/>
-                      <Component id="jComboBoxNicknameU" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextFieldEmailU" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="jComboBoxEmailU" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextoEmailU" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextFieldContrasena" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="TextoFNU" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="TextoDescProf" min="-2" pref="32" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jTextFieldCContrasena" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace pref="15" max="32767" attributes="0"/>
-                          <Component id="jDateChooserFNU" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldNombreU" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="TextoNombreU" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="jComboBoxNombreU" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldDescProf" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="TextoApellidoU" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="jTextFieldApellidoU" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="jComboBoxApellidoU" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldNicknameU" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="TextoNicknameU" alignment="3" pref="32" max="32767" attributes="0"/>
+                              <Component id="jComboBoxNicknameU" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldEmailU" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="jComboBoxEmailU" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TextoEmailU" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTextFieldContrasena" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="TextoFNU" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="TextoDescProf" min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jTextFieldCContrasena" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                                  <Component id="jDateChooserFNU" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextFieldDescProf" min="-2" pref="31" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="TextoBioProf" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="jTextFieldBioProf" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jFileChooserImgUsuario" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TextoBioProf" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="jTextFieldBioProf" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -180,15 +190,21 @@
                       <Component id="TextoInstiPROF" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="jComboBoxRUInstitucion" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                  <Component id="jCheckBoxPROF" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonRUA" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonRUC" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonRUM" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Component id="jCheckBoxPROF" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jButtonRUA" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonRUC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonRUM" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -387,6 +403,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCContrasena">
+        </Component>
+        <Component class="javax.swing.JFileChooser" name="jFileChooserImgUsuario">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFileChooserImgUsuarioActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
