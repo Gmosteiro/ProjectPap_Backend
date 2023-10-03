@@ -19,7 +19,6 @@ public class ControllerInicioSesion implements IControllerInicioSesion {
             return null;
         }
 
-        // Si no encontramos un usuario con ese nickname o la contraseña es incorrecta,
     }
 
     private Sesion crearSesion(Usuario user) {
@@ -37,4 +36,5 @@ public class ControllerInicioSesion implements IControllerInicioSesion {
         }
 
     }
+
 }
