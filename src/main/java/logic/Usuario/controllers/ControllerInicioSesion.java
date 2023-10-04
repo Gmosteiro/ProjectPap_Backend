@@ -24,7 +24,7 @@ public class ControllerInicioSesion implements IControllerInicioSesion {
     private Sesion crearSesion(Usuario user) {
         try {
 
-            String profileImage = "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg";
+            byte[] profileImage = user.getImg();
             String type = user instanceof Profesor ? "Profesor" : "Socio";
             Sesion nuevaSesion = new Sesion(user.getNickname(), user.getEmail(), user.getNombre(), user.getApellido(),
                     type, profileImage);

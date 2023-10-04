@@ -250,6 +250,7 @@ public class RegistrarActividadCU extends javax.swing.JInternalFrame {
         try {
             byte[] imagenBytes = Files.readAllBytes(selectedFile.toPath()); // Convertir a array de bytes
             // Haz lo que necesites con 'imagenBytes'
+           
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }

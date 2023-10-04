@@ -6,8 +6,12 @@ package application;
 
 import logic.Presentacion.RankingActividades;
 import application.Ventana;
+import java.util.Arrays;
+import java.util.Base64;
 import javax.swing.JInternalFrame;
 import logic.Presentacion.*;
+import logic.Usuario.Sesion;
+import logic.Usuario.Usuario;
 
 /**
  *
@@ -209,6 +213,9 @@ public class Ventana extends javax.swing.JFrame {
         // internalFrame.setVisible(true);
         jDesktopPane1.add(clase);
         clase.toFront();
+          
+ 
+
     }// GEN-LAST:event_jMenuItemConsultarClaseActionPerformed
 
     private void jMenuInicioMenuSelected(javax.swing.event.MenuEvent evt) {// GEN-FIRST:event_jMenuInicioMenuSelected
@@ -312,7 +319,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jMenuItemRClienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRClienteActionPerformed
         RegistrarUsuarioCU reusuario = new RegistrarUsuarioCU();
-        reusuario.setSize(600, 550);
+        reusuario.setSize(800, 600);
         reusuario.setLocation(50, 50);
         reusuario.setVisible(true);
         jDesktopPane1.add(reusuario);

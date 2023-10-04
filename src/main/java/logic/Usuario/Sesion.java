@@ -1,10 +1,11 @@
 package logic.Usuario;
 
+
 public class Sesion {
 
-    private String nickname, email, nombre, apellido, userType, profileImage;
-
-    public Sesion(String nickname, String email, String nombre, String apellido, String userType, String profileImage) {
+    private String nickname, email, nombre, apellido, userType;
+    byte[] profileImage;
+    public Sesion(String nickname, String email, String nombre, String apellido, String userType, byte[] profileImage) {
         this.nickname = nickname;
         this.email = email;
         this.nombre = nombre;
@@ -13,11 +14,11 @@ public class Sesion {
         this.profileImage = profileImage;
     }
 
-    public String getProfileImage() {
+    public byte[] getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(String profileImage) {
+    public void setProfileImage(byte[] profileImage) {
         this.profileImage = profileImage;
     }
 
