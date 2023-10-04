@@ -4,6 +4,11 @@
  */
 package logic.Presentacion;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -64,6 +69,7 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
         TextoFAC = new javax.swing.JLabel();
         jSpinnerRCMinicio = new javax.swing.JSpinner();
         jButtonRCA = new javax.swing.JButton();
+        jFileChooserImgClase = new javax.swing.JFileChooser();
 
         setTitle("Registrar Clase");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -153,22 +159,28 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
             }
         });
 
+        jFileChooserImgClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooserImgClaseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(TextoIngreseDatosC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jComboBoxInstitucionesClase, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(TextoProfesorC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxProfesorC, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TextoNombreC, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(TextoFIC)
@@ -180,18 +192,16 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButtonRCC)
-                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonRCC)
+                        .addGap(198, 198, 198)
+                        .addComponent(jButtonRCA)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(jButtonRCA)
-                        .addGap(139, 139, 139))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(90, 90, 90)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,8 +223,11 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
                                         .addComponent(jComboBoxActividadesC, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(20, 20, 20)
                                         .addComponent(jComboBoxNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(TextoURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                            .addComponent(TextoURLC, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jFileChooserImgClase, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(127, 127, 127))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,21 +263,35 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
                             .addComponent(jSpinnerRCMinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextoFIC))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextoFAC)
-                    .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRCC)
-                    .addComponent(jButtonRCA))
-                .addGap(53, 53, 53))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextoFIC))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextoFAC)
+                            .addComponent(jDateChooserFechaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonRCC)
+                            .addComponent(jButtonRCA)))
+                    .addComponent(jFileChooserImgClase, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(92, 92, 92))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jFileChooserImgClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooserImgClaseActionPerformed
+          File selectedFile = jFileChooserImgClase.getSelectedFile(); // Obtener el archivo seleccionado
+
+    try {
+        byte[] imagenBytes = Files.readAllBytes(selectedFile.toPath()); // Convertir a array de bytes
+       
+    } catch (IOException e) {
+        System.out.println("Error al leer el archivo: " + e.getMessage());
+    }
+    }//GEN-LAST:event_jFileChooserImgClaseActionPerformed
 
         private void jButtonRCCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCCActionPerformed
                 jTextFieldNombreC.setText("");
@@ -314,32 +341,45 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
         }// GEN-LAST:event_jTextFieldURLCActionPerformed
 
         private void jButtonRCAActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRCAActionPerformed
-                Fabrica factory = new Fabrica();
-                IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
-                Date selectedDate = jDateChooserFechaInicio.getDate();
-                LocalDate fechaInicio = selectedDate.toInstant()
-                                .atZone(jDateChooserFechaInicio.getCalendar().getTimeZone().toZoneId()).toLocalDate();
+                try {
+        Fabrica factory = new Fabrica();
+        IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
+        
+        Date selectedDate = jDateChooserFechaInicio.getDate();
+        LocalDate fechaInicio = selectedDate.toInstant()
+                        .atZone(jDateChooserFechaInicio.getCalendar().getTimeZone().toZoneId()).toLocalDate();
+        
+        Date selectedDate2 = jDateChooserFechaAlta.getDate();
+        LocalDate fechareg = selectedDate2.toInstant()
+                        .atZone(jDateChooserFechaAlta.getCalendar().getTimeZone().toZoneId()).toLocalDate();
+        
+        final LocalTime horaInicio = LocalTime.of((int) jSpinnerRCHinicio.getValue(),
+                        (int) jSpinnerRCMinicio.getValue());
+        
+        Object actividades = jComboBoxActividadesC.getSelectedItem();
+        String actividad = actividades.toString();
+        
+        Object profesores = jComboBoxProfesorC.getSelectedItem();
+        String profesor = profesores.toString();
+        
+        String nombre = jTextFieldNombreC.getText();
+        String url = jTextFieldURLC.getText();
+           String rutaDeArchivo = jFileChooserImgClase.getSelectedFile().getAbsolutePath();
+           byte[] img = obtenerImagenComoBytes(rutaDeArchivo);
+        controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechareg, profesor, img, actividad);
 
-                Date selectedDate2 = jDateChooserFechaAlta.getDate();
-                LocalDate fechareg = selectedDate2.toInstant()
-                                .atZone(jDateChooserFechaAlta.getCalendar().getTimeZone().toZoneId()).toLocalDate();
-                final LocalTime horaInicio = LocalTime.of((int) jSpinnerRCHinicio.getValue(),
-                                (int) jSpinnerRCMinicio.getValue());
-
-                Object actividades = jComboBoxActividadesC.getSelectedItem();
-                String actividad = actividades.toString();
-
-                Object profesores = jComboBoxProfesorC.getSelectedItem();
-                String profesor = profesores.toString();
-
-                String nombre = jTextFieldNombreC.getText();
-                String url = jTextFieldURLC.getText();
-
-                controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechareg, profesor, actividad);
-                jTextFieldNombreC.setText("");
-                jTextFieldURLC.setText("");
+        
+        jTextFieldNombreC.setText("");
+        jTextFieldURLC.setText("");
+    } catch (Exception e) {
+        // Manejar la excepción según sea necesario
+        System.out.println("Error al agregar clase: " + e.getMessage());
+    }
         }// GEN-LAST:event_jButtonRCAActionPerformed
-
+        private byte[] obtenerImagenComoBytes(String rutaDeArchivo) throws IOException {
+    Path path = Paths.get(rutaDeArchivo);
+    return Files.readAllBytes(path);
+    }// GEN-LAST:event_jButtonRUAActionPerformed
         private void addInstitucionesToComboBox(String option) {
 
                 List<InstitucionDeportiva> instituciones = ManejadorInstitucion.getInstituciones();
@@ -403,6 +443,7 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBoxProfesorC;
     private com.toedter.calendar.JDateChooser jDateChooserFechaAlta;
     private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
+    private javax.swing.JFileChooser jFileChooserImgClase;
     private javax.swing.JSpinner jSpinnerRCHinicio;
     private javax.swing.JSpinner jSpinnerRCMinicio;
     private javax.swing.JTextField jTextFieldNombreC;

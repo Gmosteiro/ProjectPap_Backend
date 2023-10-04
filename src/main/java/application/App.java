@@ -32,10 +32,10 @@ public class App {
 
 		try {
 			// autoInsert();
-			// iniciarVentana();
+			 iniciarVentana();
 			// probarModificarUsuario();
-                        probarAddInstituciones();
-			probarAddActividad();
+//                        probarAddInstituciones();
+//			probarAddActividad();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());

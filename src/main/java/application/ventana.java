@@ -301,7 +301,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jMenuItemRActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemRActividadActionPerformed
         RegistrarActividadCU reactividad = new RegistrarActividadCU();
-        reactividad.setSize(560, 500);
+        reactividad.setSize(760, 600);
         reactividad.setLocation(50, 50);
         reactividad.setVisible(true);
         // internalFrame.setSize(300, 200);
