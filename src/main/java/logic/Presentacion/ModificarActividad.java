@@ -4,7 +4,12 @@
  */
 package logic.Presentacion;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import static java.lang.ProcessHandle.current;
+import java.util.Base64;
 import java.util.List;
 import javax.swing.JOptionPane;
 import logic.ActividadDeportiva.ActividadDeportiva;
@@ -20,6 +25,7 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
     /**
      * Creates new form ModificarActividad
      */
+    private String imagenBase64;
     public ModificarActividad() {
         initComponents();
     }
@@ -43,6 +49,7 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
         jTextFieldCosto = new javax.swing.JTextField();
         jButtonModificarActividad = new javax.swing.JButton();
         jButtonCanceloMA = new javax.swing.JButton();
+        jFileChooserImgEact = new javax.swing.JFileChooser();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -91,6 +98,12 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
             }
         });
 
+        jFileChooserImgEact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooserImgEactActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,53 +113,60 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCanceloMA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonModificarActividad)
-                        .addGap(83, 83, 83))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxActividadesM, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldCosto)
-                                    .addComponent(jTextFieldDuracionAct)
-                                    .addComponent(jTextFieldDescAct))
-                                .addGap(56, 56, 56)))
-                        .addGap(125, 125, 125))))
+                            .addComponent(jTextFieldCosto, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                            .addComponent(jTextFieldDuracionAct)
+                            .addComponent(jTextFieldDescAct)
+                            .addComponent(jComboBoxActividadesM, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)))
+                .addComponent(jFileChooserImgEact, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonModificarActividad)
+                .addGap(106, 106, 106))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxActividadesM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldDescAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel3))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxActividadesM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextFieldDescAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldDuracionAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextFieldCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldDuracionAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonModificarActividad)
-                    .addComponent(jButtonCanceloMA))
-                .addGap(140, 140, 140))
+                        .addComponent(jFileChooserImgEact, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCanceloMA)
+                .addGap(9, 9, 9)
+                .addComponent(jButtonModificarActividad)
+                .addGap(47, 47, 47))
         );
 
         pack();
@@ -194,11 +214,11 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
     int nuevaDuracion = Integer.parseInt(jTextFieldDuracionAct.getText());
     float nuevoCosto = Float.parseFloat(jTextFieldCosto.getText());
 
-    // Crear una instancia del controlador
+    
     ControllerModificarActividad controller = new ControllerModificarActividad();
-
-    // Llamar al método para modificar la actividad
-    boolean modificacionExitosa = controller.modificarActividad(nombreActividadSeleccionada, nuevaDescripcion, nuevaDuracion, nuevoCosto);
+    String imgBase64 = imagenBase64;
+    
+    boolean modificacionExitosa = controller.modificarActividad(nombreActividadSeleccionada, nuevaDescripcion, nuevaDuracion, nuevoCosto,imgBase64);
 
     // Mostrar un mensaje al usuario
     if (modificacionExitosa) {
@@ -207,6 +227,28 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, "No se pudo modificar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jButtonModificarActividadActionPerformed
+
+    private void jFileChooserImgEactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooserImgEactActionPerformed
+           try {
+        File selectedFile = jFileChooserImgEact.getSelectedFile(); // Obtener el archivo seleccionado
+
+        FileInputStream fis = new FileInputStream(selectedFile);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = fis.read(buffer)) != -1) {
+            bos.write(buffer, 0, bytesRead);
+        }
+        imagenBase64 = Base64.getEncoder().encodeToString(bos.toByteArray());
+
+        fis.close();
+        bos.close();
+        
+         JOptionPane.showMessageDialog(this, "Foto seleccionada correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+    } catch (IOException e) { 
+        System.out.println("Error al leer el archivo: " + e.getMessage());
+    }
+    }//GEN-LAST:event_jFileChooserImgEactActionPerformed
 
     private void addActividadesToComboBox(String option) {
            // Obtener la lista de actividades y cargarlas en el JComboBox
@@ -234,6 +276,7 @@ public class ModificarActividad extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonCanceloMA;
     private javax.swing.JButton jButtonModificarActividad;
     private javax.swing.JComboBox<String> jComboBoxActividadesM;
+    private javax.swing.JFileChooser jFileChooserImgEact;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

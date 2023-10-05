@@ -16,61 +16,8 @@ public class ControllerModificarActividad implements IControllerModificarActivid
         manejadorActividad = new ManejadorActividad();
     }
 
-    // public void modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto) {
-    //     EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-    //     EntityManager em = emf.createEntityManager();
-
-    //     // try {
-    //     //     em.getTransaction().begin();
-
-    //     //     ActividadDeportiva actividad = em.find(ActividadDeportiva.class, nombre);
-    //     //     if (actividad != null) {
-    //     //         actividad.setDescripcion(nuevaDescripcion);
-    //     //         actividad.setDuracion(nuevaDuracion);
-    //     //         actividad.setCosto(nuevoCosto);
-    //     //         em.merge(actividad); // Actualizar la entidad
-
-    //     //         em.getTransaction().commit();
-    //     //         System.out.println("Actividad modificada exitosamente.");
-    //     //     } else {
-    //     //         // Manejar la actividad no encontrada
-    //     //         System.out.println("No se encontró la actividad.");
-    //     //     }
-    //     // } catch (Exception e) {
-    //     //     // Manejar excepciones
-    //     //     e.printStackTrace();
-    //     // } finally {
-    //     //     em.close();
-    //     //     emf.close();
-    //     // }
-    //     try {
-    //         System.out.println("Comenzando transacción...");
-    //         em.getTransaction().begin();
-        
-    //         ActividadDeportiva actividad = em.find(ActividadDeportiva.class, nombre);
-    //         if (actividad != null) {
-    //             actividad.setDescripcion(nuevaDescripcion);
-    //             actividad.setDuracion(nuevaDuracion);
-    //             actividad.setCosto(nuevoCosto);
-    //             em.merge(actividad); // Actualizar la entidad
-        
-    //             em.getTransaction().commit();
-    //             System.out.println("Actividad modificada exitosamente.");
-    //         } else {
-    //             // Manejar la actividad no encontrada
-    //             System.out.println("No se encontró la actividad.");
-    //         }
-    //     } catch (Exception e) {
-    //         // Manejar excepciones
-    //         e.printStackTrace();
-    //     } finally {
-    //         em.close();
-    //         emf.close();
-    //         System.out.println("Transacción finalizada.");
-    //     }
-    // }
-
-    public boolean modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto) {
+   
+    public boolean modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto,String img) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
         EntityManager em = emf.createEntityManager();
     
@@ -82,6 +29,7 @@ public class ControllerModificarActividad implements IControllerModificarActivid
                 actividad.setDescripcion(nuevaDescripcion);
                 actividad.setDuracion(nuevaDuracion);
                 actividad.setCosto(nuevoCosto);
+                actividad.setImg(img);
                 em.merge(actividad); // Actualizar la entidad
     
                 em.getTransaction().commit();

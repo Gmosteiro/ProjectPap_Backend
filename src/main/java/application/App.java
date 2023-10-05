@@ -203,19 +203,19 @@ public class App {
 		ventana.setLocation(x, y);
 	}
 
-	public static void probarModificarActividad() {
-		Fabrica factory = new Fabrica();
-		IControllerModificarActividad controllerActividad = factory.getControllerModificarActividad();
-
-		String nombreActividad = "Matematica";
-		String nuevaDescripcion = "Nueva descripción";
-		int nuevaDuracion = 60;
-		float nuevoCosto = 50;
-
-		controllerActividad.modificarActividad(nombreActividad, nuevaDescripcion, nuevaDuracion, nuevoCosto);
-
-		System.out.println("Actividad modificada exitosamente.");
-	}
+//	public static void probarModificarActividad() {
+//		Fabrica factory = new Fabrica();
+//		IControllerModificarActividad controllerActividad = factory.getControllerModificarActividad();
+//
+//		String nombreActividad = "Matematica";
+//		String nuevaDescripcion = "Nueva descripción";
+//		int nuevaDuracion = 60;
+//		float nuevoCosto = 50;
+//
+//		controllerActividad.modificarActividad(nombreActividad, nuevaDescripcion, nuevaDuracion, nuevoCosto);
+//
+//		System.out.println("Actividad modificada exitosamente.");
+//	}
 
 //	public static void probarModificarUsuario() {
 //		Fabrica factory = new Fabrica();
