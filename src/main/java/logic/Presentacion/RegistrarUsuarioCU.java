@@ -4,12 +4,16 @@
  */
 package logic.Presentacion;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -27,7 +31,7 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
     /**
      * Creates new form RegistrarUsuarioCU
      */
-
+    private String imagenBase64;
     public RegistrarUsuarioCU() {
         initComponents();
         jTextFieldDescProf.setEnabled(false);
@@ -371,18 +375,28 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonRUMActionPerformed
 
     private void jFileChooserImgUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooserImgUsuarioActionPerformed
-            // Se ha seleccionado un archivo de imagen
-    
-    File selectedFile = jFileChooserImgUsuario.getSelectedFile(); // Obtener el archivo seleccionado
-    
-    try {
-        byte[] imagenBytes = Files.readAllBytes(selectedFile.toPath()); // Convertir a array de bytes
-        // Haz lo que necesites con 'imagenBytes'
-    } catch (IOException e) {
+          try {
+        File selectedFile = jFileChooserImgUsuario.getSelectedFile(); // Obtener el archivo seleccionado
+
+        FileInputStream fis = new FileInputStream(selectedFile);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = fis.read(buffer)) != -1) {
+            bos.write(buffer, 0, bytesRead);
+        }
+        imagenBase64 = Base64.getEncoder().encodeToString(bos.toByteArray());
+
+        fis.close();
+        bos.close();
+    } catch (IOException e) { 
         System.out.println("Error al leer el archivo: " + e.getMessage());
     }
     }//GEN-LAST:event_jFileChooserImgUsuarioActionPerformed
 
+
+
+    
     
     private void jButtonRUCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRUCActionPerformed
         jTextFieldNombreU.setText("");
@@ -401,9 +415,9 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
 
     
     private void jButtonRUAActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonRUAActionPerformed
-           try {
+        
+         try {
         Fabrica factory = new Fabrica();
-
         IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
 
         Date selectedDate = jDateChooserFNU.getDate();
@@ -418,7 +432,7 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
         String biografia = jTextFieldBioProf.getText();
         String sitioweb = jTextFieldWebProf.getText();
         String contrasena = jTextFieldContrasena.getText();
-        String ccontrasena = jTextFieldCContrasena.getText(); 
+        String ccontrasena = jTextFieldCContrasena.getText();
 
         // Validar que las contraseñas coincidan
         if (!contrasena.equals(ccontrasena)) {
@@ -432,16 +446,16 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
         if (jCheckBoxPROF.isSelected()) {
             InstitucionDeportiva institucionDeportiva = ManejadorInstitucion
                     .getInstitucionesByName(jComboBoxRUInstitucion.getSelectedItem().toString());
-            
-            String rutaDeArchivo = jFileChooserImgUsuario.getSelectedFile().getAbsolutePath();
-            byte[] img = obtenerImagenComoBytes(rutaDeArchivo);
+
+            String imgBase64 = imagenBase64;
 
             action = controllerAltaUsuario.addProfesor(nickname, nombre, apellido, email, fechaNacimiento,
-                    descripcion, biografia, sitioweb, institucionDeportiva, contrasena, img);
+                    descripcion, biografia, sitioweb, institucionDeportiva, contrasena, imgBase64);
         } else {
-              String rutaDeArchivo = jFileChooserImgUsuario.getSelectedFile().getAbsolutePath();
-            byte[] img = obtenerImagenComoBytes(rutaDeArchivo);
-            action = controllerAltaUsuario.addSocio(nickname, nombre, apellido, email, fechaNacimiento, contrasena,img);
+
+            String imgBase64 = imagenBase64;
+
+            action = controllerAltaUsuario.addSocio(nickname, nombre, apellido, email, fechaNacimiento, contrasena, imgBase64);
         }
 
         if (action) {
@@ -454,19 +468,18 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
             jTextFieldWebProf.setText("");
         }
 
-    } catch (NumberFormatException e) {
+    }catch (NumberFormatException e) {
         // Manejar una excepción si no se puede convertir el texto a un número
         System.out.println("El texto no es un número válido");
-    } catch (IOException e) {
-        // Manejar una excepción de E/S si ocurre algún problema al leer el archivo
-        System.out.println("Error al leer el archivo de imagen: " + e.getMessage());
     }
-}
+        // Manejar una excepción de E/S si ocurre algún problema al leer el archivo
+        
+    
+    }
+    
 
-private byte[] obtenerImagenComoBytes(String rutaDeArchivo) throws IOException {
-    Path path = Paths.get(rutaDeArchivo);
-    return Files.readAllBytes(path);
-    }// GEN-LAST:event_jButtonRUAActionPerformed
+
+
 
     private void jComboBoxNombreUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBoxNombreUActionPerformed
         Object selectedItem = jComboBoxNombreU.getSelectedItem();

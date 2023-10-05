@@ -1,11 +1,14 @@
 package logic.Usuario;
 
+import java.util.Base64;
+
 
 public class Sesion {
 
-    private String nickname, email, nombre, apellido, userType;
-    byte[] profileImage;
-    public Sesion(String nickname, String email, String nombre, String apellido, String userType, byte[] profileImage) {
+    
+    private String nickname, email, nombre, apellido, userType, profileImage;
+
+    public Sesion(String nickname, String email, String nombre, String apellido, String userType, String profileImage) {
         this.nickname = nickname;
         this.email = email;
         this.nombre = nombre;
@@ -14,12 +17,12 @@ public class Sesion {
         this.profileImage = profileImage;
     }
 
-    public byte[] getProfileImage() {
+    public String getProfileImageBase64() {
         return profileImage;
     }
 
-    public void setProfileImage(byte[] profileImage) {
-        this.profileImage = profileImage;
+    public void setProfileImageBase64(String base64Image) {
+        this.profileImage = base64Image;
     }
 
     public String getNickname() {

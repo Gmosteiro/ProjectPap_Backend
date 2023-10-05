@@ -15,7 +15,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
     @Override
     public boolean addProfesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
             String descripcion, String biografia, String sitioWeb, InstitucionDeportiva institucion,
-            String contrasena, byte[] img) {
+            String contrasena, String img) {
         try {
 
             String validation = validateUserData(nickname, email, "Socio");
@@ -50,7 +50,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
     @Override
     public boolean addSocio(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
-            String contrasena, byte[] img) {
+            String contrasena, String img) {
         try {
             String validation = validateUserData(nickname, email, "Socio");
             if (validation.length() != 0) {

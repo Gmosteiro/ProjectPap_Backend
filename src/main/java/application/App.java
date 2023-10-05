@@ -36,7 +36,7 @@ public class App {
 
 		try {
 			// autoInsert();
-
+//                        probarInicioSesion();
 			iniciarVentana();
 
 			// probarModificarUsuario();
@@ -53,7 +53,7 @@ public class App {
 	public static void autoInsert() {
 		probarAddInstituciones();
 		probarAddActividad();
-		probarAddUsuarios();
+//		probarAddUsuarios();
 		probarAddClase();
 		probarAddRegistroDictado();
 	}
@@ -71,39 +71,39 @@ public class App {
 	}
 
   
-	public static void probarAddUsuarios() {
-		try {
-			LocalDate fecha = LocalDate.of(2023, 8, 17);
-
-			InstitucionDeportiva institucionDeportiva = ManejadorInstitucion.getInstitucionesByName("ESI");
-
-			File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
-			FileInputStream fis = new FileInputStream(imagenFile);
-			byte[] imagenBytes = new byte[(int) imagenFile.length()];
-			fis.read(imagenBytes);
-			fis.close();
-
-			Fabrica factory = new Fabrica();
-			IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
-
-			controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
-					"Soy alto Profe", "JuanProfe.com", institucionDeportiva, "contrasena", imagenBytes);
-
-			controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha, "contrasena",
-					imagenBytes);
-		} catch (Exception e) {
-			System.out.println("Error al agregar usuarios: " + e.getMessage());
-			e.printStackTrace();
-		}
-
-	}
+//	public static void probarAddUsuarios() {
+//		try {
+//			LocalDate fecha = LocalDate.of(2023, 8, 17);
+//
+//			InstitucionDeportiva institucionDeportiva = ManejadorInstitucion.getInstitucionesByName("ESI");
+//
+//			File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
+//			FileInputStream fis = new FileInputStream(imagenFile);
+//			String imagenBytes = new byte[(int) imagenFile.length()];
+//			fis.read(imagenBytes);
+//			fis.close();
+//
+//			Fabrica factory = new Fabrica();
+//			IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
+//
+//			controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
+//					"Soy alto Profe", "JuanProfe.com", institucionDeportiva, "contrasena", imagenBytes);
+//
+//			controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha, "contrasena",
+//					imagenBytes);
+//		} catch (Exception e) {
+//			System.out.println("Error al agregar usuarios: " + e.getMessage());
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 	public static void probarInicioSesion() {
 
 		Fabrica factory = new Fabrica();
 		IControllerInicioSesion controllerInicioSesion = factory.getControllerInicioSesion();
 
-		Sesion usuario = controllerInicioSesion.iniciarSesion("user", "user");
+		Sesion usuario = controllerInicioSesion.iniciarSesion("pepe", "pepe");
 		System.out.println("Resultado: " + usuario);
 
 	}

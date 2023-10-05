@@ -25,15 +25,15 @@ public abstract class Usuario {
     protected String nombre, apellido;
     protected LocalDate fechaNac;
     protected String contrasena; // Nuevo campo para la contraseña
-    @Lob
-    protected byte[] img;
+    @Column(name = "img", columnDefinition = "TEXT")
+    protected String img;
 
     public Usuario() {
         super();
         // Constructor sin argumentos
     }
 
-    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String contrasena,byte[] img) {
+    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String contrasena,String img) {
         super();
         this.nickname = nickname;
         this.nombre = nombre;
@@ -105,11 +105,11 @@ public abstract class Usuario {
         this.contrasena = contrasena;
     }
 
-    public void setImg(byte[] img) {
+    public void setImg(String img) {
     this.img = img;
     }
     
-    public byte[] getImg() {
+    public String getImg() {
         return img;
     }
 
