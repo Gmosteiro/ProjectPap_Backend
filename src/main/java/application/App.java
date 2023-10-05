@@ -70,42 +70,7 @@ public class App {
 		}
 	}
 
-    
-
-
-public static void probarIniciarSesion() {
-    try {
-        Fabrica factory = new Fabrica();
-        IControllerInicioSesion controllerInicioSesion = factory.getControllerInicioSesion();
-        Sesion usuarioLogeado = controllerInicioSesion.iniciarSesion("pipee", "pipe");
-
-        if (usuarioLogeado != null) {
-            System.out.println("Inicio de sesión exitoso");
-            System.out.println("Nickname: " + usuarioLogeado.getNickname());
-            System.out.println("Nombre: " + usuarioLogeado.getNombre());
-            System.out.println("Apellido: " + usuarioLogeado.getApellido());
-
-            // Convertir el byte[] a Base64
-            String base64Image = Base64.getEncoder().encodeToString(usuarioLogeado.getProfileImage());
-
-            // Imprimir la representación Base64
-            System.out.println("Imagen en Base64: " + base64Image);
-
-            // Asegúrate de que jLabelImagen sea un componente JLabel existente en tu GUI
-            // Luego, puedes asignar la imagen Base64 a un JLabel
-            jLabelImagen.setIcon(new ImageIcon(base64Image));
-        } else {
-            System.out.println("Inicio de sesión fallido");
-        }
-    } catch (Exception e) {
-        System.out.println("Error: " + e);
-    }
-}
-
-
-
-
-        
+  
 	public static void probarAddUsuarios() {
 		try {
 			LocalDate fecha = LocalDate.of(2023, 8, 17);
