@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -23,8 +24,8 @@ public class ActividadDeportiva {
     private int duracion;
     private float costo;
     private LocalDate fechaReg;
-    @Lob
-    private byte[] img;
+    @Column(name = "img", columnDefinition = "TEXT")
+    private String img;
 
 
 
@@ -38,7 +39,7 @@ public class ActividadDeportiva {
     public ActividadDeportiva() {
     }
 
-    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, byte[] img) {
+    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, String img) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -89,11 +90,11 @@ public class ActividadDeportiva {
         this.fechaReg = fechaReg;
     }
 
-    public byte[] getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(byte[] img) {
+    public void setImg(String img) {
         this.img = img;
     }
     

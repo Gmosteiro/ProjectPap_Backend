@@ -4,12 +4,16 @@
  */
 package logic.Presentacion;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
@@ -26,6 +30,7 @@ public class RegistrarActividadCU extends javax.swing.JInternalFrame {
     /**
      * Creates new form RegistrarActividadCU
      */
+    private String imagenBase64;
     public RegistrarActividadCU() {
         initComponents();
     }
@@ -245,15 +250,25 @@ public class RegistrarActividadCU extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFileChooserImgActividadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jFileChooserImgActividadActionPerformed
+        try {
         File selectedFile = jFileChooserImgActividad.getSelectedFile(); // Obtener el archivo seleccionado
 
-        try {
-            byte[] imagenBytes = Files.readAllBytes(selectedFile.toPath()); // Convertir a array de bytes
-            // Haz lo que necesites con 'imagenBytes'
-           
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
+        FileInputStream fis = new FileInputStream(selectedFile);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = fis.read(buffer)) != -1) {
+            bos.write(buffer, 0, bytesRead);
         }
+        imagenBase64 = Base64.getEncoder().encodeToString(bos.toByteArray());
+
+        fis.close();
+        bos.close();
+        
+         JOptionPane.showMessageDialog(this, "Foto seleccionada correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+    } catch (IOException e) { 
+        System.out.println("Error al leer el archivo: " + e.getMessage());
+    }
     }// GEN-LAST:event_jFileChooserImgActividadActionPerformed
 
     private void jButtonAceptarActividadActionPerformed(java.awt.event.ActionEvent evt) throws IOException {// GEN-FIRST:event_jButtonAceptarActividadActionPerformed
@@ -270,15 +285,10 @@ public class RegistrarActividadCU extends javax.swing.JInternalFrame {
             float costo = Float.parseFloat(jTextFieldCostoA.getText());
             Object instituciones = jComboBoxInstituciones.getSelectedItem();
             String institucion = instituciones.toString();
-            File selectedFile = jFileChooserImgActividad.getSelectedFile(); // Obtener el archivo seleccionado
-
-            try {
-                byte[] imagenBytes = Files.readAllBytes(selectedFile.toPath()); // Convertir a array de bytes
-                controllerAltaActividad.altaActividad(nombre, desc, duracion, costo, localDate, imagenBytes,
-                        institucion);
-            } catch (IOException e) {
-                System.out.println("Error al leer el archivo: " + e.getMessage());
-            }
+           
+            String imgBase64 = imagenBase64;
+            controllerAltaActividad.altaActividad(nombre, desc, duracion, costo, localDate, imgBase64,
+                    institucion);
 
             jTextFieldNombreA.setText("");
             jTextFieldDescA.setText("");

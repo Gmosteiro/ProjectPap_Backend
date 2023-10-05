@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,8 +26,8 @@ public class Clase {
     private LocalDate fecha, fechaReg;
     private LocalTime hora;
     private String url;
-    @Lob
-    protected byte[] img;
+    @Column(name = "img", columnDefinition = "TEXT")
+    private String img;
 
     @ManyToOne
     @JoinColumn(name = "profesor")
@@ -41,13 +42,15 @@ public class Clase {
 
     }
 
-    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg, Profesor profesor,byte[] img) {
+    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg, Profesor profesor,String img) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.hora = hora;
         this.url = url;
         this.fechaReg = fechaReg;
+        this.img = img;
         this.profesor = profesor;
+       
     }
 
     public Profesor getProfesor() {
@@ -119,11 +122,11 @@ public class Clase {
         return formattedDate;
     }
     
-    public void setImg(byte[] img) {
+    public void setImg(String img) {
     this.img = img;
     }
 
-    public byte[] getImg() {
+    public String getImg() {
         return img;
     }
 

@@ -17,7 +17,7 @@ public class ControllerAltaClase implements IControllerAltaClase {
 
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
-            String nombreProfesor, byte[] img, String actividad) {
+            String nombreProfesor, String img, String actividad) {
         try {
 
             if (!validateClassData(nombre, "Clase")) {

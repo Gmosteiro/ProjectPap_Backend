@@ -24,7 +24,7 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
     }
 
     @Override
-    public boolean altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, byte[] img,
+    public boolean altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, String img,
             String nombrei) {
         try {
 

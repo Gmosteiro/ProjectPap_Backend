@@ -253,7 +253,7 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
                                             .addComponent(jComboBoxNicknameU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jComboBoxEmailU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jFileChooserImgUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jFileChooserImgUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(jCheckBoxPROF)
                         .addGap(82, 82, 82)
@@ -264,9 +264,8 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
                                 .addComponent(jButtonRUC)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonRUM))
-                            .addComponent(TextoIngresedatosU))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(213, 213, 213))
+                            .addComponent(TextoIngresedatosU))))
+                .addGap(171, 171, 171))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,6 +388,8 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
 
         fis.close();
         bos.close();
+        
+         JOptionPane.showMessageDialog(this, "Foto seleccionada correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
     } catch (IOException e) { 
         System.out.println("Error al leer el archivo: " + e.getMessage());
     }

@@ -52,9 +52,9 @@ public class App {
 
 	public static void autoInsert() {
 		probarAddInstituciones();
-		probarAddActividad();
+//		probarAddActividad();
 //		probarAddUsuarios();
-		probarAddClase();
+//		probarAddClase();
 		probarAddRegistroDictado();
 	}
 
@@ -136,51 +136,51 @@ public class App {
 		controllerDictado.getActividades();
 	}
 
-	public static void probarAddClase() {
+//	public static void probarAddClase() {
+//
+//		LocalDate fecha = LocalDate.of(2023, 8, 17);
+//		LocalTime hora = LocalTime.of(14, 30);
+//		LocalDate fechareg = LocalDate.of(2023, 8, 17);
+//		try {
+//			Fabrica factory = new Fabrica();
+//
+//			IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
+//			File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
+//			FileInputStream fis = new FileInputStream(imagenFile);
+//			byte[] imagenBytes = new byte[(int) imagenFile.length()];
+//			fis.read(imagenBytes);
+//			fis.close();
+//			controllerAltaClase.addClase("Running", fecha, hora, "run.com", fechareg, "Juan", imagenBytes, "Atletismo");
+//
+//		} catch (Exception e) {
+//			System.out.println("Catch main: " + e.getMessage());
+//			e.printStackTrace();
+//		}
+//
+//	}
 
-		LocalDate fecha = LocalDate.of(2023, 8, 17);
-		LocalTime hora = LocalTime.of(14, 30);
-		LocalDate fechareg = LocalDate.of(2023, 8, 17);
-		try {
-			Fabrica factory = new Fabrica();
-
-			IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
-			File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
-			FileInputStream fis = new FileInputStream(imagenFile);
-			byte[] imagenBytes = new byte[(int) imagenFile.length()];
-			fis.read(imagenBytes);
-			fis.close();
-			controllerAltaClase.addClase("Running", fecha, hora, "run.com", fechareg, "Juan", imagenBytes, "Atletismo");
-
-		} catch (Exception e) {
-			System.out.println("Catch main: " + e.getMessage());
-			e.printStackTrace();
-		}
-
-	}
-
-	public static void probarAddActividad() {
-
-		try {
-			Fabrica factory = new Fabrica();
-
-			IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
-			LocalDate fechareg = LocalDate.of(2023, 8, 17);
-
-			File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
-			FileInputStream fis = new FileInputStream(imagenFile);
-			byte[] imagenBytes = new byte[(int) imagenFile.length()];
-			fis.read(imagenBytes);
-			fis.close();
-
-			controllerAltaActividad.altaActividad("Atletismo", "Moverse", 10, 100, fechareg, imagenBytes, "Gimnasio");
-
-		} catch (Exception e) {
-			System.out.println("Catch main: " + e.getMessage());
-			e.printStackTrace();
-		}
-
-	}
+//	public static void probarAddActividad() {
+//
+//		try {
+//			Fabrica factory = new Fabrica();
+//
+//			IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
+//			LocalDate fechareg = LocalDate.of(2023, 8, 17);
+//
+//			File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
+//			FileInputStream fis = new FileInputStream(imagenFile);
+//			byte[] imagenBytes = new byte[(int) imagenFile.length()];
+//			fis.read(imagenBytes);
+//			fis.close();
+//
+//			controllerAltaActividad.altaActividad("Atletismo", "Moverse", 10, 100, fechareg, imagenBytes, "Gimnasio");
+//
+//		} catch (Exception e) {
+//			System.out.println("Catch main: " + e.getMessage());
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 	private static void iniciarVentana() {
 		Ventana ventana = new Ventana();

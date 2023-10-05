@@ -4,7 +4,9 @@
  */
 package logic.Presentacion;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,6 +15,8 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.time.LocalTime;
+import java.util.Base64;
+import javax.swing.JOptionPane;
 import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
@@ -31,7 +35,7 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
         /**
          * Creates new form RegistrarClaseCU
          */
-
+        private String imagenBase64;
         public RegistrarClaseCU() {
                 initComponents();
 
@@ -283,13 +287,27 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFileChooserImgClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooserImgClaseActionPerformed
-          File selectedFile = jFileChooserImgClase.getSelectedFile(); // Obtener el archivo seleccionado
+        try {
+        File selectedFile = jFileChooserImgClase.getSelectedFile(); // Obtener el archivo seleccionado
 
-    try {
-        byte[] imagenBytes = Files.readAllBytes(selectedFile.toPath()); // Convertir a array de bytes
-       
-    } catch (IOException e) {
+        FileInputStream fis = new FileInputStream(selectedFile);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = fis.read(buffer)) != -1) {
+            bos.write(buffer, 0, bytesRead);
+        }
+        imagenBase64 = Base64.getEncoder().encodeToString(bos.toByteArray());
+
+        fis.close();
+        bos.close();
+
+        
+        JOptionPane.showMessageDialog(this, "Foto seleccionada correctamente", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+    } catch (IOException e) { 
         System.out.println("Error al leer el archivo: " + e.getMessage());
+        // Mostrar mensaje de error en caso de que ocurra una excepción
+        JOptionPane.showMessageDialog(this, "Error al leer el archivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jFileChooserImgClaseActionPerformed
 
@@ -364,9 +382,8 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
         
         String nombre = jTextFieldNombreC.getText();
         String url = jTextFieldURLC.getText();
-           String rutaDeArchivo = jFileChooserImgClase.getSelectedFile().getAbsolutePath();
-           byte[] img = obtenerImagenComoBytes(rutaDeArchivo);
-        controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechareg, profesor, img, actividad);
+        String imgBase64 = imagenBase64;
+        controllerAltaClase.addClase(nombre, fechaInicio, horaInicio, url, fechareg, profesor, imgBase64, actividad);
 
         
         jTextFieldNombreC.setText("");
@@ -376,10 +393,10 @@ public class RegistrarClaseCU extends javax.swing.JInternalFrame {
         System.out.println("Error al agregar clase: " + e.getMessage());
     }
         }// GEN-LAST:event_jButtonRCAActionPerformed
-        private byte[] obtenerImagenComoBytes(String rutaDeArchivo) throws IOException {
-    Path path = Paths.get(rutaDeArchivo);
-    return Files.readAllBytes(path);
-    }// GEN-LAST:event_jButtonRUAActionPerformed
+        
+        
+        
+      
         private void addInstitucionesToComboBox(String option) {
 
                 List<InstitucionDeportiva> instituciones = ManejadorInstitucion.getInstituciones();
