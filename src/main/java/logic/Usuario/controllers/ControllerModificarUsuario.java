@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class ControllerModificarUsuario implements IControllerModificarUsuario {
 
-    public void modificarUsuario(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha) {
+    public void modificarUsuario(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha, String img) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
         EntityManager em = emf.createEntityManager();
 
@@ -25,6 +25,7 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                     profesor.setNombre(nuevoNombre);
                     profesor.setApellido(nuevoApellido);
                     profesor.setFechaNac(nuevafecha);
+                    profesor.setImg(img);
                     em.merge(profesor);
                     em.getTransaction().commit();
                 } else if (usuario instanceof Socio) {
@@ -32,6 +33,7 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                     socio.setNombre(nuevoNombre);
                     socio.setApellido(nuevoApellido);
                     socio.setFechaNac(nuevafecha);
+                    socio.setImg(img);
                     em.merge(socio);
                     em.getTransaction().commit();
 

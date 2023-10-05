@@ -24,7 +24,7 @@ import logic.Institucion.ManejadorInstitucion;
 
 /**
  *
- * @author Admin
+ * @author xSanPrax
  */
 public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
 
@@ -358,7 +358,7 @@ public class RegistrarUsuarioCU extends javax.swing.JInternalFrame {
 
     private void jButtonRUMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRUMActionPerformed
         ModificarUsuario userm = new ModificarUsuario();
-        userm.setSize(450, 450);
+        userm.setSize(800, 650);
         int desktopWidth = jDesktopPane1.getWidth();
         int desktopHeight = jDesktopPane1.getHeight();
 

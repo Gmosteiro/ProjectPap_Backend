@@ -185,7 +185,7 @@ public class App {
 	private static void iniciarVentana() {
 		Ventana ventana = new Ventana();
 		ventana.setVisible(true);
-		ventana.setSize(880, 700);
+		ventana.setSize(980, 750);
 
 		// Obtener el tamaño de la pantalla
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -217,19 +217,19 @@ public class App {
 		System.out.println("Actividad modificada exitosamente.");
 	}
 
-	public static void probarModificarUsuario() {
-		Fabrica factory = new Fabrica();
-		IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
-
-		String nickname = "socio1";
-		String nuevoNombre = "Alex";
-		String nuevoApellido = "Ribeiro";
-		LocalDate nuevafecha = LocalDate.of(2023, 12, 24);
-
-		controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido, nuevafecha);
-
-		System.out.println("Usuario modificado exitosamente.");
-	}
+//	public static void probarModificarUsuario() {
+//		Fabrica factory = new Fabrica();
+//		IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
+//
+//		String nickname = "socio1";
+//		String nuevoNombre = "Alex";
+//		String nuevoApellido = "Ribeiro";
+//		LocalDate nuevafecha = LocalDate.of(2023, 12, 24);
+//
+//		controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido, nuevafecha);
+//
+//		System.out.println("Usuario modificado exitosamente.");
+//	}
 
 	public static void probarModificarInstitucion() {
 		Fabrica factory = new Fabrica();
