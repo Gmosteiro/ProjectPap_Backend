@@ -29,6 +29,9 @@ import logic.Usuario.controllers.IControllerInicioSesion;
 import logic.Usuario.controllers.IControllerModificarUsuario;
 import logic.Usuario.controllers.IControllerRegistroDictado;
 import javax.swing.ImageIcon;
+import logic.Clase.Clase;
+import logic.Clase.ManejadorClases;
+import logic.Usuario.ManejadorUsuarios;
 
 public class App {
 
@@ -38,7 +41,7 @@ public class App {
 			// autoInsert();
 //                        probarInicioSesion();
 			iniciarVentana();
-
+                        //probarlistasocioclase();
 			// probarModificarUsuario();
 
 		} catch (Exception e) {
@@ -243,5 +246,15 @@ public class App {
 
 		System.out.println("Usuario modificado exitosamente.");
 	}
+        
+        public static void probarlistasocioclase(){
+            Clase clase = ManejadorClases.getClaseByNombre("Matematica");
+            List<Usuario> socios = ManejadorUsuarios.getSociosByClase(clase);
+            for (Usuario usuario : socios) {
+                System.out.println("Nombre de Usuario: " + usuario.getNickname());
+            }
+            int tamañoDeLaLista = socios.size();
+            System.out.println("Tamaño de la lista de usuarios: " + tamañoDeLaLista);
+                    }
 
-}
+        }

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
+import logic.Clase.Clase;
 import logic.Institucion.InstitucionDeportiva;
 
 public class ManejadorUsuarios {
@@ -204,5 +205,24 @@ public class ManejadorUsuarios {
 			return null;
 		}
 	}
+        
+        public static List<Usuario> getSociosByClase(Clase clase) {
+
+        try {
+            List<Usuario> resultList = entityManager.createQuery(
+                    "SELECT r.socio " +
+                            "FROM Registro r " +
+                            "WHERE r.clase = :clase",
+                    Usuario.class)
+                    .setParameter("clase", clase)
+                    .getResultList();
+
+            return resultList;
+        } catch (Exception e) {
+            System.out.println("Error catch getSociosByClase " + e);
+            return null;
+        }
+
+    }
 
 }
