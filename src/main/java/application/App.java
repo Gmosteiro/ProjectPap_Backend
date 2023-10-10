@@ -8,27 +8,22 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Base64;
 import java.util.List;
-import javax.swing.ImageIcon;
+
 
 import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
-import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
-import logic.ActividadDeportiva.controllers.IControllerModificarActividad;
-import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerDictadoClase;
 import logic.Clase.controllers.IControllerRanking;
-import logic.Institucion.InstitucionDeportiva;
-import logic.Institucion.ManejadorInstitucion;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
 import logic.Institucion.controllers.IControllerModificarInstitucion;
 import logic.Usuario.Sesion;
-import logic.Usuario.Usuario;
-import logic.Usuario.controllers.ControllerInicioSesion;
-import logic.Usuario.controllers.IControllerAltaUsuario;
 import logic.Usuario.controllers.IControllerInicioSesion;
-import logic.Usuario.controllers.IControllerModificarUsuario;
 import logic.Usuario.controllers.IControllerRegistroDictado;
-import javax.swing.ImageIcon;
+import logic.Clase.Clase;
+import logic.Clase.ManejadorClases;
+import logic.Usuario.ManejadorUsuarios;
+import logic.Usuario.Socio;
+import logic.Usuario.controllers.IControllerEliminarRegClase;
 
 public class App {
 
@@ -37,8 +32,8 @@ public class App {
 		try {
 			// autoInsert();
 //                        probarInicioSesion();
-			iniciarVentana();
-
+//			iniciarVentana();
+                        probarEliminarRegistroDeClase();
 			// probarModificarUsuario();
 
 		} catch (Exception e) {
@@ -69,6 +64,41 @@ public class App {
 			System.out.println("Error: " + e);
 		}
 	}
+        
+        public static void probarEliminarRegistroDeClase() {
+    try {
+        Fabrica factory = new Fabrica();
+        IControllerEliminarRegClase controllerEliminar = factory.getControllerEliminarRegClase();
+
+        // Obtener el Socio y la Clase por sus identificadores únicos
+        String nicknameSocio = "pepe";  // Reemplaza "nickname_socio" con el nickname del Socio que deseas eliminar
+        String nombreClase = "clase";  // Reemplaza "nombre_clase" con el nombre de la Clase correspondiente
+
+        Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
+        Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
+
+        if (socio != null && clase != null) {
+            // Eliminar el registro del Socio en la Clase
+            controllerEliminar.eliminarRegistroDeClase(socio, clase);
+            System.out.println("Registro eliminado con éxito.");
+        } else {
+            System.out.println("No se encontró un Socio o una Clase asociados a los datos proporcionados.");
+        }
+    } catch (Exception e) {
+        System.out.println("Error al eliminar el registro: " + e.getMessage());
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
   
 //	public static void probarAddUsuarios() {
