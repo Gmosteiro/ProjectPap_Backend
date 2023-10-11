@@ -18,9 +18,11 @@ import logic.Usuario.controllers.IControllerModificarUsuario;
 import logic.Usuario.controllers.IControllerRegistroDictado;
 import logic.Usuario.controllers.IControllerInicioSesion;
 import logic.Clase.controllers.ControllerAltaClase;
+import logic.Clase.controllers.ControllerConsultaClases;
 import logic.Clase.controllers.ControllerDictadoClase;
 import logic.Clase.controllers.ControllerRanking;
 import logic.Clase.controllers.IControllerAltaClase;
+import logic.Clase.controllers.IControllerConsultaClases;
 import logic.Clase.controllers.IControllerDictadoClase;
 import logic.Clase.controllers.IControllerRanking;
 import logic.ActividadDeportiva.controllers.ControllerModificarActividad;
@@ -72,6 +74,10 @@ public class Fabrica {
     public IControllerRegistroDictado getControllerRegistroDictado() {
         return new ControllerRegistroDictado();
 
+    }
+
+    public IControllerConsultaClases getControllerConsultaClases() {
+        return new ControllerConsultaClases();
     }
 
     public IControllerDictadoClase getControllerDictadoClase() {

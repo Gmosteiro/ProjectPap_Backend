@@ -12,7 +12,7 @@ public class ControllerInicioSesion implements IControllerInicioSesion {
         // Intentamos obtener un Usuario con el nickname proporcionado
         Usuario usuario = ManejadorUsuarios.getUser(nickname);
 
-        if (usuario != null && usuario.getContrasena() != null  && usuario.getContrasena().equals(contrasena)) {
+        if (usuario != null && usuario.getContrasena() != null && usuario.getContrasena().equals(contrasena)) {
 
             return crearSesion(usuario);
         } else {
@@ -24,10 +24,10 @@ public class ControllerInicioSesion implements IControllerInicioSesion {
     private Sesion crearSesion(Usuario user) {
         try {
 
-            //byte[] profileImage = user.getImg();
+            // byte[] profileImage = user.getImg();
             String type = user instanceof Profesor ? "Profesor" : "Socio";
             Sesion nuevaSesion = new Sesion(user.getNickname(), user.getEmail(), user.getNombre(), user.getApellido(),
-                    type, user.getImg());
+                    type, user.getImg(), user.getFechaNacFromatted());
 
             return nuevaSesion;
         } catch (Exception e) {
