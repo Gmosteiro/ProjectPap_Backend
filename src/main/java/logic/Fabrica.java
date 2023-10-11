@@ -26,6 +26,8 @@ import logic.Clase.controllers.IControllerRanking;
 import logic.ActividadDeportiva.controllers.ControllerModificarActividad;
 import logic.Institucion.controllers.ControllerModificarInstitucion;
 import logic.Institucion.controllers.IControllerModificarInstitucion;
+import logic.Usuario.controllers.ControllerEliminarRegClase;
+import logic.Usuario.controllers.IControllerEliminarRegClase;
 
 public class Fabrica {
 
@@ -86,4 +88,8 @@ public class Fabrica {
         return new ControllerInicioSesion();
     }
 
+    public IControllerEliminarRegClase getControllerEliminarRegClase() {
+        return new ControllerEliminarRegClase();
+    }
+    
 }

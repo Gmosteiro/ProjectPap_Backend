@@ -40,7 +40,7 @@
                   <Component id="TextoMUFnacimiento" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButtonMUS" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBoxMUusuarios" min="-2" pref="190" max="-2" attributes="0"/>
@@ -48,9 +48,9 @@
                   <Component id="jTextFieldMUapellido" min="-2" pref="190" max="-2" attributes="0"/>
                   <Component id="jDateChooserMUFnacimiento" min="-2" pref="190" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Component id="jFileChooserImgEuser" min="-2" pref="317" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jFileChooserImgEuser" min="-2" pref="365" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,7 +74,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="jTextFieldMUapellido" alignment="3" pref="26" max="32767" attributes="0"/>
+                          <Component id="jTextFieldMUapellido" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
