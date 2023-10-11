@@ -41,7 +41,7 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
             if (registro != null) {
                 ManejadorUsuarios.eliminarRegistro(registro);
                 entityManager.getTransaction().commit();
-                System.out.println("Registro eliminado con éxito.");
+                System.out.println("Registro eliminado con éxito. Controller");
             } else {
                 System.out.println("No se encontró un registro asociado a este socio y clase.");
             }

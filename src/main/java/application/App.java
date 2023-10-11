@@ -32,8 +32,8 @@ public class App {
 		try {
 			// autoInsert();
 //                        probarInicioSesion();
-//			iniciarVentana();
-                        probarEliminarRegistroDeClase();
+			iniciarVentana();
+//                        probarEliminarRegistroDeClase();
 			// probarModificarUsuario();
 
 		} catch (Exception e) {
@@ -80,7 +80,7 @@ public class App {
         if (socio != null && clase != null) {
             // Eliminar el registro del Socio en la Clase
             controllerEliminar.eliminarRegistroDeClase(socio, clase);
-            System.out.println("Registro eliminado con éxito.");
+            System.out.println("Registro eliminado con éxito. app");
         } else {
             System.out.println("No se encontró un Socio o una Clase asociados a los datos proporcionados.");
         }
