@@ -20,4 +20,6 @@ public interface IControllerConsultaUsuario {
 
     List<ActividadDeportiva> getActividadesAsociadas(Profesor profesor);
 
+    public List<Clase> getClasesByUser(String nickname);
+
 }

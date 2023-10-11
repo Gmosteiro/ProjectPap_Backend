@@ -2,13 +2,8 @@ package application;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.FileInputStream;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Base64;
 import java.util.List;
-
 
 import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
@@ -31,11 +26,12 @@ public class App {
 	public static void main(String[] args) {
 
 		try {
+
 			// autoInsert();
-//                        probarInicioSesion();
+			// probarInicioSesion();
 			iniciarVentana();
-                        //probarlistasocioclase();
-//                        probarEliminarRegistroDeClase();
+			// probarlistasocioclase();
+			// probarEliminarRegistroDeClase();
 			// probarModificarUsuario();
 
 		} catch (Exception e) {
@@ -49,9 +45,9 @@ public class App {
 
 	public static void autoInsert() {
 		probarAddInstituciones();
-//		probarAddActividad();
-//		probarAddUsuarios();
-//		probarAddClase();
+		// probarAddActividad();
+		// probarAddUsuarios();
+		// probarAddClase();
 		probarAddRegistroDictado();
 	}
 
@@ -66,69 +62,62 @@ public class App {
 			System.out.println("Error: " + e);
 		}
 	}
-        
-        public static void probarEliminarRegistroDeClase() {
-    try {
-        Fabrica factory = new Fabrica();
-        IControllerEliminarRegClase controllerEliminar = factory.getControllerEliminarRegClase();
 
-        // Obtener el Socio y la Clase por sus identificadores únicos
-        String nicknameSocio = "pepe";  // Reemplaza "nickname_socio" con el nickname del Socio que deseas eliminar
-        String nombreClase = "clase";  // Reemplaza "nombre_clase" con el nombre de la Clase correspondiente
+	public static void probarEliminarRegistroDeClase() {
+		try {
+			Fabrica factory = new Fabrica();
+			IControllerEliminarRegClase controllerEliminar = factory.getControllerEliminarRegClase();
 
-        Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
-        Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
+			// Obtener el Socio y la Clase por sus identificadores únicos
+			String nicknameSocio = "pepe"; // Reemplaza "nickname_socio" con el nickname del Socio que deseas eliminar
+			String nombreClase = "clase"; // Reemplaza "nombre_clase" con el nombre de la Clase correspondiente
 
-        if (socio != null && clase != null) {
-            // Eliminar el registro del Socio en la Clase
-            controllerEliminar.eliminarRegistroDeClase(socio, clase);
-            System.out.println("Registro eliminado con éxito. app");
-        } else {
-            System.out.println("No se encontró un Socio o una Clase asociados a los datos proporcionados.");
-        }
-    } catch (Exception e) {
-        System.out.println("Error al eliminar el registro: " + e.getMessage());
-    }
-}
+			Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
+			Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
 
+			if (socio != null && clase != null) {
+				// Eliminar el registro del Socio en la Clase
+				controllerEliminar.eliminarRegistroDeClase(socio, clase);
+				System.out.println("Registro eliminado con éxito. app");
+			} else {
+				System.out.println("No se encontró un Socio o una Clase asociados a los datos proporcionados.");
+			}
+		} catch (Exception e) {
+			System.out.println("Error al eliminar el registro: " + e.getMessage());
+		}
+	}
 
-
-
-
-
-
-
-
-
-
-
-  
-//	public static void probarAddUsuarios() {
-//		try {
-//			LocalDate fecha = LocalDate.of(2023, 8, 17);
-//
-//			InstitucionDeportiva institucionDeportiva = ManejadorInstitucion.getInstitucionesByName("ESI");
-//
-//			File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
-//			FileInputStream fis = new FileInputStream(imagenFile);
-//			String imagenBytes = new byte[(int) imagenFile.length()];
-//			fis.read(imagenBytes);
-//			fis.close();
-//
-//			Fabrica factory = new Fabrica();
-//			IControllerAltaUsuario controllerAltaUsuario = factory.getControladorAltaUsuario();
-//
-//			controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com", fecha, "Alto profe",
-//					"Soy alto Profe", "JuanProfe.com", institucionDeportiva, "contrasena", imagenBytes);
-//
-//			controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com", fecha, "contrasena",
-//					imagenBytes);
-//		} catch (Exception e) {
-//			System.out.println("Error al agregar usuarios: " + e.getMessage());
-//			e.printStackTrace();
-//		}
-//
-//	}
+	// public static void probarAddUsuarios() {
+	// try {
+	// LocalDate fecha = LocalDate.of(2023, 8, 17);
+	//
+	// InstitucionDeportiva institucionDeportiva =
+	// ManejadorInstitucion.getInstitucionesByName("ESI");
+	//
+	// File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
+	// FileInputStream fis = new FileInputStream(imagenFile);
+	// String imagenBytes = new byte[(int) imagenFile.length()];
+	// fis.read(imagenBytes);
+	// fis.close();
+	//
+	// Fabrica factory = new Fabrica();
+	// IControllerAltaUsuario controllerAltaUsuario =
+	// factory.getControladorAltaUsuario();
+	//
+	// controllerAltaUsuario.addProfesor("Juan", "Juan", "Marin", "Juan@marin.com",
+	// fecha, "Alto profe",
+	// "Soy alto Profe", "JuanProfe.com", institucionDeportiva, "contrasena",
+	// imagenBytes);
+	//
+	// controllerAltaUsuario.addSocio("socio1", "socio", "socio", "socio@socio.com",
+	// fecha, "contrasena",
+	// imagenBytes);
+	// } catch (Exception e) {
+	// System.out.println("Error al agregar usuarios: " + e.getMessage());
+	// e.printStackTrace();
+	// }
+	//
+	// }
 
 	public static void probarInicioSesion() {
 
@@ -168,51 +157,54 @@ public class App {
 		controllerDictado.getActividades();
 	}
 
-//	public static void probarAddClase() {
-//
-//		LocalDate fecha = LocalDate.of(2023, 8, 17);
-//		LocalTime hora = LocalTime.of(14, 30);
-//		LocalDate fechareg = LocalDate.of(2023, 8, 17);
-//		try {
-//			Fabrica factory = new Fabrica();
-//
-//			IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
-//			File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
-//			FileInputStream fis = new FileInputStream(imagenFile);
-//			byte[] imagenBytes = new byte[(int) imagenFile.length()];
-//			fis.read(imagenBytes);
-//			fis.close();
-//			controllerAltaClase.addClase("Running", fecha, hora, "run.com", fechareg, "Juan", imagenBytes, "Atletismo");
-//
-//		} catch (Exception e) {
-//			System.out.println("Catch main: " + e.getMessage());
-//			e.printStackTrace();
-//		}
-//
-//	}
+	// public static void probarAddClase() {
+	//
+	// LocalDate fecha = LocalDate.of(2023, 8, 17);
+	// LocalTime hora = LocalTime.of(14, 30);
+	// LocalDate fechareg = LocalDate.of(2023, 8, 17);
+	// try {
+	// Fabrica factory = new Fabrica();
+	//
+	// IControllerAltaClase controllerAltaClase = factory.getControladorAltaClase();
+	// File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
+	// FileInputStream fis = new FileInputStream(imagenFile);
+	// byte[] imagenBytes = new byte[(int) imagenFile.length()];
+	// fis.read(imagenBytes);
+	// fis.close();
+	// controllerAltaClase.addClase("Running", fecha, hora, "run.com", fechareg,
+	// "Juan", imagenBytes, "Atletismo");
+	//
+	// } catch (Exception e) {
+	// System.out.println("Catch main: " + e.getMessage());
+	// e.printStackTrace();
+	// }
+	//
+	// }
 
-//	public static void probarAddActividad() {
-//
-//		try {
-//			Fabrica factory = new Fabrica();
-//
-//			IControllerAltaActividad controllerAltaActividad = factory.getControladorAltaActividad();
-//			LocalDate fechareg = LocalDate.of(2023, 8, 17);
-//
-//			File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
-//			FileInputStream fis = new FileInputStream(imagenFile);
-//			byte[] imagenBytes = new byte[(int) imagenFile.length()];
-//			fis.read(imagenBytes);
-//			fis.close();
-//
-//			controllerAltaActividad.altaActividad("Atletismo", "Moverse", 10, 100, fechareg, imagenBytes, "Gimnasio");
-//
-//		} catch (Exception e) {
-//			System.out.println("Catch main: " + e.getMessage());
-//			e.printStackTrace();
-//		}
-//
-//	}
+	// public static void probarAddActividad() {
+	//
+	// try {
+	// Fabrica factory = new Fabrica();
+	//
+	// IControllerAltaActividad controllerAltaActividad =
+	// factory.getControladorAltaActividad();
+	// LocalDate fechareg = LocalDate.of(2023, 8, 17);
+	//
+	// File imagenFile = new File("C:\\Users\\santi\\Pictures\\DSCF0475.jpg");
+	// FileInputStream fis = new FileInputStream(imagenFile);
+	// byte[] imagenBytes = new byte[(int) imagenFile.length()];
+	// fis.read(imagenBytes);
+	// fis.close();
+	//
+	// controllerAltaActividad.altaActividad("Atletismo", "Moverse", 10, 100,
+	// fechareg, imagenBytes, "Gimnasio");
+	//
+	// } catch (Exception e) {
+	// System.out.println("Catch main: " + e.getMessage());
+	// e.printStackTrace();
+	// }
+	//
+	// }
 
 	private static void iniciarVentana() {
 		Ventana ventana = new Ventana();
@@ -235,33 +227,37 @@ public class App {
 		ventana.setLocation(x, y);
 	}
 
-//	public static void probarModificarActividad() {
-//		Fabrica factory = new Fabrica();
-//		IControllerModificarActividad controllerActividad = factory.getControllerModificarActividad();
-//
-//		String nombreActividad = "Matematica";
-//		String nuevaDescripcion = "Nueva descripción";
-//		int nuevaDuracion = 60;
-//		float nuevoCosto = 50;
-//
-//		controllerActividad.modificarActividad(nombreActividad, nuevaDescripcion, nuevaDuracion, nuevoCosto);
-//
-//		System.out.println("Actividad modificada exitosamente.");
-//	}
+	// public static void probarModificarActividad() {
+	// Fabrica factory = new Fabrica();
+	// IControllerModificarActividad controllerActividad =
+	// factory.getControllerModificarActividad();
+	//
+	// String nombreActividad = "Matematica";
+	// String nuevaDescripcion = "Nueva descripción";
+	// int nuevaDuracion = 60;
+	// float nuevoCosto = 50;
+	//
+	// controllerActividad.modificarActividad(nombreActividad, nuevaDescripcion,
+	// nuevaDuracion, nuevoCosto);
+	//
+	// System.out.println("Actividad modificada exitosamente.");
+	// }
 
-//	public static void probarModificarUsuario() {
-//		Fabrica factory = new Fabrica();
-//		IControllerModificarUsuario controllerUsuario = factory.getControllerModificarUsuario();
-//
-//		String nickname = "socio1";
-//		String nuevoNombre = "Alex";
-//		String nuevoApellido = "Ribeiro";
-//		LocalDate nuevafecha = LocalDate.of(2023, 12, 24);
-//
-//		controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido, nuevafecha);
-//
-//		System.out.println("Usuario modificado exitosamente.");
-//	}
+	// public static void probarModificarUsuario() {
+	// Fabrica factory = new Fabrica();
+	// IControllerModificarUsuario controllerUsuario =
+	// factory.getControllerModificarUsuario();
+	//
+	// String nickname = "socio1";
+	// String nuevoNombre = "Alex";
+	// String nuevoApellido = "Ribeiro";
+	// LocalDate nuevafecha = LocalDate.of(2023, 12, 24);
+	//
+	// controllerUsuario.modificarUsuario(nickname, nuevoNombre, nuevoApellido,
+	// nuevafecha);
+	//
+	// System.out.println("Usuario modificado exitosamente.");
+	// }
 
 	public static void probarModificarInstitucion() {
 		Fabrica factory = new Fabrica();
@@ -275,15 +271,15 @@ public class App {
 
 		System.out.println("Usuario modificado exitosamente.");
 	}
-        
-        public static void probarlistasocioclase(){
-            Clase clase = ManejadorClases.getClaseByNombre("Matematica");
-            List<Usuario> socios = ManejadorUsuarios.getSociosByClase(clase);
-            for (Usuario usuario : socios) {
-                System.out.println("Nombre de Usuario: " + usuario.getNickname());
-            }
-            int tamañoDeLaLista = socios.size();
-            System.out.println("Tamaño de la lista de usuarios: " + tamañoDeLaLista);
-                    }
 
-        }
+	public static void probarlistasocioclase() {
+		Clase clase = ManejadorClases.getClaseByNombre("Matematica");
+		List<Usuario> socios = ManejadorUsuarios.getSociosByClase(clase);
+		for (Usuario usuario : socios) {
+			System.out.println("Nombre de Usuario: " + usuario.getNickname());
+		}
+		int tamañoDeLaLista = socios.size();
+		System.out.println("Tamaño de la lista de usuarios: " + tamañoDeLaLista);
+	}
+
+}

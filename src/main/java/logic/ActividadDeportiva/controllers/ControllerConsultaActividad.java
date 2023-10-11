@@ -8,7 +8,10 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.ManejadorActividad;
 import logic.Clase.Clase;
+import logic.Usuario.ManejadorUsuarios;
+import logic.Usuario.Profesor;
 import logic.Usuario.Registro;
 
 public class ControllerConsultaActividad implements IControllerConsultaActividad {
@@ -39,7 +42,6 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
         }
     }
 
-
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -55,25 +57,25 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
         }
     }
 
-  public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
-    EntityManager em = emf.createEntityManager();
-    try {
-        em.getTransaction().begin();
+    public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
 
-        TypedQuery<Clase> query = em.createQuery(
-            "SELECT c FROM Clase c WHERE c.actividad = :actividad",
-            Clase.class);
-        query.setParameter("actividad", actividad);
+            TypedQuery<Clase> query = em.createQuery(
+                    "SELECT c FROM Clase c WHERE c.actividad = :actividad",
+                    Clase.class);
+            query.setParameter("actividad", actividad);
 
-        List<Clase> clases = query.getResultList();
+            List<Clase> clases = query.getResultList();
 
-        em.getTransaction().commit();
+            em.getTransaction().commit();
 
-        return clases;
-    } finally {
-        em.close();
+            return clases;
+        } finally {
+            em.close();
+        }
     }
-}
 
     public List<Registro> obtenerRegistrosPorClase(Clase clase) {
         EntityManager em = emf.createEntityManager();
@@ -94,6 +96,18 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
             em.close();
         }
     }
+
+    public List<ActividadDeportiva> getActividadesByProfe(String profesor) {
+        try {
+
+            Profesor profesorObtenido = ManejadorUsuarios.getProfesor(profesor);
+
+            return ManejadorActividad.getActividadesByProfe(profesorObtenido);
+        } catch (Exception e) {
+            System.out.println("Catch getActividadesByProfe CCA " + e);
+            return null;
+        }
+    };
 
     public void closeEntityManagerFactory() {
         emf.close();
