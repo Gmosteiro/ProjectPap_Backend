@@ -7,6 +7,7 @@ import java.util.List;
 
 import logic.Fabrica;
 import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
 import logic.Clase.controllers.IControllerDictadoClase;
 import logic.Clase.controllers.IControllerRanking;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
@@ -27,12 +28,18 @@ public class App {
 
 		try {
 
-			// autoInsert();
-			// probarInicioSesion();
-			iniciarVentana();
-			// probarlistasocioclase();
-			// probarEliminarRegistroDeClase();
-			// probarModificarUsuario();
+			// iniciarVentana();
+
+			Fabrica fac = new Fabrica();
+
+			IControllerConsultaActividad consultaActividad = fac.getControllerConsultaActividad();
+
+			ActividadDeportiva actividadDep = consultaActividad.obtenerActividadPorNombre("Atletismo");
+
+			// Aquí se llama a la función del controlador para obtener la lista de clases
+			// por actividad
+			List<Clase> clases = consultaActividad.obtenerClasesPorActividad(actividadDep);
+			System.out.println(clases);
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());

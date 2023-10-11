@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -27,19 +28,17 @@ public class ActividadDeportiva {
     @Column(name = "img", columnDefinition = "TEXT")
     private String img;
 
-
-
-
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Clase> Clases = new ArrayList<>();
-    
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private InstitucionDeportiva InstitucionDeportiva;
+
+    // @ManyToOne(cascade = CascadeType.ALL)
+    // private InstitucionDeportiva InstitucionDeportiva;
 
     public ActividadDeportiva() {
     }
 
-    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, String img) {
+    public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg,
+            String img) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -97,10 +96,9 @@ public class ActividadDeportiva {
     public void setImg(String img) {
         this.img = img;
     }
-    
-    public List<Clase> getClases(){
+
+    public List<Clase> getClases() {
         return Clases;
     }
-    
 
 }

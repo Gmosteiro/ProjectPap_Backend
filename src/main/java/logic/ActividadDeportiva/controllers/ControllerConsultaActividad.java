@@ -60,16 +60,8 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
     public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
         EntityManager em = emf.createEntityManager();
         try {
-            em.getTransaction().begin();
 
-            TypedQuery<Clase> query = em.createQuery(
-                    "SELECT c FROM Clase c WHERE c.actividad = :actividad",
-                    Clase.class);
-            query.setParameter("actividad", actividad);
-
-            List<Clase> clases = query.getResultList();
-
-            em.getTransaction().commit();
+            List<Clase> clases = actividad.getClases(); // Obtén las clases asociadas a la actividad.
 
             return clases;
         } finally {
