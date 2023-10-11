@@ -28,18 +28,7 @@ public class App {
 
 		try {
 
-			// iniciarVentana();
-
-			Fabrica fac = new Fabrica();
-
-			IControllerConsultaActividad consultaActividad = fac.getControllerConsultaActividad();
-
-			ActividadDeportiva actividadDep = consultaActividad.obtenerActividadPorNombre("Atletismo");
-
-			// Aquí se llama a la función del controlador para obtener la lista de clases
-			// por actividad
-			List<Clase> clases = consultaActividad.obtenerClasesPorActividad(actividadDep);
-			System.out.println(clases);
+			iniciarVentana();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
@@ -56,6 +45,17 @@ public class App {
 		// probarAddUsuarios();
 		// probarAddClase();
 		probarAddRegistroDictado();
+	}
+
+	public static void probarObtenerClasesPorActividad() {
+		Fabrica fac = new Fabrica();
+
+		IControllerConsultaActividad consultaActividad = fac.getControllerConsultaActividad();
+
+		ActividadDeportiva actividadDep = consultaActividad.obtenerActividadPorNombre("Atletismo");
+
+		List<Clase> clases = consultaActividad.obtenerClasesPorActividad(actividadDep);
+		System.out.println(clases);
 	}
 
 	public static void probarAddRegistroDictado() {
