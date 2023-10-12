@@ -96,7 +96,7 @@ public class ManejadorClases {
             Clase clase = entityManager.find(Clase.class, nombreClase);
 
             entityManager.getTransaction().commit();
-            entityManager.close();
+            //entityManager.close();
 
             return clase;
         } catch (Exception e) {
