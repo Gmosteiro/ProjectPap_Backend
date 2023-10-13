@@ -104,5 +104,16 @@ public class ManejadorClases {
             return null;
         }
     }
+    
+    public static List<Clase> getClases() {
+    List<Clase> clases;
+
+    clases = entityManager
+            .createQuery("SELECT c FROM Clase c", Clase.class)
+            .getResultList();
+
+    return clases;
+}
+
 
 }
