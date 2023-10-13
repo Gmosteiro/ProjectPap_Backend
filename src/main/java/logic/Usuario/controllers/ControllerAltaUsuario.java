@@ -58,11 +58,9 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
                 return false;
             }
 
-            Socio nuevoSocio = new Socio(nickname, nombre, apellido, email, fechaNac, contrasena,img);
+            Socio nuevoSocio = new Socio(nickname, nombre, apellido, email, fechaNac, contrasena, img);
 
-            ManejadorUsuarios manejador = new ManejadorUsuarios();
-
-            manejador.agregarUsuario(nuevoSocio);
+            ManejadorUsuarios.agregarUsuario(nuevoSocio);
 
             System.out.println("Socio Creado");
             JOptionPane.showMessageDialog(

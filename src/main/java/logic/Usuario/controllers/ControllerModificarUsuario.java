@@ -1,8 +1,6 @@
 package logic.Usuario.controllers;
 
 import java.time.LocalDate;
-import java.util.List;
-
 import logic.Usuario.*;
 
 import javax.persistence.EntityManager;
@@ -12,7 +10,8 @@ import javax.swing.JOptionPane;
 
 public class ControllerModificarUsuario implements IControllerModificarUsuario {
 
-    public void modificarUsuario(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha, String img) {
+    public boolean modificarUsuario(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
+            String img) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
         EntityManager em = emf.createEntityManager();
 
@@ -38,22 +37,26 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                     em.getTransaction().commit();
 
                 }
-
                 System.out.println("Usuario modificado exitosamente.");
                 JOptionPane.showMessageDialog(null, "Usuario Actualizado!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+
             } else {
                 // Manejar el usuario no encontrado
                 System.out.println("No se encontró el usuario.");
+
                 JOptionPane.showMessageDialog(
                         null, // Parent component (null for default)
                         "No encontrado", // Message text
                         "Error", // Dialog title
                         JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
                 );
+                return false;
             }
         } catch (Exception e) {
             System.out.println("Catch modificarUsuario: " + e);
             e.printStackTrace();
+            return false;
         } finally {
             em.close();
             emf.close();

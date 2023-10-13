@@ -10,7 +10,6 @@
 
 package logic.Usuario.controllers;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.String;
 import java.time.LocalDate;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,13 +28,14 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
 
     private EntityManagerFactory emf;
     private EntityManager entityManager;
- 
+
     public ControllerEliminarRegClase() {
         emf = Persistence.createEntityManagerFactory("project_pap");
         entityManager = emf.createEntityManager();
     }
 
-    public boolean existenElementos(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio) {
+    public boolean existenElementos(String nombreInstitucion, String nombreActividad, String nombreClase,
+            String nicknameSocio) {
         Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
         Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
         InstitucionDeportiva institucion = ManejadorInstitucion.getInstitucionesByName(nombreInstitucion);
@@ -44,7 +44,8 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
         return (socio != null && clase != null && institucion != null && actividad != null);
     }
 
-    public boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio) {
+    public boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase,
+            String nicknameSocio) {
         try {
             if (!entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().begin();
@@ -76,7 +77,7 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
             entityManager.getTransaction().rollback();
             e.printStackTrace();
             return false;
-        } 
+        }
     }
 
     private Registro crearRegistro(Socio socio, Clase clase) {
@@ -96,5 +97,3 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
         }
     }
 }
-
-
