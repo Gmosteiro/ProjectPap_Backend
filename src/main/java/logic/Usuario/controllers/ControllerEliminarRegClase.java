@@ -10,15 +10,13 @@
 
 package logic.Usuario.controllers;
 
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.String;
 import java.time.LocalDate;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
-
 import logic.Clase.Clase;
 import logic.Clase.ManejadorClases;
 import logic.Institucion.InstitucionDeportiva;
@@ -37,32 +35,42 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
         entityManager = emf.createEntityManager();
     }
 
-     public boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio) {
+    public boolean existenElementos(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio) {
+        Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
+        Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
+        InstitucionDeportiva institucion = ManejadorInstitucion.getInstitucionesByName(nombreInstitucion);
+        ActividadDeportiva actividad = ManejadorActividad.obtenerActividadPorNombre(nombreActividad);
+
+        return (socio != null && clase != null && institucion != null && actividad != null);
+    }
+
+    public boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio) {
         try {
             if (!entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().begin();
             }
 
+            if (!existenElementos(nombreInstitucion, nombreActividad, nombreClase, nicknameSocio)) {
+                System.out.println("Uno o más elementos proporcionados no existen en la base de datos.");
+                return false;
+            }
+
             Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
             Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
 
-            if (socio != null && clase != null) {
-                Registro registro = ManejadorUsuarios.getRegistroBySocioEnClase(socio, clase);
-                if (registro != null) {
-                    ManejadorUsuarios.eliminarRegistro(registro);
-                    entityManager.getTransaction().commit();
-                    System.out.println("Registro eliminado con éxito.");
-                    return true;
-                } else {
-                    System.out.println("No se encontró un registro asociado a este socio y clase. Se creará uno nuevo.");
+            Registro registro = ManejadorUsuarios.getRegistroBySocioEnClase(socio, clase);
 
-                    // Crear un nuevo registro si no existe
-                    Registro nuevoRegistro = crearRegistro(socio, clase);
-                    return nuevoRegistro != null;
-                }
+            if (registro != null) {
+                ManejadorUsuarios.eliminarRegistro(registro);
+                entityManager.getTransaction().commit();
+                System.out.println("Registro eliminado con éxito.");
+                return true;
             } else {
-                System.out.println("No se encontró un Socio o una Clase asociados a los datos proporcionados.");
-                return false;
+                System.out.println("No se encontró un registro asociado a este socio y clase. Se creará uno nuevo.");
+
+                // Crear un nuevo registro si no existe
+                Registro nuevoRegistro = crearRegistro(socio, clase);
+                return nuevoRegistro != null;
             }
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
@@ -87,9 +95,6 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
             return null;
         }
     }
-    
-
-
 }
 
 

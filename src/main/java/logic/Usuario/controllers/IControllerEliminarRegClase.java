@@ -11,11 +11,7 @@
 
 package logic.Usuario.controllers;
 
-import logic.Clase.Clase;
-import logic.Usuario.Registro;
-import logic.Usuario.Socio;
-
 public interface IControllerEliminarRegClase {
+    boolean existenElementos(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio);
     boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio);
 }
-
