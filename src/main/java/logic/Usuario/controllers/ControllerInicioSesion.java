@@ -37,4 +37,21 @@ public class ControllerInicioSesion implements IControllerInicioSesion {
 
     }
 
+    public Sesion actualizarSesion(String nickname) {
+        // Intentamos obtener un Usuario con el nickname proporcionado
+        System.out.println("actualizarSesion " + nickname);
+        Usuario usuario = ManejadorUsuarios.getUser(nickname);
+
+        if (usuario != null) {
+            System.out.println("if (usuario != null " + usuario);
+
+            return crearSesion(usuario);
+        } else {
+            System.out.println("else return null " + usuario);
+
+            return null;
+        }
+
+    }
+
 }
