@@ -26,12 +26,7 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
 
     private EntityManagerFactory emf;
     private EntityManager entityManager;
-<<<<<<< Updated upstream
  
-=======
-    boolean reg = false;
-
->>>>>>> Stashed changes
     public ControllerEliminarRegClase() {
         emf = Persistence.createEntityManagerFactory("project_pap");
         entityManager = emf.createEntityManager();
@@ -52,22 +47,11 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
                 ManejadorUsuarios.eliminarRegistro(registro);
                 entityManager.getTransaction().commit();
                 System.out.println("Registro eliminado con éxito.");
-<<<<<<< Updated upstream
-=======
-                reg = false; // Se ha eliminado un registro
-                return true;
->>>>>>> Stashed changes
             } else {
                 System.out.println("No se encontró un registro asociado a este socio y clase. Se creará uno nuevo.");
 
                 // Crear un nuevo registro si no existe
-<<<<<<< Updated upstream
                 crearRegistro(socio, clase);
-=======
-                Registro nuevoRegistro = crearRegistro(socio, clase);
-                reg = true; // Se ha creado un nuevo registro
-                return nuevoRegistro != null;
->>>>>>> Stashed changes
             }
         } else {
             System.out.println("No se encontró un Socio o una Clase asociados a los datos proporcionados.");
@@ -78,28 +62,10 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
     } 
 }
 
-<<<<<<< Updated upstream
 private void crearRegistro(Socio socio, Clase clase) {
     try {
         if (!entityManager.getTransaction().isActive()) {
             entityManager.getTransaction().begin();
-=======
-    private Registro crearRegistro(Socio socio, Clase clase) {
-        try {
-            if (!entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().begin();
-            }
-            
-            Registro nuevoRegistro = new Registro(LocalDate.now(), socio, clase);
-            entityManager.persist(nuevoRegistro);
-            entityManager.getTransaction().commit();
-            System.out.println("Registro creado con éxito.");
-            return nuevoRegistro;
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            e.printStackTrace();
-            return null;
->>>>>>> Stashed changes
         }
         Registro nuevoRegistro = new Registro(LocalDate.now(), socio, clase);
         entityManager.persist(nuevoRegistro);
