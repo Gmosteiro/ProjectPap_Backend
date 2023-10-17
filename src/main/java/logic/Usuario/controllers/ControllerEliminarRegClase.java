@@ -72,9 +72,7 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
             entityManager.getTransaction().rollback();
             e.printStackTrace();
             return false;
-        } finally {
-            entityManager.close(); // Asegurarse de cerrar el EntityManager
-        }
+        } 
     }
 
     @Override
