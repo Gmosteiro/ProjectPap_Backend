@@ -16,6 +16,8 @@ import logic.Usuario.Registro;
 import logic.Usuario.Socio;
 
 public interface IControllerEliminarRegClase {
-    void eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio);
+    boolean existenElementos(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio);
+    boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio);
+    boolean crearRegistro(Socio socio, Clase clase);
 }
 
