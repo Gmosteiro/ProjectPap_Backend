@@ -23,11 +23,11 @@ import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Registro;
 import logic.Usuario.Socio;
 
-public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
+public class ControllerEliminarRegClase implements IControllerEliminarRegClase { 
 
     private EntityManagerFactory emf;
     private EntityManager entityManager;
-
+ 
     public ControllerEliminarRegClase() {
         emf = Persistence.createEntityManagerFactory("project_pap");
         entityManager = emf.createEntityManager();
@@ -42,11 +42,10 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
         return (socio != null && clase != null && institucion != null && actividad != null);
     }
 
+    @Override
     public boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio) {
         try {
-            if (!entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().begin();
-            }
+            entityManager.getTransaction().begin();
 
             if (!existenElementos(nombreInstitucion, nombreActividad, nombreClase, nicknameSocio)) {
                 System.out.println("Uno o más elementos proporcionados no existen en la base de datos.");
@@ -65,29 +64,34 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
                 return true;
             } else {
                 System.out.println("No se encontró un registro asociado a este socio y clase. Se creará uno nuevo.");
+
+                // Crear un nuevo registro si no existe
                 return crearRegistro(socio, clase);
             }
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             e.printStackTrace();
             return false;
+        } finally {
+            entityManager.close(); // Asegurarse de cerrar el EntityManager
         }
     }
 
+    @Override
     public boolean crearRegistro(Socio socio, Clase clase) {
         try {
-            if (!entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().begin();
-            }
+            entityManager.getTransaction().begin();
             Registro nuevoRegistro = new Registro(LocalDate.now(), socio, clase);
             entityManager.persist(nuevoRegistro);
             entityManager.getTransaction().commit();
             System.out.println("Registro creado con éxito.");
-            return true;
+            return true; // Devuelve true si se creó el registro con éxito
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             e.printStackTrace();
-            return false;
+            return false; // Devuelve false si hubo un error al crear el registro
+        } finally {
+            entityManager.close(); // Asegurarse de cerrar el EntityManager
         }
     }
 }

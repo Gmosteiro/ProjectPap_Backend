@@ -8,16 +8,17 @@
  * @author santi
  */
 
-
 package logic.Usuario.controllers;
 
-import logic.Clase.Clase;
-import logic.Usuario.Registro;
 import logic.Usuario.Socio;
+import logic.Clase.Clase;
 
 public interface IControllerEliminarRegClase {
     boolean existenElementos(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio);
+
     boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase, String nicknameSocio);
+
     boolean crearRegistro(Socio socio, Clase clase);
 }
+
 
