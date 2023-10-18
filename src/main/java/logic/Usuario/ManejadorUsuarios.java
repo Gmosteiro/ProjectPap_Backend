@@ -9,8 +9,6 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import logic.Clase.Clase;
-import logic.Institucion.InstitucionDeportiva;
-import logic.Clase.Clase;
 
 public class ManejadorUsuarios {
 	private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
@@ -90,10 +88,10 @@ public class ManejadorUsuarios {
 
 		return profesores;
 	}
-        
-        public static List<Usuario> getSocios() {
 
-                    List<Usuario> usuarios = new ArrayList<>();
+	public static List<Usuario> getSocios() {
+
+		List<Usuario> usuarios = new ArrayList<>();
 		List<Usuario> socios = entityManager.createQuery(
 				"SELECT s " +
 						"FROM Socio s",
@@ -198,56 +196,54 @@ public class ManejadorUsuarios {
 			return null;
 		}
 	}
-        
-        public static List<Usuario> getSociosByClase(Clase clase) {
 
-        try {
-            List<Usuario> resultList = entityManager.createQuery(
-                    "SELECT r.socio " +
-                            "FROM Registro r " +
-                            "WHERE r.clase = :clase",
-                    Usuario.class)
-                    .setParameter("clase", clase)
-                    .getResultList();
+	public static List<Usuario> getSociosByClase(Clase clase) {
 
-            return resultList;
-        } catch (Exception e) {
-            System.out.println("Error catch getSociosByClase " + e);
-            return null;
-        }
+		try {
+			List<Usuario> resultList = entityManager.createQuery(
+					"SELECT r.socio " +
+							"FROM Registro r " +
+							"WHERE r.clase = :clase",
+					Usuario.class)
+					.setParameter("clase", clase)
+					.getResultList();
 
-    }
+			return resultList;
+		} catch (Exception e) {
+			System.out.println("Error catch getSociosByClase " + e);
+			return null;
+		}
 
-        public static void eliminarRegistro(Registro registro) {
-    try {
-        entityManager.getTransaction().begin();
-        entityManager.remove(registro);
-        entityManager.getTransaction().commit();
-    } catch (Exception e) {
-        System.out.println("Error al eliminar el registro: " + e);
-        entityManager.getTransaction().rollback();
-    }
-}
+	}
 
-    public static Registro getRegistroBySocioEnClase(Socio socio, Clase clase) {
-    try {
-        TypedQuery<Registro> query = entityManager.createQuery(
-                "SELECT r FROM Registro r WHERE r.socio = :socio AND r.clase = :clase", Registro.class);
-        query.setParameter("socio", socio);
-        query.setParameter("clase", clase);
-        List<Registro> registros = query.getResultList();
+	public static void eliminarRegistro(Registro registro) {
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.remove(registro);
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error al eliminar el registro: " + e);
+			entityManager.getTransaction().rollback();
+		}
+	}
 
-        if (!registros.isEmpty()) {
-            return registros.get(0);
-        } else {
-            return null;
-        }
-    } catch (Exception e) {
-        System.out.println("Error al obtener el registro: " + e);
-        return null;
-    }
-}
+	public static Registro getRegistroBySocioEnClase(Socio socio, Clase clase) {
+		try {
+			TypedQuery<Registro> query = entityManager.createQuery(
+					"SELECT r FROM Registro r WHERE r.socio = :socio AND r.clase = :clase", Registro.class);
+			query.setParameter("socio", socio);
+			query.setParameter("clase", clase);
+			List<Registro> registros = query.getResultList();
 
-        
-        
+			if (!registros.isEmpty()) {
+				return registros.get(0);
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("Error al obtener el registro: " + e);
+			return null;
+		}
+	}
+
 }

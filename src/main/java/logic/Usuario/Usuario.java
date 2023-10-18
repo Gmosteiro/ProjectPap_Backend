@@ -2,16 +2,11 @@ package logic.Usuario;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
-
-import logic.Clase.Clase;
 
 @MappedSuperclass
 public abstract class Usuario {
@@ -33,7 +28,8 @@ public abstract class Usuario {
         // Constructor sin argumentos
     }
 
-    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String contrasena,String img) {
+    public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNac, String contrasena,
+            String img) {
         super();
         this.nickname = nickname;
         this.nombre = nombre;
@@ -41,7 +37,7 @@ public abstract class Usuario {
         this.email = email;
         this.fechaNac = fechaNac;
         this.contrasena = contrasena; // Asignar la contraseña
-        this.img =img;
+        this.img = img;
     }
 
     public String getEmail() {
@@ -106,9 +102,9 @@ public abstract class Usuario {
     }
 
     public void setImg(String img) {
-    this.img = img;
+        this.img = img;
     }
-    
+
     public String getImg() {
         return img;
     }
