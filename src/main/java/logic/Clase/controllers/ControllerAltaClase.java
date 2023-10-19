@@ -37,17 +37,9 @@ public class ControllerAltaClase implements IControllerAltaClase {
             manejadorA.agregarClaseA(nuevaclase, actividad);
             System.out.println("Clase Creada");
 
-            JOptionPane.showMessageDialog(
-                    null, // Parent component (null for default)
-                    "Clase Creada!", // Message text
-                    "Success", // Dialog title
-                    JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
-            );
-
         } catch (Exception errorException) {
             System.out.println("Catch addClase: " + errorException);
             String errorMessage = extractErrorMessage(errorException.getMessage());
-            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 
         }
 
