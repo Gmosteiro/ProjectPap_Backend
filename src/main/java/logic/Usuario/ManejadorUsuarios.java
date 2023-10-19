@@ -57,6 +57,24 @@ public class ManejadorUsuarios {
 		}
 	}
 
+	public static boolean agregarRegistroWeb(Registro registro) {
+		try {
+
+			entityManager.getTransaction().begin();
+
+			entityManager.persist(registro);
+			entityManager.getTransaction().commit();
+
+			System.out.println("Registro Creado");
+			return true;
+
+		} catch (Exception exceptionAgregarRegistro) {
+			System.out.println("Catch agregarRegistro: " + exceptionAgregarRegistro);
+			return false;
+
+		}
+	}
+
 	public static List<Usuario> getUsuarios() {
 		List<Usuario> usuarios = new ArrayList<>();
 
@@ -179,10 +197,8 @@ public class ManejadorUsuarios {
 
 		try {
 
-			List<Registro> listRegistros;
-
-			listRegistros = entityManager.createQuery(
-					"SELECT r FROM Registro r WHERE r.socio = :socio", Registro.class)
+			List<Registro> listRegistros = entityManager.createQuery(
+					"SELECT r FROM Registro r WHERE  r.socio = :socio", Registro.class)
 					.setParameter("socio", socio)
 					.getResultList();
 

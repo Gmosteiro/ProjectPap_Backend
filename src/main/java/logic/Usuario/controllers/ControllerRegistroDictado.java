@@ -45,9 +45,7 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
 
             Registro newRegistro = new Registro(fechaReg, socio, clase);
 
-            ManejadorUsuarios.agregarRegistro(newRegistro);
-
-            return true;
+            return ManejadorUsuarios.agregarRegistroWeb(newRegistro);
 
         } catch (Exception errorException) {
 
@@ -75,7 +73,8 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
 
         }
 
-        Registro registroExistente = ManejadorUsuarios.getRegistroBySocio(ManejadorUsuarios.getSocio(nicknameSocio));
+        Registro registroExistente = ManejadorUsuarios
+                .getRegistroBySocio(ManejadorUsuarios.getSocio(nicknameSocio));
 
         // registroExistente.getSocio().getNickname().length() != 0
         if (registroExistente != null && registroExistente.getClase().getNombre() == nombreClase) {
@@ -92,21 +91,30 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
     }
 
     public boolean validateDataWeb(String nicknameSocio, String nombreClase) {
+        try {
 
-        if (nicknameSocio == null || nombreClase == null || nicknameSocio.length() == 0 || nombreClase.length() == 0) {
+            if (nicknameSocio == null || nombreClase == null || nicknameSocio.length() == 0
+                    || nombreClase.length() == 0) {
 
+                return false;
+
+            }
+
+            Socio socioEncontrado = ManejadorUsuarios.getSocio(nicknameSocio);
+            System.out.println("socioEncontrado: " + socioEncontrado.getNickname());
+            Registro registroExistente = ManejadorUsuarios.getRegistroBySocio(socioEncontrado);
+            System.out.println("Registro Existente: " + registroExistente);
+
+            // registroExistente.getSocio().getNickname().length() != 0
+            if (registroExistente != null && registroExistente.getClase().getNombre().equals(nombreClase)) {
+
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Catch validateDataWeb " + e);
             return false;
-
-        }
-
-        Registro registroExistente = ManejadorUsuarios.getRegistroBySocio(ManejadorUsuarios.getSocio(nicknameSocio));
-
-        // registroExistente.getSocio().getNickname().length() != 0
-        if (registroExistente != null && registroExistente.getClase().getNombre().equals(nombreClase)) {
-
-            return false;
-        } else {
-            return true;
         }
 
     }
