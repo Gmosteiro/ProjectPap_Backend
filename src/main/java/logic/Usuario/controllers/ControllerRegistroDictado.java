@@ -36,6 +36,28 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
 
     }
 
+    public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
+        try {
+
+            Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
+
+            Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
+
+            Registro newRegistro = new Registro(fechaReg, socio, clase);
+
+            ManejadorUsuarios.agregarRegistro(newRegistro);
+
+            return true;
+
+        } catch (Exception errorException) {
+
+            System.out.println("Catch addRegistroDictado: " + errorException);
+            return false;
+
+        }
+
+    }
+
     private boolean validateData(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
 
         if (nicknameSocio.length() == 0) {
@@ -61,6 +83,26 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
             JOptionPane.showMessageDialog(null,
                     extractErrorMessage("Ya existe un registro para este par clase y socio "), "Error",
                     JOptionPane.ERROR_MESSAGE);
+
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    public boolean validateDataWeb(String nicknameSocio, String nombreClase) {
+
+        if (nicknameSocio == null || nombreClase == null || nicknameSocio.length() == 0 || nombreClase.length() == 0) {
+
+            return false;
+
+        }
+
+        Registro registroExistente = ManejadorUsuarios.getRegistroBySocio(ManejadorUsuarios.getSocio(nicknameSocio));
+
+        // registroExistente.getSocio().getNickname().length() != 0
+        if (registroExistente != null && registroExistente.getClase().getNombre().equals(nombreClase)) {
 
             return false;
         } else {
