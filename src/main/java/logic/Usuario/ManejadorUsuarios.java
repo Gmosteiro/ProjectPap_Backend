@@ -213,6 +213,27 @@ public class ManejadorUsuarios {
 		}
 	}
 
+	public static Boolean existeRegistroBySocioYClase(Socio socio, Clase clase) {
+
+		try {
+
+			List<Registro> listRegistros = entityManager.createQuery(
+					"SELECT r FROM Registro r WHERE  r.socio = :socio  AND r.clase = :clase", Registro.class)
+					.setParameter("socio", socio)
+					.setParameter("clase", clase)
+					.getResultList();
+
+			if (listRegistros.isEmpty()) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("Error catch getRegistroBySocio " + e);
+			return null;
+		}
+	}
+
 	public static List<Usuario> getSociosByClase(Clase clase) {
 
 		try {

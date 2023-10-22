@@ -102,16 +102,15 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
 
             Socio socioEncontrado = ManejadorUsuarios.getSocio(nicknameSocio);
             System.out.println("socioEncontrado: " + socioEncontrado.getNickname());
-            Registro registroExistente = ManejadorUsuarios.getRegistroBySocio(socioEncontrado);
-            System.out.println("Registro Existente: " + registroExistente);
+
+            Clase claseEncontrada = ManejadorClases.getClaseByNombre(nombreClase);
+            System.out.println("claseEncontrada: " + claseEncontrada.getNombre());
+
+            Boolean existeRegistro = ManejadorUsuarios.existeRegistroBySocioYClase(socioEncontrado, claseEncontrada);
+            System.out.println("Registro Existente: " + existeRegistro);
 
             // registroExistente.getSocio().getNickname().length() != 0
-            if (registroExistente != null && registroExistente.getClase().getNombre().equals(nombreClase)) {
-
-                return false;
-            } else {
-                return true;
-            }
+            return existeRegistro;
         } catch (Exception e) {
             System.out.println("Catch validateDataWeb " + e);
             return false;

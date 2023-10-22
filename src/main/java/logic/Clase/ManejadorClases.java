@@ -96,7 +96,7 @@ public class ManejadorClases {
             Clase clase = entityManager.find(Clase.class, nombreClase);
 
             entityManager.getTransaction().commit();
-            //entityManager.close();
+            // entityManager.close();
 
             return clase;
         } catch (Exception e) {
@@ -104,16 +104,15 @@ public class ManejadorClases {
             return null;
         }
     }
-    
+
     public static List<Clase> getClases() {
-    List<Clase> clases;
+        List<Clase> clases;
 
-    clases = entityManager
-            .createQuery("SELECT c FROM Clase c", Clase.class)
-            .getResultList();
+        clases = entityManager
+                .createQuery("SELECT c FROM Clase c", Clase.class)
+                .getResultList();
 
-    return clases;
-}
-
+        return clases;
+    }
 
 }
