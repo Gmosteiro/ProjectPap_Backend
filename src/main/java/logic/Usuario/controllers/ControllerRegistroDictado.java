@@ -36,6 +36,26 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
 
     }
 
+    public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
+        try {
+
+            Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
+
+            Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
+
+            Registro newRegistro = new Registro(fechaReg, socio, clase);
+
+            return ManejadorUsuarios.agregarRegistroWeb(newRegistro);
+
+        } catch (Exception errorException) {
+
+            System.out.println("Catch addRegistroDictado: " + errorException);
+            return false;
+
+        }
+
+    }
+
     private boolean validateData(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
 
         if (nicknameSocio.length() == 0) {
@@ -53,7 +73,8 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
 
         }
 
-        Registro registroExistente = ManejadorUsuarios.getRegistroBySocio(ManejadorUsuarios.getSocio(nicknameSocio));
+        Registro registroExistente = ManejadorUsuarios
+                .getRegistroBySocio(ManejadorUsuarios.getSocio(nicknameSocio));
 
         // registroExistente.getSocio().getNickname().length() != 0
         if (registroExistente != null && registroExistente.getClase().getNombre() == nombreClase) {
@@ -65,6 +86,34 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
             return false;
         } else {
             return true;
+        }
+
+    }
+
+    public boolean validateDataWeb(String nicknameSocio, String nombreClase) {
+        try {
+
+            if (nicknameSocio == null || nombreClase == null || nicknameSocio.length() == 0
+                    || nombreClase.length() == 0) {
+
+                return false;
+
+            }
+
+            Socio socioEncontrado = ManejadorUsuarios.getSocio(nicknameSocio);
+            System.out.println("socioEncontrado: " + socioEncontrado.getNickname());
+
+            Clase claseEncontrada = ManejadorClases.getClaseByNombre(nombreClase);
+            System.out.println("claseEncontrada: " + claseEncontrada.getNombre());
+
+            Boolean existeRegistro = ManejadorUsuarios.existeRegistroBySocioYClase(socioEncontrado, claseEncontrada);
+            System.out.println("Registro Existente: " + existeRegistro);
+
+            // registroExistente.getSocio().getNickname().length() != 0
+            return existeRegistro;
+        } catch (Exception e) {
+            System.out.println("Catch validateDataWeb " + e);
+            return false;
         }
 
     }

@@ -57,6 +57,24 @@ public class ManejadorUsuarios {
 		}
 	}
 
+	public static boolean agregarRegistroWeb(Registro registro) {
+		try {
+
+			entityManager.getTransaction().begin();
+
+			entityManager.persist(registro);
+			entityManager.getTransaction().commit();
+
+			System.out.println("Registro Creado");
+			return true;
+
+		} catch (Exception exceptionAgregarRegistro) {
+			System.out.println("Catch agregarRegistro: " + exceptionAgregarRegistro);
+			return false;
+
+		}
+	}
+
 	public static List<Usuario> getUsuarios() {
 		List<Usuario> usuarios = new ArrayList<>();
 
@@ -179,10 +197,8 @@ public class ManejadorUsuarios {
 
 		try {
 
-			List<Registro> listRegistros;
-
-			listRegistros = entityManager.createQuery(
-					"SELECT r FROM Registro r WHERE r.socio = :socio", Registro.class)
+			List<Registro> listRegistros = entityManager.createQuery(
+					"SELECT r FROM Registro r WHERE  r.socio = :socio", Registro.class)
 					.setParameter("socio", socio)
 					.getResultList();
 
@@ -190,6 +206,27 @@ public class ManejadorUsuarios {
 				return listRegistros.get(0);
 			} else {
 				return null;
+			}
+		} catch (Exception e) {
+			System.out.println("Error catch getRegistroBySocio " + e);
+			return null;
+		}
+	}
+
+	public static Boolean existeRegistroBySocioYClase(Socio socio, Clase clase) {
+
+		try {
+
+			List<Registro> listRegistros = entityManager.createQuery(
+					"SELECT r FROM Registro r WHERE  r.socio = :socio  AND r.clase = :clase", Registro.class)
+					.setParameter("socio", socio)
+					.setParameter("clase", clase)
+					.getResultList();
+
+			if (listRegistros.isEmpty()) {
+				return false;
+			} else {
+				return true;
 			}
 		} catch (Exception e) {
 			System.out.println("Error catch getRegistroBySocio " + e);

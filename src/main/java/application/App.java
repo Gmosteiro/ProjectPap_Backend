@@ -20,6 +20,7 @@ import logic.Clase.ManejadorClases;
 import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Socio;
 import logic.Usuario.Usuario;
+import logic.Usuario.controllers.ControllerRegistroDictado;
 import logic.Usuario.controllers.IControllerEliminarRegClase;
 
 public class App {
@@ -27,7 +28,7 @@ public class App {
 	public static void main(String[] args) {
 
 		try {
-//                    probarAddRegistroDictado();
+			// probarAddRegistroDictado();
 			iniciarVentana();
 
 		} catch (Exception e) {
@@ -70,29 +71,33 @@ public class App {
 		}
 	}
 
-//	public static void probarEliminarRegistroDeClase() {
-//		try {
-//			Fabrica factory = new Fabrica();
-//			IControllerEliminarRegClase controllerEliminar = factory.getControllerEliminarRegClase();
-//
-//			// Obtener el Socio y la Clase por sus identificadores únicos
-//			String nicknameSocio = "pepe"; // Reemplaza "nickname_socio" con el nickname del Socio que deseas eliminar
-//			String nombreClase = "clase"; // Reemplaza "nombre_clase" con el nombre de la Clase correspondiente
-//
-//			Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
-//			Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
-//
-//			if (socio != null && clase != null) {
-//				// Eliminar el registro del Socio en la Clase
-//				controllerEliminar.eliminarRegistroDeClase(socio, clase);
-//				System.out.println("Registro eliminado con éxito. app");
-//			} else {
-//				System.out.println("No se encontró un Socio o una Clase asociados a los datos proporcionados.");
-//			}
-//		} catch (Exception e) {
-//			System.out.println("Error al eliminar el registro: " + e.getMessage());
-//		}
-//	}
+	// public static void probarEliminarRegistroDeClase() {
+	// try {
+	// Fabrica factory = new Fabrica();
+	// IControllerEliminarRegClase controllerEliminar =
+	// factory.getControllerEliminarRegClase();
+	//
+	// // Obtener el Socio y la Clase por sus identificadores únicos
+	// String nicknameSocio = "pepe"; // Reemplaza "nickname_socio" con el nickname
+	// del Socio que deseas eliminar
+	// String nombreClase = "clase"; // Reemplaza "nombre_clase" con el nombre de la
+	// Clase correspondiente
+	//
+	// Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
+	// Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
+	//
+	// if (socio != null && clase != null) {
+	// // Eliminar el registro del Socio en la Clase
+	// controllerEliminar.eliminarRegistroDeClase(socio, clase);
+	// System.out.println("Registro eliminado con éxito. app");
+	// } else {
+	// System.out.println("No se encontró un Socio o una Clase asociados a los datos
+	// proporcionados.");
+	// }
+	// } catch (Exception e) {
+	// System.out.println("Error al eliminar el registro: " + e.getMessage());
+	// }
+	// }
 
 	// public static void probarAddUsuarios() {
 	// try {
