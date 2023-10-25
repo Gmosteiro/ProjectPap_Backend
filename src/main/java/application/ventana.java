@@ -8,6 +8,7 @@ import logic.Presentacion.RankingActividades;
 import application.Ventana;
 import javax.swing.JInternalFrame;
 import logic.Presentacion.*;
+import publicadores.ControladorPublish;
 
 /**
  *
@@ -20,6 +21,8 @@ public class Ventana extends javax.swing.JFrame {
      */
     public Ventana() {
         initComponents();
+        ControladorPublish cp = new ControladorPublish();
+		cp.publicar();	
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated

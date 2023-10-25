@@ -29,10 +29,18 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.6 </version>
 		</dependency>
+
+                <dependency>
+                    <groupId>com.sun.xml.ws</groupId>
+                    <artifactId>jaxws-rt</artifactId>
+                    <version>2.3.6</version> <!-- Puedes ajustar la versión según la que esté disponible -->
+                </dependency>
+
+
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
-			<version>2.3.1</version> <!-- O una versión compatible -->
+			<version>2.3.1</version> 
 		</dependency>
 		<dependency>
 			<groupId>com.toedter</groupId>
@@ -44,7 +52,18 @@
 			<artifactId>primefaces</artifactId>
 			<version>13.0.0</version>
 		</dependency>
-
+                <dependency>
+                    <groupId>jakarta.platform</groupId>
+                    <artifactId>jakarta.jakartaee-api</artifactId>
+                    <version>10.0.0</version>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                    <version>5.3.5.Final</version>
+                    <type>jar</type>
+                </dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -61,22 +80,3 @@
 	</build>
 </project>
 
-<!-- <properties>
-		<maven.compiler.source>20</maven.compiler.source>
-		<maven.compiler.target>20</maven.compiler.target>
-		<hibernate.version>5.4.4.Final</hibernate.version>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.5.6.Final</version>
-		</dependency>
-	</dependencies> -->
-
-<!-- </project> -->
