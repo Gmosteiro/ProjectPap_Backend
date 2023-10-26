@@ -2,14 +2,11 @@ package logic.Institucion;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import logic.ActividadDeportiva.ActividadDeportiva;
 
 public class ManejadorInstitucion {
-        private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        private static EntityManager entityManager = emFactory.createEntityManager();
+        private EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+        private EntityManager entityManager = emFactory.createEntityManager();
 
         public ManejadorInstitucion() {
         }
@@ -28,7 +25,7 @@ public class ManejadorInstitucion {
 
         }
 
-         public void actualizarInstitucion(InstitucionDeportiva institucion) {
+        public void actualizarInstitucion(InstitucionDeportiva institucion) {
                 EntityManager entityManager = emFactory.createEntityManager();
                 entityManager.getTransaction().begin();
 
@@ -38,7 +35,7 @@ public class ManejadorInstitucion {
                 entityManager.close();
         }
 
-        public static List<InstitucionDeportiva> getInstituciones() {
+        public List<InstitucionDeportiva> getInstituciones() {
 
                 EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
                 EntityManager entityManager = emFactory.createEntityManager();
@@ -51,7 +48,7 @@ public class ManejadorInstitucion {
                 return instituciones;
         }
 
-        public static InstitucionDeportiva getInstitucionesByName(String nombre) {
+        public InstitucionDeportiva getInstitucionesByName(String nombre) {
                 InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
 
                 // entityManager.close();
@@ -75,9 +72,9 @@ public class ManejadorInstitucion {
                         System.out.println("ERROR");
                 }
         }
-        
-        public List<ActividadDeportiva> getActividades(){
-        return getActividades();
+
+        public List<ActividadDeportiva> getActividades() {
+                return getActividades();
         }
 
 }

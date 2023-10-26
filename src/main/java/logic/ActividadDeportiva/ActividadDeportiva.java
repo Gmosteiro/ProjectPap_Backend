@@ -9,12 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import logic.Clase.Clase;
-import logic.Institucion.InstitucionDeportiva;
 
 @Entity
 public class ActividadDeportiva {
@@ -31,9 +28,6 @@ public class ActividadDeportiva {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Clase> Clases = new ArrayList<>();
 
-    // @ManyToOne(cascade = CascadeType.ALL)
-    // private InstitucionDeportiva InstitucionDeportiva;
-
     public ActividadDeportiva() {
     }
 
@@ -46,8 +40,6 @@ public class ActividadDeportiva {
         this.fechaReg = fechaReg;
         this.img = img;
     }
-
-    // Métodos getters y setters para los atributos
 
     public String getNombre() {
         return nombre;

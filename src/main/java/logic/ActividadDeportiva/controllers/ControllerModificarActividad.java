@@ -1,53 +1,47 @@
 package logic.ActividadDeportiva.controllers;
 
+import DataBase.DbManager;
+
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 public class ControllerModificarActividad implements IControllerModificarActividad {
     private final ManejadorActividad manejadorActividad;
+    private DbManager controllerBD;
 
     public ControllerModificarActividad() {
         manejadorActividad = new ManejadorActividad();
+        controllerBD = DbManager.getInstance();
     }
 
-   
-    public boolean modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto,String img) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager em = emf.createEntityManager();
-    
+    public boolean modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto,
+            String img) {
         try {
-            em.getTransaction().begin();
-    
-            ActividadDeportiva actividad = em.find(ActividadDeportiva.class, nombre);
-            if (actividad != null) {
+            controllerBD.getEntityManager().getTransaction().begin();
+
+            ActividadDeportiva actividad = controllerBD.getEntityManager().find(ActividadDeportiva.class, nombre);
+
+            if (actividad == null) {
+                return false;
+            } else {
+
                 actividad.setDescripcion(nuevaDescripcion);
                 actividad.setDuracion(nuevaDuracion);
                 actividad.setCosto(nuevoCosto);
                 actividad.setImg(img);
-                em.merge(actividad); // Actualizar la entidad
-    
-                em.getTransaction().commit();
-                System.out.println("Actividad modificada exitosamente.");
-                return true; // Indicar que la modificación fue exitosa
-            } else {
-                // Manejar la actividad no encontrada
-                System.out.println("No se encontró la actividad.");
-                return false; // Indicar que la modificación no fue exitosa
+
+                controllerBD.getEntityManager().merge(actividad);
+
+                controllerBD.getEntityManager().getTransaction().commit();
+                controllerBD.closeEntityManager();
+
+                return true;
             }
         } catch (Exception e) {
-            // Manejar excepciones
-            e.printStackTrace();
-            return false; // Indicar que la modificación no fue exitosa debido a una excepción
-        } finally {
-            em.close();
-            emf.close();
-            System.out.println("Transacción finalizada.");
+            System.out.println("Catch modificarActividad " + e);
+            return false;
         }
     }
 

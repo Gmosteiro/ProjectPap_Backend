@@ -3,9 +3,6 @@ package logic.Usuario.controllers;
 import java.time.LocalDate;
 import logic.Usuario.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 public class ControllerModificarUsuario implements IControllerModificarUsuario {

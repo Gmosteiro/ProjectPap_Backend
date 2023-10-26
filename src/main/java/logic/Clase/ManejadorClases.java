@@ -3,38 +3,47 @@ package logic.Clase;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
+import DataBase.DbManager;
 import logic.Usuario.Profesor;
 import logic.Usuario.Socio;
 
 public class ManejadorClases {
-    static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-    static EntityManager entityManager = emFactory.createEntityManager();
+    private DbManager controllerBD;
+    private EntityManager entityManager;
 
     public ManejadorClases() {
+        controllerBD = DbManager.getInstance();
     }
 
     public void agregarClase(Clase clase) {
         try {
+            entityManager = controllerBD.getEntityManager();
+
             entityManager.getTransaction().begin();
             entityManager.persist(clase);
             entityManager.getTransaction().commit();
-            entityManager.close();
+
+            controllerBD.closeEntityManager();
+
         } catch (Exception exceptionAgregarClase) {
             System.out.println("Catch agregarClase: " + exceptionAgregarClase);
-            System.out.println("ERROR");
         }
     }
 
-    public static List<Clase> getClasesByProfe(Profesor profesor) {
+    public List<Clase> getClasesByProfe(Profesor profesor) {
         try {
+
+            entityManager = controllerBD.getEntityManager();
 
             List<Clase> listClase;
             listClase = entityManager.createQuery(
                     "SELECT c FROM Clase c WHERE c.profesor = :profesor", Clase.class)
                     .setParameter("profesor", profesor)
                     .getResultList();
+
+            controllerBD.closeEntityManager();
+
             return listClase;
         } catch (Exception e) {
             System.out.println("Error catch getClasesByProfe " + e);
@@ -42,8 +51,11 @@ public class ManejadorClases {
         }
     }
 
-    public static List<Clase> getClasesBySocio(Socio socio) {
+    public List<Clase> getClasesBySocio(Socio socio) {
         try {
+
+            entityManager = controllerBD.getEntityManager();
+
             List<Clase> resultList = entityManager.createQuery(
                     "SELECT c " +
                             "FROM Registro r " +
@@ -54,6 +66,8 @@ public class ManejadorClases {
                     .setParameter("socio", socio)
                     .getResultList();
 
+            controllerBD.closeEntityManager();
+
             return resultList;
         } catch (Exception e) {
             System.out.println("Error catch getClasesBySocio " + e);
@@ -61,13 +75,19 @@ public class ManejadorClases {
         }
     }
 
-    public static List<Clase> getClasesByActividad(String nombreActividad) {
+    public List<Clase> getClasesByActividad(String nombreActividad) {
         try {
+
+            entityManager = controllerBD.getEntityManager();
+
             List<Clase> listClase;
             listClase = entityManager.createQuery(
                     "SELECT c FROM Clase c WHERE c.ClaseACT = :nombreActividad", Clase.class)
                     .setParameter("nombreActividad", nombreActividad)
                     .getResultList();
+
+            controllerBD.closeEntityManager();
+
             return listClase;
         } catch (Exception e) {
             System.out.println("Error catch getClasesByActividad " + e);
@@ -75,13 +95,19 @@ public class ManejadorClases {
         }
     }
 
-    public static List<Clase> getClasesByNombre(String nombreActividad) {
+    public List<Clase> getClasesByNombre(String nombreActividad) {
         try {
+
+            entityManager = controllerBD.getEntityManager();
+
             List<Clase> listClase;
             listClase = entityManager.createQuery(
                     "SELECT c FROM Clase c WHERE c.ClaseACT = :nombreActividad", Clase.class)
                     .setParameter("nombreActividad", nombreActividad)
                     .getResultList();
+
+            controllerBD.closeEntityManager();
+
             return listClase;
         } catch (Exception e) {
             System.out.println("Error catch getClasesByActividad " + e);
@@ -89,14 +115,18 @@ public class ManejadorClases {
         }
     }
 
-    public static Clase getClaseByNombre(String nombreClase) {
+    public Clase getClaseByNombre(String nombreClase) {
         try {
+
+            entityManager = controllerBD.getEntityManager();
+
             entityManager.getTransaction().begin();
 
             Clase clase = entityManager.find(Clase.class, nombreClase);
 
             entityManager.getTransaction().commit();
-            // entityManager.close();
+
+            controllerBD.closeEntityManager();
 
             return clase;
         } catch (Exception e) {
@@ -105,12 +135,15 @@ public class ManejadorClases {
         }
     }
 
-    public static List<Clase> getClases() {
-        List<Clase> clases;
+    public List<Clase> getClases() {
 
-        clases = entityManager
+        entityManager = controllerBD.getEntityManager();
+
+        List<Clase> clases = entityManager
                 .createQuery("SELECT c FROM Clase c", Clase.class)
                 .getResultList();
+
+        controllerBD.closeEntityManager();
 
         return clases;
     }

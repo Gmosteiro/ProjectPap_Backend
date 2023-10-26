@@ -3,24 +3,21 @@ package logic.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import logic.Clase.Clase;
 
 public class ManejadorUsuarios {
-	private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-	private static EntityManager entityManager = emFactory.createEntityManager();
+	private EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+	private EntityManager entityManager = emFactory.createEntityManager();
 
 	public ManejadorUsuarios() {
 	}
 
-	public static void agregarUsuario(Usuario usuario) {
+	public  void agregarUsuario(Usuario usuario) {
 		try {
 
-			entityManager.getTransaction().begin();
+			entityManager.beginTransaction()
 
 			entityManager.persist(usuario);
 			entityManager.getTransaction().commit();
@@ -33,7 +30,7 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static void agregarRegistro(Registro registro) {
+	public void agregarRegistro(Registro registro) {
 		try {
 
 			entityManager.getTransaction().begin();
@@ -57,7 +54,7 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static boolean agregarRegistroWeb(Registro registro) {
+	public boolean agregarRegistroWeb(Registro registro) {
 		try {
 
 			entityManager.getTransaction().begin();
@@ -75,7 +72,7 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static List<Usuario> getUsuarios() {
+	public List<Usuario> getUsuarios() {
 		List<Usuario> usuarios = new ArrayList<>();
 
 		List<Usuario> profesores = entityManager.createQuery(
@@ -96,7 +93,7 @@ public class ManejadorUsuarios {
 		return usuarios;
 	}
 
-	public static List<Usuario> getProfesores() {
+	public List<Usuario> getProfesores() {
 
 		List<Usuario> profesores = entityManager.createQuery(
 				"SELECT p " +
@@ -107,7 +104,7 @@ public class ManejadorUsuarios {
 		return profesores;
 	}
 
-	public static List<Usuario> getSocios() {
+	public List<Usuario> getSocios() {
 
 		List<Usuario> usuarios = new ArrayList<>();
 		List<Usuario> socios = entityManager.createQuery(
@@ -121,7 +118,7 @@ public class ManejadorUsuarios {
 		return socios;
 	}
 
-	public static Usuario getUser(String nickname) {
+	public Usuario getUser(String nickname) {
 		try {
 
 			List<Usuario> listUsuario;
@@ -151,7 +148,7 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static Socio getSocio(String nickname) {
+	public Socio getSocio(String nickname) {
 		try {
 
 			List<Socio> listUsuario;
@@ -172,7 +169,7 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static Profesor getProfesor(String nickname) {
+	public Profesor getProfesor(String nickname) {
 		try {
 
 			List<Profesor> listUsuario;
@@ -193,7 +190,7 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static Registro getRegistroBySocio(Socio socio) {
+	public Registro getRegistroBySocio(Socio socio) {
 
 		try {
 
@@ -213,7 +210,7 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static Boolean existeRegistroBySocioYClase(Socio socio, Clase clase) {
+	public Boolean existeRegistroBySocioYClase(Socio socio, Clase clase) {
 
 		try {
 
@@ -234,7 +231,7 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static List<Usuario> getSociosByClase(Clase clase) {
+	public List<Usuario> getSociosByClase(Clase clase) {
 
 		try {
 			List<Usuario> resultList = entityManager.createQuery(
@@ -253,7 +250,7 @@ public class ManejadorUsuarios {
 
 	}
 
-	public static void eliminarRegistro(Registro registro) {
+	public void eliminarRegistro(Registro registro) {
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.remove(registro);
@@ -264,7 +261,7 @@ public class ManejadorUsuarios {
 		}
 	}
 
-	public static Registro getRegistroBySocioEnClase(Socio socio, Clase clase) {
+	public Registro getRegistroBySocioEnClase(Socio socio, Clase clase) {
 		try {
 			TypedQuery<Registro> query = entityManager.createQuery(
 					"SELECT r FROM Registro r WHERE r.socio = :socio AND r.clase = :clase", Registro.class);

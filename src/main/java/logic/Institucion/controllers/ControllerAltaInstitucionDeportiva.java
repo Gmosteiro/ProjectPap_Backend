@@ -1,8 +1,5 @@
 package logic.Institucion.controllers;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import logic.Institucion.InstitucionDeportiva;

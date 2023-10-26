@@ -4,7 +4,6 @@ import java.util.List;
 
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
-import logic.Usuario.Profesor;
 import logic.Usuario.Registro;
 
 public interface IControllerConsultaActividad {

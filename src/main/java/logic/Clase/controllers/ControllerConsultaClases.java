@@ -2,36 +2,33 @@
 package logic.Clase.controllers;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+
+import DataBase.DbManager;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
 import logic.Clase.ManejadorClases;
 
 public class ControllerConsultaClases implements IControllerConsultaClases {
 
-    private EntityManagerFactory emf;
+    private DbManager controllerBD;
+    private ManejadorClases manejadorClases;
 
     public ControllerConsultaClases() {
-        emf = Persistence.createEntityManagerFactory("project_pap");
+        manejadorClases = new ManejadorClases();
+        controllerBD = DbManager.getInstance();
     }
 
     public List<ActividadDeportiva> obtenerActividadesPorInstitucion(String nombreInstitucion) {
-        EntityManager em = emf.createEntityManager();
         try {
-            em.getTransaction().begin();
 
-            Query query = em.createQuery(
+            List<ActividadDeportiva> actividades = controllerBD.getEntityManager().createQuery(
                     "SELECT a FROM ActividadDeportiva a WHERE a.institucion.nombre = :nombreInstitucion",
-                    ActividadDeportiva.class);
-            query.setParameter("nombreInstitucion", nombreInstitucion);
+                    ActividadDeportiva.class)
+                    .setParameter("nombreInstitucion", nombreInstitucion)
+                    .getResultList();
 
-            final List<ActividadDeportiva> actividades = query.getResultList();
+            controllerBD.closeEntityManager();
 
-            em.getTransaction().commit();
-            em.close();
             return actividades;
         } catch (Exception e) {
             System.out.println("Catch obtenerActividadesPorInstitucion: " + e);
@@ -41,22 +38,24 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
     }
 
     public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
-        EntityManager em = emf.createEntityManager();
+
         try {
 
-            List<Clase> clases = actividad.getClases(); // Obtén las clases asociadas a la actividad.
+            controllerBD.getEntityManager();
+
+            List<Clase> clases = actividad.getClases();
+
+            controllerBD.closeEntityManager();
 
             return clases;
-        } finally {
-            em.close();
+        } catch (Exception e) {
+            System.out.println("Error " + e);
+            return null;
         }
     }
 
     public Clase obtenerClasePorNombre(String nombreClase) {
-        return ManejadorClases.getClaseByNombre(nombreClase);
+        return manejadorClases.getClaseByNombre(nombreClase);
     }
 
-    public void closeEntityManagerFactory() {
-        emf.close();
-    }
 }

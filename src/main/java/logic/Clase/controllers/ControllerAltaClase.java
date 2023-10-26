@@ -6,14 +6,23 @@ import logic.Usuario.Profesor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import java.util.List;
+
 import javax.swing.JOptionPane;
+
+import DataBase.DbManager;
 import logic.ActividadDeportiva.ManejadorActividad;
 
 public class ControllerAltaClase implements IControllerAltaClase {
+    private DbManager controllerBD;
+    private ManejadorUsuarios manejadorUsuarios;
+    private ManejadorActividad manejadorActividades;
+
+    public ControllerAltaClase() {
+        manejadorUsuarios = new ManejadorUsuarios();
+        manejadorActividades = new ManejadorActividad();
+        controllerBD = DbManager.getInstance();
+    }
 
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
@@ -30,49 +39,48 @@ public class ControllerAltaClase implements IControllerAltaClase {
                 return;
             }
 
-            Profesor profesor = ManejadorUsuarios.getProfesor(nombreProfesor);
+            Profesor profesor = manejadorUsuarios.getProfesor(nombreProfesor);
 
             Clase nuevaclase = new Clase(nombre, fecha, hora, url, fechaReg, profesor, img);
-            ManejadorActividad manejadorA = new ManejadorActividad();
-            manejadorA.agregarClaseA(nuevaclase, actividad);
-            System.out.println("Clase Creada");
+            manejadorActividades.agregarClaseA(nuevaclase, actividad);
 
         } catch (Exception errorException) {
-            System.out.println("Catch addClase: " + errorException);
             String errorMessage = extractErrorMessage(errorException.getMessage());
+            System.out.println("Catch addClase: " + errorMessage);
 
         }
 
     }
 
     private boolean validateClassData(String nombre, String queryValue) {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emFactory.createEntityManager();
 
         try {
-            TypedQuery<Clase> query = entityManager.createQuery(
+            List<Clase> listaClases = controllerBD.getEntityManager().createQuery(
                     "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
-                    Clase.class);
-            query.setParameter("nombre", nombre);
+                    Clase.class)
+                    .setParameter("nombre", nombre)
+                    .getResultList();
 
-            if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
+            controllerBD.closeEntityManager();
+
+            if (listaClases.isEmpty()) {
                 return true;
             } else {
 
-                Clase clase = query.getSingleResult();
+                Clase clase = listaClases.get(0);
 
-                String queryNombre = clase.getNombre();
+                String nommbreClase = clase.getNombre();
                 String errorMessage = "";
 
-                if (queryNombre.equals(nombre)) {
+                if (nommbreClase.equals(nombre)) {
                     errorMessage = "Ya existe una Clase con ese nombre";
                 }
                 JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
-        } finally {
-            entityManager.close();
-            emFactory.close();
+        } catch (Exception e) {
+            System.out.println("Catch " + e);
+            return false;
         }
     }
 
