@@ -1,11 +1,21 @@
 package logic.Institucion.controllers;
 
-import javax.persistence.TypedQuery;
+import java.util.List;
+
 import javax.swing.JOptionPane;
+
+import DataBase.DbManager;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 
 public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstitucionDeportiva {
+    private DbManager controllerBD;
+    private ManejadorInstitucion manejadorInstitucion;
+
+    public ControllerAltaInstitucionDeportiva() {
+        manejadorInstitucion = new ManejadorInstitucion();
+        controllerBD = DbManager.getInstance();
+    }
 
     @Override
     public void addInstitucionDeportiva(String nombre, String descripcion, String url) {
@@ -17,11 +27,7 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
 
             InstitucionDeportiva nuevaInstitucion = new InstitucionDeportiva(nombre, descripcion, url);
 
-            ManejadorInstitucion manejador = new ManejadorInstitucion();
-
-            manejador.agregarInstitucion(nuevaInstitucion);
-
-            System.out.println("Institucion Creada");
+            manejadorInstitucion.agregarInstitucion(nuevaInstitucion);
 
             JOptionPane.showMessageDialog(null, "Institucion Creada!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -33,20 +39,19 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
     }
 
     private boolean validateInstData(String nombre, String queryValue) {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emFactory.createEntityManager();
-
         try {
-            TypedQuery<InstitucionDeportiva> query = entityManager.createQuery(
-                    "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
-                    InstitucionDeportiva.class);
-            query.setParameter("nombre", nombre);
 
-            if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
+            List<InstitucionDeportiva> listInstiituciones = controllerBD.getEntityManager().createQuery(
+                    "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
+                    InstitucionDeportiva.class).setParameter("nombre", nombre).getResultList();
+
+            controllerBD.closeEntityManager();
+
+            if (listInstiituciones.isEmpty()) {// Si está vacío, no existe un usuario con esos datos
                 return true;
             } else {
 
-                InstitucionDeportiva instituto = query.getSingleResult();
+                InstitucionDeportiva instituto = listInstiituciones.get(0);
 
                 String queryNombre = instituto.getNombre();
                 String errorMessage = "";
@@ -57,9 +62,9 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
                 JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
-        } finally {
-            entityManager.close();
-            emFactory.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            return false;
         }
     }
 }

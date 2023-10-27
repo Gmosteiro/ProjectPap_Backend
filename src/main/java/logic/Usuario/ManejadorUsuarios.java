@@ -3,42 +3,49 @@ package logic.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.TypedQuery;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
+
+import DataBase.DbManager;
 import logic.Clase.Clase;
 
 public class ManejadorUsuarios {
-	private EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-	private EntityManager entityManager = emFactory.createEntityManager();
+
+	private DbManager controllerBD;
+
+	private EntityManager entityManager;
 
 	public ManejadorUsuarios() {
+		controllerBD = DbManager.getInstance();
+
 	}
 
-	public  void agregarUsuario(Usuario usuario) {
+	public void agregarUsuario(Usuario usuario) {
 		try {
 
-			entityManager.beginTransaction()
+			entityManager = controllerBD.getEntityManager();
+			entityManager.getTransaction().begin();
 
 			entityManager.persist(usuario);
 			entityManager.getTransaction().commit();
 
+			controllerBD.closeEntityManager();
+
 		} catch (Exception exceptionAgregarUsuario) {
 			System.out.println("Catch agregarUsuario: " + exceptionAgregarUsuario);
-
-			System.out.println("ERROR");
-
 		}
 	}
 
 	public void agregarRegistro(Registro registro) {
 		try {
 
+			entityManager = controllerBD.getEntityManager();
+
 			entityManager.getTransaction().begin();
 
 			entityManager.persist(registro);
 			entityManager.getTransaction().commit();
 
-			System.out.println("Registro Creado");
 			JOptionPane.showMessageDialog(
 					null, // Parent component (null for default)
 					"Registro Creado!", // Message text
@@ -46,23 +53,24 @@ public class ManejadorUsuarios {
 					JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
 			);
 
+			controllerBD.closeEntityManager();
+
 		} catch (Exception exceptionAgregarRegistro) {
 			System.out.println("Catch agregarRegistro: " + exceptionAgregarRegistro);
-
-			System.out.println("ERROR");
 
 		}
 	}
 
 	public boolean agregarRegistroWeb(Registro registro) {
 		try {
+			entityManager = controllerBD.getEntityManager();
 
 			entityManager.getTransaction().begin();
 
 			entityManager.persist(registro);
 			entityManager.getTransaction().commit();
 
-			System.out.println("Registro Creado");
+			controllerBD.closeEntityManager();
 			return true;
 
 		} catch (Exception exceptionAgregarRegistro) {
@@ -74,6 +82,8 @@ public class ManejadorUsuarios {
 
 	public List<Usuario> getUsuarios() {
 		List<Usuario> usuarios = new ArrayList<>();
+
+		entityManager = controllerBD.getEntityManager();
 
 		List<Usuario> profesores = entityManager.createQuery(
 				"SELECT p " +
@@ -90,10 +100,13 @@ public class ManejadorUsuarios {
 		usuarios.addAll(profesores);
 		usuarios.addAll(socios);
 
+		controllerBD.closeEntityManager();
 		return usuarios;
 	}
 
 	public List<Usuario> getProfesores() {
+
+		entityManager = controllerBD.getEntityManager();
 
 		List<Usuario> profesores = entityManager.createQuery(
 				"SELECT p " +
@@ -101,10 +114,14 @@ public class ManejadorUsuarios {
 				Usuario.class)
 				.getResultList();
 
+		controllerBD.closeEntityManager();
+
 		return profesores;
 	}
 
 	public List<Usuario> getSocios() {
+
+		entityManager = controllerBD.getEntityManager();
 
 		List<Usuario> usuarios = new ArrayList<>();
 		List<Usuario> socios = entityManager.createQuery(
@@ -115,6 +132,7 @@ public class ManejadorUsuarios {
 
 		usuarios.addAll(socios);
 
+		controllerBD.closeEntityManager();
 		return socios;
 	}
 
@@ -123,18 +141,27 @@ public class ManejadorUsuarios {
 
 			List<Usuario> listUsuario;
 
+			entityManager = controllerBD.getEntityManager();
+
 			listUsuario = entityManager.createQuery(
 					"SELECT p FROM Profesor p WHERE p.nickname LIKE :nickname", Usuario.class)
 					.setParameter("nickname", "%" + nickname + "%")
 					.getResultList();
 
+			controllerBD.closeEntityManager();
+
 			if (!listUsuario.isEmpty()) {
 				return listUsuario.get(0);
 			} else {
+				entityManager = controllerBD.getEntityManager();
+
 				listUsuario = entityManager.createQuery(
 						"SELECT p FROM Socio p WHERE p.nickname LIKE :nickname", Usuario.class)
 						.setParameter("nickname", "%" + nickname + "%")
 						.getResultList();
+
+				controllerBD.closeEntityManager();
+
 			}
 
 			if (!listUsuario.isEmpty()) {
@@ -153,10 +180,14 @@ public class ManejadorUsuarios {
 
 			List<Socio> listUsuario;
 
+			entityManager = controllerBD.getEntityManager();
+
 			listUsuario = entityManager.createQuery(
 					"SELECT p FROM Socio p WHERE p.nickname LIKE :nickname", Socio.class)
 					.setParameter("nickname", "%" + nickname + "%")
 					.getResultList();
+
+			controllerBD.closeEntityManager();
 
 			if (!listUsuario.isEmpty()) {
 				return listUsuario.get(0);
@@ -174,10 +205,14 @@ public class ManejadorUsuarios {
 
 			List<Profesor> listUsuario;
 
+			entityManager = controllerBD.getEntityManager();
+
 			listUsuario = entityManager.createQuery(
 					"SELECT p FROM Profesor p WHERE p.nickname LIKE :nickname", Profesor.class)
 					.setParameter("nickname", "%" + nickname + "%")
 					.getResultList();
+
+			controllerBD.closeEntityManager();
 
 			if (!listUsuario.isEmpty()) {
 				return listUsuario.get(0);
@@ -194,10 +229,14 @@ public class ManejadorUsuarios {
 
 		try {
 
+			entityManager = controllerBD.getEntityManager();
+
 			List<Registro> listRegistros = entityManager.createQuery(
 					"SELECT r FROM Registro r WHERE  r.socio = :socio", Registro.class)
 					.setParameter("socio", socio)
 					.getResultList();
+
+			controllerBD.closeEntityManager();
 
 			if (!listRegistros.isEmpty()) {
 				return listRegistros.get(0);
@@ -214,11 +253,15 @@ public class ManejadorUsuarios {
 
 		try {
 
+			entityManager = controllerBD.getEntityManager();
+
 			List<Registro> listRegistros = entityManager.createQuery(
 					"SELECT r FROM Registro r WHERE  r.socio = :socio  AND r.clase = :clase", Registro.class)
 					.setParameter("socio", socio)
 					.setParameter("clase", clase)
 					.getResultList();
+
+			controllerBD.closeEntityManager();
 
 			if (listRegistros.isEmpty()) {
 				return false;
@@ -234,6 +277,8 @@ public class ManejadorUsuarios {
 	public List<Usuario> getSociosByClase(Clase clase) {
 
 		try {
+
+			entityManager = controllerBD.getEntityManager();
 			List<Usuario> resultList = entityManager.createQuery(
 					"SELECT r.socio " +
 							"FROM Registro r " +
@@ -241,6 +286,8 @@ public class ManejadorUsuarios {
 					Usuario.class)
 					.setParameter("clase", clase)
 					.getResultList();
+
+			controllerBD.closeEntityManager();
 
 			return resultList;
 		} catch (Exception e) {
@@ -252,22 +299,28 @@ public class ManejadorUsuarios {
 
 	public void eliminarRegistro(Registro registro) {
 		try {
+
+			entityManager = controllerBD.getEntityManager();
 			entityManager.getTransaction().begin();
 			entityManager.remove(registro);
 			entityManager.getTransaction().commit();
+
+			controllerBD.closeEntityManager();
 		} catch (Exception e) {
 			System.out.println("Error al eliminar el registro: " + e);
-			entityManager.getTransaction().rollback();
 		}
 	}
 
 	public Registro getRegistroBySocioEnClase(Socio socio, Clase clase) {
 		try {
-			TypedQuery<Registro> query = entityManager.createQuery(
-					"SELECT r FROM Registro r WHERE r.socio = :socio AND r.clase = :clase", Registro.class);
-			query.setParameter("socio", socio);
-			query.setParameter("clase", clase);
-			List<Registro> registros = query.getResultList();
+
+			entityManager = controllerBD.getEntityManager();
+
+			List<Registro> registros = entityManager.createQuery(
+					"SELECT r FROM Registro r WHERE r.socio = :socio AND r.clase = :clase", Registro.class)
+					.setParameter("socio", socio).setParameter("clase", clase).getResultList();
+
+			controllerBD.closeEntityManager();
 
 			if (!registros.isEmpty()) {
 				return registros.get(0);

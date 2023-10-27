@@ -11,6 +11,9 @@ package logic.Usuario.controllers;
 
 import java.time.LocalDate;
 
+import javax.persistence.EntityManager;
+
+import DataBase.DbManager;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
 import logic.Clase.Clase;
@@ -23,20 +26,28 @@ import logic.Usuario.Socio;
 
 public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
 
-    private EntityManagerFactory emf;
+    private DbManager controllerBD;
+    private ManejadorUsuarios manejadorUsuarios;
+    private ManejadorActividad manejadorActividad;
+    private ManejadorInstitucion manejadorInstitucion;
+    private ManejadorClases manejadorClases;
     private EntityManager entityManager;
 
     public ControllerEliminarRegClase() {
-        emf = Persistence.createEntityManagerFactory("project_pap");
-        entityManager = emf.createEntityManager();
+        controllerBD = DbManager.getInstance();
+        manejadorUsuarios = new ManejadorUsuarios();
+        manejadorActividad = new ManejadorActividad();
+        manejadorClases = new ManejadorClases();
+        manejadorInstitucion = new ManejadorInstitucion();
+
     }
 
     public boolean existenElementos(String nombreInstitucion, String nombreActividad, String nombreClase,
             String nicknameSocio) {
-        Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
-        Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
-        InstitucionDeportiva institucion = ManejadorInstitucion.getInstitucionesByName(nombreInstitucion);
-        ActividadDeportiva actividad = ManejadorActividad.obtenerActividadPorNombre(nombreActividad);
+        Socio socio = manejadorUsuarios.getSocio(nicknameSocio);
+        Clase clase = manejadorClases.getClaseByNombre(nombreClase);
+        InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombreInstitucion);
+        ActividadDeportiva actividad = manejadorActividad.obtenerActividadPorNombre(nombreActividad);
 
         return (socio != null && clase != null && institucion != null && actividad != null);
     }
@@ -44,6 +55,8 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
     public boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase,
             String nicknameSocio) {
         try {
+            entityManager = controllerBD.getEntityManager();
+
             entityManager.getTransaction().begin();
 
             if (!existenElementos(nombreInstitucion, nombreActividad, nombreClase, nicknameSocio)) {
@@ -51,18 +64,18 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
                 return false;
             }
 
-            Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
-            Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
+            Socio socio = manejadorUsuarios.getSocio(nicknameSocio);
+            Clase clase = manejadorClases.getClaseByNombre(nombreClase);
 
-            Registro registro = ManejadorUsuarios.getRegistroBySocioEnClase(socio, clase);
+            Registro registro = manejadorUsuarios.getRegistroBySocioEnClase(socio, clase);
 
             if (registro != null) {
-                ManejadorUsuarios.eliminarRegistro(registro);
+                manejadorUsuarios.eliminarRegistro(registro);
                 entityManager.getTransaction().commit();
-                System.out.println("Registro eliminado con éxito.");
 
+                controllerBD.closeEntityManager();
                 // Verificar si el registro se ha eliminado correctamente
-                registro = ManejadorUsuarios.getRegistroBySocioEnClase(socio, clase);
+                registro = manejadorUsuarios.getRegistroBySocioEnClase(socio, clase);
                 if (registro == null) {
                     System.out.println("Registro eliminado correctamente.");
                 } else {
@@ -75,24 +88,27 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
                 return crearRegistro(socio, clase);
             }
         } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            e.printStackTrace();
+            System.out.println("Catch: " + e);
             return false;
         }
     }
 
     public boolean crearRegistro(Socio socio, Clase clase) {
         try {
+
+            entityManager = controllerBD.getEntityManager();
+
             entityManager.getTransaction().begin();
             Registro nuevoRegistro = new Registro(LocalDate.now(), socio, clase);
             entityManager.persist(nuevoRegistro);
             entityManager.getTransaction().commit();
-            System.out.println("Registro creado con éxito.");
-            return true; // Devuelve true si se creó el registro con éxito
+
+            controllerBD.closeEntityManager();
+
+            return true;
         } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            e.printStackTrace();
-            return false; // Devuelve false si hubo un error al crear el registro
+
+            return false;
         }
     }
 }

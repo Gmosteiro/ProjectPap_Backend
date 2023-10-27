@@ -16,6 +16,16 @@ import logic.Usuario.Usuario;
 
 public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
 
+    private ManejadorClases manejadorClases;
+    private ManejadorActividad manejadorActividad;
+    private ManejadorUsuarios manejadorUsuarios;
+
+    public ControllerConsultaUsuario() {
+        manejadorClases = new ManejadorClases();
+        manejadorUsuarios = new ManejadorUsuarios();
+        manejadorActividad = new ManejadorActividad();
+    }
+
     public List<Usuario> getUsuarios() {
         return getUsuarios(null); // Llamada a la versión con filtro nulo
     }
@@ -23,15 +33,15 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
     public List<Usuario> getUsuarios(String filter) {
         try {
             List<Usuario> usuarios = new ArrayList<>();
-            // Aplicar lógica de filtrado solo si filter no es nulo o vacío
+
             if (filter != null && !filter.isEmpty()) {
                 // Aplicar lógica de filtrado aquí
-                usuarios.add(ManejadorUsuarios.getUser(filter));
+                usuarios.add(manejadorUsuarios.getUser(filter));
 
                 return usuarios;
 
             } else {
-                usuarios = ManejadorUsuarios.getUsuarios();
+                usuarios = manejadorUsuarios.getUsuarios();
 
                 return usuarios;
             }
@@ -41,7 +51,7 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 
-            return new ArrayList<>();
+            return null;
         }
     }
 
@@ -50,10 +60,10 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             // Aplicar lógica de filtrado solo si filter no es nulo o vacío
             if (filter != null) {
                 // Aplicar lógica de filtrado aquí
-                return ManejadorClases.getClasesByProfe(filter);
+                return manejadorClases.getClasesByProfe(filter);
 
             } else {
-                return new ArrayList<>();
+                return null;
             }
 
         } catch (Exception errorException) {
@@ -61,7 +71,7 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 
-            return new ArrayList<>();
+            return null;
         }
 
     };
@@ -71,10 +81,10 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             // Aplicar lógica de filtrado solo si filter no es nulo o vacío
             if (filter != null) {
                 // Aplicar lógica de filtrado aquí
-                return ManejadorClases.getClasesBySocio(filter);
+                return manejadorClases.getClasesBySocio(filter);
 
             } else {
-                return new ArrayList<>();
+                return null;
             }
 
         } catch (Exception errorException) {
@@ -82,14 +92,14 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 
-            return new ArrayList<>();
+            return null;
         }
 
     };
 
     public List<Clase> getClasesByUser(String nickname) {
 
-        Usuario user = ManejadorUsuarios.getUser(nickname);
+        Usuario user = manejadorUsuarios.getUser(nickname);
         if (user != null && user instanceof Profesor) {
             return this.getClasesAsociadasByProfe((Profesor) user);
         } else if (user != null && user instanceof Socio) {
@@ -105,10 +115,10 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             // Aplicar lógica de filtrado solo si filter no es nulo o vacío
             if (filter != null) {
                 // Aplicar lógica de filtrado aquí
-                return ManejadorActividad.getActividadesByProfe(filter);
+                return manejadorActividad.getActividadesByProfe(filter);
 
             } else {
-                return new ArrayList<>();
+                return null;
             }
 
         } catch (Exception errorException) {
@@ -116,7 +126,7 @@ public class ControllerConsultaUsuario implements IControllerConsultaUsuario {
             String errorMessage = extractErrorMessage(errorException.getMessage());
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 
-            return new ArrayList<>();
+            return null;
         }
 
     }

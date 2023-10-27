@@ -4,11 +4,20 @@ import logic.Institucion.InstitucionDeportiva;
 import logic.Usuario.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
+import DataBase.DbManager;
+
 public class ControllerAltaUsuario implements IControllerAltaUsuario {
+    private DbManager controllerBD;
+    private ManejadorUsuarios manejadorUsuarios;
+
+    public ControllerAltaUsuario() {
+        controllerBD = DbManager.getInstance();
+        manejadorUsuarios = new ManejadorUsuarios();
+    }
 
     @Override
     public boolean addProfesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
@@ -25,7 +34,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             Profesor nuevoProfesor = new Profesor(nickname, nombre, apellido, email, fechaNac, institucion, descripcion,
                     biografia, sitioWeb, contrasena, img);
 
-            ManejadorUsuarios.agregarUsuario(nuevoProfesor);
+            manejadorUsuarios.agregarUsuario(nuevoProfesor);
 
             System.out.println("Profesor Creado");
             JOptionPane.showMessageDialog(
@@ -58,7 +67,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
             Socio nuevoSocio = new Socio(nickname, nombre, apellido, email, fechaNac, contrasena, img);
 
-            ManejadorUsuarios.agregarUsuario(nuevoSocio);
+            manejadorUsuarios.agregarUsuario(nuevoSocio);
 
             System.out.println("Socio Creado");
             JOptionPane.showMessageDialog(
@@ -79,21 +88,19 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
     }
 
     private String validateUserData(String nickname, String email, String queryValue) {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emFactory.createEntityManager();
-
         try {
-            TypedQuery<Usuario> query = entityManager.createQuery(
-                    "SELECT u FROM " + queryValue + " u WHERE u.nickname = :nickname OR u.email = :email",
-                    Usuario.class);
-            query.setParameter("nickname", nickname);
-            query.setParameter("email", email);
 
-            if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
+            List<Usuario> listaUsuarios = controllerBD.getEntityManager()
+                    .createQuery(
+                            "SELECT u FROM " + queryValue + " u WHERE u.nickname = :nickname OR u.email = :email",
+                            Usuario.class)
+                    .setParameter("nickname", nickname).setParameter("email", email).getResultList();
+
+            if (listaUsuarios.isEmpty()) {// Si está vacío, no existe un usuario con esos datos
                 return "";
             } else {
 
-                Usuario user = query.getSingleResult();
+                Usuario user = listaUsuarios.get(0);
 
                 String queryEmail = user.getEmail();
                 String queryNickname = user.getNickname();
@@ -107,9 +114,9 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
                 return errorMessage;
             }
-        } finally {
-            entityManager.close();
-            emFactory.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            return null;
         }
     }
 

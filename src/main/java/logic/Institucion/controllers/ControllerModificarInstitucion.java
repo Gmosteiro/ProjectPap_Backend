@@ -14,19 +14,19 @@ public class ControllerModificarInstitucion implements IControllerModificarInsti
     public void modificarInstitucion(String nombre, String nuevaDescripcion, String nuevaURL) {
         InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombre);
 
-        if (institucion != null) {
+        if (institucion == null) {
+            return;
+        } else {
             institucion.setDescripcion(nuevaDescripcion);
             institucion.setUrl(nuevaURL);
             manejadorInstitucion.actualizarInstitucion(institucion);
             JOptionPane.showMessageDialog(
-                        null, // Parent component (null for default)
-                        "Institucion Actualizada!", // Message text
-                        "Success", // Dialog title
-                        JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
-                );
+                    null, // Parent component (null for default)
+                    "Institucion Actualizada!", // Message text
+                    "Success", // Dialog title
+                    JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
+            );
 
-        } else {
-            // Manejar la institución no encontrada
         }
     }
 }
