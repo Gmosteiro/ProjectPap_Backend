@@ -148,9 +148,9 @@ public class ManejadorUsuarios {
 					.setParameter("nickname", "%" + nickname + "%")
 					.getResultList();
 
-			controllerBD.closeEntityManager();
-
 			if (!listUsuario.isEmpty()) {
+				controllerBD.closeEntityManager();
+
 				return listUsuario.get(0);
 			} else {
 				entityManager = controllerBD.getEntityManager();

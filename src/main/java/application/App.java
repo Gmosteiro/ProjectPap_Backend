@@ -7,6 +7,8 @@ import logic.Fabrica;
 import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
 import logic.Institucion.controllers.ControllerAltaInstitucionDeportiva;
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
+import logic.Usuario.ManejadorUsuarios;
+import logic.Usuario.Usuario;
 
 public class App {
 
@@ -14,6 +16,8 @@ public class App {
 
 		try {
 			iniciarVentana();
+
+			// testGetUser();
 			// testCrearInstitucion();
 
 		} catch (Exception e) {
@@ -43,14 +47,20 @@ public class App {
 		ventana.setLocation(x, y);
 	}
 
-	// private static void testCrearInstitucion() {
+	private static void testCrearInstitucion() {
 
-	// IControllerAltaInstitucionDeportiva controllerAltaInstitucionDeportiva = new
-	// Fabrica()
-	// .getControladorAltaInstitucionDeportiva();
-	// controllerAltaInstitucionDeportiva.addInstitucionDeportiva("Utu", "Descr",
-	// "url");
+		IControllerAltaInstitucionDeportiva controllerAltaInstitucionDeportiva = new Fabrica()
+				.getControladorAltaInstitucionDeportiva();
+		controllerAltaInstitucionDeportiva.addInstitucionDeportiva("Utu", "Descr",
+				"url");
 
-	// }
+	}
+
+	private static void testGetUser() {
+
+		ManejadorUsuarios manejadorUsuarios = new ManejadorUsuarios();
+		Usuario user = manejadorUsuarios.getUser("profe");
+		System.out.println("Usuario: " + user);
+	}
 
 }

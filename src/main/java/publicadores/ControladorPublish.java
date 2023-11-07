@@ -46,7 +46,6 @@ import logic.Usuario.controllers.IControllerRegistroDictado;
 public class ControladorPublish {
     private Fabrica fabrica;
 
-
     private IControllerConsultaActividad iControllerConsultaActividad;
 
     private IControllerConsultaUsuario iControllerConsultaUsuario;
@@ -96,6 +95,7 @@ public class ControladorPublish {
 
     @WebMethod
     public Sesion iniciarSesion(String nickname, String contrasena) {
+
         return iControllerIniciarSesion.iniciarSesion(nickname, contrasena);
     }
 
@@ -194,17 +194,15 @@ public class ControladorPublish {
     public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
         return iControllerRegistroDictado.addRegistroDictadoWeb(nicknameSocio, nombreClase, fechaReg);
     }
-    
-      @WebMethod
+
+    @WebMethod
     public Clase getClaseByNombre(String clase) {
         return manejadorClases.getClaseByNombre(clase);
     }
-    
+
     @WebMethod
     public Socio getSocio(String nicknameSocio) {
         return manejadorUsuarios.getSocio(nicknameSocio);
     }
-     
-    
-    
+
 }
