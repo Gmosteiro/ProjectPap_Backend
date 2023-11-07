@@ -25,6 +25,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
+import logic.Clase.ManejadorClases;
 import logic.Clase.controllers.IControllerAltaClase;
 import logic.Clase.controllers.IControllerConsultaClases;
 import logic.Clase.controllers.IControllerDictadoClase;
@@ -44,8 +45,7 @@ import logic.Usuario.controllers.IControllerRegistroDictado;
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
 public class ControladorPublish {
     private Fabrica fabrica;
-    private IControllerConsultaActividad iconConsultaActividad;
-    private IControllerInicioSesion iconInicioSesion;
+
 
     private IControllerConsultaActividad iControllerConsultaActividad;
 
@@ -57,10 +57,10 @@ public class ControladorPublish {
     private IControllerDictadoClase iControllerDictadoClase;
     private IControllerRanking iControllerRanking;
     private IControllerEliminarRegClase iControllerEliminarRegClase;
-
+    private IControllerInicioSesion iControllerIniciarSesion;
     private ManejadorInstitucion manejadorInstitucion;
     private ManejadorUsuarios manejadorUsuarios;
-
+    private ManejadorClases manejadorClases;
     private Endpoint endpoint;
 
     public ControladorPublish() {
@@ -70,7 +70,7 @@ public class ControladorPublish {
         iControllerConsultaUsuario = fabrica.getControladorConsultaUsuario();
         iControllerModificarUsuario = fabrica.getControllerModificarUsuario();
         iControllerRegistroDictado = fabrica.getControllerRegistroDictado();
-
+        iControllerIniciarSesion = fabrica.getControllerInicioSesion();
         iControllerAltaClase = fabrica.getControladorAltaClase();
         iControllerConsultaClases = fabrica.getControllerConsultaClases();
         iControllerDictadoClase = fabrica.getControllerDictadoClase();
@@ -78,6 +78,7 @@ public class ControladorPublish {
         iControllerEliminarRegClase = fabrica.getControllerEliminarRegClase();
         manejadorInstitucion = new ManejadorInstitucion();
         manejadorUsuarios = new ManejadorUsuarios();
+        manejadorClases = new ManejadorClases();
 
     }
 
@@ -95,12 +96,12 @@ public class ControladorPublish {
 
     @WebMethod
     public Sesion iniciarSesion(String nickname, String contrasena) {
-        return iconInicioSesion.iniciarSesion(nickname, contrasena);
+        return iControllerIniciarSesion.iniciarSesion(nickname, contrasena);
     }
 
     @WebMethod
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
-        return iconConsultaActividad.obtenerActividadPorNombre(nombreActividad);
+        return iControllerConsultaActividad.obtenerActividadPorNombre(nombreActividad);
     }
 
     @WebMethod
@@ -193,5 +194,17 @@ public class ControladorPublish {
     public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
         return iControllerRegistroDictado.addRegistroDictadoWeb(nicknameSocio, nombreClase, fechaReg);
     }
-
+    
+      @WebMethod
+    public Clase getClaseByNombre(String clase) {
+        return manejadorClases.getClaseByNombre(clase);
+    }
+    
+    @WebMethod
+    public Socio getSocio(String nicknameSocio) {
+        return manejadorUsuarios.getSocio(nicknameSocio);
+    }
+     
+    
+    
 }
