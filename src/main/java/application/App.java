@@ -3,12 +3,18 @@ package application;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import logic.Fabrica;
+import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
+import logic.Institucion.controllers.ControllerAltaInstitucionDeportiva;
+import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
+
 public class App {
 
 	public static void main(String[] args) {
 
 		try {
 			iniciarVentana();
+			// testCrearInstitucion();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
@@ -36,5 +42,15 @@ public class App {
 
 		ventana.setLocation(x, y);
 	}
+
+	// private static void testCrearInstitucion() {
+
+	// IControllerAltaInstitucionDeportiva controllerAltaInstitucionDeportiva = new
+	// Fabrica()
+	// .getControladorAltaInstitucionDeportiva();
+	// controllerAltaInstitucionDeportiva.addInstitucionDeportiva("Utu", "Descr",
+	// "url");
+
+	// }
 
 }

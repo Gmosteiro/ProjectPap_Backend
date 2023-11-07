@@ -21,7 +21,15 @@ public class DbManager {
     }
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+
+        if (emf.isOpen()) {
+
+            return emf.createEntityManager();
+        } else {
+            emf = Persistence.createEntityManagerFactory("project_pap");
+            return emf.createEntityManager();
+
+        }
     }
 
     public void closeEntityManager() {

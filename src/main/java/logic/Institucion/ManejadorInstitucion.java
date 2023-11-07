@@ -13,6 +13,7 @@ public class ManejadorInstitucion {
 
         public ManejadorInstitucion() {
                 controllerBD = DbManager.getInstance();
+                entityManager = controllerBD.getEntityManager();
         }
 
         public void agregarInstitucion(InstitucionDeportiva institucion) {
