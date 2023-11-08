@@ -13,6 +13,8 @@ package publicadores;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
+
 import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
 import logic.Usuario.controllers.IControllerConsultaUsuario;
 import logic.Usuario.controllers.IControllerInicioSesion;
@@ -167,7 +169,11 @@ public class ControladorPublish {
 
     @WebMethod
     public ArrayList<InstitucionDeportiva> getInstituciones() {
-        return (ArrayList<InstitucionDeportiva>) manejadorInstitucion.getInstituciones();
+        List<InstitucionDeportiva> institucionesList = manejadorInstitucion.getInstituciones();
+        ArrayList<InstitucionDeportiva> institucionesArrayList = new ArrayList<>(institucionesList);
+
+        System.out.println("Return de getInstituciones() backend: " + institucionesArrayList.size());
+        return institucionesArrayList;
     }
 
     @WebMethod
