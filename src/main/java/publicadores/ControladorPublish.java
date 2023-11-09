@@ -108,7 +108,6 @@ public class ControladorPublish {
         return iControllerConsultaActividad.obtenerActividadPorNombre(nombreActividad);
     }
 
-    
     @WebMethod
     public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
             String img) {
@@ -124,7 +123,8 @@ public class ControladorPublish {
     @WebMethod
     public String getActividadesByProfe(String nicknameProfesor) {
 
-        ArrayList<ActividadDeportiva> st = (ArrayList<ActividadDeportiva>)iControllerConsultaActividad.getActividadesByProfe(nicknameProfesor);
+        ArrayList<ActividadDeportiva> st = (ArrayList<ActividadDeportiva>) iControllerConsultaActividad
+                .getActividadesByProfe(nicknameProfesor);
         JSONArray actividadesArray = new JSONArray();
         for (ActividadDeportiva actividadDeportiva : st) {
             JSONObject actividadJSON = new JSONObject();
@@ -133,16 +133,16 @@ public class ControladorPublish {
         }
 
         JSONObject jsonResponse = new JSONObject();
-                jsonResponse.put("ERROR", false);
-                jsonResponse.put("Actividades", actividadesArray);
+        jsonResponse.put("ERROR", false);
+        jsonResponse.put("Actividades", "actividadesArray");
         return jsonResponse.toString();
     }
-    
-    //    ArrayList<ListItem> myCustomList = .... // list filled with objects
-//    JSONArray jsonArray = new JSONArray();
-//   for (int i=0; i < myCustomList.size(); i++) {
-//        jsonArray.put(myCustomList.get(i).getJSONObject());
-//    }
+
+    // ArrayList<ListItem> myCustomList = .... // list filled with objects
+    // JSONArray jsonArray = new JSONArray();
+    // for (int i=0; i < myCustomList.size(); i++) {
+    // jsonArray.put(myCustomList.get(i).getJSONObject());
+    // }
 
     @WebMethod
     public ArrayList<Clase> getClasesByActividad(String nombreActividad) {
@@ -236,15 +236,15 @@ public class ControladorPublish {
     public Socio getSocio(String nicknameSocio) {
         return manejadorUsuarios.getSocio(nicknameSocio);
     }
-//  private static ArrayList SoapDeserialize()
-//    {
-//        ArrayList people = null;
-//
-//        using (FileStream str = File.OpenRead("people.soap"))
-//        {
-//            SoapFormatter sf = new SoapFormatter();
-//            people = (ArrayList)sf.Deserialize(str);
-//        }
-//        return people;
-//    }
+    // private static ArrayList SoapDeserialize()
+    // {
+    // ArrayList people = null;
+    //
+    // using (FileStream str = File.OpenRead("people.soap"))
+    // {
+    // SoapFormatter sf = new SoapFormatter();
+    // people = (ArrayList)sf.Deserialize(str);
+    // }
+    // return people;
+    // }
 }
