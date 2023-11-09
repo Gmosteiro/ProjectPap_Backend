@@ -88,11 +88,13 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
                     ActividadDeportiva.class);
             query.setParameter("nombre", nombre);
 
-            controllerBD.closeEntityManager();
-
             if (query.getResultList().isEmpty()) {
+                controllerBD.closeEntityManager();
+
                 return true;
             } else {
+                controllerBD.closeEntityManager();
+
                 return false;
             }
         } catch (Exception e) {

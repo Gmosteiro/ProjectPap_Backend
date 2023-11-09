@@ -14,25 +14,43 @@ public class DbManager {
     }
 
     public static synchronized DbManager getInstance() {
-        if (instance == null) {
-            instance = new DbManager();
+
+        try {
+
+            if (instance == null) {
+                instance = new DbManager();
+            }
+            return instance;
+
+        } catch (Exception e) {
+            System.out.println("Catch DbManager getInstance: " + e);
+            return null;
         }
-        return instance;
     }
 
     public EntityManager getEntityManager() {
+        try {
 
-        if (emf.isOpen()) {
+            if (emf.isOpen()) {
 
-            return emf.createEntityManager();
-        } else {
-            emf = Persistence.createEntityManagerFactory("project_pap");
-            return emf.createEntityManager();
+                return emf.createEntityManager();
+            } else {
+                emf = Persistence.createEntityManagerFactory("project_pap");
+                return emf.createEntityManager();
 
+            }
+        } catch (Exception e) {
+            System.out.println("Catch getEntityManager: " + e);
+            return null;
         }
     }
 
     public void closeEntityManager() {
-        emf.close();
+        try {
+
+            emf.close();
+        } catch (Exception e) {
+            System.out.println("Catch closeEntityManager: " + e);
+        }
     }
 }

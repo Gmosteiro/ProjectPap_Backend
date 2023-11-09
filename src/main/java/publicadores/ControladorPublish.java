@@ -168,12 +168,17 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public ArrayList<InstitucionDeportiva> getInstituciones() {
+    public ArrayList<String> getInstituciones() {
         List<InstitucionDeportiva> institucionesList = manejadorInstitucion.getInstituciones();
         ArrayList<InstitucionDeportiva> institucionesArrayList = new ArrayList<>(institucionesList);
 
-        System.out.println("Return de getInstituciones() backend: " + institucionesArrayList.size());
-        return institucionesArrayList;
+        InstitucionDeportiva institucionPrueba = manejadorInstitucion.getInstitucionesByName("Esi");
+        ArrayList<String> probando = new ArrayList<String>();
+
+        probando.add(institucionPrueba.getNombre());
+
+        System.out.println("Return de getInstituciones() backend: " + probando.size());
+        return probando;
     }
 
     @WebMethod

@@ -153,7 +153,6 @@ public class ManejadorUsuarios {
 
 				return listUsuario.get(0);
 			} else {
-				entityManager = controllerBD.getEntityManager();
 
 				listUsuario = entityManager.createQuery(
 						"SELECT p FROM Socio p WHERE p.nickname LIKE :nickname", Usuario.class)
