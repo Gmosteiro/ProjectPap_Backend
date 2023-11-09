@@ -15,5 +15,5 @@ public interface IControllerAltaActividad {
 
         public abstract void cancelarAltaActividad(String nombre);
 
-        public List<InstitucionDeportiva> getInstituciones();
+         public List<InstitucionDeportiva> getInstituciones();
 }

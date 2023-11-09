@@ -28,9 +28,8 @@ public class Profesor extends Usuario {
 	}
 
 	public Profesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
-			InstitucionDeportiva institucion, String descripcion, String biografia, String sitioWeb, String contrasena,
-			String img) {
-		super(nickname, nombre, apellido, email, fechaNac, contrasena, img);
+			InstitucionDeportiva institucion, String descripcion, String biografia, String sitioWeb,String contrasena, String img) {
+		super(nickname, nombre, apellido, email, fechaNac,contrasena, img);
 		this.institucion = institucion;
 		this.descripcion = descripcion;
 		this.biografia = biografia;
