@@ -215,5 +215,15 @@ public class ControladorPublish {
     public Socio getSocio(String nicknameSocio) {
         return manejadorUsuarios.getSocio(nicknameSocio);
     }
-
+//  private static ArrayList SoapDeserialize()
+//    {
+//        ArrayList people = null;
+//
+//        using (FileStream str = File.OpenRead("people.soap"))
+//        {
+//            SoapFormatter sf = new SoapFormatter();
+//            people = (ArrayList)sf.Deserialize(str);
+//        }
+//        return people;
+//    }
 }
