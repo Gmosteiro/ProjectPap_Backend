@@ -42,6 +42,8 @@ import logic.Usuario.Usuario;
 import logic.Usuario.controllers.IControllerEliminarRegClase;
 import logic.Usuario.controllers.IControllerModificarUsuario;
 import logic.Usuario.controllers.IControllerRegistroDictado;
+import org.primefaces.shaded.json.JSONArray;
+import org.primefaces.shaded.json.JSONObject;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -106,6 +108,7 @@ public class ControladorPublish {
         return iControllerConsultaActividad.obtenerActividadPorNombre(nombreActividad);
     }
 
+    
     @WebMethod
     public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
             String img) {
@@ -119,9 +122,27 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public ArrayList<ActividadDeportiva> getActividadesByProfe(String nicknameProfesor) {
-        return (ArrayList<ActividadDeportiva>) iControllerConsultaActividad.getActividadesByProfe(nicknameProfesor);
+    public String getActividadesByProfe(String nicknameProfesor) {
+
+        ArrayList<ActividadDeportiva> st = (ArrayList<ActividadDeportiva>)iControllerConsultaActividad.getActividadesByProfe(nicknameProfesor);
+        JSONArray actividadesArray = new JSONArray();
+        for (ActividadDeportiva actividadDeportiva : st) {
+            JSONObject actividadJSON = new JSONObject();
+            actividadJSON.put("nombre", actividadDeportiva.getNombre());
+            actividadesArray.put(actividadJSON);
+        }
+
+        JSONObject jsonResponse = new JSONObject();
+                jsonResponse.put("ERROR", false);
+                jsonResponse.put("Actividades", actividadesArray);
+        return jsonResponse.toString();
     }
+    
+    //    ArrayList<ListItem> myCustomList = .... // list filled with objects
+//    JSONArray jsonArray = new JSONArray();
+//   for (int i=0; i < myCustomList.size(); i++) {
+//        jsonArray.put(myCustomList.get(i).getJSONObject());
+//    }
 
     @WebMethod
     public ArrayList<Clase> getClasesByActividad(String nombreActividad) {
