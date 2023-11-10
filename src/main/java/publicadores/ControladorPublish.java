@@ -10,6 +10,7 @@
 
 package publicadores;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ import org.primefaces.shaded.json.JSONObject;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
-public class ControladorPublish {
+public class ControladorPublish implements Serializable{
     private Fabrica fabrica;
 
     private IControllerConsultaActividad iControllerConsultaActividad;
