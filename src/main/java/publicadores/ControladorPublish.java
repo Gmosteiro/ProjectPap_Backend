@@ -42,8 +42,6 @@ import logic.Usuario.Usuario;
 import logic.Usuario.controllers.IControllerEliminarRegClase;
 import logic.Usuario.controllers.IControllerModificarUsuario;
 import logic.Usuario.controllers.IControllerRegistroDictado;
-import org.primefaces.shaded.json.JSONArray;
-import org.primefaces.shaded.json.JSONObject;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -109,40 +107,33 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
+    public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido,
+            String nuevafechaString,
             String img) {
+
+        LocalDate nuevafecha = LocalDate.now();
         return iControllerModificarUsuario.modificarUsuarioWeb(nickname, nuevoNombre, nuevoApellido, nuevafecha, img);
     }
 
     @WebMethod
-    public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
+    public void addClase(String nombre, String fechaStr, String horaStr, String url, String fechaRegStr,
             String nombreProfesor, String img, String actividad) {
+
+        LocalDate fechaReg = LocalDate.now();
+        LocalDate fecha = LocalDate.now();
+        LocalTime hora = LocalTime.now();
+
         iControllerAltaClase.addClase(nombre, fecha, hora, url, fechaReg, nombreProfesor, img, actividad);
     }
 
     @WebMethod
-    public String getActividadesByProfe(String nicknameProfesor) {
+    public ArrayList<ActividadDeportiva> getActividadesByProfe(String nicknameProfesor) {
 
         ArrayList<ActividadDeportiva> st = (ArrayList<ActividadDeportiva>) iControllerConsultaActividad
                 .getActividadesByProfe(nicknameProfesor);
-        JSONArray actividadesArray = new JSONArray();
-        for (ActividadDeportiva actividadDeportiva : st) {
-            JSONObject actividadJSON = new JSONObject();
-            actividadJSON.put("nombre", actividadDeportiva.getNombre());
-            actividadesArray.put(actividadJSON);
-        }
 
-        JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("ERROR", false);
-        jsonResponse.put("Actividades", "actividadesArray");
-        return jsonResponse.toString();
+        return st;
     }
-
-    // ArrayList<ListItem> myCustomList = .... // list filled with objects
-    // JSONArray jsonArray = new JSONArray();
-    // for (int i=0; i < myCustomList.size(); i++) {
-    // jsonArray.put(myCustomList.get(i).getJSONObject());
-    // }
 
     @WebMethod
     public ArrayList<Clase> getClasesByActividad(String nombreActividad) {
@@ -189,17 +180,12 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public ArrayList<String> getInstituciones() {
+    public ArrayList<InstitucionDeportiva> getInstituciones() {
         List<InstitucionDeportiva> institucionesList = manejadorInstitucion.getInstituciones();
         ArrayList<InstitucionDeportiva> institucionesArrayList = new ArrayList<>(institucionesList);
 
-        InstitucionDeportiva institucionPrueba = manejadorInstitucion.getInstitucionesByName("Esi");
-        ArrayList<String> probando = new ArrayList<String>();
-
-        probando.add(institucionPrueba.getNombre());
-
-        System.out.println("Return de getInstituciones() backend: " + probando.size());
-        return probando;
+        System.out.println("Return de getInstituciones() backend: " + institucionesArrayList.size());
+        return institucionesArrayList;
     }
 
     @WebMethod
@@ -223,7 +209,9 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
+    public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, String fechaRegString) {
+
+        LocalDate fechaReg = LocalDate.now();
         return iControllerRegistroDictado.addRegistroDictadoWeb(nicknameSocio, nombreClase, fechaReg);
     }
 
@@ -236,15 +224,5 @@ public class ControladorPublish {
     public Socio getSocio(String nicknameSocio) {
         return manejadorUsuarios.getSocio(nicknameSocio);
     }
-    // private static ArrayList SoapDeserialize()
-    // {
-    // ArrayList people = null;
-    //
-    // using (FileStream str = File.OpenRead("people.soap"))
-    // {
-    // SoapFormatter sf = new SoapFormatter();
-    // people = (ArrayList)sf.Deserialize(str);
-    // }
-    // return people;
-    // }
+
 }
