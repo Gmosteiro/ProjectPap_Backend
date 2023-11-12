@@ -12,7 +12,7 @@ package publicadores;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
@@ -42,8 +42,6 @@ import logic.Usuario.Usuario;
 import logic.Usuario.controllers.IControllerEliminarRegClase;
 import logic.Usuario.controllers.IControllerModificarUsuario;
 import logic.Usuario.controllers.IControllerRegistroDictado;
-import org.primefaces.shaded.json.JSONArray;
-import org.primefaces.shaded.json.JSONObject;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -109,44 +107,37 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
+    public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido, String nuevafechaStr,
             String img) {
+
+        LocalDate nuevafecha = LocalDate.now();
         return iControllerModificarUsuario.modificarUsuarioWeb(nickname, nuevoNombre, nuevoApellido, nuevafecha, img);
     }
 
     @WebMethod
-    public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
+    public void addClase(String nombre, String fechaStr, String horaStr, String url, String fechaRegStr,
             String nombreProfesor, String img, String actividad) {
+
+        LocalDate fecha = LocalDate.now();
+        LocalTime hora = LocalTime.now();
+        LocalDate fechaReg = LocalDate.now();
         iControllerAltaClase.addClase(nombre, fecha, hora, url, fechaReg, nombreProfesor, img, actividad);
     }
 
     @WebMethod
-    public String getActividadesByProfe(String nicknameProfesor) {
+    public ActividadDeportiva[] getActividadesByProfe(String nicknameProfesor) {
+        List<ActividadDeportiva> listActividades = iControllerConsultaActividad.getActividadesByProfe(nicknameProfesor);
 
-        ArrayList<ActividadDeportiva> st = (ArrayList<ActividadDeportiva>) iControllerConsultaActividad
-                .getActividadesByProfe(nicknameProfesor);
-        JSONArray actividadesArray = new JSONArray();
-        for (ActividadDeportiva actividadDeportiva : st) {
-            JSONObject actividadJSON = new JSONObject();
-            actividadJSON.put("nombre", actividadDeportiva.getNombre());
-            actividadesArray.put(actividadJSON);
-        }
+        ActividadDeportiva[] arrayActividades = listActividades.toArray(new ActividadDeportiva[0]);
 
-        JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("ERROR", false);
-        jsonResponse.put("Actividades", "actividadesArray");
-        return jsonResponse.toString();
+        return arrayActividades;
     }
 
-    // ArrayList<ListItem> myCustomList = .... // list filled with objects
-    // JSONArray jsonArray = new JSONArray();
-    // for (int i=0; i < myCustomList.size(); i++) {
-    // jsonArray.put(myCustomList.get(i).getJSONObject());
-    // }
-
     @WebMethod
-    public ArrayList<Clase> getClasesByActividad(String nombreActividad) {
-        return (ArrayList<Clase>) iControllerDictadoClase.getClasesByActividad(nombreActividad);
+    public Clase[] getClasesByActividad(String nombreActividad) {
+        Clase[] arrayClases = iControllerDictadoClase.getClasesByActividad(nombreActividad).toArray(new Clase[0]);
+
+        return arrayClases;
     }
 
     @WebMethod
@@ -174,8 +165,10 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public ArrayList<Clase> getClasesByUser(String nickname) {
-        return (ArrayList<Clase>) iControllerConsultaUsuario.getClasesByUser(nickname);
+    public Clase[] getClasesByUser(String nickname) {
+
+        Clase[] arraryClases = iControllerConsultaUsuario.getClasesByUser(nickname).toArray(new Clase[0]);
+        return arraryClases;
     }
 
     @WebMethod
@@ -184,37 +177,29 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public ArrayList<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
-        return (ArrayList<Clase>) iControllerConsultaClases.obtenerClasesPorActividad(actividad);
+    public Clase[] obtenerClasesPorActividad(ActividadDeportiva actividad) {
+        return iControllerConsultaClases.obtenerClasesPorActividad(actividad).toArray(new Clase[0]);
     }
 
     @WebMethod
-    public ArrayList<String> getInstituciones() {
-        List<InstitucionDeportiva> institucionesList = manejadorInstitucion.getInstituciones();
-        ArrayList<InstitucionDeportiva> institucionesArrayList = new ArrayList<>(institucionesList);
+    public InstitucionDeportiva[] getInstituciones() {
+        return manejadorInstitucion.getInstituciones().toArray(new InstitucionDeportiva[0]);
 
-        InstitucionDeportiva institucionPrueba = manejadorInstitucion.getInstitucionesByName("Esi");
-        ArrayList<String> probando = new ArrayList<String>();
-
-        probando.add(institucionPrueba.getNombre());
-
-        System.out.println("Return de getInstituciones() backend: " + probando.size());
-        return probando;
     }
 
     @WebMethod
-    public ArrayList<Usuario> getSociosByClase(Clase clase) {
-        return (ArrayList<Usuario>) manejadorUsuarios.getSociosByClase(clase);
+    public Usuario[] getSociosByClase(Clase clase) {
+        return manejadorUsuarios.getSociosByClase(clase).toArray(new Usuario[0]);
     }
 
     @WebMethod
-    public ArrayList<ActividadDeportiva> obtenerRankingDeActividades() {
-        return (ArrayList<ActividadDeportiva>) iControllerRanking.obtenerRankingDeActividades();
+    public ActividadDeportiva[] obtenerRankingDeActividades() {
+        return iControllerRanking.obtenerRankingDeActividades().toArray(new ActividadDeportiva[0]);
     }
 
     @WebMethod
-    public ArrayList<Clase> obtenerRankingDeClases() {
-        return (ArrayList<Clase>) iControllerRanking.obtenerRankingDeClases();
+    public Clase[] obtenerRankingDeClases() {
+        return iControllerRanking.obtenerRankingDeClases().toArray(new Clase[0]);
     }
 
     @WebMethod
@@ -223,7 +208,8 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
+    public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, String fechaRegStr) {
+        LocalDate fechaReg = LocalDate.now();
         return iControllerRegistroDictado.addRegistroDictadoWeb(nicknameSocio, nombreClase, fechaReg);
     }
 
@@ -236,15 +222,5 @@ public class ControladorPublish {
     public Socio getSocio(String nicknameSocio) {
         return manejadorUsuarios.getSocio(nicknameSocio);
     }
-    // private static ArrayList SoapDeserialize()
-    // {
-    // ArrayList people = null;
-    //
-    // using (FileStream str = File.OpenRead("people.soap"))
-    // {
-    // SoapFormatter sf = new SoapFormatter();
-    // people = (ArrayList)sf.Deserialize(str);
-    // }
-    // return people;
-    // }
+
 }
