@@ -6,16 +6,20 @@ import logic.Usuario.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
-import DataBase.DbManager;
-
 public class ControllerAltaUsuario implements IControllerAltaUsuario {
-    private DbManager controllerBD;
+    private EntityManagerFactory emf;
+
     private ManejadorUsuarios manejadorUsuarios;
 
     public ControllerAltaUsuario() {
-        controllerBD = DbManager.getInstance();
+        emf = Persistence.createEntityManagerFactory("project_pap");
+
         manejadorUsuarios = new ManejadorUsuarios();
     }
 
@@ -88,9 +92,12 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
     }
 
     private String validateUserData(String nickname, String email, String queryValue) {
+
+        EntityManager entityManager = emf.createEntityManager();
+
         try {
 
-            List<Usuario> listaUsuarios = controllerBD.getEntityManager()
+            List<Usuario> listaUsuarios = entityManager
                     .createQuery(
                             "SELECT u FROM " + queryValue + " u WHERE u.nickname = :nickname OR u.email = :email",
                             Usuario.class)
@@ -114,10 +121,16 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
                 return errorMessage;
             }
+
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+
+            System.out.println("Catch validateUserData: " + e);
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
+
     }
 
     // Función para extraer la descripción del error de la cadena completa
