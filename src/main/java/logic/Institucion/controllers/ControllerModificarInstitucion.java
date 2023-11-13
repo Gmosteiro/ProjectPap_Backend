@@ -1,38 +1,47 @@
 package logic.Institucion.controllers;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 import logic.Institucion.InstitucionDeportiva;
-import logic.Institucion.ManejadorInstitucion;
 
 public class ControllerModificarInstitucion implements IControllerModificarInstitucion {
-    private final ManejadorInstitucion manejadorInstitucion;
+    private EntityManagerFactory emFactory;
 
     public ControllerModificarInstitucion() {
-        manejadorInstitucion = new ManejadorInstitucion();
+        emFactory = Persistence.createEntityManagerFactory("project_pap");
     }
 
     public void modificarInstitucion(String nombre, String nuevaDescripcion, String nuevaURL) {
+        EntityManager entityManager = emFactory.createEntityManager();
+
         try {
-            manejadorInstitucion.getEntityManager().getTransaction().begin();
-            InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombre);
+            entityManager.getTransaction().begin();
+            InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
 
             if (institucion == null) {
                 return;
             } else {
                 institucion.setDescripcion(nuevaDescripcion);
                 institucion.setUrl(nuevaURL);
-                manejadorInstitucion.actualizarInstitucion(institucion);
-                manejadorInstitucion.getEntityManager().getTransaction().commit();
+                entityManager.merge(institucion);
+                entityManager.getTransaction().commit();
+
                 JOptionPane.showMessageDialog(
-                        null, // Parent component (null for default)
-                        "Institucion Actualizada!", // Message text
-                        "Success", // Dialog title
-                        JOptionPane.INFORMATION_MESSAGE // Message type
+                        null,
+                        "Institucion Actualizada!",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE
                 );
             }
         } catch (Exception e) {
-            manejadorInstitucion.getEntityManager().getTransaction().rollback();
+            if (entityManager.getTransaction() != null && entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+
             e.printStackTrace();
+
             JOptionPane.showMessageDialog(
                     null,
                     "Error al modificar la institución",
@@ -40,8 +49,8 @@ public class ControllerModificarInstitucion implements IControllerModificarInsti
                     JOptionPane.ERROR_MESSAGE
             );
         } finally {
-            manejadorInstitucion.getEntityManager().close();
-            manejadorInstitucion.getEntityManagerFactory().close();
+            entityManager.close();
+            emFactory.close();
         }
     }
 }
