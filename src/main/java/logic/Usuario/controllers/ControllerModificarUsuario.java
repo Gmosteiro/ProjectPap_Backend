@@ -5,34 +5,37 @@ import java.time.LocalDate;
 import logic.Usuario.*;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
-
-import DataBase.DbManager;
 
 public class ControllerModificarUsuario implements IControllerModificarUsuario {
 
-    private DbManager controllerBD;
     private ManejadorUsuarios manejadorUsuarios;
 
-    private EntityManager entityManager;
+    private EntityManagerFactory emf;
 
     public ControllerModificarUsuario() {
-        controllerBD = DbManager.getInstance();
+
         manejadorUsuarios = new ManejadorUsuarios();
+        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     public void modificarUsuario(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
             String img) {
-        try {
 
-            entityManager = controllerBD.getEntityManager();
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
 
             Usuario usuario = manejadorUsuarios.getUser(nickname);
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
 
-                    entityManager.getTransaction().begin();
+                    transaction.begin();
 
                     Profesor profesor = entityManager.find(Profesor.class, usuario.getId_usuario());
                     profesor.setNombre(nuevoNombre);
@@ -40,11 +43,12 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                     profesor.setFechaNac(nuevafecha);
                     profesor.setImg(img);
                     entityManager.merge(profesor);
-                    entityManager.getTransaction().commit();
+
+                    transaction.commit();
 
                 } else if (usuario instanceof Socio) {
 
-                    entityManager.getTransaction().begin();
+                    transaction.begin();
 
                     Socio socio = entityManager.find(Socio.class, usuario.getId_usuario());
                     socio.setNombre(nuevoNombre);
@@ -52,7 +56,7 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                     socio.setFechaNac(nuevafecha);
                     socio.setImg(img);
                     entityManager.merge(socio);
-                    entityManager.getTransaction().commit();
+                    transaction.commit();
 
                 }
 
@@ -60,7 +64,7 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                 JOptionPane.showMessageDialog(null, "Usuario Actualizado!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
-                // Manejar el usuario no encontrado
+
                 System.out.println("No se encontró el usuario.");
 
                 JOptionPane.showMessageDialog(
@@ -71,23 +75,30 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                 );
             }
 
-            controllerBD.closeEntityManager();
-
         } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
             System.out.println("Catch modificarUsuario: " + e);
-
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
         }
+
     }
 
     public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
             String img) {
+
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
         try {
-            entityManager = controllerBD.getEntityManager();
 
             Usuario usuario = manejadorUsuarios.getUser(nickname);
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
-                    entityManager.getTransaction().begin();
+                    transaction.begin();
 
                     Profesor profesor = entityManager.find(Profesor.class, usuario.getId_usuario());
                     profesor.setNombre(nuevoNombre);
@@ -95,10 +106,11 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                     profesor.setFechaNac(nuevafecha);
                     profesor.setImg(img);
                     entityManager.merge(profesor);
-                    entityManager.getTransaction().commit();
+                    transaction.commit();
+
                 } else if (usuario instanceof Socio) {
 
-                    entityManager.getTransaction().begin();
+                    transaction.begin();
 
                     Socio socio = entityManager.find(Socio.class, usuario.getId_usuario());
                     socio.setNombre(nuevoNombre);
@@ -106,10 +118,9 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                     socio.setFechaNac(nuevafecha);
                     socio.setImg(img);
                     entityManager.merge(socio);
-                    entityManager.getTransaction().commit();
+                    transaction.commit();
 
                 }
-                controllerBD.closeEntityManager();
 
                 System.out.println("Usuario modificado exitosamente.");
                 return true;
@@ -119,9 +130,17 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
 
                 return false;
             }
+
         } catch (Exception e) {
-            System.out.println("Catch modificarUsuario: " + e);
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Catch modificarUsuarioWeb: " + e);
+            e.printStackTrace();
             return false;
+        } finally {
+            entityManager.close();
         }
+
     }
 }
