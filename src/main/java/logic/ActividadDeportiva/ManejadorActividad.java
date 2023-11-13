@@ -146,12 +146,19 @@ public class ManejadorActividad {
     }
 
     public List<ActividadDeportiva> getActividadesByInstitucion(InstitucionDeportiva institucion) {
+        EntityManager entityManager = emf.createEntityManager();
+
         try {
-            return institucion.getActividades();
+            // Cargar la colección antes de cerrar la sesión
+            List<ActividadDeportiva> actividades = institucion.getActividades();
+            actividades.size();
+            return actividades;
         } catch (Exception e) {
             System.out.println("Catch getActividadesByInstitucion: " + e);
             e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
     }
 

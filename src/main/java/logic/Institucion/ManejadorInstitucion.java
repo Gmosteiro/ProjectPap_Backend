@@ -57,19 +57,15 @@ public class ManejadorInstitucion {
         }
     }
 
-   public InstitucionDeportiva getInstitucionesByName(String nombre) {
+public InstitucionDeportiva getInstitucionesByName(String nombre) {
     EntityManager entityManager = emFactory.createEntityManager();
 
     try {
         return entityManager.find(InstitucionDeportiva.class, nombre);
     } catch (Exception e) {
         e.printStackTrace();
-        // Puedes manejar la excepción según tus necesidades, como lanzar una excepción personalizada o registrar el error.
-         System.out.println("error en el get instituciones by name");
-        return null; // O devuelve algún valor por defecto en caso de error.
-       
-    } finally {
-        entityManager.close();
+        System.out.println("error en el get instituciones by name");
+        return null;
     }
 }
 
