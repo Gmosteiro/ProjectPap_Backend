@@ -1,21 +1,14 @@
 package logic.Institucion.controllers;
 
-import java.util.List;
-
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-
-import DataBase.DbManager;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 
 public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstitucionDeportiva {
-    private DbManager controllerBD;
-    private ManejadorInstitucion manejadorInstitucion;
-
-    public ControllerAltaInstitucionDeportiva() {
-        manejadorInstitucion = new ManejadorInstitucion();
-        controllerBD = DbManager.getInstance();
-    }
 
     @Override
     public void addInstitucionDeportiva(String nombre, String descripcion, String url) {
@@ -27,7 +20,11 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
 
             InstitucionDeportiva nuevaInstitucion = new InstitucionDeportiva(nombre, descripcion, url);
 
-            manejadorInstitucion.agregarInstitucion(nuevaInstitucion);
+            ManejadorInstitucion manejador = new ManejadorInstitucion();
+
+            manejador.agregarInstitucion(nuevaInstitucion);
+
+            System.out.println("Institucion Creada");
 
             JOptionPane.showMessageDialog(null, "Institucion Creada!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -39,19 +36,20 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
     }
 
     private boolean validateInstData(String nombre, String queryValue) {
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+        EntityManager entityManager = emFactory.createEntityManager();
+
         try {
-
-            List<InstitucionDeportiva> listInstiituciones = controllerBD.getEntityManager().createQuery(
+            TypedQuery<InstitucionDeportiva> query = entityManager.createQuery(
                     "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
-                    InstitucionDeportiva.class).setParameter("nombre", nombre).getResultList();
+                    InstitucionDeportiva.class);
+            query.setParameter("nombre", nombre);
 
-            controllerBD.closeEntityManager();
-
-            if (listInstiituciones.isEmpty()) {// Si está vacío, no existe un usuario con esos datos
+            if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
                 return true;
             } else {
 
-                InstitucionDeportiva instituto = listInstiituciones.get(0);
+                InstitucionDeportiva instituto = query.getSingleResult();
 
                 String queryNombre = instituto.getNombre();
                 String errorMessage = "";
@@ -62,9 +60,9 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
                 JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
-        } catch (Exception e) {
-            System.out.println("Error: " + e);
-            return false;
+        } finally {
+            entityManager.close();
+            emFactory.close();
         }
     }
 }
