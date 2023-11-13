@@ -3,149 +3,157 @@ package logic.Clase;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
-import DataBase.DbManager;
 import logic.Usuario.Profesor;
 import logic.Usuario.Socio;
 
 public class ManejadorClases {
-    private DbManager controllerBD;
     private EntityManager entityManager;
 
     public ManejadorClases() {
-        controllerBD = DbManager.getInstance();
+    }
+
+    private void beginTransaction() {
+        entityManager = Persistence.createEntityManagerFactory("project_pap").createEntityManager();
+        entityManager.getTransaction().begin();
+    }
+
+    private void commitTransaction() {
+        entityManager.getTransaction().commit();
+    }
+
+    private void rollbackTransaction() {
+        if (entityManager.getTransaction() != null && entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    private void closeEntityManager() {
+        if (entityManager != null && entityManager.isOpen()) {
+            entityManager.close();
+        }
     }
 
     public void agregarClase(Clase clase) {
         try {
-            entityManager = controllerBD.getEntityManager();
-
-            entityManager.getTransaction().begin();
+            beginTransaction();
             entityManager.persist(clase);
-            entityManager.getTransaction().commit();
-
-            controllerBD.closeEntityManager();
-
+            commitTransaction();
         } catch (Exception exceptionAgregarClase) {
+            rollbackTransaction();
             System.out.println("Catch agregarClase: " + exceptionAgregarClase);
+        } finally {
+            closeEntityManager();
         }
     }
 
     public List<Clase> getClasesByProfe(Profesor profesor) {
         try {
+            beginTransaction();
+            TypedQuery<Clase> query = entityManager.createQuery(
+                    "SELECT c FROM Clase c WHERE c.profesor = :profesor", Clase.class);
+            query.setParameter("profesor", profesor);
 
-            entityManager = controllerBD.getEntityManager();
-
-            List<Clase> listClase;
-            listClase = entityManager.createQuery(
-                    "SELECT c FROM Clase c WHERE c.profesor = :profesor", Clase.class)
-                    .setParameter("profesor", profesor)
-                    .getResultList();
-
-            controllerBD.closeEntityManager();
-
+            List<Clase> listClase = query.getResultList();
+            commitTransaction();
             return listClase;
         } catch (Exception e) {
+            rollbackTransaction();
             System.out.println("Error catch getClasesByProfe " + e);
             return null;
+        } finally {
+            closeEntityManager();
         }
     }
 
     public List<Clase> getClasesBySocio(Socio socio) {
         try {
+            beginTransaction();
+            TypedQuery<Clase> query = entityManager.createQuery(
+                    "SELECT r.clase FROM Registro r WHERE r.socio = :socio", Clase.class);
+            query.setParameter("socio", socio);
 
-            entityManager = controllerBD.getEntityManager();
-
-            List<Clase> resultList = entityManager.createQuery(
-                    "SELECT c " +
-                            "FROM Registro r " +
-                            "INNER JOIN r.socio s " +
-                            "INNER JOIN r.clase c " +
-                            "WHERE s = :socio",
-                    Clase.class)
-                    .setParameter("socio", socio)
-                    .getResultList();
-
-            controllerBD.closeEntityManager();
-
+            List<Clase> resultList = query.getResultList();
+            commitTransaction();
             return resultList;
         } catch (Exception e) {
+            rollbackTransaction();
             System.out.println("Error catch getClasesBySocio " + e);
             return null;
+        } finally {
+            closeEntityManager();
         }
     }
 
     public List<Clase> getClasesByActividad(String nombreActividad) {
         try {
+            beginTransaction();
+            TypedQuery<Clase> query = entityManager.createQuery(
+                    "SELECT c FROM Clase c WHERE c.actividad.nombre = :nombreActividad", Clase.class);
+            query.setParameter("nombreActividad", nombreActividad);
 
-            entityManager = controllerBD.getEntityManager();
-
-            List<Clase> listClase;
-            listClase = entityManager.createQuery(
-                    "SELECT c FROM Clase c WHERE c.ClaseACT = :nombreActividad", Clase.class)
-                    .setParameter("nombreActividad", nombreActividad)
-                    .getResultList();
-
-            controllerBD.closeEntityManager();
-
+            List<Clase> listClase = query.getResultList();
+            commitTransaction();
             return listClase;
         } catch (Exception e) {
+            rollbackTransaction();
             System.out.println("Error catch getClasesByActividad " + e);
             return null;
+        } finally {
+            closeEntityManager();
         }
     }
 
-    public List<Clase> getClasesByNombre(String nombreActividad) {
+    public List<Clase> getClasesByNombre(String nombreClase) {
         try {
+            beginTransaction();
+            TypedQuery<Clase> query = entityManager.createQuery(
+                    "SELECT c FROM Clase c WHERE c.nombre = :nombreClase", Clase.class);
+            query.setParameter("nombreClase", nombreClase);
 
-            entityManager = controllerBD.getEntityManager();
-
-            List<Clase> listClase;
-            listClase = entityManager.createQuery(
-                    "SELECT c FROM Clase c WHERE c.ClaseACT = :nombreActividad", Clase.class)
-                    .setParameter("nombreActividad", nombreActividad)
-                    .getResultList();
-
-            controllerBD.closeEntityManager();
-
+            List<Clase> listClase = query.getResultList();
+            commitTransaction();
             return listClase;
         } catch (Exception e) {
-            System.out.println("Error catch getClasesByActividad " + e);
+            rollbackTransaction();
+            System.out.println("Error catch getClasesByNombre " + e);
             return null;
+        } finally {
+            closeEntityManager();
         }
     }
 
     public Clase getClaseByNombre(String nombreClase) {
         try {
-
-            entityManager = controllerBD.getEntityManager();
-
-            entityManager.getTransaction().begin();
-
+            beginTransaction();
             Clase clase = entityManager.find(Clase.class, nombreClase);
-
-            entityManager.getTransaction().commit();
-
-            controllerBD.closeEntityManager();
-
+            commitTransaction();
             return clase;
         } catch (Exception e) {
+            rollbackTransaction();
             System.out.println("Error catch getClaseByNombre " + e);
             return null;
+        } finally {
+            closeEntityManager();
         }
     }
 
     public List<Clase> getClases() {
-
-        entityManager = controllerBD.getEntityManager();
-
-        List<Clase> clases = entityManager
-                .createQuery("SELECT c FROM Clase c", Clase.class)
-                .getResultList();
-
-        controllerBD.closeEntityManager();
-
-        return clases;
+        try {
+            beginTransaction();
+            TypedQuery<Clase> query = entityManager.createQuery("SELECT c FROM Clase c", Clase.class);
+            List<Clase> clases = query.getResultList();
+            commitTransaction();
+            return clases;
+        } catch (Exception e) {
+            rollbackTransaction();
+            System.out.println("Error catch getClases " + e);
+            return null;
+        } finally {
+            closeEntityManager();
+        }
     }
-
 }
