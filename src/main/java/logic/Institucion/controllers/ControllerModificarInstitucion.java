@@ -12,21 +12,36 @@ public class ControllerModificarInstitucion implements IControllerModificarInsti
     }
 
     public void modificarInstitucion(String nombre, String nuevaDescripcion, String nuevaURL) {
-        InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombre);
+        try {
+            manejadorInstitucion.getEntityManager().getTransaction().begin();
+            InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombre);
 
-        if (institucion == null) {
-            return;
-        } else {
-            institucion.setDescripcion(nuevaDescripcion);
-            institucion.setUrl(nuevaURL);
-            manejadorInstitucion.actualizarInstitucion(institucion);
+            if (institucion == null) {
+                return;
+            } else {
+                institucion.setDescripcion(nuevaDescripcion);
+                institucion.setUrl(nuevaURL);
+                manejadorInstitucion.actualizarInstitucion(institucion);
+                manejadorInstitucion.getEntityManager().getTransaction().commit();
+                JOptionPane.showMessageDialog(
+                        null, // Parent component (null for default)
+                        "Institucion Actualizada!", // Message text
+                        "Success", // Dialog title
+                        JOptionPane.INFORMATION_MESSAGE // Message type
+                );
+            }
+        } catch (Exception e) {
+            manejadorInstitucion.getEntityManager().getTransaction().rollback();
+            e.printStackTrace();
             JOptionPane.showMessageDialog(
-                    null, // Parent component (null for default)
-                    "Institucion Actualizada!", // Message text
-                    "Success", // Dialog title
-                    JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
+                    null,
+                    "Error al modificar la institución",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
             );
-
+        } finally {
+            manejadorInstitucion.getEntityManager().close();
+            manejadorInstitucion.getEntityManagerFactory().close();
         }
     }
 }

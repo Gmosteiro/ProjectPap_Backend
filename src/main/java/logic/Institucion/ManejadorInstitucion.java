@@ -8,76 +8,88 @@ import javax.persistence.Persistence;
 import logic.ActividadDeportiva.ActividadDeportiva;
 
 public class ManejadorInstitucion {
-        private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-        private static EntityManager entityManager = emFactory.createEntityManager();
+    private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+    private static EntityManager entityManager = emFactory.createEntityManager();
 
-        public ManejadorInstitucion() {
+    public ManejadorInstitucion() {
+    }
+
+    public void agregarInstitucion(InstitucionDeportiva institucion) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(institucion);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+            emFactory.close();
         }
+    }
 
-        public void agregarInstitucion(InstitucionDeportiva institucion) {
-
-                EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-                EntityManager entityManager = emFactory.createEntityManager();
-                entityManager.getTransaction().begin();
-
-                entityManager.persist(institucion);
-                entityManager.getTransaction().commit();
-
-                entityManager.close();
-                emFactory.close();
-
+    public void actualizarInstitucion(InstitucionDeportiva institucion) {
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(institucion);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
         }
+    }
 
-         public void actualizarInstitucion(InstitucionDeportiva institucion) {
-                EntityManager entityManager = emFactory.createEntityManager();
-                entityManager.getTransaction().begin();
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 
-                entityManager.merge(institucion);
+    public EntityManagerFactory getEntityManagerFactory() {
+        return emFactory;
+    }
 
-                entityManager.getTransaction().commit();
-                entityManager.close();
+    public static List<InstitucionDeportiva> getInstituciones() {
+        try {
+            return entityManager.createQuery("SELECT e FROM InstitucionDeportiva e", InstitucionDeportiva.class)
+                    .getResultList();
+        } finally {
+            entityManager.close();
+            emFactory.close();
         }
+    }
 
-        public static List<InstitucionDeportiva> getInstituciones() {
-
-                EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
-                EntityManager entityManager = emFactory.createEntityManager();
-                List<InstitucionDeportiva> instituciones;
-
-                instituciones = entityManager
-                                .createQuery("SELECT e FROM InstitucionDeportiva e", InstitucionDeportiva.class)
-                                .getResultList();
-
-                return instituciones;
+    public static InstitucionDeportiva getInstitucionesByName(String nombre) {
+        try {
+            return entityManager.find(InstitucionDeportiva.class, nombre);
+        } finally {
+            entityManager.close();
+            emFactory.close();
         }
+    }
 
-        public static InstitucionDeportiva getInstitucionesByName(String nombre) {
-                InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
-
-                // entityManager.close();
-                // emFactory.close();
-
-                return institucion;
+    public void agregarActividadI(ActividadDeportiva actividad, String nombrei) {
+        try {
+            entityManager.getTransaction().begin();
+            InstitucionDeportiva institucion = getInstitucionesByName(nombrei);
+            institucion.getActividades().add(actividad);
+            entityManager.persist(institucion);
+            entityManager.getTransaction().commit();
+        } catch (Exception exceptionAgregarClase) {
+            entityManager.getTransaction().rollback();
+            System.out.println("Catch agregarActividadI: " + exceptionAgregarClase);
+            System.out.println("ERROR");
+        } finally {
+            entityManager.close();
         }
+    }
 
-        public void agregarActividadI(ActividadDeportiva actividad, String nombrei) {
-                try {
-                        InstitucionDeportiva Institucion = getInstitucionesByName(nombrei);
-
-                        // Institucion.setActividades(actividad);
-                        Institucion.getActividades().add(actividad);
-                        entityManager.getTransaction().begin();
-                        entityManager.persist(Institucion);
-                        entityManager.getTransaction().commit();
-
-                } catch (Exception exceptionAgregarClase) {
-                        System.out.println("Catch agregarActividadI: " + exceptionAgregarClase);
-                        System.out.println("ERROR");
-                }
+    public List<ActividadDeportiva> getActividades() {
+        try {
+            return getActividades();
+        } finally {
+            entityManager.close();
+            emFactory.close();
         }
-        
-        public List<ActividadDeportiva> getActividades(){
-        return getActividades();
-        }
-
+    }
 }

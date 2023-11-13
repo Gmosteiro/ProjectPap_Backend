@@ -13,7 +13,6 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
     @Override
     public void addInstitucionDeportiva(String nombre, String descripcion, String url) {
         try {
-
             if (!validateInstData(nombre, "InstitucionDeportiva")) {
                 return;
             }
@@ -21,7 +20,6 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
             InstitucionDeportiva nuevaInstitucion = new InstitucionDeportiva(nombre, descripcion, url);
 
             ManejadorInstitucion manejador = new ManejadorInstitucion();
-
             manejador.agregarInstitucion(nuevaInstitucion);
 
             System.out.println("Institucion Creada");
@@ -30,9 +28,7 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
 
         } catch (Exception errorException) {
             System.out.println("AddInstitucionDeportiva catch: " + errorException);
-
         }
-
     }
 
     private boolean validateInstData(String nombre, String queryValue) {
@@ -40,17 +36,17 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
         EntityManager entityManager = emFactory.createEntityManager();
 
         try {
+            entityManager.getTransaction().begin();
+
             TypedQuery<InstitucionDeportiva> query = entityManager.createQuery(
                     "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
                     InstitucionDeportiva.class);
             query.setParameter("nombre", nombre);
 
-            if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
+            if (query.getResultList().isEmpty()) {
                 return true;
             } else {
-
                 InstitucionDeportiva instituto = query.getSingleResult();
-
                 String queryNombre = instituto.getNombre();
                 String errorMessage = "";
 
@@ -60,7 +56,12 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
                 JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
         } finally {
+            entityManager.getTransaction().commit();
             entityManager.close();
             emFactory.close();
         }
