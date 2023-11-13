@@ -1,61 +1,62 @@
-
 package logic.Clase.controllers;
 
-import java.util.List;
-
-import DataBase.DbManager;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
 import logic.Clase.ManejadorClases;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import java.util.List;
+
 public class ControllerConsultaClases implements IControllerConsultaClases {
 
-    private DbManager controllerBD;
     private ManejadorClases manejadorClases;
+    private EntityManager entityManager;
 
     public ControllerConsultaClases() {
         manejadorClases = new ManejadorClases();
-        controllerBD = DbManager.getInstance();
+        entityManager = Persistence.createEntityManagerFactory("project_pap").createEntityManager();
     }
 
     public List<ActividadDeportiva> obtenerActividadesPorInstitucion(String nombreInstitucion) {
         try {
+            entityManager.getTransaction().begin();
 
-            List<ActividadDeportiva> actividades = controllerBD.getEntityManager().createQuery(
+            List<ActividadDeportiva> actividades = entityManager.createQuery(
                     "SELECT a FROM ActividadDeportiva a WHERE a.institucion.nombre = :nombreInstitucion",
                     ActividadDeportiva.class)
                     .setParameter("nombreInstitucion", nombreInstitucion)
                     .getResultList();
 
-            controllerBD.closeEntityManager();
-
+            entityManager.getTransaction().commit();
             return actividades;
         } catch (Exception e) {
+            entityManager.getTransaction().rollback();
             System.out.println("Catch obtenerActividadesPorInstitucion: " + e);
             return null;
-
+        } finally {
+            entityManager.close();
         }
     }
 
     public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
-
         try {
-
-            controllerBD.getEntityManager();
+            entityManager.getTransaction().begin();
 
             List<Clase> clases = actividad.getClases();
 
-            controllerBD.closeEntityManager();
-
+            entityManager.getTransaction().commit();
             return clases;
         } catch (Exception e) {
+            entityManager.getTransaction().rollback();
             System.out.println("Error " + e);
             return null;
+        } finally {
+            entityManager.close();
         }
     }
 
     public Clase obtenerClasePorNombre(String nombreClase) {
         return manejadorClases.getClaseByNombre(nombreClase);
     }
-
 }
