@@ -4,8 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import logic.Fabrica;
-import logic.ActividadDeportiva.controllers.IControllerAltaActividad;
-import logic.Institucion.controllers.ControllerAltaInstitucionDeportiva;
+
 import logic.Institucion.controllers.IControllerAltaInstitucionDeportiva;
 import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Usuario;

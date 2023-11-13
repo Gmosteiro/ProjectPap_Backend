@@ -31,6 +31,7 @@ import DataTypes.DtClase;
 import DataTypes.DtInstitucion;
 import DataTypes.DtUsuario;
 import logic.ActividadDeportiva.ActividadDeportiva;
+import logic.ActividadDeportiva.ManejadorActividad;
 import logic.Clase.Clase;
 import logic.Clase.ManejadorClases;
 import logic.Clase.controllers.IControllerAltaClase;
@@ -67,6 +68,7 @@ public class ControladorPublish {
     private ManejadorInstitucion manejadorInstitucion;
     private ManejadorUsuarios manejadorUsuarios;
     private ManejadorClases manejadorClases;
+    private ManejadorActividad manejadorActividad;
     private Endpoint endpoint;
 
     public ControladorPublish() {
@@ -85,6 +87,7 @@ public class ControladorPublish {
         manejadorInstitucion = new ManejadorInstitucion();
         manejadorUsuarios = new ManejadorUsuarios();
         manejadorClases = new ManejadorClases();
+        manejadorActividad = new ManejadorActividad();
 
     }
 
@@ -113,7 +116,7 @@ public class ControladorPublish {
         LocalDate fecha = ac.getFechaReg();
 
         DtActividadDeportiva dtActividaDeportiva = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(),
-                ac.getDuracion(), ac.getCosto(), fecha.toString());
+                ac.getDuracion(), (int) ac.getCosto(), fecha.toString(), ac.getImg());
 
         return dtActividaDeportiva;
 
@@ -145,12 +148,33 @@ public class ControladorPublish {
         DtActividadDeportiva[] actividadesTR = new DtActividadDeportiva[listActividades.size()];
         for (ActividadDeportiva ac : listActividades) {
             actividadesTR[it] = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(), ac.getDuracion(),
-                    ac.getCosto(), ac.getFechaReg().toString());
+                    (int) ac.getCosto(), ac.getFechaReg().toString(), ac.getImg());
             it = it + 1;
 
         }
 
         return actividadesTR;
+    }
+
+    @WebMethod
+    public DtActividadDeportiva[] getActividadesByInstitucion(String nombreInstitucion) {
+
+        InstitucionDeportiva id = manejadorInstitucion.getInstitucionesByName(nombreInstitucion);
+
+        List<ActividadDeportiva> listActividades = id.getActividades();
+
+        int it = 0;
+
+        DtActividadDeportiva[] actividadesTR = new DtActividadDeportiva[listActividades.size()];
+        for (ActividadDeportiva ac : listActividades) {
+            actividadesTR[it] = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(), ac.getDuracion(),
+                    (int) ac.getCosto(), ac.getFechaReg().toString(), ac.getImg());
+            it = it + 1;
+
+        }
+
+        return actividadesTR;
+
     }
 
     @WebMethod
@@ -161,7 +185,7 @@ public class ControladorPublish {
         DtClase[] clasesTR = new DtClase[listClases.size()];
         for (Clase clase : listClases) {
             clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
             it = it + 1;
 
         }
@@ -206,7 +230,7 @@ public class ControladorPublish {
         DtClase[] clasesTR = new DtClase[listClases.size()];
         for (Clase clase : listClases) {
             clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
             it = it + 1;
 
         }
@@ -219,18 +243,20 @@ public class ControladorPublish {
         Clase clase = iControllerConsultaClases.obtenerClasePorNombre(nombreClase);
 
         DtClase dtClase = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                clase.getHora().toString(), clase.getUrl());
+                clase.getHora().toString(), clase.getUrl(), clase.getImg());
         return dtClase;
     }
 
     @WebMethod
-    public DtClase[] obtenerClasesPorActividad(ActividadDeportiva actividad) {
+    public DtClase[] obtenerClasesPorActividad(DtActividadDeportiva dtActividad) {
+
+        ActividadDeportiva actividad = manejadorActividad.obtenerActividadPorNombre(dtActividad.getNombre());
         List<Clase> listClases = iControllerConsultaClases.obtenerClasesPorActividad(actividad);
         int it = 0;
         DtClase[] clasesTR = new DtClase[listClases.size()];
         for (Clase clase : listClases) {
             clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
             it = it + 1;
 
         }
@@ -281,7 +307,7 @@ public class ControladorPublish {
         DtActividadDeportiva[] actividadesTR = new DtActividadDeportiva[listActividades.size()];
         for (ActividadDeportiva ac : listActividades) {
             actividadesTR[it] = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(), ac.getDuracion(),
-                    ac.getCosto(), ac.getFechaReg().toString());
+                    (int) ac.getCosto(), ac.getFechaReg().toString(), ac.getImg());
             it = it + 1;
 
         }
@@ -297,7 +323,7 @@ public class ControladorPublish {
         DtClase[] clasesTR = new DtClase[listClases.size()];
         for (Clase clase : listClases) {
             clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
             it = it + 1;
 
         }

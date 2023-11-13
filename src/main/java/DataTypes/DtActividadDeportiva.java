@@ -2,26 +2,35 @@ package DataTypes;
 
 public class DtActividadDeportiva {
     private int duracion;
-    private float costo;
+    private int costo;
 
-    private String nombre, descripcion, fechaRegistro;
+    private String nombre, descripcion, fechaRegistro, imagen;
 
     public DtActividadDeportiva() {
         super();
     }
 
     public DtActividadDeportiva(final String nombre, final String descripcion, final int duracion,
-            final float costo,
-            final String fechaRegistro) {
+            final int costo,
+            final String fechaRegistro, String imagen) {
         super();
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
         this.costo = costo;
         this.fechaRegistro = fechaRegistro;
+        this.imagen = imagen;
     }
 
-    public float getCosto() {
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public int getCosto() {
         return costo;
     }
 

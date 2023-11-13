@@ -1,21 +1,29 @@
 package DataTypes;
 
 public class DtClase {
+    private String nombre, fecha, fechaRegistro, hora, url, imagen;
 
     public DtClase() {
         super();
     }
 
-    public DtClase(String nombre, String fecha, String fechaRegistro, String hora, String url) {
+    public DtClase(String nombre, String fecha, String fechaRegistro, String hora, String url, String imagen) {
         super();
         this.nombre = nombre;
         this.fecha = fecha;
         this.fechaRegistro = fechaRegistro;
         this.hora = hora;
         this.url = url;
+        this.imagen = imagen;
     }
 
-    private String nombre, fecha, fechaRegistro, hora, url;
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 
     public String getNombre() {
         return nombre;
