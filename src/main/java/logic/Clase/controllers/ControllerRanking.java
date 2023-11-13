@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 
 import javax.persistence.Persistence;
 
@@ -22,6 +23,7 @@ public class ControllerRanking implements IControllerRanking {
     @Override
     public List<ActividadDeportiva> obtenerRankingDeActividades() {
         EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
 
         try {
 
@@ -36,13 +38,16 @@ public class ControllerRanking implements IControllerRanking {
             return resultados;
 
         } catch (Exception e) {
-
+            if (transaction != null && transaction.isActive()) {
+               transaction.rollback();
+               }
             System.out.println("Catch obtenerRankingDeActividades: " + e);
             e.printStackTrace();
             return null;
         } finally {
             entityManager.close();
         }
+         
 
     }
 
@@ -50,15 +55,17 @@ public class ControllerRanking implements IControllerRanking {
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
 
         EntityManager entityManager = emf.createEntityManager();
-
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
-
+            transaction.begin();
             ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class,
                     nombreActividad);
-
+            transaction.commit();
             return actividad;
         } catch (Exception e) {
-
+            if (transaction != null && transaction.isActive()) {
+            transaction.rollback();
+            }
             System.out.println("Catch obtenerActividadPorNombre: " + e);
             e.printStackTrace();
             return null;
@@ -67,11 +74,13 @@ public class ControllerRanking implements IControllerRanking {
         }
 
     }
+    
 
     @Override
     public List<Clase> obtenerRankingDeClases() {
 
         EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
 
         try {
 
@@ -86,7 +95,9 @@ public class ControllerRanking implements IControllerRanking {
 
             return resultados;
         } catch (Exception e) {
-
+            if (transaction != null && transaction.isActive()) {
+            transaction.rollback();
+            }
             System.out.println("Catch obtenerRankingDeClases: " + e);
             e.printStackTrace();
             return null;
@@ -95,5 +106,4 @@ public class ControllerRanking implements IControllerRanking {
         }
 
     }
-
 }

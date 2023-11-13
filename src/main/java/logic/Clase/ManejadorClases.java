@@ -104,8 +104,9 @@ public class ManejadorClases {
 
             return listClase;
         } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
             transaction.rollback();
-
+            }
             System.out.println("Error catch getClasesByActividad " + e);
             return null;
         } finally {
@@ -130,7 +131,9 @@ public class ManejadorClases {
 
             return listClase;
         } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
             transaction.rollback();
+            }
 
             System.out.println("Error catch getClasesByNombre " + e);
             return null;
@@ -152,7 +155,9 @@ public class ManejadorClases {
 
             return clase;
         } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
             transaction.rollback();
+            }
 
             System.out.println("Error catch getClaseByNombre " + e);
             return null;
@@ -175,8 +180,9 @@ public class ManejadorClases {
 
             return clases;
         } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
             transaction.rollback();
-
+            }
             System.out.println("Error catch getClases " + e);
             return null;
         } finally {

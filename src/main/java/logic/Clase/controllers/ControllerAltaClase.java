@@ -26,6 +26,7 @@ public class ControllerAltaClase implements IControllerAltaClase {
     public ControllerAltaClase() {
         manejadorActividades = new ManejadorActividad();
         manejadorInstitucion = new ManejadorInstitucion();
+        manejadorUsuarios = new ManejadorUsuarios();
         emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
@@ -58,7 +59,9 @@ public class ControllerAltaClase implements IControllerAltaClase {
             transaction.commit();
 
         } catch (Exception errorException) {
+            if (transaction != null && transaction.isActive()) {
             transaction.rollback();
+            }
             String errorMessage = extractErrorMessage(errorException.getMessage());
             System.out.println("Catch addClase: " + errorMessage);
         } finally {
@@ -100,18 +103,4 @@ public class ControllerAltaClase implements IControllerAltaClase {
         return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
                 : fullErrorMessage;
     }
-} // EntityManager entityManager = emf.createEntityManager();
-  // EntityTransaction transaction = entityManager.getTransaction();
-  // }try {
-  // transaction.begin();
-  // entityManager.persist(clase);
-  // transaction.commit();
-  // } catch (Exception e) {
-  // if (transaction != null && transaction.isActive()) {
-  // transaction.rollback();
-  // }
-  // System.out.println("Catch agregarClase: " + e);
-  // e.printStackTrace();
-  // } finally {
-  // entityManager.close();
-  // }
+}

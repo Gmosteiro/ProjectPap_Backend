@@ -11,26 +11,37 @@ import javax.swing.JOptionPane;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 public class ControllerDictadoClase implements IControllerDictadoClase {
     private ManejadorInstitucion manejadorInstitucion;
     private ManejadorActividad manejadorActividad;
     private ManejadorClases manejadorClases;
+    private EntityManagerFactory emf;
 
     public ControllerDictadoClase() {
         manejadorInstitucion = new ManejadorInstitucion();
         manejadorActividad = new ManejadorActividad();
         manejadorClases = new ManejadorClases();
+        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     @Override
     public List<InstitucionDeportiva> getInstituciones() {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
             List<InstitucionDeportiva> instituciones = manejadorInstitucion.getInstituciones();
             return instituciones;
 
         } catch (Exception errorException) {
+            if (transaction != null && transaction.isActive()) {
+            transaction.rollback();
+            }
             System.out.println("Catch getInstituciones: " + errorException);
             JOptionPane.showMessageDialog(null, extractErrorMessage(errorException.getMessage()), "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -39,9 +50,12 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
 
         }
     }
+        
 
     @Override
     public List<ActividadDeportiva> getActividades() {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
             List<ActividadDeportiva> actividades = manejadorActividad.getActividades();
             return actividades;
@@ -55,6 +69,7 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
 
         }
     }
+   
 
     private String extractErrorMessage(String fullErrorMessage) {
         int startIndex = fullErrorMessage.indexOf(":") + 1;
