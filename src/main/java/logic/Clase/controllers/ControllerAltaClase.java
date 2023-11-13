@@ -1,6 +1,7 @@
 package logic.Clase.controllers;
 
 import logic.Clase.Clase;
+import logic.Institucion.ManejadorInstitucion;
 import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Profesor;
 
@@ -12,34 +13,40 @@ import javax.swing.JOptionPane;
 
 import logic.ActividadDeportiva.ManejadorActividad;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class ControllerAltaClase implements IControllerAltaClase {
-    private ManejadorUsuarios manejadorUsuarios;
     private ManejadorActividad manejadorActividades;
-    private EntityManager entityManager;
+    private ManejadorInstitucion manejadorInstitucion;
+    private ManejadorUsuarios manejadorUsuarios;
+    private EntityManagerFactory emf;
 
     public ControllerAltaClase() {
-        manejadorUsuarios = new ManejadorUsuarios();
         manejadorActividades = new ManejadorActividad();
-        entityManager = Persistence.createEntityManagerFactory("project_pap").createEntityManager();
+        manejadorInstitucion = new ManejadorInstitucion();
+        emf = Persistence.createEntityManagerFactory("project_pap");
+
     }
 
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
-                         String nombreProfesor, String img, String actividad) {
-        try {
-            entityManager.getTransaction().begin();
+            String nombreProfesor, String img, String actividad) {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
 
+        try {
+            transaction.begin();
             if (!validateClassData(nombre, "Clase")) {
-                entityManager.getTransaction().rollback();
+                transaction.rollback();
                 return;
             }
 
             if (nombreProfesor.length() == 0) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar un profesor ", "Error",
                         JOptionPane.ERROR_MESSAGE);
-                entityManager.getTransaction().rollback();
+                transaction.rollback();
                 return;
             }
 
@@ -48,9 +55,10 @@ public class ControllerAltaClase implements IControllerAltaClase {
             Clase nuevaClase = new Clase(nombre, fecha, hora, url, fechaReg, profesor, img);
             manejadorActividades.agregarClaseA(nuevaClase, actividad);
 
-            entityManager.getTransaction().commit();
+            transaction.commit();
+
         } catch (Exception errorException) {
-            entityManager.getTransaction().rollback();
+            transaction.rollback();
             String errorMessage = extractErrorMessage(errorException.getMessage());
             System.out.println("Catch addClase: " + errorMessage);
         } finally {
@@ -59,11 +67,8 @@ public class ControllerAltaClase implements IControllerAltaClase {
     }
 
     private boolean validateClassData(String nombre, String queryValue) {
+        EntityManager entityManager = emf.createEntityManager();
         try {
-            if (entityManager == null || !entityManager.isOpen()) {
-                entityManager = Persistence.createEntityManagerFactory("project_pap").createEntityManager();
-            }
-
             List<Clase> listaClases = entityManager.createQuery(
                     "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
                     Clase.class)
@@ -95,4 +100,18 @@ public class ControllerAltaClase implements IControllerAltaClase {
         return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
                 : fullErrorMessage;
     }
-}
+} // EntityManager entityManager = emf.createEntityManager();
+  // EntityTransaction transaction = entityManager.getTransaction();
+  // }try {
+  // transaction.begin();
+  // entityManager.persist(clase);
+  // transaction.commit();
+  // } catch (Exception e) {
+  // if (transaction != null && transaction.isActive()) {
+  // transaction.rollback();
+  // }
+  // System.out.println("Catch agregarClase: " + e);
+  // e.printStackTrace();
+  // } finally {
+  // entityManager.close();
+  // }
