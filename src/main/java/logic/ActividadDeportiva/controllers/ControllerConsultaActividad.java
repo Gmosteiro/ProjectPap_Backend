@@ -1,8 +1,11 @@
 package logic.ActividadDeportiva.controllers;
 
-import DataBase.DbManager;
-
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import javax.persistence.Persistence;
 
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
@@ -13,80 +16,109 @@ import logic.Usuario.Registro;
 
 public class ControllerConsultaActividad implements IControllerConsultaActividad {
 
-    private DbManager controllerBD;
+    ;
     private ManejadorActividad manejadorActividad;
     private ManejadorUsuarios manejadorUsuarios;
+    private EntityManagerFactory emf;
 
     public ControllerConsultaActividad() {
         manejadorUsuarios = new ManejadorUsuarios();
         manejadorActividad = new ManejadorActividad();
-        controllerBD = DbManager.getInstance();
+        emf = Persistence.createEntityManagerFactory("project_pap");
+
     }
 
     public List<ActividadDeportiva> obtenerActividadesPorInstitucion(String nombreInstitucion) {
 
+        EntityManager entityManager = emf.createEntityManager();
+
         try {
 
-            List<ActividadDeportiva> actividades = controllerBD.getEntityManager().createQuery(
+            List<ActividadDeportiva> actividades = entityManager.createQuery(
                     "SELECT a FROM ActividadDeportiva a WHERE a.institucion.nombre = :nombreInstitucion",
                     ActividadDeportiva.class)
                     .setParameter("nombreInstitucion", nombreInstitucion)
                     .getResultList();
 
-            controllerBD.closeEntityManager();
-
             return actividades;
+
         } catch (Exception e) {
-            System.out.println("Error obtenerActividadesPorInstitucion: " + e);
+
+            System.out.println("Catch obtenerActividadesPorInstitucion: " + e);
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
+
     }
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
+
+        EntityManager entityManager = emf.createEntityManager();
+
         try {
 
-            ActividadDeportiva actividad = controllerBD.getEntityManager().find(ActividadDeportiva.class,
+            ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class,
                     nombreActividad);
 
-            controllerBD.closeEntityManager();
-
             return actividad;
+
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+
+            System.out.println("Catch obtenerActividadPorNombre: " + e);
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
+
     }
 
     public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
+
+        EntityManager entityManager = emf.createEntityManager();
+
         try {
-            controllerBD.getEntityManager();
 
             List<Clase> clases = actividad.getClases();
-            controllerBD.closeEntityManager();
 
             return clases;
+
         } catch (Exception e) {
-            System.out.println("Error " + e);
+
+            System.out.println("Catch obtenerClasesPorActividad: " + e);
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
+
     }
 
     public List<Registro> obtenerRegistrosPorClase(Clase clase) {
+
+        EntityManager entityManager = emf.createEntityManager();
+
         try {
 
-            List<Registro> registros = controllerBD.getEntityManager().createQuery(
+            List<Registro> registros = entityManager.createQuery(
                     "SELECT r FROM Registro r WHERE r.clase = :clase",
                     Registro.class)
                     .setParameter("clase", clase)
                     .getResultList();
 
-            controllerBD.closeEntityManager();
-
             return registros;
+
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+
+            System.out.println("Catch obtenerRegistrosPorClase: " + e);
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
+
     }
 
     public List<ActividadDeportiva> getActividadesByProfe(String profesor) {

@@ -1,133 +1,159 @@
 package logic.ActividadDeportiva;
 
+import javax.persistence.*;
 import java.util.List;
-
-import DataBase.DbManager;
-import javax.persistence.EntityManager;
 
 import logic.Clase.Clase;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Usuario.Profesor;
 
 public class ManejadorActividad {
-    private DbManager controllerBD;
-    private EntityManager entityManager;
+    private EntityManagerFactory emf;
 
     public ManejadorActividad() {
-        controllerBD = DbManager.getInstance();
+        emf = Persistence.createEntityManagerFactory("project_pap");
     }
 
     public void agregarActividad(ActividadDeportiva actividad) {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
 
-        entityManager = controllerBD.getEntityManager();
-        entityManager.getTransaction().begin();
-
-        entityManager.persist(actividad);
-
-        entityManager.getTransaction().commit();
-        controllerBD.closeEntityManager();
+        try {
+            transaction.begin();
+            entityManager.persist(actividad);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Catch agregarActividad: " + e);
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public void actualizarActividad(ActividadDeportiva actividad) {
-        entityManager = controllerBD.getEntityManager();
-        entityManager.getTransaction().begin();
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
 
-        entityManager.merge(actividad);
-
-        entityManager.getTransaction().commit();
-        controllerBD.closeEntityManager();
+        try {
+            transaction.begin();
+            entityManager.merge(actividad);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Catch actualizarActividad: " + e);
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public void eliminarActividad(ActividadDeportiva actividad) {
-        entityManager = controllerBD.getEntityManager();
-        entityManager.getTransaction().begin();
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
 
-        entityManager.remove(entityManager.contains(actividad) ? actividad : entityManager.merge(actividad));
-
-        entityManager.getTransaction().commit();
-        controllerBD.closeEntityManager();
+        try {
+            transaction.begin();
+            entityManager.remove(entityManager.contains(actividad) ? actividad : entityManager.merge(actividad));
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Catch eliminarActividad: " + e);
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombre) {
-        entityManager = controllerBD.getEntityManager();
-        ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class, nombre);
-        controllerBD.closeEntityManager();
-        return actividad;
+        EntityManager entityManager = emf.createEntityManager();
+
+        try {
+            return entityManager.find(ActividadDeportiva.class, nombre);
+        } catch (Exception e) {
+            System.out.println("Catch obtenerActividadPorNombre: " + e);
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
     }
 
-    public void agregarClaseA(Clase clase, String actividad) {
+    public void agregarClaseA(Clase clase, String nombreActividad) {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
         try {
-            entityManager = controllerBD.getEntityManager();
+            transaction.begin();
 
-            ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
-            Actividad.getClases().add(clase);
-            entityManager.getTransaction().begin();
-            entityManager.persist(Actividad);
-            entityManager.getTransaction().commit();
+            ActividadDeportiva actividad = obtenerActividadPorNombre(nombreActividad);
+            if (actividad != null) {
+                actividad.getClases().add(clase);
+                entityManager.merge(actividad);
+            } else {
+                System.out.println("Actividad no encontrada.");
+            }
 
-            controllerBD.closeEntityManager();
-
-        } catch (Exception exceptionAgregarClase) {
-            System.out.println("Catch agregarClase: " + exceptionAgregarClase);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Catch agregarClaseA: " + e);
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
         }
     }
 
     public List<ActividadDeportiva> getActividades() {
-        entityManager = controllerBD.getEntityManager();
-
-        List<ActividadDeportiva> actividades = entityManager
-                .createQuery("SELECT a FROM ActividadDeportiva a", ActividadDeportiva.class).getResultList();
-
-        controllerBD.closeEntityManager();
-
-        return actividades;
-    }
-
-    public List<ActividadDeportiva> getActividadesByInstitucion(InstitucionDeportiva institucion) {
+        EntityManager entityManager = emf.createEntityManager();
 
         try {
-            entityManager = controllerBD.getEntityManager();
-
-            List<ActividadDeportiva> actividades = institucion.getActividades();
-
-            controllerBD.closeEntityManager();
-            return actividades;
-
+            return entityManager.createQuery("SELECT a FROM ActividadDeportiva a", ActividadDeportiva.class)
+                    .getResultList();
         } catch (Exception e) {
-            System.out.println("Error catch getActividadesByInstitucionDeportiva " + e);
+            System.out.println("Catch getActividades: " + e);
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
     }
 
     public List<ActividadDeportiva> getActividadesByProfe(Profesor profesor) {
+        EntityManager entityManager = emf.createEntityManager();
 
         try {
-            entityManager = controllerBD.getEntityManager();
-            List<ActividadDeportiva> actividades = entityManager.createQuery(
-                    "SELECT a " +
-                            "FROM ActividadDeportiva a " +
-                            "INNER JOIN a.Clases c " +
-                            "INNER JOIN c.profesor p " +
-                            "WHERE p = :profesor",
+            return entityManager.createQuery(
+                    "SELECT a FROM ActividadDeportiva a INNER JOIN a.Clases c INNER JOIN c.profesor p WHERE p = :profesor",
                     ActividadDeportiva.class)
                     .setParameter("profesor", profesor)
                     .getResultList();
-
-            controllerBD.closeEntityManager();
-            return actividades;
         } catch (Exception e) {
-            System.out.println("Error catch getActividadesByProfe " + e);
+            System.out.println("Catch getActividadesByProfe: " + e);
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public List<ActividadDeportiva> getActividadesByInstitucion(InstitucionDeportiva institucion) {
+        try {
+            return institucion.getActividades();
+        } catch (Exception e) {
+            System.out.println("Catch getActividadesByInstitucion: " + e);
+            e.printStackTrace();
             return null;
         }
-
     }
 
-    public List<Clase> getClases() {
-        entityManager = controllerBD.getEntityManager();
-        List<Clase> clases = getClases();
-
-        controllerBD.closeEntityManager();
-        return clases;
-    }
-
+    // Otros métodos de consulta y gestión de actividades...
 }

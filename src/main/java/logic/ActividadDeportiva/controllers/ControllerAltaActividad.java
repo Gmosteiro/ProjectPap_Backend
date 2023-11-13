@@ -1,7 +1,5 @@
 package logic.ActividadDeportiva.controllers;
 
-import DataBase.DbManager;
-
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
 import logic.Institucion.InstitucionDeportiva;
@@ -11,6 +9,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
@@ -18,12 +20,12 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
 
     private ManejadorActividad manejadorActividad;
     private ManejadorInstitucion manejadorInstitucion;
-    private DbManager controllerBD;
+    private EntityManagerFactory emf;
 
     public ControllerAltaActividad() {
         manejadorActividad = new ManejadorActividad();
         manejadorInstitucion = new ManejadorInstitucion();
-        controllerBD = DbManager.getInstance();
+        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
@@ -81,26 +83,32 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
 
     private boolean validateActivityData(String nombre) {
 
+        EntityManager entityManager = emf.createEntityManager();
+
         try {
 
-            TypedQuery<ActividadDeportiva> query = controllerBD.getEntityManager().createQuery(
+            TypedQuery<ActividadDeportiva> query = entityManager.createQuery(
                     "SELECT a FROM ActividadDeportiva a WHERE a.nombre = :nombre",
                     ActividadDeportiva.class);
             query.setParameter("nombre", nombre);
 
             if (query.getResultList().isEmpty()) {
-                controllerBD.closeEntityManager();
 
                 return true;
             } else {
-                controllerBD.closeEntityManager();
 
                 return false;
             }
+
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+
+            System.out.println("Catch validateActivityData: " + e);
+            e.printStackTrace();
             return false;
+        } finally {
+            entityManager.close();
         }
+
     }
 
     @Override
