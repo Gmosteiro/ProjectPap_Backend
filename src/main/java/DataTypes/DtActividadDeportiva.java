@@ -1,48 +1,64 @@
 package DataTypes;
 
 public class DtActividadDeportiva {
-    private int id;
-    private String nombre;
-    private Turno turno;
+    private int duracion;
+    private float costo;
 
-    public DtClase() {
-		super();
-	}
+    private String nombre, descripcion, fechaRegistro;
 
-    public DtClase(final int id,final String nombre,final Turno turno) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.turno = turno;
-	}
+    public DtActividadDeportiva() {
+        super();
+    }
 
-    public int getId() {
-        return id;
+    public DtActividadDeportiva(final String nombre, final String descripcion, final int duracion,
+            final float costo,
+            final String fechaRegistro) {
+        super();
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.costo = costo;
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public float getCosto() {
+        return costo;
+    }
+
+    public void setCosto(int costo) {
+        this.costo = costo;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public Turno getTurno() {
-        return turno;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setTurno(Turno turno) {
-        this.turno = turno;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    @Override
-    public String toString() {
-        return "ID = " + id + "\nNOMBRE = " + nombre + "\nTURNO = " + turno;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(String fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
 }

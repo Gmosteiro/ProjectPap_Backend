@@ -25,6 +25,11 @@ import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
+
+import DataTypes.DtActividadDeportiva;
+import DataTypes.DtClase;
+import DataTypes.DtInstitucion;
+import DataTypes.DtUsuario;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
 import logic.Clase.ManejadorClases;
@@ -102,8 +107,16 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
-        return iControllerConsultaActividad.obtenerActividadPorNombre(nombreActividad);
+    public DtActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
+        ActividadDeportiva ac = iControllerConsultaActividad.obtenerActividadPorNombre(nombreActividad);
+
+        LocalDate fecha = ac.getFechaReg();
+
+        DtActividadDeportiva dtActividaDeportiva = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(),
+                ac.getDuracion(), ac.getCosto(), fecha.toString());
+
+        return dtActividaDeportiva;
+
     }
 
     @WebMethod
@@ -125,19 +138,35 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public ActividadDeportiva[] getActividadesByProfe(String nicknameProfesor) {
+    public DtActividadDeportiva[] getActividadesByProfe(String nicknameProfesor) {
         List<ActividadDeportiva> listActividades = iControllerConsultaActividad.getActividadesByProfe(nicknameProfesor);
+        int it = 0;
 
-        ActividadDeportiva[] arrayActividades = listActividades.toArray(new ActividadDeportiva[0]);
+        DtActividadDeportiva[] actividadesTR = new DtActividadDeportiva[listActividades.size()];
+        for (ActividadDeportiva ac : listActividades) {
+            actividadesTR[it] = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(), ac.getDuracion(),
+                    ac.getCosto(), ac.getFechaReg().toString());
+            it = it + 1;
 
-        return arrayActividades;
+        }
+
+        return actividadesTR;
     }
 
     @WebMethod
-    public Clase[] getClasesByActividad(String nombreActividad) {
-        Clase[] arrayClases = iControllerDictadoClase.getClasesByActividad(nombreActividad).toArray(new Clase[0]);
+    public DtClase[] getClasesByActividad(String nombreActividad) {
+        List<Clase> listClases = iControllerDictadoClase.getClasesByActividad(nombreActividad);
 
-        return arrayClases;
+        int it = 0;
+        DtClase[] clasesTR = new DtClase[listClases.size()];
+        for (Clase clase : listClases) {
+            clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
+                    clase.getHora().toString(), clase.getUrl());
+            it = it + 1;
+
+        }
+
+        return clasesTR;
     }
 
     @WebMethod
@@ -160,46 +189,120 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public InstitucionDeportiva getInstitucionesByName(String nombre) {
-        return manejadorInstitucion.getInstitucionesByName(nombre);
+    public DtInstitucion getInstitucionesByName(String nombre) {
+        InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombre);
+
+        DtInstitucion dtInstitucion = new DtInstitucion(institucion.getNombre(), institucion.getDescripcion(),
+                institucion.getUrl());
+
+        return dtInstitucion;
     }
 
     @WebMethod
-    public Clase[] getClasesByUser(String nickname) {
+    public DtClase[] getClasesByUser(String nickname) {
 
-        Clase[] arraryClases = iControllerConsultaUsuario.getClasesByUser(nickname).toArray(new Clase[0]);
-        return arraryClases;
+        List<Clase> listClases = iControllerConsultaUsuario.getClasesByUser(nickname);
+        int it = 0;
+        DtClase[] clasesTR = new DtClase[listClases.size()];
+        for (Clase clase : listClases) {
+            clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
+                    clase.getHora().toString(), clase.getUrl());
+            it = it + 1;
+
+        }
+
+        return clasesTR;
     }
 
     @WebMethod
-    public Clase obtenerClasePorNombre(String nombreClase) {
-        return iControllerConsultaClases.obtenerClasePorNombre(nombreClase);
+    public DtClase obtenerClasePorNombre(String nombreClase) {
+        Clase clase = iControllerConsultaClases.obtenerClasePorNombre(nombreClase);
+
+        DtClase dtClase = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
+                clase.getHora().toString(), clase.getUrl());
+        return dtClase;
     }
 
     @WebMethod
-    public Clase[] obtenerClasesPorActividad(ActividadDeportiva actividad) {
-        return iControllerConsultaClases.obtenerClasesPorActividad(actividad).toArray(new Clase[0]);
+    public DtClase[] obtenerClasesPorActividad(ActividadDeportiva actividad) {
+        List<Clase> listClases = iControllerConsultaClases.obtenerClasesPorActividad(actividad);
+        int it = 0;
+        DtClase[] clasesTR = new DtClase[listClases.size()];
+        for (Clase clase : listClases) {
+            clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
+                    clase.getHora().toString(), clase.getUrl());
+            it = it + 1;
+
+        }
+        return clasesTR;
     }
 
     @WebMethod
-    public InstitucionDeportiva[] getInstituciones() {
-        return manejadorInstitucion.getInstituciones().toArray(new InstitucionDeportiva[0]);
+    public DtInstitucion[] getInstituciones() {
+        List<InstitucionDeportiva> listInstituciones = manejadorInstitucion.getInstituciones();
+
+        int it = 0;
+        DtInstitucion[] institucionesTR = new DtInstitucion[listInstituciones.size()];
+        for (InstitucionDeportiva id : listInstituciones) {
+
+            institucionesTR[it] = new DtInstitucion(id.getNombre(), id.getDescripcion(), id.getUrl());
+
+            it = it + 1;
+        }
+
+        return institucionesTR;
 
     }
 
     @WebMethod
-    public Usuario[] getSociosByClase(Clase clase) {
-        return manejadorUsuarios.getSociosByClase(clase).toArray(new Usuario[0]);
+    public DtUsuario[] getSociosByClase(Clase clase) {
+        List<Usuario> listSocios = manejadorUsuarios.getSociosByClase(clase);
+
+        int it = 0;
+        DtUsuario[] usuariosTR = new DtUsuario[listSocios.size()];
+        for (Usuario u : listSocios) {
+
+            usuariosTR[it] = new DtUsuario(u.getId_usuario(), u.getNickname(), u.getEmail(), u.getNombre(),
+                    u.getApellido(), u.getFechaNacFromatted(), u.getContrasena());
+
+            it = it + 1;
+        }
+
+        return usuariosTR;
+
     }
 
     @WebMethod
-    public ActividadDeportiva[] obtenerRankingDeActividades() {
-        return iControllerRanking.obtenerRankingDeActividades().toArray(new ActividadDeportiva[0]);
+    public DtActividadDeportiva[] obtenerRankingDeActividades() {
+        List<ActividadDeportiva> listActividades = iControllerRanking.obtenerRankingDeActividades();
+
+        int it = 0;
+
+        DtActividadDeportiva[] actividadesTR = new DtActividadDeportiva[listActividades.size()];
+        for (ActividadDeportiva ac : listActividades) {
+            actividadesTR[it] = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(), ac.getDuracion(),
+                    ac.getCosto(), ac.getFechaReg().toString());
+            it = it + 1;
+
+        }
+
+        return actividadesTR;
     }
 
     @WebMethod
-    public Clase[] obtenerRankingDeClases() {
-        return iControllerRanking.obtenerRankingDeClases().toArray(new Clase[0]);
+    public DtClase[] obtenerRankingDeClases() {
+        List<Clase> listClases = iControllerRanking.obtenerRankingDeClases();
+
+        int it = 0;
+        DtClase[] clasesTR = new DtClase[listClases.size()];
+        for (Clase clase : listClases) {
+            clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
+                    clase.getHora().toString(), clase.getUrl());
+            it = it + 1;
+
+        }
+
+        return clasesTR;
     }
 
     @WebMethod
