@@ -3,12 +3,11 @@ package logic.ActividadDeportiva.controllers;
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class ControllerModificarActividad implements IControllerModificarActividad {
     private final ManejadorActividad manejadorActividad;
@@ -17,24 +16,21 @@ public class ControllerModificarActividad implements IControllerModificarActivid
     public ControllerModificarActividad() {
         manejadorActividad = new ManejadorActividad();
         emf = Persistence.createEntityManagerFactory("project_pap");
-
     }
 
     public boolean modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto,
-            String img) {
-
+                                      String img) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
 
         try {
             transaction.begin();
 
-            ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class, nombre);
+            ActividadDeportiva actividad = manejadorActividad.obtenerActividadPorNombre( nombre);
 
             if (actividad == null) {
                 return false;
             } else {
-
                 actividad.setDescripcion(nuevaDescripcion);
                 actividad.setDuracion(nuevaDuracion);
                 actividad.setCosto(nuevoCosto);
@@ -57,7 +53,6 @@ public class ControllerModificarActividad implements IControllerModificarActivid
         } finally {
             entityManager.close();
         }
-
     }
 
     public List<ActividadDeportiva> getActividades() {
@@ -65,6 +60,11 @@ public class ControllerModificarActividad implements IControllerModificarActivid
     }
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombre) {
-        return manejadorActividad.obtenerActividadPorNombre(nombre);
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            return manejadorActividad.obtenerActividadPorNombre( nombre);
+        } finally {
+            entityManager.close();
+        }
     }
 }

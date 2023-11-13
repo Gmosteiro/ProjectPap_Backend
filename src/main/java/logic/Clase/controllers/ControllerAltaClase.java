@@ -27,7 +27,6 @@ public class ControllerAltaClase implements IControllerAltaClase {
         manejadorActividades = new ManejadorActividad();
         manejadorInstitucion = new ManejadorInstitucion();
         emf = Persistence.createEntityManagerFactory("project_pap");
-
     }
 
     @Override
@@ -38,7 +37,7 @@ public class ControllerAltaClase implements IControllerAltaClase {
 
         try {
             transaction.begin();
-            if (!validateClassData(nombre, "Clase")) {
+            if (!validateClassData(nombre)) {
                 transaction.rollback();
                 return;
             }
@@ -66,11 +65,11 @@ public class ControllerAltaClase implements IControllerAltaClase {
         }
     }
 
-    private boolean validateClassData(String nombre, String queryValue) {
+    private boolean validateClassData(String nombre) {
         EntityManager entityManager = emf.createEntityManager();
         try {
             List<Clase> listaClases = entityManager.createQuery(
-                    "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
+                    "SELECT c FROM Clase c WHERE c.nombre = :nombre",
                     Clase.class)
                     .setParameter("nombre", nombre)
                     .getResultList();
@@ -91,6 +90,8 @@ public class ControllerAltaClase implements IControllerAltaClase {
         } catch (Exception e) {
             System.out.println("Catch " + e);
             return false;
+        } finally {
+            entityManager.close();
         }
     }
 
@@ -100,18 +101,4 @@ public class ControllerAltaClase implements IControllerAltaClase {
         return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
                 : fullErrorMessage;
     }
-} // EntityManager entityManager = emf.createEntityManager();
-  // EntityTransaction transaction = entityManager.getTransaction();
-  // }try {
-  // transaction.begin();
-  // entityManager.persist(clase);
-  // transaction.commit();
-  // } catch (Exception e) {
-  // if (transaction != null && transaction.isActive()) {
-  // transaction.rollback();
-  // }
-  // System.out.println("Catch agregarClase: " + e);
-  // e.printStackTrace();
-  // } finally {
-  // entityManager.close();
-  // }
+}

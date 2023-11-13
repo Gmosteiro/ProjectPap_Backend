@@ -5,6 +5,8 @@ import logic.Clase.Clase;
 import logic.Clase.ManejadorClases;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
 
@@ -19,8 +21,10 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
     }
 
     public List<ActividadDeportiva> obtenerActividadesPorInstitucion(String nombreInstitucion) {
+        EntityTransaction transaction = entityManager.getTransaction();
+
         try {
-            entityManager.getTransaction().begin();
+            transaction.begin();
 
             List<ActividadDeportiva> actividades = entityManager.createQuery(
                     "SELECT a FROM ActividadDeportiva a WHERE a.institucion.nombre = :nombreInstitucion",
@@ -28,10 +32,12 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
                     .setParameter("nombreInstitucion", nombreInstitucion)
                     .getResultList();
 
-            entityManager.getTransaction().commit();
+            transaction.commit();
             return actividades;
         } catch (Exception e) {
-            entityManager.getTransaction().rollback();
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
             System.out.println("Catch obtenerActividadesPorInstitucion: " + e);
             return null;
         } finally {
@@ -40,15 +46,19 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
     }
 
     public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
+        EntityTransaction transaction = entityManager.getTransaction();
+
         try {
-            entityManager.getTransaction().begin();
+            transaction.begin();
 
             List<Clase> clases = actividad.getClases();
 
-            entityManager.getTransaction().commit();
+            transaction.commit();
             return clases;
         } catch (Exception e) {
-            entityManager.getTransaction().rollback();
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
             System.out.println("Error " + e);
             return null;
         } finally {

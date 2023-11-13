@@ -21,7 +21,6 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
         manejadorInstitucion = new ManejadorInstitucion();
         manejadorActividad = new ManejadorActividad();
         manejadorClases = new ManejadorClases();
-
     }
 
     @Override
@@ -29,14 +28,9 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
         try {
             List<InstitucionDeportiva> instituciones = manejadorInstitucion.getInstituciones();
             return instituciones;
-
         } catch (Exception errorException) {
-            System.out.println("Catch getInstituciones: " + errorException);
-            JOptionPane.showMessageDialog(null, extractErrorMessage(errorException.getMessage()), "Error",
-                    JOptionPane.ERROR_MESSAGE);
-
+            handleException("getInstituciones", errorException);
             return null;
-
         }
     }
 
@@ -45,27 +39,31 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
         try {
             List<ActividadDeportiva> actividades = manejadorActividad.getActividades();
             return actividades;
-
         } catch (Exception errorException) {
-            System.out.println("Catch getActividades: " + errorException);
-            String errorMessage = extractErrorMessage(errorException.getMessage());
-            JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
-
+            handleException("getActividades", errorException);
             return new ArrayList<>();
-
         }
+    }
+
+    @Override
+    public List<Clase> getClasesByActividad(String actividad) {
+        try {
+            List<Clase> clases = manejadorClases.getClasesByActividad(actividad);
+            return clases;
+        } catch (Exception errorException) {
+            handleException("getClasesByActividad", errorException);
+            return new ArrayList<>();
+        }
+    }
+
+    private void handleException(String methodName, Exception exception) {
+        System.out.println("Catch " + methodName + ": " + exception);
+        JOptionPane.showMessageDialog(null, extractErrorMessage(exception.getMessage()), "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private String extractErrorMessage(String fullErrorMessage) {
         int startIndex = fullErrorMessage.indexOf(":") + 1;
-
         return startIndex > 0 && startIndex < fullErrorMessage.length() ? fullErrorMessage.substring(startIndex).trim()
                 : fullErrorMessage;
     }
-
-    public List<Clase> getClasesByActividad(String actividad) {
-        List<Clase> clases = manejadorClases.getClasesByActividad(actividad);
-        return clases;
-    }
-
 }
