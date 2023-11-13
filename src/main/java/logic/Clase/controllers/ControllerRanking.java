@@ -2,24 +2,30 @@ package logic.Clase.controllers;
 
 import java.util.List;
 
-import DataBase.DbManager;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import javax.persistence.Persistence;
+
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Clase.Clase;
 
 public class ControllerRanking implements IControllerRanking {
 
-    private DbManager controllerBD;
+    private EntityManagerFactory emf;
 
     public ControllerRanking() {
-        controllerBD = DbManager.getInstance();
+        emf = Persistence.createEntityManagerFactory("project_pap");
+
     }
 
     @Override
     public List<ActividadDeportiva> obtenerRankingDeActividades() {
-        try {
-            controllerBD.getEntityManager();
+        EntityManager entityManager = emf.createEntityManager();
 
-            List<ActividadDeportiva> resultados = controllerBD.getEntityManager().createQuery(
+        try {
+
+            List<ActividadDeportiva> resultados = entityManager.createQuery(
                     "SELECT a " +
                             "FROM ActividadDeportiva a " +
                             "LEFT JOIN a.Clases ac " +
@@ -27,32 +33,45 @@ public class ControllerRanking implements IControllerRanking {
                             "ORDER BY COUNT(ac) DESC",
                     ActividadDeportiva.class).getResultList();
 
-            controllerBD.closeEntityManager();
             return resultados;
+
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+
+            System.out.println("Catch obtenerRankingDeActividades: " + e);
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
+
     }
 
     @Override
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
+
+        EntityManager entityManager = emf.createEntityManager();
+
         try {
 
-            ActividadDeportiva actividad = controllerBD.getEntityManager().find(ActividadDeportiva.class,
+            ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class,
                     nombreActividad);
-
-            controllerBD.closeEntityManager();
 
             return actividad;
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+
+            System.out.println("Catch obtenerActividadPorNombre: " + e);
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
+
     }
 
     @Override
     public List<Clase> obtenerRankingDeClases() {
+
+        EntityManager entityManager = emf.createEntityManager();
 
         try {
 
@@ -62,16 +81,19 @@ public class ControllerRanking implements IControllerRanking {
                     "GROUP BY c.nombre " +
                     "ORDER BY COUNT(r.id) DESC";
 
-            List<Clase> resultados = controllerBD.getEntityManager().createQuery(query, Clase.class)
+            List<Clase> resultados = entityManager.createQuery(query, Clase.class)
                     .getResultList();
-
-            controllerBD.closeEntityManager();
 
             return resultados;
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+
+            System.out.println("Catch obtenerRankingDeClases: " + e);
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
+
     }
 
 }
