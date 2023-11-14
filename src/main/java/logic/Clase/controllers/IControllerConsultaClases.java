@@ -12,4 +12,5 @@ public interface IControllerConsultaClases {
 
     Clase obtenerClasePorNombre(String nombreClase);
 
+    void closeEntityManagerFactory();
 }

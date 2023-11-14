@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class ControllerModificarActividad implements IControllerModificarActividad {
@@ -15,49 +14,41 @@ public class ControllerModificarActividad implements IControllerModificarActivid
 
     public ControllerModificarActividad() {
         manejadorActividad = new ManejadorActividad();
-
     }
 
-    public boolean modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto,
-            String img) {
+   
+    public boolean modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto,String img) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-
-        EntityManager entityManager = emf.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
-
+        EntityManager em = emf.createEntityManager();
+    
         try {
-            transaction.begin();
-
-            ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class, nombre);
-
-            if (actividad == null) {
-                return false;
-            } else {
-
+            em.getTransaction().begin();
+    
+            ActividadDeportiva actividad = em.find(ActividadDeportiva.class, nombre);
+            if (actividad != null) {
                 actividad.setDescripcion(nuevaDescripcion);
                 actividad.setDuracion(nuevaDuracion);
                 actividad.setCosto(nuevoCosto);
                 actividad.setImg(img);
-
-                entityManager.merge(actividad);
-
-                transaction.commit();
-
-                return true;
+                em.merge(actividad); // Actualizar la entidad
+    
+                em.getTransaction().commit();
+                System.out.println("Actividad modificada exitosamente.");
+                return true; // Indicar que la modificación fue exitosa
+            } else {
+                // Manejar la actividad no encontrada
+                System.out.println("No se encontró la actividad.");
+                return false; // Indicar que la modificación no fue exitosa
             }
-
         } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-                transaction.rollback();
-            }
-            System.out.println("Catch modificarActividad: " + e);
+            // Manejar excepciones
             e.printStackTrace();
-            return false;
+            return false; // Indicar que la modificación no fue exitosa debido a una excepción
         } finally {
-            entityManager.close();
+            em.close();
             emf.close();
+            System.out.println("Transacción finalizada.");
         }
-
     }
 
     public List<ActividadDeportiva> getActividades() {

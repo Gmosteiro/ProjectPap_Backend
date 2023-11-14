@@ -11,43 +11,36 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
 public class ControllerAltaActividad implements IControllerAltaActividad {
 
-    private ManejadorActividad manejadorActividad;
-    private ManejadorInstitucion manejadorInstitucion;
+    private final ManejadorActividad manejadorActividad;
 
     public ControllerAltaActividad() {
         manejadorActividad = new ManejadorActividad();
-        manejadorInstitucion = new ManejadorInstitucion();
-
     }
 
     @Override
-    public boolean altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg,
-            String img,
+    public boolean altaActividad(String nombre, String descripcion, int duracion, float costo, LocalDate fechaReg, String img,
             String nombrei) {
         try {
 
-            if (!validateActivityData(nombre)) {
-                return false;
-            } else {
-                ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg,
-                        img);
-
-                manejadorInstitucion.agregarActividadI(actividad, nombrei);
-
+            if (validateActivityData(nombre)) {
+                ActividadDeportiva actividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg, img);
+                ManejadorInstitucion manejadorI = new ManejadorInstitucion();
+                manejadorI.agregarActividadI(actividad, nombrei);
+                System.out.println("Actividad Creada");
                 JOptionPane.showMessageDialog(
-                        null,
-                        "Actividad Creada!",
-                        "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
-
-                return true;
+                        null, // Parent component (null for default)
+                        "Actividad Creada!", // Message text
+                        "Success", // Dialog title
+                        JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
+                );
+            } else {
+                // Manejar el caso de actividad duplicada
             }
         } catch (Exception errorException) {
             System.out.println("Catch addActividad: " + errorException);
@@ -55,6 +48,7 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
             JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+        return false;
     }
 
     @Override
@@ -65,56 +59,47 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
             actividad.setDuracion(nuevaDuracion);
             actividad.setCosto(nuevoCosto);
             manejadorActividad.actualizarActividad(actividad);
+        } else {
+            // Manejar la actividad no encontrada
         }
-
     }
 
     @Override
     public void cancelarAltaActividad(String nombre) {
         ActividadDeportiva actividad = manejadorActividad.obtenerActividadPorNombre(nombre);
-        if (actividad == null) {
-            return;
-        } else {
+        if (actividad != null) {
             manejadorActividad.eliminarActividad(actividad);
+        } else {
+            // Manejar la actividad no encontrada
         }
     }
 
     private boolean validateActivityData(String nombre) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-
-        EntityManager entityManager = emf.createEntityManager();
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+        EntityManager entityManager = emFactory.createEntityManager();
 
         try {
-
             TypedQuery<ActividadDeportiva> query = entityManager.createQuery(
                     "SELECT a FROM ActividadDeportiva a WHERE a.nombre = :nombre",
                     ActividadDeportiva.class);
             query.setParameter("nombre", nombre);
 
             if (query.getResultList().isEmpty()) {
-
                 return true;
             } else {
-
+                // Manejar actividad duplicada
                 return false;
             }
-
-        } catch (Exception e) {
-
-            System.out.println("Catch validateActivityData: " + e);
-            e.printStackTrace();
-            return false;
         } finally {
             entityManager.close();
-            emf.close();
+            emFactory.close();
         }
-
     }
 
     @Override
     public List<InstitucionDeportiva> getInstituciones() {
         try {
-            List<InstitucionDeportiva> instituciones = manejadorInstitucion.getInstituciones();
+            List<InstitucionDeportiva> instituciones = ManejadorInstitucion.getInstituciones();
             return instituciones;
 
         } catch (Exception errorException) {

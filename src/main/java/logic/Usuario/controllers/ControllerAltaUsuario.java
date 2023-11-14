@@ -4,22 +4,13 @@ import logic.Institucion.InstitucionDeportiva;
 import logic.Usuario.*;
 
 import java.time.LocalDate;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
 public class ControllerAltaUsuario implements IControllerAltaUsuario {
-
-    private ManejadorUsuarios manejadorUsuarios;
-
-    public ControllerAltaUsuario() {
-
-        manejadorUsuarios = new ManejadorUsuarios();
-    }
 
     @Override
     public boolean addProfesor(String nickname, String nombre, String apellido, String email, LocalDate fechaNac,
@@ -36,7 +27,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             Profesor nuevoProfesor = new Profesor(nickname, nombre, apellido, email, fechaNac, institucion, descripcion,
                     biografia, sitioWeb, contrasena, img);
 
-            manejadorUsuarios.agregarUsuario(nuevoProfesor);
+            ManejadorUsuarios.agregarUsuario(nuevoProfesor);
 
             System.out.println("Profesor Creado");
             JOptionPane.showMessageDialog(
@@ -69,7 +60,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
             Socio nuevoSocio = new Socio(nickname, nombre, apellido, email, fechaNac, contrasena, img);
 
-            manejadorUsuarios.agregarUsuario(nuevoSocio);
+            ManejadorUsuarios.agregarUsuario(nuevoSocio);
 
             System.out.println("Socio Creado");
             JOptionPane.showMessageDialog(
@@ -90,23 +81,21 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
     }
 
     private String validateUserData(String nickname, String email, String queryValue) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-
-        EntityManager entityManager = emf.createEntityManager();
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+        EntityManager entityManager = emFactory.createEntityManager();
 
         try {
+            TypedQuery<Usuario> query = entityManager.createQuery(
+                    "SELECT u FROM " + queryValue + " u WHERE u.nickname = :nickname OR u.email = :email",
+                    Usuario.class);
+            query.setParameter("nickname", nickname);
+            query.setParameter("email", email);
 
-            List<Usuario> listaUsuarios = entityManager
-                    .createQuery(
-                            "SELECT u FROM " + queryValue + " u WHERE u.nickname = :nickname OR u.email = :email",
-                            Usuario.class)
-                    .setParameter("nickname", nickname).setParameter("email", email).getResultList();
-
-            if (listaUsuarios.isEmpty()) {// Si está vacío, no existe un usuario con esos datos
+            if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
                 return "";
             } else {
 
-                Usuario user = listaUsuarios.get(0);
+                Usuario user = query.getSingleResult();
 
                 String queryEmail = user.getEmail();
                 String queryNickname = user.getNickname();
@@ -120,17 +109,10 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
 
                 return errorMessage;
             }
-
-        } catch (Exception e) {
-
-            System.out.println("Catch validateUserData: " + e);
-            e.printStackTrace();
-            return null;
         } finally {
             entityManager.close();
-            emf.close();
+            emFactory.close();
         }
-
     }
 
     // Función para extraer la descripción del error de la cadena completa

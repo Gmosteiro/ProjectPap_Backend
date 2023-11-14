@@ -32,7 +32,6 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
      */
     public ConsultaUsuario() {
         initComponents();
-
         Fabrica factory = new Fabrica();
         IControllerConsultaUsuario controllerConsultaUsuario = factory.getControladorConsultaUsuario();
         List<Usuario> resultados = controllerConsultaUsuario.getUsuarios();

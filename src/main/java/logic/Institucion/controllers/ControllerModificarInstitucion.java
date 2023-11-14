@@ -1,55 +1,32 @@
 package logic.Institucion.controllers;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 import logic.Institucion.InstitucionDeportiva;
+import logic.Institucion.ManejadorInstitucion;
 
 public class ControllerModificarInstitucion implements IControllerModificarInstitucion {
+    private final ManejadorInstitucion manejadorInstitucion;
 
     public ControllerModificarInstitucion() {
-
+        manejadorInstitucion = new ManejadorInstitucion();
     }
 
     public void modificarInstitucion(String nombre, String nuevaDescripcion, String nuevaURL) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+        InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombre);
 
-        EntityManager entityManager = emf.createEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-            InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
-
-            if (institucion == null) {
-                return;
-            } else {
-                institucion.setDescripcion(nuevaDescripcion);
-                institucion.setUrl(nuevaURL);
-                entityManager.merge(institucion);
-                entityManager.getTransaction().commit();
-
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Institucion Actualizada!",
-                        "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (Exception e) {
-            if (entityManager.getTransaction() != null && entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-
-            e.printStackTrace();
-
+        if (institucion != null) {
+            institucion.setDescripcion(nuevaDescripcion);
+            institucion.setUrl(nuevaURL);
+            manejadorInstitucion.actualizarInstitucion(institucion);
             JOptionPane.showMessageDialog(
-                    null,
-                    "Error al modificar la institución",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        } finally {
-            entityManager.close();
-            emf.close();
+                        null, // Parent component (null for default)
+                        "Institucion Actualizada!", // Message text
+                        "Success", // Dialog title
+                        JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
+                );
+
+        } else {
+            // Manejar la institución no encontrada
         }
     }
 }

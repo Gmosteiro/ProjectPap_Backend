@@ -2,29 +2,17 @@ package logic.Institucion.controllers;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-
-import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.Institucion.InstitucionDeportiva;
+import logic.Institucion.ManejadorInstitucion;
 
 public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstitucionDeportiva {
 
-    public ControllerAltaInstitucionDeportiva() {
-
-    }
-
     @Override
     public void addInstitucionDeportiva(String nombre, String descripcion, String url) {
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emf.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
-
         try {
-            transaction.begin();
 
             if (!validateInstData(nombre, "InstitucionDeportiva")) {
                 return;
@@ -32,42 +20,37 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
 
             InstitucionDeportiva nuevaInstitucion = new InstitucionDeportiva(nombre, descripcion, url);
 
-            entityManager.persist(nuevaInstitucion);
+            ManejadorInstitucion manejador = new ManejadorInstitucion();
+
+            manejador.agregarInstitucion(nuevaInstitucion);
 
             System.out.println("Institucion Creada");
 
             JOptionPane.showMessageDialog(null, "Institucion Creada!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-                transaction.rollback();
-            }
-            System.out.println("Catch agregarClaseA: " + e);
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-            emf.close();
+        } catch (Exception errorException) {
+            System.out.println("AddInstitucionDeportiva catch: " + errorException);
+
         }
 
     }
 
     private boolean validateInstData(String nombre, String queryValue) {
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-        EntityManager entityManager = emf.createEntityManager();
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("project_pap");
+        EntityManager entityManager = emFactory.createEntityManager();
 
         try {
-
             TypedQuery<InstitucionDeportiva> query = entityManager.createQuery(
                     "SELECT c FROM " + queryValue + " c WHERE c.nombre = :nombre",
                     InstitucionDeportiva.class);
             query.setParameter("nombre", nombre);
 
-            if (query.getResultList().isEmpty()) {
+            if (query.getResultList().isEmpty()) {// Si está vacío, no existe un usuario con esos datos
                 return true;
             } else {
+
                 InstitucionDeportiva instituto = query.getSingleResult();
+
                 String queryNombre = instituto.getNombre();
                 String errorMessage = "";
 
@@ -77,14 +60,9 @@ public class ControllerAltaInstitucionDeportiva implements IControllerAltaInstit
                 JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
-        } catch (Exception e) {
-
-            e.printStackTrace();
-            return false;
         } finally {
             entityManager.close();
-            emf.close();
+            emFactory.close();
         }
     }
-
 }

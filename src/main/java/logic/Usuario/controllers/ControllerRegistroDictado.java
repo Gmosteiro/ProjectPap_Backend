@@ -12,16 +12,6 @@ import logic.Usuario.Socio;
 
 public class ControllerRegistroDictado implements IControllerRegistroDictado {
 
-    private ManejadorUsuarios manejadorUsuarios;
-
-    private ManejadorClases manejadorClases;
-
-    public ControllerRegistroDictado() {
-        manejadorUsuarios = new ManejadorUsuarios();
-        manejadorClases = new ManejadorClases();
-
-    }
-
     public void addRegistroDictado(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
         try {
 
@@ -29,13 +19,13 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
                 return;
             }
 
-            Socio socio = manejadorUsuarios.getSocio(nicknameSocio);
+            Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
 
-            Clase clase = manejadorClases.getClaseByNombre(nombreClase);
+            Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
 
             Registro newRegistro = new Registro(fechaReg, socio, clase);
 
-            manejadorUsuarios.agregarRegistro(newRegistro);
+            ManejadorUsuarios.agregarRegistro(newRegistro);
 
         } catch (Exception errorException) {
             JOptionPane.showMessageDialog(null, extractErrorMessage(errorException.getMessage()), "Error",
@@ -49,13 +39,13 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
     public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, LocalDate fechaReg) {
         try {
 
-            Socio socio = manejadorUsuarios.getSocio(nicknameSocio);
+            Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
 
-            Clase clase = manejadorClases.getClaseByNombre(nombreClase);
+            Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
 
             Registro newRegistro = new Registro(fechaReg, socio, clase);
 
-            return manejadorUsuarios.agregarRegistroWeb(newRegistro);
+            return ManejadorUsuarios.agregarRegistroWeb(newRegistro);
 
         } catch (Exception errorException) {
 
@@ -83,8 +73,8 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
 
         }
 
-        Registro registroExistente = manejadorUsuarios
-                .getRegistroBySocio(manejadorUsuarios.getSocio(nicknameSocio));
+        Registro registroExistente = ManejadorUsuarios
+                .getRegistroBySocio(ManejadorUsuarios.getSocio(nicknameSocio));
 
         // registroExistente.getSocio().getNickname().length() != 0
         if (registroExistente != null && registroExistente.getClase().getNombre() == nombreClase) {
@@ -110,12 +100,16 @@ public class ControllerRegistroDictado implements IControllerRegistroDictado {
 
             }
 
-            Socio socioEncontrado = manejadorUsuarios.getSocio(nicknameSocio);
+            Socio socioEncontrado = ManejadorUsuarios.getSocio(nicknameSocio);
+            System.out.println("socioEncontrado: " + socioEncontrado.getNickname());
 
-            Clase claseEncontrada = manejadorClases.getClaseByNombre(nombreClase);
+            Clase claseEncontrada = ManejadorClases.getClaseByNombre(nombreClase);
+            System.out.println("claseEncontrada: " + claseEncontrada.getNombre());
 
-            Boolean existeRegistro = manejadorUsuarios.existeRegistroBySocioYClase(socioEncontrado, claseEncontrada);
+            Boolean existeRegistro = ManejadorUsuarios.existeRegistroBySocioYClase(socioEncontrado, claseEncontrada);
+            System.out.println("Registro Existente: " + existeRegistro);
 
+            // registroExistente.getSocio().getNickname().length() != 0
             return existeRegistro;
         } catch (Exception e) {
             System.out.println("Catch validateDataWeb " + e);

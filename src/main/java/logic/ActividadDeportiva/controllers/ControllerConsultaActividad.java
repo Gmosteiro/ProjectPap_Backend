@@ -1,11 +1,11 @@
 package logic.ActividadDeportiva.controllers;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import logic.ActividadDeportiva.ActividadDeportiva;
 import logic.ActividadDeportiva.ManejadorActividad;
@@ -16,127 +16,92 @@ import logic.Usuario.Registro;
 
 public class ControllerConsultaActividad implements IControllerConsultaActividad {
 
-    ;
-    private ManejadorActividad manejadorActividad;
-    private ManejadorUsuarios manejadorUsuarios;
+    private EntityManagerFactory emf;
 
     public ControllerConsultaActividad() {
-        manejadorUsuarios = new ManejadorUsuarios();
-        manejadorActividad = new ManejadorActividad();
-
+        emf = Persistence.createEntityManagerFactory("project_pap");
     }
 
     public List<ActividadDeportiva> obtenerActividadesPorInstitucion(String nombreInstitucion) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-
-        EntityManager entityManager = emf.createEntityManager();
-
+        EntityManager em = emf.createEntityManager();
         try {
+            em.getTransaction().begin();
 
-            List<ActividadDeportiva> actividades = entityManager.createQuery(
+            Query query = em.createQuery(
                     "SELECT a FROM ActividadDeportiva a WHERE a.institucion.nombre = :nombreInstitucion",
-                    ActividadDeportiva.class)
-                    .setParameter("nombreInstitucion", nombreInstitucion)
-                    .getResultList();
+                    ActividadDeportiva.class);
+            query.setParameter("nombreInstitucion", nombreInstitucion);
+
+            final List<ActividadDeportiva> actividades = query.getResultList();
+
+            em.getTransaction().commit();
 
             return actividades;
-
-        } catch (Exception e) {
-
-            System.out.println("Catch obtenerActividadesPorInstitucion: " + e);
-            e.printStackTrace();
-            return null;
         } finally {
-            entityManager.close();
-            emf.close();
+            em.close();
         }
-
     }
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-
-        EntityManager entityManager = emf.createEntityManager();
-
+        EntityManager em = emf.createEntityManager();
         try {
+            em.getTransaction().begin();
 
-            ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class,
-                    nombreActividad);
+            ActividadDeportiva actividad = em.find(ActividadDeportiva.class, nombreActividad);
+
+            em.getTransaction().commit();
 
             return actividad;
-
-        } catch (Exception e) {
-
-            System.out.println("Catch obtenerActividadPorNombre: " + e);
-            e.printStackTrace();
-            return null;
         } finally {
-            entityManager.close();
-            emf.close();
+            em.close();
         }
-
     }
 
     public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-
-        EntityManager entityManager = emf.createEntityManager();
-
+        EntityManager em = emf.createEntityManager();
         try {
 
-            List<Clase> clases = actividad.getClases();
+            List<Clase> clases = actividad.getClases(); // Obtén las clases asociadas a la actividad.
 
             return clases;
-
-        } catch (Exception e) {
-
-            System.out.println("Catch obtenerClasesPorActividad: " + e);
-            e.printStackTrace();
-            return null;
         } finally {
-            entityManager.close();
-            emf.close();
+            em.close();
         }
-
     }
 
     public List<Registro> obtenerRegistrosPorClase(Clase clase) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-
-        EntityManager entityManager = emf.createEntityManager();
-
+        EntityManager em = emf.createEntityManager();
         try {
+            em.getTransaction().begin();
 
-            List<Registro> registros = entityManager.createQuery(
+            Query query = em.createQuery(
                     "SELECT r FROM Registro r WHERE r.clase = :clase",
-                    Registro.class)
-                    .setParameter("clase", clase)
-                    .getResultList();
+                    Registro.class);
+            query.setParameter("clase", clase);
+
+            final List<Registro> registros = query.getResultList();
+
+            em.getTransaction().commit();
 
             return registros;
-
-        } catch (Exception e) {
-
-            System.out.println("Catch obtenerRegistrosPorClase: " + e);
-            e.printStackTrace();
-            return null;
         } finally {
-            entityManager.close();
-            emf.close();
+            em.close();
         }
-
     }
 
     public List<ActividadDeportiva> getActividadesByProfe(String profesor) {
         try {
 
-            Profesor profesorObtenido = manejadorUsuarios.getProfesor(profesor);
+            Profesor profesorObtenido = ManejadorUsuarios.getProfesor(profesor);
 
-            return manejadorActividad.getActividadesByProfe(profesorObtenido);
+            return ManejadorActividad.getActividadesByProfe(profesorObtenido);
         } catch (Exception e) {
             System.out.println("Catch getActividadesByProfe CCA " + e);
             return null;
         }
     };
 
+    public void closeEntityManagerFactory() {
+        emf.close();
+    }
 }

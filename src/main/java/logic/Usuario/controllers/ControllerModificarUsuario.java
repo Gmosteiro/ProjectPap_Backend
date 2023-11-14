@@ -1,68 +1,49 @@
 package logic.Usuario.controllers;
 
 import java.time.LocalDate;
-
 import logic.Usuario.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 public class ControllerModificarUsuario implements IControllerModificarUsuario {
-
-    private ManejadorUsuarios manejadorUsuarios;
-
-    public ControllerModificarUsuario() {
-
-        manejadorUsuarios = new ManejadorUsuarios();
-
-    }
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+    EntityManager em = emf.createEntityManager();
 
     public void modificarUsuario(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
             String img) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-
-        EntityManager entityManager = emf.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
+        EntityManager em = emf.createEntityManager();
 
         try {
-
-            Usuario usuario = manejadorUsuarios.getUser(nickname);
+            em.getTransaction().begin();
+            Usuario usuario = ManejadorUsuarios.getUser(nickname);
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
-
-                    transaction.begin();
-
-                    Profesor profesor = entityManager.find(Profesor.class, usuario.getId_usuario());
+                    Profesor profesor = em.find(Profesor.class, usuario.getId_usuario());
                     profesor.setNombre(nuevoNombre);
                     profesor.setApellido(nuevoApellido);
                     profesor.setFechaNac(nuevafecha);
                     profesor.setImg(img);
-                    entityManager.merge(profesor);
-
-                    transaction.commit();
-
+                    em.merge(profesor);
+                    em.getTransaction().commit();
                 } else if (usuario instanceof Socio) {
-
-                    transaction.begin();
-
-                    Socio socio = entityManager.find(Socio.class, usuario.getId_usuario());
+                    Socio socio = em.find(Socio.class, usuario.getId_usuario());
                     socio.setNombre(nuevoNombre);
                     socio.setApellido(nuevoApellido);
                     socio.setFechaNac(nuevafecha);
                     socio.setImg(img);
-                    entityManager.merge(socio);
-                    transaction.commit();
+                    em.merge(socio);
+                    em.getTransaction().commit();
 
                 }
-
                 System.out.println("Usuario modificado exitosamente.");
                 JOptionPane.showMessageDialog(null, "Usuario Actualizado!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
-
+                // Manejar el usuario no encontrado
                 System.out.println("No se encontró el usuario.");
 
                 JOptionPane.showMessageDialog(
@@ -72,76 +53,54 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
                         JOptionPane.INFORMATION_MESSAGE // Message type merecuetengue dijo el juan
                 );
             }
-
         } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-                transaction.rollback();
-            }
             System.out.println("Catch modificarUsuario: " + e);
             e.printStackTrace();
         } finally {
-            entityManager.close();
+            em.close();
             emf.close();
         }
-
     }
 
     public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
             String img) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
-
-        EntityManager entityManager = emf.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
-
         try {
-
-            Usuario usuario = manejadorUsuarios.getUser(nickname);
+            em.getTransaction().begin();
+            Usuario usuario = ManejadorUsuarios.getUser(nickname);
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
-                    transaction.begin();
-
-                    Profesor profesor = entityManager.find(Profesor.class, usuario.getId_usuario());
+                    Profesor profesor = em.find(Profesor.class, usuario.getId_usuario());
                     profesor.setNombre(nuevoNombre);
                     profesor.setApellido(nuevoApellido);
                     profesor.setFechaNac(nuevafecha);
                     profesor.setImg(img);
-                    entityManager.merge(profesor);
-                    transaction.commit();
-
+                    em.merge(profesor);
+                    em.getTransaction().commit();
                 } else if (usuario instanceof Socio) {
-
-                    transaction.begin();
-
-                    Socio socio = entityManager.find(Socio.class, usuario.getId_usuario());
+                    Socio socio = em.find(Socio.class, usuario.getId_usuario());
                     socio.setNombre(nuevoNombre);
                     socio.setApellido(nuevoApellido);
                     socio.setFechaNac(nuevafecha);
                     socio.setImg(img);
-                    entityManager.merge(socio);
-                    transaction.commit();
+                    em.merge(socio);
+                    em.getTransaction().commit();
 
                 }
-
+                em.close();
+                emf.close();
                 System.out.println("Usuario modificado exitosamente.");
                 return true;
             } else {
-
+                // Manejar el usuario no encontrado
+                em.close();
+                emf.close();
                 System.out.println("No se encontró el usuario.");
 
                 return false;
             }
-
         } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-                transaction.rollback();
-            }
-            System.out.println("Catch modificarUsuarioWeb: " + e);
-            e.printStackTrace();
+            System.out.println("Catch modificarUsuario: " + e);
             return false;
-        } finally {
-            entityManager.close();
-            emf.close();
         }
-
     }
 }

@@ -10,9 +10,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import logic.Institucion.InstitucionDeportiva;
 import logic.Usuario.Profesor;
 import logic.Usuario.Registro;
 
@@ -33,13 +35,14 @@ public class Clase {
 
     @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Registro> registros;
+    
+    
 
     public Clase() {
 
     }
 
-    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg, Profesor profesor,
-            String img) {
+    public Clase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg, Profesor profesor,String img) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.hora = hora;
@@ -47,7 +50,7 @@ public class Clase {
         this.fechaReg = fechaReg;
         this.img = img;
         this.profesor = profesor;
-
+       
     }
 
     public Profesor getProfesor() {
@@ -118,9 +121,9 @@ public class Clase {
         String formattedDate = fecha.atStartOfDay().format(formatter);
         return formattedDate;
     }
-
+    
     public void setImg(String img) {
-        this.img = img;
+    this.img = img;
     }
 
     public String getImg() {

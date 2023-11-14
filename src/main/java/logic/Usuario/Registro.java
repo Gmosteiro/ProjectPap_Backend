@@ -25,7 +25,7 @@ public class Registro {
     private Socio socio;
 
     @ManyToOne
-    @JoinColumn(name = "nombre", referencedColumnName = "nombre")
+    @JoinColumn(name = "clase_id", referencedColumnName = "nombre")
     private Clase clase;
 
     private LocalDate fechaReg;
