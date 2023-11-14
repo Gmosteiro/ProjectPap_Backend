@@ -62,18 +62,20 @@ public class ManejadorClases {
     }
 
     public static List<Clase> getClasesByActividad(String nombreActividad) {
-        try {
-            List<Clase> listClase;
-            listClase = entityManager.createQuery(
-                    "SELECT c FROM Clase c WHERE c.ClaseACT = :nombreActividad", Clase.class)
-                    .setParameter("nombreActividad", nombreActividad)
-                    .getResultList();
-            return listClase;
-        } catch (Exception e) {
-            System.out.println("Error catch getClasesByActividad " + e);
-            return null;
-        }
+    try {
+        List<Clase> listClase = entityManager.createQuery(
+                "SELECT c FROM Clase c WHERE c.ClaseACT = :nombreActividad", Clase.class)
+                .setParameter("nombreActividad", nombreActividad)
+                .getResultList();
+        return listClase;
+    } catch (Exception e) {
+        // Print the stack trace for detailed error information
+        e.printStackTrace();
+        System.out.println("Error catch getClasesByActividad " + e.getMessage());
+        return null;
     }
+}
+
 
     public static List<Clase> getClasesByNombre(String nombreActividad) {
         try {
