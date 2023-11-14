@@ -154,9 +154,7 @@ public class ControladorPublish {
 
         try {
 
-            ManejadorInstitucion manejadorInstitucion = new ManejadorInstitucion();
-
-            InstitucionDeportiva id = manejadorInstitucion.getInstitucionesByName(nombreInstitucion);
+            InstitucionDeportiva id = ManejadorInstitucion.getInstitucionesByName(nombreInstitucion);
 
             List<ActividadDeportiva> listActividades = id.getActividades();
 
@@ -228,8 +226,7 @@ public class ControladorPublish {
     @WebMethod
     public DtInstitucion getInstitucionesByName(String nombre) {
 
-        ManejadorInstitucion manejadorInstitucion = new ManejadorInstitucion();
-        InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombre);
+        InstitucionDeportiva institucion = ManejadorInstitucion.getInstitucionesByName(nombre);
 
         DtInstitucion dtInstitucion = new DtInstitucion(institucion.getNombre(), institucion.getDescripcion(),
                 institucion.getUrl());
@@ -257,13 +254,19 @@ public class ControladorPublish {
 
     @WebMethod
     public DtClase obtenerClasePorNombre(String nombreClase) {
+        try {
 
-        IControllerConsultaClases iControllerConsultaClases = new Fabrica().getControllerConsultaClases();
-        Clase clase = iControllerConsultaClases.obtenerClasePorNombre(nombreClase);
+            IControllerConsultaClases iControllerConsultaClases = new Fabrica().getControllerConsultaClases();
+            Clase clase = iControllerConsultaClases.obtenerClasePorNombre(nombreClase);
 
-        DtClase dtClase = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                clase.getHora().toString(), clase.getUrl(), clase.getImg());
-        return dtClase;
+            DtClase dtClase = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
+            return dtClase;
+
+        } catch (Exception e) {
+            System.out.println("Catch obtenerClasePorNombre: " + e);
+            return null;
+        }
     }
 
     @WebMethod
@@ -287,9 +290,8 @@ public class ControladorPublish {
 
     @WebMethod
     public DtInstitucion[] getInstituciones() {
-        ManejadorInstitucion manejadorInstitucion = new ManejadorInstitucion();
 
-        List<InstitucionDeportiva> listInstituciones = manejadorInstitucion.getInstituciones();
+        List<InstitucionDeportiva> listInstituciones = ManejadorInstitucion.getInstituciones();
 
         int it = 0;
         DtInstitucion[] institucionesTR = new DtInstitucion[listInstituciones.size()];
@@ -306,8 +308,8 @@ public class ControladorPublish {
 
     @WebMethod
     public DtUsuario[] getSociosByClase(Clase clase) {
-        ManejadorUsuarios manejadorUsuarios = new ManejadorUsuarios();
-        List<Usuario> listSocios = manejadorUsuarios.getSociosByClase(clase);
+
+        List<Usuario> listSocios = ManejadorUsuarios.getSociosByClase(clase);
 
         int it = 0;
         DtUsuario[] usuariosTR = new DtUsuario[listSocios.size()];
@@ -376,17 +378,37 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public Clase getClaseByNombre(String clase) {
-        ManejadorClases manejadorClases = new ManejadorClases();
+    public DtClase getClaseByNombre(String nombreClase) {
+        try {
 
-        return manejadorClases.getClaseByNombre(clase);
+            Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
+
+            DtClase dtClase = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
+
+            return dtClase;
+
+        } catch (Exception e) {
+            System.out.println("Catch getClasesBynombre: " + e);
+            return null;
+        }
     }
 
     @WebMethod
-    public Socio getSocio(String nicknameSocio) {
-        ManejadorUsuarios manejadorUsuarios = new ManejadorUsuarios();
+    public DtUsuario getSocio(String nicknameSocio) {
+        try {
 
-        return manejadorUsuarios.getSocio(nicknameSocio);
+            Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
+
+            DtUsuario user = new DtUsuario(socio.getId_usuario(), socio.getNickname(), socio.getEmail(),
+                    socio.getNombre(),
+                    socio.getApellido(), socio.getFechaNacFromatted(), socio.getContrasena());
+
+            return user;
+        } catch (Exception e) {
+            System.out.println("Catch getSocio: " + e);
+            return null;
+        }
     }
 
 }
