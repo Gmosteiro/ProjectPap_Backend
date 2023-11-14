@@ -13,14 +13,13 @@ import logic.Usuario.Socio;
 
 public class ManejadorClases {
 
-    private EntityManagerFactory emf;
-
     public ManejadorClases() {
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     public void agregarClase(Clase clase) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -35,10 +34,13 @@ public class ManejadorClases {
             e.printStackTrace();
         } finally {
             entityManager.close();
+            emf.close();
         }
     }
 
     public List<Clase> getClasesByProfe(Profesor profesor) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -61,10 +63,13 @@ public class ManejadorClases {
 
         } finally {
             entityManager.close();
+            emf.close();
         }
     }
 
     public List<Clase> getClasesBySocio(Socio socio) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
 
@@ -85,10 +90,13 @@ public class ManejadorClases {
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
     }
 
     public List<Clase> getClasesByActividad(String nombreActividad) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
 
@@ -105,45 +113,47 @@ public class ManejadorClases {
             return listClase;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
+                transaction.rollback();
             }
             System.out.println("Error catch getClasesByActividad " + e);
             return null;
         } finally {
             entityManager.close();
+            emf.close();
 
         }
     }
 
     public List<Clase> getClasesByNombre(String nombreClase) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
+        // EntityTransaction transaction = entityManager.getTransaction();
 
         try {
-            transaction.begin();
+            // transaction.begin();
 
-            TypedQuery<Clase> query = entityManager.createQuery(
-                    "SELECT c FROM Clase c WHERE c.nombre = :nombreClase", Clase.class);
-            query.setParameter("nombreClase", nombreClase);
+            List<Clase> listClase = entityManager.createQuery(
+                    "SELECT c FROM Clase c WHERE c.nombre = :nombreClase", Clase.class)
+                    .setParameter("nombreClase", nombreClase).getResultList();
 
-            List<Clase> listClase = query.getResultList();
-            transaction.commit();
+            // transaction.commit();
 
             return listClase;
         } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
-            }
 
             System.out.println("Error catch getClasesByNombre " + e);
             return null;
         } finally {
             entityManager.close();
+            emf.close();
 
         }
     }
 
     public Clase getClaseByNombre(String nombreClase) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
 
@@ -156,18 +166,21 @@ public class ManejadorClases {
             return clase;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
+                transaction.rollback();
             }
 
             System.out.println("Error catch getClaseByNombre " + e);
             return null;
         } finally {
             entityManager.close();
+            emf.close();
 
         }
     }
 
     public List<Clase> getClases() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
 
@@ -181,12 +194,13 @@ public class ManejadorClases {
             return clases;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
+                transaction.rollback();
             }
             System.out.println("Error catch getClases " + e);
             return null;
         } finally {
             entityManager.close();
+            emf.close();
 
         }
     }

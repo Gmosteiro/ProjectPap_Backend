@@ -1,7 +1,7 @@
 package logic.Clase.controllers;
 
 import logic.Clase.Clase;
-import logic.Institucion.ManejadorInstitucion;
+
 import logic.Usuario.ManejadorUsuarios;
 import logic.Usuario.Profesor;
 
@@ -14,62 +14,55 @@ import javax.swing.JOptionPane;
 import logic.ActividadDeportiva.ManejadorActividad;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
+
 import javax.persistence.Persistence;
 
 public class ControllerAltaClase implements IControllerAltaClase {
     private ManejadorActividad manejadorActividades;
-    private ManejadorInstitucion manejadorInstitucion;
+
     private ManejadorUsuarios manejadorUsuarios;
-    private EntityManagerFactory emf;
 
     public ControllerAltaClase() {
         manejadorActividades = new ManejadorActividad();
-        manejadorInstitucion = new ManejadorInstitucion();
+
         manejadorUsuarios = new ManejadorUsuarios();
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     @Override
     public void addClase(String nombre, LocalDate fecha, LocalTime hora, String url, LocalDate fechaReg,
             String nombreProfesor, String img, String actividad) {
-        EntityManager entityManager = emf.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
 
         try {
-            transaction.begin();
+
             if (!validateClassData(nombre, "Clase")) {
-                transaction.rollback();
+
                 return;
             }
 
             if (nombreProfesor.length() == 0) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar un profesor ", "Error",
                         JOptionPane.ERROR_MESSAGE);
-                transaction.rollback();
+
                 return;
             }
 
             Profesor profesor = manejadorUsuarios.getProfesor(nombreProfesor);
 
             Clase nuevaClase = new Clase(nombre, fecha, hora, url, fechaReg, profesor, img);
+
             manejadorActividades.agregarClaseA(nuevaClase, actividad);
 
-            transaction.commit();
-
         } catch (Exception errorException) {
-            if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
-            }
+
             String errorMessage = extractErrorMessage(errorException.getMessage());
             System.out.println("Catch addClase: " + errorMessage);
-        } finally {
-            entityManager.close();
         }
     }
 
     private boolean validateClassData(String nombre, String queryValue) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         try {
             List<Clase> listaClases = entityManager.createQuery(
@@ -94,6 +87,9 @@ public class ControllerAltaClase implements IControllerAltaClase {
         } catch (Exception e) {
             System.out.println("Catch " + e);
             return false;
+        } finally {
+            entityManager.close();
+            emf.close();
         }
     }
 

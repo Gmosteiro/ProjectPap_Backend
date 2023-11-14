@@ -28,15 +28,12 @@ import logic.Usuario.Socio;
 
 public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
 
-    private EntityManagerFactory emf;
-
     private ManejadorUsuarios manejadorUsuarios;
     private ManejadorActividad manejadorActividad;
     private ManejadorInstitucion manejadorInstitucion;
     private ManejadorClases manejadorClases;
 
     public ControllerEliminarRegClase() {
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
         manejadorUsuarios = new ManejadorUsuarios();
         manejadorActividad = new ManejadorActividad();
@@ -57,6 +54,7 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
 
     public boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase,
             String nicknameSocio) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -103,11 +101,13 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
             return false;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }
 
     public boolean crearRegistro(Socio socio, Clase clase) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -130,6 +130,7 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
             return false;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }

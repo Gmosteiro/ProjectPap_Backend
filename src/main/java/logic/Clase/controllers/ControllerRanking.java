@@ -13,15 +13,14 @@ import logic.Clase.Clase;
 
 public class ControllerRanking implements IControllerRanking {
 
-    private EntityManagerFactory emf;
-
     public ControllerRanking() {
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     @Override
     public List<ActividadDeportiva> obtenerRankingDeActividades() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
 
@@ -39,20 +38,21 @@ public class ControllerRanking implements IControllerRanking {
 
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-               transaction.rollback();
-               }
+                transaction.rollback();
+            }
             System.out.println("Catch obtenerRankingDeActividades: " + e);
             e.printStackTrace();
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
-         
 
     }
 
     @Override
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -64,20 +64,22 @@ public class ControllerRanking implements IControllerRanking {
             return actividad;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
+                transaction.rollback();
             }
             System.out.println("Catch obtenerActividadPorNombre: " + e);
             e.printStackTrace();
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }
-    
 
     @Override
     public List<Clase> obtenerRankingDeClases() {
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -96,13 +98,14 @@ public class ControllerRanking implements IControllerRanking {
             return resultados;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
+                transaction.rollback();
             }
             System.out.println("Catch obtenerRankingDeClases: " + e);
             e.printStackTrace();
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }

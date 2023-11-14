@@ -19,16 +19,15 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
     ;
     private ManejadorActividad manejadorActividad;
     private ManejadorUsuarios manejadorUsuarios;
-    private EntityManagerFactory emf;
 
     public ControllerConsultaActividad() {
         manejadorUsuarios = new ManejadorUsuarios();
         manejadorActividad = new ManejadorActividad();
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     public List<ActividadDeportiva> obtenerActividadesPorInstitucion(String nombreInstitucion) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
 
@@ -49,11 +48,13 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }
 
     public ActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
 
@@ -71,11 +72,13 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }
 
     public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
 
@@ -92,11 +95,13 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }
 
     public List<Registro> obtenerRegistrosPorClase(Clase clase) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
 
@@ -117,6 +122,7 @@ public class ControllerConsultaActividad implements IControllerConsultaActividad
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }

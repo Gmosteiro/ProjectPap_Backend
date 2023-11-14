@@ -24,6 +24,9 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.xml.ws.Endpoint;
 
 import DataTypes.DtActividadDeportiva;
@@ -52,42 +55,10 @@ import logic.Usuario.controllers.IControllerRegistroDictado;
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
 public class ControladorPublish {
-    private Fabrica fabrica;
 
-    private IControllerConsultaActividad iControllerConsultaActividad;
-
-    private IControllerConsultaUsuario iControllerConsultaUsuario;
-    private IControllerModificarUsuario iControllerModificarUsuario;
-    private IControllerRegistroDictado iControllerRegistroDictado;
-    private IControllerAltaClase iControllerAltaClase;
-    private IControllerConsultaClases iControllerConsultaClases;
-    private IControllerDictadoClase iControllerDictadoClase;
-    private IControllerRanking iControllerRanking;
-    private IControllerEliminarRegClase iControllerEliminarRegClase;
-    private IControllerInicioSesion iControllerIniciarSesion;
-    private ManejadorInstitucion manejadorInstitucion;
-    private ManejadorUsuarios manejadorUsuarios;
-    private ManejadorClases manejadorClases;
-    private ManejadorActividad manejadorActividad;
     private Endpoint endpoint;
 
     public ControladorPublish() {
-        fabrica = new Fabrica();
-
-        iControllerConsultaActividad = fabrica.getControllerConsultaActividad();
-        iControllerConsultaUsuario = fabrica.getControladorConsultaUsuario();
-        iControllerModificarUsuario = fabrica.getControllerModificarUsuario();
-        iControllerRegistroDictado = fabrica.getControllerRegistroDictado();
-        iControllerIniciarSesion = fabrica.getControllerInicioSesion();
-        iControllerAltaClase = fabrica.getControladorAltaClase();
-        iControllerConsultaClases = fabrica.getControllerConsultaClases();
-        iControllerDictadoClase = fabrica.getControllerDictadoClase();
-        iControllerRanking = fabrica.getControladorRankingActividad();
-        iControllerEliminarRegClase = fabrica.getControllerEliminarRegClase();
-        manejadorInstitucion = new ManejadorInstitucion();
-        manejadorUsuarios = new ManejadorUsuarios();
-        manejadorClases = new ManejadorClases();
-        manejadorActividad = new ManejadorActividad();
 
     }
 
@@ -105,20 +76,30 @@ public class ControladorPublish {
 
     @WebMethod
     public Sesion iniciarSesion(String nickname, String contrasena) {
-
-        return iControllerIniciarSesion.iniciarSesion(nickname, contrasena);
+        IControllerInicioSesion iControllerInicioSesion = new Fabrica().getControllerInicioSesion();
+        return iControllerInicioSesion.iniciarSesion(nickname, contrasena);
     }
 
     @WebMethod
     public DtActividadDeportiva obtenerActividadPorNombre(String nombreActividad) {
-        ActividadDeportiva ac = iControllerConsultaActividad.obtenerActividadPorNombre(nombreActividad);
+        try {
 
-        LocalDate fecha = ac.getFechaReg();
+            Fabrica factory = new Fabrica();
 
-        DtActividadDeportiva dtActividaDeportiva = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(),
-                ac.getDuracion(), (int) ac.getCosto(), fecha.toString(), ac.getImg());
+            IControllerConsultaActividad iControllerConsultaActividad = factory.getControllerConsultaActividad();
 
-        return dtActividaDeportiva;
+            ActividadDeportiva ac = iControllerConsultaActividad.obtenerActividadPorNombre(nombreActividad);
+
+            LocalDate fecha = ac.getFechaReg();
+
+            DtActividadDeportiva dtActividaDeportiva = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(),
+                    ac.getDuracion(), (int) ac.getCosto(), fecha.toString(), ac.getImg());
+
+            return dtActividaDeportiva;
+        } catch (Exception e) {
+            System.out.println("Catch obtenerActividadPorNombre: " + e);
+            return null;
+        }
 
     }
 
@@ -127,6 +108,8 @@ public class ControladorPublish {
             String img) {
 
         LocalDate nuevafecha = LocalDate.now();
+
+        IControllerModificarUsuario iControllerModificarUsuario = new Fabrica().getControllerModificarUsuario();
         return iControllerModificarUsuario.modificarUsuarioWeb(nickname, nuevoNombre, nuevoApellido, nuevafecha, img);
     }
 
@@ -137,11 +120,18 @@ public class ControladorPublish {
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
         LocalDate fechaReg = LocalDate.now();
+
+        IControllerAltaClase iControllerAltaClase = new Fabrica().getControladorAltaClase();
         iControllerAltaClase.addClase(nombre, fecha, hora, url, fechaReg, nombreProfesor, img, actividad);
     }
 
     @WebMethod
     public DtActividadDeportiva[] getActividadesByProfe(String nicknameProfesor) {
+
+        Fabrica factory = new Fabrica();
+
+        IControllerConsultaActividad iControllerConsultaActividad = factory.getControllerConsultaActividad();
+
         List<ActividadDeportiva> listActividades = iControllerConsultaActividad.getActividadesByProfe(nicknameProfesor);
         int it = 0;
 
@@ -158,27 +148,44 @@ public class ControladorPublish {
 
     @WebMethod
     public DtActividadDeportiva[] getActividadesByInstitucion(String nombreInstitucion) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
-        InstitucionDeportiva id = manejadorInstitucion.getInstitucionesByName(nombreInstitucion);
+        EntityManager entityManager = emf.createEntityManager();
 
-        List<ActividadDeportiva> listActividades = id.getActividades();
+        try {
 
-        int it = 0;
+            ManejadorInstitucion manejadorInstitucion = new ManejadorInstitucion();
 
-        DtActividadDeportiva[] actividadesTR = new DtActividadDeportiva[listActividades.size()];
-        for (ActividadDeportiva ac : listActividades) {
-            actividadesTR[it] = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(), ac.getDuracion(),
-                    (int) ac.getCosto(), ac.getFechaReg().toString(), ac.getImg());
-            it = it + 1;
+            InstitucionDeportiva id = manejadorInstitucion.getInstitucionesByName(nombreInstitucion);
 
+            List<ActividadDeportiva> listActividades = id.getActividades();
+
+            int it = 0;
+
+            DtActividadDeportiva[] actividadesTR = new DtActividadDeportiva[listActividades.size()];
+            for (ActividadDeportiva ac : listActividades) {
+                actividadesTR[it] = new DtActividadDeportiva(ac.getNombre(), ac.getDescripcion(), ac.getDuracion(),
+                        (int) ac.getCosto(), ac.getFechaReg().toString(), ac.getImg());
+                it = it + 1;
+
+            }
+
+            return actividadesTR;
+
+        } catch (Exception e) {
+            System.out.println("Catch getActividadesByInstitucion: " + e);
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
         }
-
-        return actividadesTR;
 
     }
 
     @WebMethod
     public DtClase[] getClasesByActividad(String nombreActividad) {
+
+        IControllerDictadoClase iControllerDictadoClase = new Fabrica().getControladorDictadoClase();
         List<Clase> listClases = iControllerDictadoClase.getClasesByActividad(nombreActividad);
 
         int it = 0;
@@ -196,6 +203,8 @@ public class ControladorPublish {
     @WebMethod
     public boolean eliminarRegistroDeClase(String nombreInstitucion, String nombreActividad, String nombreClase,
             String nicknameSocio) {
+
+        IControllerEliminarRegClase iControllerEliminarRegClase = new Fabrica().getControllerEliminarRegClase();
         return iControllerEliminarRegClase.eliminarRegistroDeClase(nombreInstitucion, nombreActividad, nombreClase,
                 nicknameSocio);
     }
@@ -203,17 +212,23 @@ public class ControladorPublish {
     @WebMethod
     public boolean existenElementos(String nombreInstitucion, String nombreActividad, String nombreClase,
             String nicknameSocio) {
+        IControllerEliminarRegClase iControllerEliminarRegClase = new Fabrica().getControllerEliminarRegClase();
+
         return iControllerEliminarRegClase.existenElementos(nombreInstitucion, nombreActividad, nombreClase,
                 nicknameSocio);
     }
 
     @WebMethod
     public boolean crearRegistro(Socio socio, Clase clase) {
+        IControllerEliminarRegClase iControllerEliminarRegClase = new Fabrica().getControllerEliminarRegClase();
+
         return iControllerEliminarRegClase.crearRegistro(socio, clase);
     }
 
     @WebMethod
     public DtInstitucion getInstitucionesByName(String nombre) {
+
+        ManejadorInstitucion manejadorInstitucion = new ManejadorInstitucion();
         InstitucionDeportiva institucion = manejadorInstitucion.getInstitucionesByName(nombre);
 
         DtInstitucion dtInstitucion = new DtInstitucion(institucion.getNombre(), institucion.getDescripcion(),
@@ -224,6 +239,8 @@ public class ControladorPublish {
 
     @WebMethod
     public DtClase[] getClasesByUser(String nickname) {
+
+        IControllerConsultaUsuario iControllerConsultaUsuario = new Fabrica().getControladorConsultaUsuario();
 
         List<Clase> listClases = iControllerConsultaUsuario.getClasesByUser(nickname);
         int it = 0;
@@ -240,6 +257,8 @@ public class ControladorPublish {
 
     @WebMethod
     public DtClase obtenerClasePorNombre(String nombreClase) {
+
+        IControllerConsultaClases iControllerConsultaClases = new Fabrica().getControllerConsultaClases();
         Clase clase = iControllerConsultaClases.obtenerClasePorNombre(nombreClase);
 
         DtClase dtClase = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
@@ -249,8 +268,11 @@ public class ControladorPublish {
 
     @WebMethod
     public DtClase[] obtenerClasesPorActividad(DtActividadDeportiva dtActividad) {
+        ManejadorActividad manejadorActividad = new ManejadorActividad();
 
         ActividadDeportiva actividad = manejadorActividad.obtenerActividadPorNombre(dtActividad.getNombre());
+        IControllerConsultaClases iControllerConsultaClases = new Fabrica().getControllerConsultaClases();
+
         List<Clase> listClases = iControllerConsultaClases.obtenerClasesPorActividad(actividad);
         int it = 0;
         DtClase[] clasesTR = new DtClase[listClases.size()];
@@ -265,6 +287,8 @@ public class ControladorPublish {
 
     @WebMethod
     public DtInstitucion[] getInstituciones() {
+        ManejadorInstitucion manejadorInstitucion = new ManejadorInstitucion();
+
         List<InstitucionDeportiva> listInstituciones = manejadorInstitucion.getInstituciones();
 
         int it = 0;
@@ -282,6 +306,7 @@ public class ControladorPublish {
 
     @WebMethod
     public DtUsuario[] getSociosByClase(Clase clase) {
+        ManejadorUsuarios manejadorUsuarios = new ManejadorUsuarios();
         List<Usuario> listSocios = manejadorUsuarios.getSociosByClase(clase);
 
         int it = 0;
@@ -300,6 +325,8 @@ public class ControladorPublish {
 
     @WebMethod
     public DtActividadDeportiva[] obtenerRankingDeActividades() {
+
+        IControllerRanking iControllerRanking = new Fabrica().getControladorRankingActividad();
         List<ActividadDeportiva> listActividades = iControllerRanking.obtenerRankingDeActividades();
 
         int it = 0;
@@ -317,6 +344,8 @@ public class ControladorPublish {
 
     @WebMethod
     public DtClase[] obtenerRankingDeClases() {
+        IControllerRanking iControllerRanking = new Fabrica().getControladorRankingActividad();
+
         List<Clase> listClases = iControllerRanking.obtenerRankingDeClases();
 
         int it = 0;
@@ -333,22 +362,30 @@ public class ControladorPublish {
 
     @WebMethod
     public boolean validateDataWeb(String nicknameSocio, String nombreClase) {
+
+        IControllerRegistroDictado iControllerRegistroDictado = new Fabrica().getControllerRegistroDictado();
         return iControllerRegistroDictado.validateDataWeb(nicknameSocio, nombreClase);
     }
 
     @WebMethod
     public boolean addRegistroDictadoWeb(String nicknameSocio, String nombreClase, String fechaRegStr) {
         LocalDate fechaReg = LocalDate.now();
+        IControllerRegistroDictado iControllerRegistroDictado = new Fabrica().getControllerRegistroDictado();
+
         return iControllerRegistroDictado.addRegistroDictadoWeb(nicknameSocio, nombreClase, fechaReg);
     }
 
     @WebMethod
     public Clase getClaseByNombre(String clase) {
+        ManejadorClases manejadorClases = new ManejadorClases();
+
         return manejadorClases.getClaseByNombre(clase);
     }
 
     @WebMethod
     public Socio getSocio(String nicknameSocio) {
+        ManejadorUsuarios manejadorUsuarios = new ManejadorUsuarios();
+
         return manejadorUsuarios.getSocio(nicknameSocio);
     }
 

@@ -20,18 +20,18 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
     private ManejadorInstitucion manejadorInstitucion;
     private ManejadorActividad manejadorActividad;
     private ManejadorClases manejadorClases;
-    private EntityManagerFactory emf;
 
     public ControllerDictadoClase() {
         manejadorInstitucion = new ManejadorInstitucion();
         manejadorActividad = new ManejadorActividad();
         manejadorClases = new ManejadorClases();
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     @Override
     public List<InstitucionDeportiva> getInstituciones() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -40,7 +40,7 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
 
         } catch (Exception errorException) {
             if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
+                transaction.rollback();
             }
             System.out.println("Catch getInstituciones: " + errorException);
             JOptionPane.showMessageDialog(null, extractErrorMessage(errorException.getMessage()), "Error",
@@ -48,14 +48,18 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
 
             return null;
 
+        } finally {
+            entityManager.close();
+            emf.close();
         }
     }
-        
 
     @Override
     public List<ActividadDeportiva> getActividades() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
+
         try {
             List<ActividadDeportiva> actividades = manejadorActividad.getActividades();
             return actividades;
@@ -67,9 +71,11 @@ public class ControllerDictadoClase implements IControllerDictadoClase {
 
             return new ArrayList<>();
 
+        } finally {
+            entityManager.close();
+            emf.close();
         }
     }
-   
 
     private String extractErrorMessage(String fullErrorMessage) {
         int startIndex = fullErrorMessage.indexOf(":") + 1;

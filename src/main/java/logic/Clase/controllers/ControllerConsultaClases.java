@@ -9,20 +9,19 @@ import javax.persistence.Persistence;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
 public class ControllerConsultaClases implements IControllerConsultaClases {
 
     private ManejadorClases manejadorClases;
-    private EntityManagerFactory emf;
 
     public ControllerConsultaClases() {
         manejadorClases = new ManejadorClases();
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     public List<ActividadDeportiva> obtenerActividadesPorInstitucion(String nombreInstitucion) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -37,17 +36,19 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
             return actividades;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
+                transaction.rollback();
             }
             System.out.println("Catch obtenerActividadesPorInstitucion: " + e);
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
     }
-    
 
     public List<Clase> obtenerClasesPorActividad(ActividadDeportiva actividad) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -59,15 +60,16 @@ public class ControllerConsultaClases implements IControllerConsultaClases {
             return clases;
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
-            transaction.rollback();
+                transaction.rollback();
             }
             System.out.println("Error " + e);
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
     }
-    
+
     public Clase obtenerClasePorNombre(String nombreClase) {
         return manejadorClases.getClaseByNombre(nombreClase);
     }

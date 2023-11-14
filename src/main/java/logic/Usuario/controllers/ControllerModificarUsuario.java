@@ -14,17 +14,15 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
 
     private ManejadorUsuarios manejadorUsuarios;
 
-    private EntityManagerFactory emf;
-
     public ControllerModificarUsuario() {
 
         manejadorUsuarios = new ManejadorUsuarios();
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     public void modificarUsuario(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
             String img) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -83,12 +81,14 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
             e.printStackTrace();
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }
 
     public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido, LocalDate nuevafecha,
             String img) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -140,6 +140,7 @@ public class ControllerModificarUsuario implements IControllerModificarUsuario {
             return false;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }

@@ -20,12 +20,10 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
 
     private ManejadorActividad manejadorActividad;
     private ManejadorInstitucion manejadorInstitucion;
-    private EntityManagerFactory emf;
 
     public ControllerAltaActividad() {
         manejadorActividad = new ManejadorActividad();
         manejadorInstitucion = new ManejadorInstitucion();
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
@@ -82,6 +80,7 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
     }
 
     private boolean validateActivityData(String nombre) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
 
@@ -107,6 +106,7 @@ public class ControllerAltaActividad implements IControllerAltaActividad {
             return false;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }

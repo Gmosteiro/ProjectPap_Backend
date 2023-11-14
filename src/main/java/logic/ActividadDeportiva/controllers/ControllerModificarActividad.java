@@ -12,16 +12,15 @@ import javax.persistence.Persistence;
 
 public class ControllerModificarActividad implements IControllerModificarActividad {
     private final ManejadorActividad manejadorActividad;
-    private EntityManagerFactory emf;
 
     public ControllerModificarActividad() {
         manejadorActividad = new ManejadorActividad();
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
     }
 
     public boolean modificarActividad(String nombre, String nuevaDescripcion, int nuevaDuracion, float nuevoCosto,
             String img) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -56,6 +55,7 @@ public class ControllerModificarActividad implements IControllerModificarActivid
             return false;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }

@@ -7,14 +7,15 @@ import javax.swing.JOptionPane;
 import logic.Institucion.InstitucionDeportiva;
 
 public class ControllerModificarInstitucion implements IControllerModificarInstitucion {
-    private EntityManagerFactory emFactory;
 
     public ControllerModificarInstitucion() {
-        emFactory = Persistence.createEntityManagerFactory("project_pap");
+
     }
 
     public void modificarInstitucion(String nombre, String nuevaDescripcion, String nuevaURL) {
-        EntityManager entityManager = emFactory.createEntityManager();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
+
+        EntityManager entityManager = emf.createEntityManager();
 
         try {
             entityManager.getTransaction().begin();
@@ -32,8 +33,7 @@ public class ControllerModificarInstitucion implements IControllerModificarInsti
                         null,
                         "Institucion Actualizada!",
                         "Success",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception e) {
             if (entityManager.getTransaction() != null && entityManager.getTransaction().isActive()) {
@@ -46,11 +46,10 @@ public class ControllerModificarInstitucion implements IControllerModificarInsti
                     null,
                     "Error al modificar la institución",
                     "Error",
-                    JOptionPane.ERROR_MESSAGE
-            );
+                    JOptionPane.ERROR_MESSAGE);
         } finally {
             entityManager.close();
-            emFactory.close();
+            emf.close();
         }
     }
 }

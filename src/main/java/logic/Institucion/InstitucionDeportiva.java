@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import logic.ActividadDeportiva.ActividadDeportiva;
@@ -18,7 +19,7 @@ public class InstitucionDeportiva {
 
     private String url;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ActividadDeportiva> actividades = new ArrayList<>();
 
     // Métodos getters y setters para los atributos
@@ -55,12 +56,13 @@ public class InstitucionDeportiva {
     public void setUrl(String url) {
         this.url = url;
     }
-    public List<ActividadDeportiva> getActividades(){
+
+    public List<ActividadDeportiva> getActividades() {
         return actividades;
     }
-    
+
     public void setActividades(List<ActividadDeportiva> actividades) {
         this.actividades = actividades;
     }
-    
+
 }

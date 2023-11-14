@@ -93,4 +93,8 @@ public class ActividadDeportiva {
         return Clases;
     }
 
+    public void setClases(List<Clase> clases) {
+        this.Clases = clases;
+    }
+
 }

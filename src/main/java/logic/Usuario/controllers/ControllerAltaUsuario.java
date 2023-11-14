@@ -13,12 +13,10 @@ import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 public class ControllerAltaUsuario implements IControllerAltaUsuario {
-    private EntityManagerFactory emf;
 
     private ManejadorUsuarios manejadorUsuarios;
 
     public ControllerAltaUsuario() {
-        emf = Persistence.createEntityManagerFactory("project_pap");
 
         manejadorUsuarios = new ManejadorUsuarios();
     }
@@ -92,6 +90,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
     }
 
     private String validateUserData(String nickname, String email, String queryValue) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
 
@@ -129,6 +128,7 @@ public class ControllerAltaUsuario implements IControllerAltaUsuario {
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }

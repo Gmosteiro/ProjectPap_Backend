@@ -13,14 +13,13 @@ import logic.Clase.Clase;
 
 public class ManejadorUsuarios {
 
-	private EntityManagerFactory emf;
-
 	public ManejadorUsuarios() {
-		emf = Persistence.createEntityManagerFactory("project_pap");
 
 	}
 
 	public void agregarUsuario(Usuario usuario) {
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -39,11 +38,14 @@ public class ManejadorUsuarios {
 			e.printStackTrace();
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public void agregarRegistro(Registro registro) {
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -69,11 +71,14 @@ public class ManejadorUsuarios {
 			e.printStackTrace();
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public boolean agregarRegistroWeb(Registro registro) {
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -96,11 +101,13 @@ public class ManejadorUsuarios {
 			return false;
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public List<Usuario> getUsuarios() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -133,11 +140,13 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public List<Usuario> getProfesores() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -159,11 +168,13 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public List<Usuario> getSocios() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -188,11 +199,13 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public Usuario getUser(String nickname) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -231,11 +244,13 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public Socio getSocio(String nickname) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -262,11 +277,13 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public Profesor getProfesor(String nickname) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -291,11 +308,13 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public Registro getRegistroBySocio(Socio socio) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -320,11 +339,13 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public Boolean existeRegistroBySocioYClase(Socio socio, Clase clase) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -349,11 +370,13 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public List<Usuario> getSociosByClase(Clase clase) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -377,11 +400,13 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public void eliminarRegistro(Registro registro) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -400,11 +425,13 @@ public class ManejadorUsuarios {
 			e.printStackTrace();
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
 
 	public Registro getRegistroBySocioEnClase(Socio socio, Clase clase) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -427,6 +454,7 @@ public class ManejadorUsuarios {
 
 		} finally {
 			entityManager.close();
+			emf.close();
 		}
 
 	}
