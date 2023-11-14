@@ -268,9 +268,9 @@ public class ControladorPublish {
 
     @WebMethod
     public DtClase[] obtenerClasesPorActividad(DtActividadDeportiva dtActividad) {
-        ManejadorActividad manejadorActividad = new ManejadorActividad();
 
-        ActividadDeportiva actividad = manejadorActividad.obtenerActividadPorNombre(dtActividad.getNombre());
+        ActividadDeportiva actividad = ManejadorActividad.obtenerActividadPorNombre(dtActividad.getNombre());
+
         IControllerConsultaClases iControllerConsultaClases = new Fabrica().getControllerConsultaClases();
 
         List<Clase> listClases = iControllerConsultaClases.obtenerClasesPorActividad(actividad);

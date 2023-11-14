@@ -47,6 +47,12 @@ public class ManejadorActividad {
     }
 
     public static ActividadDeportiva obtenerActividadPorNombre(String nombre) {
+
+        if (!entityManager.isOpen()) {
+            entityManager = emFactory.createEntityManager();
+
+        }
+
         ActividadDeportiva actividad = entityManager.find(ActividadDeportiva.class, nombre);
         return actividad;
     }
