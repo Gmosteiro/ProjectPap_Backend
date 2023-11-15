@@ -12,7 +12,7 @@ package publicadores;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import logic.ActividadDeportiva.controllers.IControllerConsultaActividad;
@@ -45,6 +45,7 @@ import logic.Fabrica;
 import logic.Institucion.InstitucionDeportiva;
 import logic.Institucion.ManejadorInstitucion;
 import logic.Usuario.ManejadorUsuarios;
+import logic.Usuario.Profesor;
 import logic.Usuario.Sesion;
 import logic.Usuario.Socio;
 import logic.Usuario.Usuario;
@@ -76,8 +77,14 @@ public class ControladorPublish {
 
     @WebMethod
     public Sesion iniciarSesion(String nickname, String contrasena) {
-        IControllerInicioSesion iControllerInicioSesion = new Fabrica().getControllerInicioSesion();
-        return iControllerInicioSesion.iniciarSesion(nickname, contrasena);
+        try {
+
+            IControllerInicioSesion iControllerInicioSesion = new Fabrica().getControllerInicioSesion();
+            return iControllerInicioSesion.iniciarSesion(nickname, contrasena);
+        } catch (Exception e) {
+            System.out.println("Catch iniciarSesion: " + e);
+            return null;
+        }
     }
 
     @WebMethod
@@ -107,10 +114,17 @@ public class ControladorPublish {
     public boolean modificarUsuarioWeb(String nickname, String nuevoNombre, String nuevoApellido, String nuevafechaStr,
             String img) {
 
-        LocalDate nuevafecha = LocalDate.now();
+        try {
+            LocalDate nuevafecha = LocalDate.now();
 
-        IControllerModificarUsuario iControllerModificarUsuario = new Fabrica().getControllerModificarUsuario();
-        return iControllerModificarUsuario.modificarUsuarioWeb(nickname, nuevoNombre, nuevoApellido, nuevafecha, img);
+            IControllerModificarUsuario iControllerModificarUsuario = new Fabrica().getControllerModificarUsuario();
+            return iControllerModificarUsuario.modificarUsuarioWeb(nickname, nuevoNombre, nuevoApellido, nuevafecha,
+                    img);
+        } catch (Exception e) {
+            System.out.println("Catch modificarUsuarioWeb: " + e);
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @WebMethod
@@ -190,7 +204,7 @@ public class ControladorPublish {
         DtClase[] clasesTR = new DtClase[listClases.size()];
         for (Clase clase : listClases) {
             clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg(), clase.getProfesor().getNickname());
             it = it + 1;
 
         }
@@ -217,10 +231,28 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public boolean crearRegistro(Socio socio, Clase clase) {
-        IControllerEliminarRegClase iControllerEliminarRegClase = new Fabrica().getControllerEliminarRegClase();
+    public boolean crearRegistro(DtUsuario dtSocio, DtClase dtClase) {
 
-        return iControllerEliminarRegClase.crearRegistro(socio, clase);
+        try {
+
+            Socio socio = new Socio(dtSocio.getNickname(), dtSocio.getNombre(), dtSocio.getApellido(),
+                    dtSocio.getEmail(),
+                    stringToLocalDate(dtSocio.getFechaNac()), dtSocio.getContrasena(), dtSocio.getImagen());
+
+            Profesor profesorDeClase = ManejadorUsuarios.getProfesor(dtClase.getProfesor());
+
+            Clase clase = new Clase(dtClase.getNombre(), stringToLocalDate(dtClase.getFecha()),
+                    stringToLocalTime(dtClase.getHora()), dtClase.getUrl(),
+                    stringToLocalDate(dtClase.getFechaRegistro()), profesorDeClase, dtClase.getImagen());
+
+            IControllerEliminarRegClase iControllerEliminarRegClase = new Fabrica().getControllerEliminarRegClase();
+
+            return iControllerEliminarRegClase.crearRegistro(socio, clase);
+
+        } catch (Exception e) {
+            System.out.println("Catch crearRegistro: " + e);
+            return false;
+        }
     }
 
     @WebMethod
@@ -244,7 +276,7 @@ public class ControladorPublish {
         DtClase[] clasesTR = new DtClase[listClases.size()];
         for (Clase clase : listClases) {
             clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg(), clase.getProfesor().getNickname());
             it = it + 1;
 
         }
@@ -260,7 +292,7 @@ public class ControladorPublish {
             Clase clase = iControllerConsultaClases.obtenerClasePorNombre(nombreClase);
 
             DtClase dtClase = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg(), clase.getProfesor().getNickname());
             return dtClase;
 
         } catch (Exception e) {
@@ -281,7 +313,7 @@ public class ControladorPublish {
         DtClase[] clasesTR = new DtClase[listClases.size()];
         for (Clase clase : listClases) {
             clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg(), clase.getProfesor().getNickname());
             it = it + 1;
 
         }
@@ -316,7 +348,7 @@ public class ControladorPublish {
         for (Usuario u : listSocios) {
 
             usuariosTR[it] = new DtUsuario(u.getId_usuario(), u.getNickname(), u.getEmail(), u.getNombre(),
-                    u.getApellido(), u.getFechaNacFromatted(), u.getContrasena());
+                    u.getApellido(), u.getFechaNacFromatted(), u.getContrasena(), u.getImg());
 
             it = it + 1;
         }
@@ -354,7 +386,7 @@ public class ControladorPublish {
         DtClase[] clasesTR = new DtClase[listClases.size()];
         for (Clase clase : listClases) {
             clasesTR[it] = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg(), clase.getProfesor().getNickname());
             it = it + 1;
 
         }
@@ -384,7 +416,7 @@ public class ControladorPublish {
             Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
 
             DtClase dtClase = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
-                    clase.getHora().toString(), clase.getUrl(), clase.getImg());
+                    clase.getHora().toString(), clase.getUrl(), clase.getImg(), clase.getProfesor().getNickname());
 
             return dtClase;
 
@@ -402,13 +434,29 @@ public class ControladorPublish {
 
             DtUsuario user = new DtUsuario(socio.getId_usuario(), socio.getNickname(), socio.getEmail(),
                     socio.getNombre(),
-                    socio.getApellido(), socio.getFechaNacFromatted(), socio.getContrasena());
+                    socio.getApellido(), socio.getFechaNacFromatted(), socio.getContrasena(), socio.getImg());
 
             return user;
         } catch (Exception e) {
             System.out.println("Catch getSocio: " + e);
             return null;
         }
+    }
+
+    // Funciones de Utilidad, No publicar
+
+    public LocalDate stringToLocalDate(String fechaComoString) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        return LocalDate.parse(fechaComoString, formatter);
+    }
+
+    public LocalTime stringToLocalTime(String tiempoComoString) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        return LocalTime.parse(tiempoComoString, formatter);
     }
 
 }

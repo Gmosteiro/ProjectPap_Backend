@@ -3,7 +3,7 @@ package DataTypes;
 public class DtUsuario {
 
     private Long id_usuario;
-    private String nickname, email, nombre, apellido, fechaNac, contrasena;
+    private String nickname, email, nombre, apellido, fechaNac, contrasena, imagen;
 
     // Atributos de Profesor
     private String descripcion, biografia, sitioWeb;
@@ -13,7 +13,7 @@ public class DtUsuario {
     }
 
     public DtUsuario(Long id_usuario, String nickname, String email, String nombre, String apellido, String fechaNac,
-            String contrasena) {
+            String contrasena, String imagen) {
         super();
         this.id_usuario = id_usuario;
         this.nickname = nickname;
@@ -22,6 +22,15 @@ public class DtUsuario {
         this.apellido = apellido;
         this.fechaNac = fechaNac;
         this.contrasena = contrasena;
+        this.imagen = imagen;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Long getId_usuario() {

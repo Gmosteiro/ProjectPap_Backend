@@ -1,13 +1,14 @@
 package DataTypes;
 
 public class DtClase {
-    private String nombre, fecha, fechaRegistro, hora, url, imagen;
+    private String nombre, fecha, fechaRegistro, hora, url, imagen, profesor;
 
     public DtClase() {
         super();
     }
 
-    public DtClase(String nombre, String fecha, String fechaRegistro, String hora, String url, String imagen) {
+    public DtClase(String nombre, String fecha, String fechaRegistro, String hora, String url, String imagen,
+            String profesor) {
         super();
         this.nombre = nombre;
         this.fecha = fecha;
@@ -15,6 +16,15 @@ public class DtClase {
         this.hora = hora;
         this.url = url;
         this.imagen = imagen;
+        this.profesor = profesor;
+    }
+
+    public String getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(String profesor) {
+        this.profesor = profesor;
     }
 
     public String getImagen() {
@@ -64,4 +74,5 @@ public class DtClase {
     public void setUrl(String url) {
         this.url = url;
     }
+
 }
