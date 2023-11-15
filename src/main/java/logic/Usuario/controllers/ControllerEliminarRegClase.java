@@ -87,7 +87,7 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
   
     public boolean crearRegistro(Socio socio, Clase clase) {
         try {
-            entityManager.getTransaction().begin();
+//            entityManager.getTransaction().begin();
             Registro nuevoRegistro = new Registro(LocalDate.now(), socio, clase);
             entityManager.persist(nuevoRegistro);
             entityManager.getTransaction().commit();
