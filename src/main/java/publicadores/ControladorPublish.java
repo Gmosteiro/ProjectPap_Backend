@@ -339,9 +339,10 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public DtUsuario[] getSociosByClase(Clase clase) {
+    public DtUsuario[] getSociosByClase(DtClase dtClase) {
 
-        List<Usuario> listSocios = ManejadorUsuarios.getSociosByClase(clase);
+        List<Usuario> listSocios = ManejadorUsuarios
+                .getSociosByClase(ManejadorClases.getClaseByNombre(dtClase.getNombre()));
 
         int it = 0;
         DtUsuario[] usuariosTR = new DtUsuario[listSocios.size()];
