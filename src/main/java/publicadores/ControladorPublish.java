@@ -416,6 +416,10 @@ public class ControladorPublish {
 
             Clase clase = ManejadorClases.getClaseByNombre(nombreClase);
 
+            if (clase == null) {
+                return new DtClase();
+            }
+
             DtClase dtClase = new DtClase(clase.getNombre(), clase.getFechaFormatted(), clase.getFechaReg().toString(),
                     clase.getHora().toString(), clase.getUrl(), clase.getImg(), clase.getProfesor().getNickname());
 
@@ -432,6 +436,10 @@ public class ControladorPublish {
         try {
 
             Socio socio = ManejadorUsuarios.getSocio(nicknameSocio);
+
+            if (socio == null) {
+                return new DtUsuario();
+            }
 
             DtUsuario user = new DtUsuario(socio.getId_usuario(), socio.getNickname(), socio.getEmail(),
                     socio.getNombre(),
