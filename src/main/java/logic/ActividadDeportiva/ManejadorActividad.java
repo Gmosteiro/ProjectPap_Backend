@@ -49,6 +49,10 @@ public class ManejadorActividad {
     public static ActividadDeportiva obtenerActividadPorNombre(String nombre) {
 
         if (!entityManager.isOpen()) {
+
+            if (!emFactory.isOpen()) {
+                emFactory = Persistence.createEntityManagerFactory("project_pap");
+            }
             entityManager = emFactory.createEntityManager();
 
         }
@@ -59,6 +63,16 @@ public class ManejadorActividad {
 
     public void agregarClaseA(Clase clase, String actividad) {
         try {
+
+            if (!entityManager.isOpen()) {
+
+                if (!emFactory.isOpen()) {
+                    emFactory = Persistence.createEntityManagerFactory("project_pap");
+                }
+                entityManager = emFactory.createEntityManager();
+
+            }
+
             ActividadDeportiva Actividad = obtenerActividadPorNombre(actividad);
             Actividad.getClases().add(clase);
             entityManager.getTransaction().begin();
@@ -67,7 +81,7 @@ public class ManejadorActividad {
             entityManager.close();
             emFactory.close();
         } catch (Exception exceptionAgregarClase) {
-            System.out.println("Catch agregarClase: " + exceptionAgregarClase);
+            System.out.println("Catch agregarClaseA: " + exceptionAgregarClase);
             System.out.println("ERROR");
         }
     }
