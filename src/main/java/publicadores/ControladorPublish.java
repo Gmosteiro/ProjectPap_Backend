@@ -162,6 +162,7 @@ public class ControladorPublish {
 
     @WebMethod
     public DtActividadDeportiva[] getActividadesByInstitucion(String nombreInstitucion) {
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("project_pap");
 
         EntityManager entityManager = emf.createEntityManager();
@@ -190,6 +191,7 @@ public class ControladorPublish {
             return null;
         } finally {
             entityManager.close();
+            emf.close();
         }
 
     }
