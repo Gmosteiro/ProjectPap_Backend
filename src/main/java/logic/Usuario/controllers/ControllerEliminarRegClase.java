@@ -72,9 +72,8 @@ public class ControllerEliminarRegClase implements IControllerEliminarRegClase {
 
             return true;
         } else {
-            System.out.println("No se encontró un registro asociado a este socio y clase. Se creará uno nuevo.");      
-            crearRegistro(socio, clase);
-            return false;
+            System.out.println("No se encontró un registro asociado a este socio y clase. Se creará uno nuevo.");
+            return crearRegistro(socio, clase);
         }
     } catch (Exception e) {
         entityManager.getTransaction().rollback();
