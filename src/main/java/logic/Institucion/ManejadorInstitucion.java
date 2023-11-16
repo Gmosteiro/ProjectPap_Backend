@@ -28,7 +28,7 @@ public class ManejadorInstitucion {
 
         }
 
-        public void actualizarInstitucion(InstitucionDeportiva institucion) {
+         public void actualizarInstitucion(InstitucionDeportiva institucion) {
                 EntityManager entityManager = emFactory.createEntityManager();
                 entityManager.getTransaction().begin();
 
@@ -52,27 +52,12 @@ public class ManejadorInstitucion {
         }
 
         public static InstitucionDeportiva getInstitucionesByName(String nombre) {
-                try {
+                InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
 
-                        if (!entityManager.isOpen()) {
+                // entityManager.close();
+                // emFactory.close();
 
-                                if (!emFactory.isOpen()) {
-                                        emFactory = Persistence.createEntityManagerFactory("project_pap");
-                                }
-                                entityManager = emFactory.createEntityManager();
-
-                        }
-
-                        InstitucionDeportiva institucion = entityManager.find(InstitucionDeportiva.class, nombre);
-
-                        return institucion;
-                } catch (Exception e) {
-                        System.out.println("Error getInstitucionesbyName: " + e);
-                        return null;
-                } finally {
-                        emFactory.close();
-                        entityManager.close();
-                }
+                return institucion;
         }
 
         public void agregarActividadI(ActividadDeportiva actividad, String nombrei) {
@@ -90,9 +75,9 @@ public class ManejadorInstitucion {
                         System.out.println("ERROR");
                 }
         }
-
-        public List<ActividadDeportiva> getActividades() {
-                return getActividades();
+        
+        public List<ActividadDeportiva> getActividades(){
+        return getActividades();
         }
 
 }
