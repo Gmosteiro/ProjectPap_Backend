@@ -18,9 +18,9 @@ public class App {
 	public static void main(String[] args) {
 
 		try {
-			iniciarVentana();
+			 iniciarVentana();;
 
-			// cargarData();
+//			cargarData();
 
 		} catch (Exception e) {
 			System.out.println("Catch main: " + e.getMessage());
